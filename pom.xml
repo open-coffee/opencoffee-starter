@@ -14,7 +14,7 @@
         <groupId>coffee.synyx</groupId>
         <artifactId>coffeenet-starter-parent</artifactId>
         <version>0.1.0-SNAPSHOT</version>
-        <relativePath>coffeenet-parent/pom.xml</relativePath> <!-- lookup parent from repository -->
+        <relativePath>coffeenet-starter-parent/pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
     <scm>
@@ -29,6 +29,6 @@
         <module>coffeenet-starter-logging</module>
         <module>coffeenet-starter-sso</module>
         <module>coffeenet-autoconfigure</module>
-        <module>coffeenet-parent</module>
+        <module>coffeenet-starter-parent</module>
     </modules>
 </project>

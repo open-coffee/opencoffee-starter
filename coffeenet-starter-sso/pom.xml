@@ -15,7 +15,7 @@
         <groupId>coffee.synyx</groupId>
         <artifactId>coffeenet-starter-parent</artifactId>
         <version>0.1.0-SNAPSHOT</version>
-        <relativePath>../coffeenet-parent/pom.xml</relativePath> <!-- lookup parent from repository -->
+        <relativePath>../coffeenet-starter-parent/pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
     <repositories>
