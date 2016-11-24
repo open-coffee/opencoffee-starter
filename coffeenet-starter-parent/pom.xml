@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <autoconfigure.version>0.9.2</autoconfigure.version>
+        <autoconfigure.version>0.10.0-SNAPSHOT</autoconfigure.version>
 
         <slf4j-api.version>1.7.21</slf4j-api.version>
         <commons-logging.version>1.2</commons-logging.version>
