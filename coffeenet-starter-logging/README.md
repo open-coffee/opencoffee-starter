@@ -3,6 +3,21 @@
 ## Beschreibung
 Diese Abhängigkeit konfiguriert ein einheitliches Logging im CoffeeNet.
 
+
+### Verwendung
+
+```java
+import ch.qos.logback.classic.Logger;
+import org.slf4j.LoggerFactory;
+
+public class LoggingClass {
+
+  private static final Logger LOGGER = (Logger) LoggerFactory.getLogger("LoggingClass");
+  ...
+}
+```
+
+
 ### Konfiguration
 
 Der Starter-Logging hängt sich standardmäßig an die Eigenschaft ```coffeenet.profile```.
