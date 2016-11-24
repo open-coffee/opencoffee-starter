@@ -19,10 +19,10 @@ coffeenet:
      enabled:
    file:
      enabled:
-     file: logs/app.txt
-     max-file-size: 10MB
+     file: logs/app.log
+     max-history: 30
+     rolling-file-name-pattern: logs/app-%d{yyyy-MM-dd}.log
      pattern: %d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n%wEx
-     rolling-f-n-p: logs/app.txt%i
    gelf:
      enabled:
      server: localhost

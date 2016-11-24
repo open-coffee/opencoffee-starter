@@ -13,10 +13,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class CoffeeNetLoggingFileProperties {
 
     private Boolean enabled;
-    private String file = "logs/app.txt";
-    private String rollingFNP = file + "%i";
+    private String file = "logs/app.log";
+    private String fileNamePattern = "logs/app-%d{yyyy-MM-dd}.log";
     private String pattern = "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n%wEx";
-    private String maxFileSize = "10MB";
+    private int maxHistory = 30;
 
     public Boolean isEnabled() {
 
@@ -42,15 +42,15 @@ public class CoffeeNetLoggingFileProperties {
     }
 
 
-    public String getMaxFileSize() {
+    public int getMaxHistory() {
 
-        return maxFileSize;
+        return maxHistory;
     }
 
 
-    public void setMaxFileSize(String maxFileSize) {
+    public void setMaxHistory(int maxHistory) {
 
-        this.maxFileSize = maxFileSize;
+        this.maxHistory = maxHistory;
     }
 
 
@@ -66,14 +66,14 @@ public class CoffeeNetLoggingFileProperties {
     }
 
 
-    public String getRollingFNP() {
+    public String getFileNamePattern() {
 
-        return rollingFNP;
+        return fileNamePattern;
     }
 
 
-    public void setRollingFNP(String rollingFNP) {
+    public void setFileNamePattern(String rollingFNP) {
 
-        this.rollingFNP = rollingFNP;
+        this.fileNamePattern = rollingFNP;
     }
 }

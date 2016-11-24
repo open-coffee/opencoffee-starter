@@ -18,9 +18,9 @@ public class CoffeeNetLoggingFilePropertiesTest {
 
         CoffeeNetLoggingFileProperties sut = new CoffeeNetLoggingFileProperties();
         assertThat(sut.isEnabled(), is(nullValue()));
-        assertThat(sut.getMaxFileSize(), is("10MB"));
-        assertThat(sut.getFile(), is("logs/app.txt"));
-        assertThat(sut.getRollingFNP(), is("logs/app.txt%i"));
+        assertThat(sut.getMaxHistory(), is(30));
+        assertThat(sut.getFile(), is("logs/app.log"));
+        assertThat(sut.getFileNamePattern(), is("logs/app-%d{yyyy-MM-dd}.log"));
         assertThat(sut.getPattern(), is("%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n%wEx"));
     }
 }

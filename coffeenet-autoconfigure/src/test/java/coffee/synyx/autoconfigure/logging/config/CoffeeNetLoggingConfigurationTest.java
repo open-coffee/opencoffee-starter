@@ -5,10 +5,9 @@ import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
 import ch.qos.logback.core.ConsoleAppender;
-import ch.qos.logback.core.rolling.FixedWindowRollingPolicy;
 import ch.qos.logback.core.rolling.RollingFileAppender;
 import ch.qos.logback.core.rolling.RollingPolicy;
-import ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy;
+import ch.qos.logback.core.rolling.TimeBasedRollingPolicy;
 
 import de.appelgriepsch.logback.GelfAppender;
 
@@ -63,17 +62,14 @@ public class CoffeeNetLoggingConfigurationTest {
 
         // Check File Appender
         RollingFileAppender rollingFileAppender = (RollingFileAppender) fileAppender;
-        assertThat(rollingFileAppender.getFile(), is("logs/app.txt"));
+        assertThat(rollingFileAppender.getFile(), is("logs/app.log"));
         assertThat(rollingFileAppender.getName(), is("COFFEENET-FILE"));
 
         RollingPolicy rollingPolicy = rollingFileAppender.getRollingPolicy();
-        assertThat(rollingPolicy, is(instanceOf(FixedWindowRollingPolicy.class)));
+        assertThat(rollingPolicy, is(instanceOf(TimeBasedRollingPolicy.class)));
 
-        FixedWindowRollingPolicy fixedRollingPolicy = (FixedWindowRollingPolicy) rollingFileAppender.getRollingPolicy();
-        assertThat(fixedRollingPolicy.getFileNamePattern(), is("logs/app.txt%i"));
-
-        SizeBasedTriggeringPolicy policy = (SizeBasedTriggeringPolicy) rollingFileAppender.getTriggeringPolicy();
-        assertThat(policy.getMaxFileSize(), is("10MB"));
+        TimeBasedRollingPolicy fixedRollingPolicy = (TimeBasedRollingPolicy) rollingFileAppender.getRollingPolicy();
+        assertThat(fixedRollingPolicy.getFileNamePattern(), is("logs/app-%d{yyyy-MM-dd}.log"));
 
         PatternLayoutEncoder encoder = (PatternLayoutEncoder) rollingFileAppender.getEncoder();
         assertThat(encoder.getPattern(), is("%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n%wEx"));

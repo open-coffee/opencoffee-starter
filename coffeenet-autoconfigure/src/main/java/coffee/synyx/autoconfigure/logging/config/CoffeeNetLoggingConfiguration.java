@@ -5,9 +5,8 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.core.rolling.FixedWindowRollingPolicy;
 import ch.qos.logback.core.rolling.RollingFileAppender;
-import ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy;
+import ch.qos.logback.core.rolling.TimeBasedRollingPolicy;
 
 import coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties;
 import coffee.synyx.autoconfigure.logging.CoffeeNetLoggingConsoleProperties;
@@ -175,19 +174,14 @@ public class CoffeeNetLoggingConfiguration {
         rfAppender.setContext(loggerContext);
         rfAppender.setFile(coffeeNetLoggingFileProperties.getFile());
 
-        // FixedWindowRollingPolicy
-        FixedWindowRollingPolicy rollingPolicy = new FixedWindowRollingPolicy();
+        // TimeBasedRollingPolicy
+        TimeBasedRollingPolicy rollingPolicy = new TimeBasedRollingPolicy();
         rollingPolicy.setContext(loggerContext);
         rollingPolicy.setParent(rfAppender);
-        rollingPolicy.setFileNamePattern(coffeeNetLoggingFileProperties.getRollingFNP());
+        rollingPolicy.setFileNamePattern(coffeeNetLoggingFileProperties.getFileNamePattern());
+        rollingPolicy.setMaxHistory(coffeeNetLoggingFileProperties.getMaxHistory());
         rollingPolicy.start();
         rfAppender.setRollingPolicy(rollingPolicy);
-
-        // SizeBasedTriggeringPolicy
-        SizeBasedTriggeringPolicy<ILoggingEvent> triggeringPolicy = new SizeBasedTriggeringPolicy<>();
-        triggeringPolicy.setMaxFileSize(coffeeNetLoggingFileProperties.getMaxFileSize());
-        triggeringPolicy.start();
-        rfAppender.setTriggeringPolicy(triggeringPolicy);
 
         // PatternLayoutEncoder
         PatternLayoutEncoder encoder = new PatternLayoutEncoder();
