@@ -2,7 +2,6 @@ package coffee.synyx.autoconfigure.discovery.endpoint;
 
 import coffee.synyx.autoconfigure.discovery.service.App;
 import coffee.synyx.autoconfigure.discovery.service.AppService;
-import coffee.synyx.autoconfigure.security.user.HumanCoffeeNetUser;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,11 +12,6 @@ import org.mockito.Mock;
 
 import org.mockito.runners.MockitoJUnitRunner;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -79,14 +73,5 @@ public class CoffeeNetAppsEndpointTest {
         assertThat(filteredAppList, hasSize(2));
         assertThat(filteredAppList.get(0).getName(), is("name1"));
         assertThat(filteredAppList.get(1).getName(), is("name2"));
-    }
-
-
-    private HumanCoffeeNetUser getHumanCoffeeUserWithRole(String role) {
-
-        Collection<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority(role));
-
-        return new HumanCoffeeNetUser("username", "emailUsername", grantedAuthorities);
     }
 }
