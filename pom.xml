@@ -8,7 +8,7 @@
 
     <packaging>pom</packaging>
 
-    <name>CoffeeNet Starter Modules</name>
+    <name>CoffeeNet Starter</name>
 
     <parent>
         <groupId>coffee.synyx</groupId>
