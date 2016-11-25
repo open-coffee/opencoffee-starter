@@ -40,6 +40,21 @@ public class CoffeeNetDiscoveryInstancePropertiesTest {
 
 
     @Test
+    public void setServerPort() {
+
+        int port = 9999;
+
+        ServerProperties serverProperties = new ServerProperties();
+        serverProperties.setPort(port);
+
+        CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
+                    new InetUtilsProperties()), serverProperties, new CoffeeNetConfigurationProperties());
+
+        assertThat(sut.getNonSecurePort(), is(port));
+    }
+
+
+    @Test
     public void applicationName() {
 
         String brandNewApplicationName = "BrandNewApplicationName";
