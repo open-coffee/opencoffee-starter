@@ -5,7 +5,6 @@ import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.DevelopmentCoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.IntegrationEurekaCoffeeNetAppService;
-import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 
 
 /**
@@ -30,9 +29,7 @@ public interface CoffeeNetServiceDiscoveryConfiguration {
      * Provides the {@link CoffeeNetAppsEndpoint} with different service implementation (development,integrated) of the
      * {@link CoffeeNetAppService}.
      *
-     * @param  coffeeNetCurrentUserService  Service to receive the actual user
-     *
      * @return  {@link CoffeeNetAppsEndpoint} to provide the registered {@link CoffeeNetApp}s
      */
-    CoffeeNetAppsEndpoint coffeeNetAppsEndpoint(CoffeeNetCurrentUserService coffeeNetCurrentUserService);
+    CoffeeNetAppsEndpoint coffeeNetAppsEndpoint();
 }

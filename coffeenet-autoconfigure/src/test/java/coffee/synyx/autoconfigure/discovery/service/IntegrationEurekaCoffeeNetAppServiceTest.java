@@ -18,7 +18,6 @@ import org.springframework.cloud.netflix.eureka.InstanceInfoFactory;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasSize;
 
 import static org.junit.Assert.assertThat;
@@ -62,7 +61,6 @@ public class IntegrationEurekaCoffeeNetAppServiceTest {
 
         List<CoffeeNetApp> coffeeNetApps = eurekaAppService.getApps();
         assertThat(coffeeNetApps, hasSize(1));
-        assertThat(coffeeNetApps.get(0).getAllowedAuthorities(), contains("ROLE_ADMIN"));
     }
 
 
