@@ -79,6 +79,18 @@ public class CoffeeNetAuthoritiesExtractorTest {
 
 
     @Test
+    public void extractAuthoritiesReturnsDefaultAuthorityIfPrincipalMapIsNotAMap() {
+
+        userInfoHashMap.put("principal", "noHashMap");
+
+        List<GrantedAuthority> grantedAuthorities = sut.extractAuthorities(userInfoHashMap);
+
+        assertThat(grantedAuthorities.size(), is(1));
+        assertThat(grantedAuthorities.contains(new SimpleGrantedAuthority("ROLE_UNKNOWN")), is(true));
+    }
+
+
+    @Test
     public void extractAuthoritiesReturnsDefaultAuthorityIfPrincipalMapDoesNotContainAuthoritiesKey() {
 
         testPrincipal.remove("authorities");
