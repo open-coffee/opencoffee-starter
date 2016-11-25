@@ -1,4 +1,4 @@
-package coffee.synyx.autoconfigure.security.config;
+package coffee.synyx.autoconfigure.security.config.global;
 
 import coffee.synyx.autoconfigure.security.config.development.DevelopmentCoffeeNetSecurityConfiguration;
 import coffee.synyx.autoconfigure.security.config.integration.IntegrationCoffeeNetSecurityConfiguration;

@@ -1,4 +1,4 @@
-package coffee.synyx.autoconfigure.discovery.config;
+package coffee.synyx.autoconfigure.discovery.config.global;
 
 import coffee.synyx.autoconfigure.discovery.config.development.DevelopmentCoffeeNetServiceDiscoveryConfiguration;
 import coffee.synyx.autoconfigure.discovery.config.integration.IntegrationCoffeeNetServiceDiscoveryConfiguration;
