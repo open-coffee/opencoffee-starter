@@ -2,8 +2,8 @@ package coffee.synyx.autoconfigure.discovery.config.development;
 
 import coffee.synyx.autoconfigure.discovery.config.CoffeeNetServiceDiscoveryConfiguration;
 import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpoint;
-import coffee.synyx.autoconfigure.discovery.service.AppService;
-import coffee.synyx.autoconfigure.discovery.service.MockAppService;
+import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
+import coffee.synyx.autoconfigure.discovery.service.DevelopmentCoffeeNetAppService;
 import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 
 import com.netflix.discovery.DiscoveryClient;
@@ -34,9 +34,9 @@ public class DevelopmentCoffeeNetServiceDiscoveryConfiguration implements Coffee
 
     @Bean
     @Override
-    public AppService coffeeNetAppService() {
+    public CoffeeNetAppService coffeeNetAppService() {
 
-        return new MockAppService();
+        return new DevelopmentCoffeeNetAppService();
     }
 
 

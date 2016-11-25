@@ -1,7 +1,7 @@
 package coffee.synyx.autoconfigure.discovery.endpoint;
 
-import coffee.synyx.autoconfigure.discovery.service.App;
-import coffee.synyx.autoconfigure.discovery.service.AppService;
+import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
+import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 import coffee.synyx.autoconfigure.security.user.HumanCoffeeNetUser;
 
@@ -42,14 +42,14 @@ public class CoffeeNetAppsEndpointTest {
     private CoffeeNetAppsEndpoint sut;
 
     @Mock
-    private AppService appServiceMock;
+    private CoffeeNetAppService coffeeNetAppServiceMock;
     @Mock
     private CoffeeNetCurrentUserService coffeeNetCurrentUserServiceMock;
 
     @Before
     public void setUp() {
 
-        this.sut = new CoffeeNetAppsEndpoint(appServiceMock, coffeeNetCurrentUserServiceMock);
+        this.sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, coffeeNetCurrentUserServiceMock);
     }
 
 
@@ -77,15 +77,15 @@ public class CoffeeNetAppsEndpointTest {
     @Test
     public void invoke() {
 
-        when(appServiceMock.getApps()).thenReturn(asList(
-                new App("name1", "url1", new HashSet<>(singletonList("ROLE_ADMIN"))),
-                new App("name2", "url2", new HashSet<>(singletonList("ROLE_USER")))));
+        when(coffeeNetAppServiceMock.getApps()).thenReturn(asList(
+                new CoffeeNetApp("name1", "url1", new HashSet<>(singletonList("ROLE_ADMIN"))),
+                new CoffeeNetApp("name2", "url2", new HashSet<>(singletonList("ROLE_USER")))));
 
         when(coffeeNetCurrentUserServiceMock.get()).thenReturn(getHumanCoffeeUserWithRole("ROLE_ADMIN"));
 
-        List<App> filteredAppList = sut.invoke();
-        assertThat(filteredAppList, hasSize(1));
-        assertThat(filteredAppList.get(0).getName(), is("name1"));
+        List<CoffeeNetApp> filteredCoffeeNetAppList = sut.invoke();
+        assertThat(filteredCoffeeNetAppList, hasSize(1));
+        assertThat(filteredCoffeeNetAppList.get(0).getName(), is("name1"));
     }
 
 

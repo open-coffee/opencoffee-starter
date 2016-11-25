@@ -25,15 +25,15 @@ import static java.util.stream.Collectors.toList;
 /**
  * @author  Tobias Schneider - schneider@synyx.de
  */
-public class AppTest {
+public class CoffeeNetAppTest {
 
     @Test
     public void isAllowedToAccess() {
 
-        App app = getAppWithRoles(asList("ROLE_ADMIN", "ROLE_USER"));
+        CoffeeNetApp coffeeNetApp = getAppWithRoles(asList("ROLE_ADMIN", "ROLE_USER"));
         HumanCoffeeNetUser humanCoffeeUser = getHumanCoffeeUserWithRole(singletonList("ROLE_USER"));
 
-        boolean allowedToAccess = app.isAllowedToAccessBy(humanCoffeeUser);
+        boolean allowedToAccess = coffeeNetApp.isAllowedToAccessBy(humanCoffeeUser);
         assertThat(allowedToAccess, is(true));
     }
 
@@ -41,10 +41,10 @@ public class AppTest {
     @Test
     public void isAllowedToAccessNullAsAllowedAuthorities() {
 
-        App app = new App("AppName", "AppUrl", null);
+        CoffeeNetApp coffeeNetApp = new CoffeeNetApp("AppName", "AppUrl", null);
         HumanCoffeeNetUser humanCoffeeUser = getHumanCoffeeUserWithRole(singletonList("ROLE_USER"));
 
-        boolean allowedToAccess = app.isAllowedToAccessBy(humanCoffeeUser);
+        boolean allowedToAccess = coffeeNetApp.isAllowedToAccessBy(humanCoffeeUser);
         assertThat(allowedToAccess, is(true));
     }
 
@@ -52,10 +52,10 @@ public class AppTest {
     @Test
     public void isAllowedToAccessNoAppRolesDefined() {
 
-        App app = getAppWithRoles(null);
+        CoffeeNetApp coffeeNetApp = getAppWithRoles(null);
         HumanCoffeeNetUser humanCoffeeUser = getHumanCoffeeUserWithRole(singletonList("ROLE_ADMIN"));
 
-        boolean allowedToAccess = app.isAllowedToAccessBy(humanCoffeeUser);
+        boolean allowedToAccess = coffeeNetApp.isAllowedToAccessBy(humanCoffeeUser);
         assertThat(allowedToAccess, is(true));
     }
 
@@ -63,10 +63,10 @@ public class AppTest {
     @Test
     public void isAllowedToAccessNoAppAndUserRolesDefined() {
 
-        App app = getAppWithRoles(null);
+        CoffeeNetApp coffeeNetApp = getAppWithRoles(null);
         HumanCoffeeNetUser humanCoffeeUser = getHumanCoffeeUserWithRole(null);
 
-        boolean allowedToAccess = app.isAllowedToAccessBy(humanCoffeeUser);
+        boolean allowedToAccess = coffeeNetApp.isAllowedToAccessBy(humanCoffeeUser);
         assertThat(allowedToAccess, is(true));
     }
 
@@ -74,10 +74,10 @@ public class AppTest {
     @Test
     public void isAllowedToAccessCaseInsensitiveAppRole() {
 
-        App app = getAppWithRoles(singletonList("ROLE_admin"));
+        CoffeeNetApp coffeeNetApp = getAppWithRoles(singletonList("ROLE_admin"));
         HumanCoffeeNetUser humanCoffeeUser = getHumanCoffeeUserWithRole(singletonList("ROLE_ADMIN"));
 
-        boolean allowedToAccess = app.isAllowedToAccessBy(humanCoffeeUser);
+        boolean allowedToAccess = coffeeNetApp.isAllowedToAccessBy(humanCoffeeUser);
         assertThat(allowedToAccess, is(true));
     }
 
@@ -85,10 +85,10 @@ public class AppTest {
     @Test
     public void isAllowedToAccessCaseInsensitiveUserRole() {
 
-        App app = getAppWithRoles(singletonList("ROLE_ADMIN"));
+        CoffeeNetApp coffeeNetApp = getAppWithRoles(singletonList("ROLE_ADMIN"));
         HumanCoffeeNetUser humanCoffeeUser = getHumanCoffeeUserWithRole(singletonList("ROLE_admin"));
 
-        boolean allowedToAccess = app.isAllowedToAccessBy(humanCoffeeUser);
+        boolean allowedToAccess = coffeeNetApp.isAllowedToAccessBy(humanCoffeeUser);
         assertThat(allowedToAccess, is(true));
     }
 
@@ -96,10 +96,10 @@ public class AppTest {
     @Test
     public void isNOTAllowedToAccess() {
 
-        App app = getAppWithRoles(asList("ROLE_ADMIN", "ROLE_SUPER_ADMIN"));
+        CoffeeNetApp coffeeNetApp = getAppWithRoles(asList("ROLE_ADMIN", "ROLE_SUPER_ADMIN"));
         HumanCoffeeNetUser humanCoffeeUser = getHumanCoffeeUserWithRole(asList("ROLE_USER", "ROLE_EMPLOYEE"));
 
-        boolean allowedToAccess = app.isAllowedToAccessBy(humanCoffeeUser);
+        boolean allowedToAccess = coffeeNetApp.isAllowedToAccessBy(humanCoffeeUser);
         assertThat(allowedToAccess, is(false));
     }
 
@@ -107,10 +107,10 @@ public class AppTest {
     @Test
     public void isNOTAllowedToAccessWithNoUserRolesDefined() {
 
-        App app = getAppWithRoles(singletonList("ROLE_ADMIN"));
+        CoffeeNetApp coffeeNetApp = getAppWithRoles(singletonList("ROLE_ADMIN"));
         HumanCoffeeNetUser humanCoffeeUser = getHumanCoffeeUserWithRole(null);
 
-        boolean allowedToAccess = app.isAllowedToAccessBy(humanCoffeeUser);
+        boolean allowedToAccess = coffeeNetApp.isAllowedToAccessBy(humanCoffeeUser);
         assertThat(allowedToAccess, is(false));
     }
 
@@ -127,7 +127,7 @@ public class AppTest {
     }
 
 
-    private App getAppWithRoles(List<String> roles) {
+    private CoffeeNetApp getAppWithRoles(List<String> roles) {
 
         Set<String> allowedAuthorities;
 
@@ -137,6 +137,6 @@ public class AppTest {
             allowedAuthorities = new HashSet<>(roles);
         }
 
-        return new App("AppName", "AppUrl", allowedAuthorities);
+        return new CoffeeNetApp("AppName", "AppUrl", allowedAuthorities);
     }
 }

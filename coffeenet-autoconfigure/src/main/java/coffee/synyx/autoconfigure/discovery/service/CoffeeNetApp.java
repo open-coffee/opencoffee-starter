@@ -13,13 +13,13 @@ import java.util.Set;
  * @author  David Schilling - schilling@synyx.de
  * @author  Tobias Schneider - schneider@synyx.de
  */
-public final class App {
+public final class CoffeeNetApp {
 
     private final String name;
     private final String url;
     private final Set<String> allowedAuthorities;
 
-    public App(String name, String url, Set<String> allowedAuthorities) {
+    public CoffeeNetApp(String name, String url, Set<String> allowedAuthorities) {
 
         this.name = name;
         this.url = url;
