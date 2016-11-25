@@ -1,7 +1,4 @@
-package coffee.synyx.autoconfigure.user.endpoint;
-
-import coffee.synyx.autoconfigure.user.service.User;
-import coffee.synyx.autoconfigure.user.service.UserService;
+package coffee.synyx.autoconfigure.security.endpoint;
 
 import org.springframework.boot.actuate.endpoint.Endpoint;
 
@@ -11,13 +8,13 @@ import org.springframework.boot.actuate.endpoint.Endpoint;
  *
  * @author  Tobias Schneider - schneider@synyx.de
  */
-public class UserEndpoint implements Endpoint<User> {
+public class CoffeeNetUserEndpoint implements Endpoint<CoffeeNetUser> {
 
-    private final UserService userService;
+    private final CoffeeNetUserService coffeeNetUserService;
 
-    public UserEndpoint(UserService userService) {
+    public CoffeeNetUserEndpoint(CoffeeNetUserService coffeeNetUserService) {
 
-        this.userService = userService;
+        this.coffeeNetUserService = coffeeNetUserService;
     }
 
     @Override
@@ -42,8 +39,8 @@ public class UserEndpoint implements Endpoint<User> {
 
 
     @Override
-    public User invoke() {
+    public CoffeeNetUser invoke() {
 
-        return userService.getUser();
+        return coffeeNetUserService.getUser();
     }
 }

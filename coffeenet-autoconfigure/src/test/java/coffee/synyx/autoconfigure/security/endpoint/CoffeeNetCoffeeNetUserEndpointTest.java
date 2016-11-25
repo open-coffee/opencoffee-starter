@@ -1,7 +1,4 @@
-package coffee.synyx.autoconfigure.user.endpoint;
-
-import coffee.synyx.autoconfigure.user.service.User;
-import coffee.synyx.autoconfigure.user.service.UserService;
+package coffee.synyx.autoconfigure.security.endpoint;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,17 +20,17 @@ import static org.mockito.Mockito.when;
  * @author  Tobias Schneider
  */
 @RunWith(MockitoJUnitRunner.class)
-public class UserEndpointTest {
+public class CoffeeNetCoffeeNetUserEndpointTest {
 
-    private UserEndpoint sut;
+    private CoffeeNetUserEndpoint sut;
 
     @Mock
-    private UserService userServiceMock;
+    private CoffeeNetUserService coffeeNetUserServiceMock;
 
     @Before
     public void setUp() {
 
-        sut = new UserEndpoint(userServiceMock);
+        sut = new CoffeeNetUserEndpoint(coffeeNetUserServiceMock);
     }
 
 
@@ -61,8 +58,8 @@ public class UserEndpointTest {
     @Test
     public void invoke() {
 
-        User franz = new User("Franz", "Ferdinant@coffeenet.org");
-        when(userServiceMock.getUser()).thenReturn(franz);
+        CoffeeNetUser franz = new CoffeeNetUser("Franz", "Ferdinant@coffeenet.org");
+        when(coffeeNetUserServiceMock.getUser()).thenReturn(franz);
 
         assertThat(sut.invoke(), is(franz));
     }
