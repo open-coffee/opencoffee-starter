@@ -1,7 +1,10 @@
 package coffee.synyx.autoconfigure.discovery.config;
 
 import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpoint;
-import coffee.synyx.autoconfigure.discovery.service.AppService;
+import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
+import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
+import coffee.synyx.autoconfigure.discovery.service.DevelopmentCoffeeNetAppService;
+import coffee.synyx.autoconfigure.discovery.service.IntegrationEurekaCoffeeNetAppService;
 
 
 /**
@@ -13,21 +16,20 @@ import coffee.synyx.autoconfigure.discovery.service.AppService;
 public interface CoffeeNetServiceDiscoveryConfiguration {
 
     /**
-     * Provides the implementation behind the {@link AppService} interface to access the provided
-     * {@link coffee.synyx.autoconfigure.discovery.service.App} from the development or integrated service layer.
+     * Provides the implementation behind the {@link CoffeeNetAppService} interface to access the provided
+     * {@link CoffeeNetApp} from the development or integrated service layer.
      *
-     * @return  {@link coffee.synyx.autoconfigure.discovery.service.EurekaAppService} when integration is activated,
-     *          {@link coffee.synyx.autoconfigure.discovery.service.MockAppService} otherwise
+     * @return  {@link IntegrationEurekaCoffeeNetAppService} when integration is activated,
+     *          {@link DevelopmentCoffeeNetAppService} otherwise
      */
-    AppService coffeeNetAppService();
+    CoffeeNetAppService coffeeNetAppService();
 
 
     /**
      * Provides the {@link CoffeeNetAppsEndpoint} with different service implementation (development,integrated) of the
-     * {@link AppService}.
+     * {@link CoffeeNetAppService}.
      *
-     * @return  {@link CoffeeNetAppsEndpoint} to provide the registered
-     *          {@link coffee.synyx.autoconfigure.discovery.service.App}s
+     * @return  {@link CoffeeNetAppsEndpoint} to provide the registered {@link CoffeeNetApp}s
      */
     CoffeeNetAppsEndpoint coffeeNetAppsEndpoint();
 }

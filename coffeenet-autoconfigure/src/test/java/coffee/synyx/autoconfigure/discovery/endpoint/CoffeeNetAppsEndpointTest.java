@@ -1,7 +1,7 @@
 package coffee.synyx.autoconfigure.discovery.endpoint;
 
-import coffee.synyx.autoconfigure.discovery.service.App;
-import coffee.synyx.autoconfigure.discovery.service.AppService;
+import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
+import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,12 +34,12 @@ public class CoffeeNetAppsEndpointTest {
     private CoffeeNetAppsEndpoint sut;
 
     @Mock
-    private AppService appServiceMock;
+    private CoffeeNetAppService coffeeNetAppServiceMock;
 
     @Before
     public void setUp() {
 
-        this.sut = new CoffeeNetAppsEndpoint(appServiceMock);
+        this.sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock);
     }
 
 
@@ -67,11 +67,12 @@ public class CoffeeNetAppsEndpointTest {
     @Test
     public void invoke() {
 
-        when(appServiceMock.getApps()).thenReturn(asList(new App("name1", "url1"), new App("name2", "url2")));
+        when(coffeeNetAppServiceMock.getApps()).thenReturn(asList(new CoffeeNetApp("name1", "url1"),
+                new CoffeeNetApp("name2", "url2")));
 
-        List<App> filteredAppList = sut.invoke();
-        assertThat(filteredAppList, hasSize(2));
-        assertThat(filteredAppList.get(0).getName(), is("name1"));
-        assertThat(filteredAppList.get(1).getName(), is("name2"));
+        List<CoffeeNetApp> filteredCoffeeNetAppList = sut.invoke();
+        assertThat(filteredCoffeeNetAppList, hasSize(2));
+        assertThat(filteredCoffeeNetAppList.get(0).getName(), is("name1"));
+        assertThat(filteredCoffeeNetAppList.get(1).getName(), is("name2"));
     }
 }

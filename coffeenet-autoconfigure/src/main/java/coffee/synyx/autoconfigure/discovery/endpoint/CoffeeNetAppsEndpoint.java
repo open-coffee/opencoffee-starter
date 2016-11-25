@@ -1,7 +1,7 @@
 package coffee.synyx.autoconfigure.discovery.endpoint;
 
-import coffee.synyx.autoconfigure.discovery.service.App;
-import coffee.synyx.autoconfigure.discovery.service.AppService;
+import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
+import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 
 import org.springframework.boot.actuate.endpoint.Endpoint;
 
@@ -14,13 +14,13 @@ import java.util.List;
  * @author  David Schilling - schilling@synyx.de
  * @author  Tobias Schneider - schneider@synyx.de
  */
-public class CoffeeNetAppsEndpoint implements Endpoint<List<App>> {
+public class CoffeeNetAppsEndpoint implements Endpoint<List<CoffeeNetApp>> {
 
-    private AppService appService;
+    private CoffeeNetAppService coffeeNetAppService;
 
-    public CoffeeNetAppsEndpoint(AppService appService) {
+    public CoffeeNetAppsEndpoint(CoffeeNetAppService coffeeNetAppService) {
 
-        this.appService = appService;
+        this.coffeeNetAppService = coffeeNetAppService;
     }
 
     @Override
@@ -45,8 +45,8 @@ public class CoffeeNetAppsEndpoint implements Endpoint<List<App>> {
 
 
     @Override
-    public List<App> invoke() {
+    public List<CoffeeNetApp> invoke() {
 
-        return appService.getApps();
+        return coffeeNetAppService.getApps();
     }
 }

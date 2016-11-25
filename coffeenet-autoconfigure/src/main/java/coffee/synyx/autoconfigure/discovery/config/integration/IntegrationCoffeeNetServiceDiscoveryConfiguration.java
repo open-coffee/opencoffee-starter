@@ -2,8 +2,8 @@ package coffee.synyx.autoconfigure.discovery.config.integration;
 
 import coffee.synyx.autoconfigure.discovery.config.CoffeeNetServiceDiscoveryConfiguration;
 import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpoint;
-import coffee.synyx.autoconfigure.discovery.service.AppService;
-import coffee.synyx.autoconfigure.discovery.service.EurekaAppService;
+import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
+import coffee.synyx.autoconfigure.discovery.service.IntegrationEurekaCoffeeNetAppService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,9 +43,9 @@ public class IntegrationCoffeeNetServiceDiscoveryConfiguration implements Coffee
 
     @Bean
     @Override
-    public AppService coffeeNetAppService() {
+    public CoffeeNetAppService coffeeNetAppService() {
 
-        return new EurekaAppService(discoveryClient);
+        return new IntegrationEurekaCoffeeNetAppService(discoveryClient);
     }
 
 
