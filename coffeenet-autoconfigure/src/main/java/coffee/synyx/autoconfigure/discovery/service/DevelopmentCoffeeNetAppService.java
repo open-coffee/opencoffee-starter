@@ -19,13 +19,14 @@ import static java.util.Collections.singletonList;
  * @author  Tobias Schneider - schneider@synyx.de
  */
 @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
-public class MockAppService implements AppService {
+public class DevelopmentCoffeeNetAppService implements CoffeeNetAppService {
 
     @Override
-    public List<App> getApps() {
+    public List<CoffeeNetApp> getApps() {
 
-        return asList(new App("Homepage", "https://synyx.de", new HashSet<>(emptyList())),
-                new App("Blog", "https://blog.synyx.de", new HashSet<>(emptyList())),
-                new App("Host Tagger", "https://hosttagger.synyx.coffee/", new HashSet<>(singletonList("ROLE_ADMIN"))));
+        return asList(new CoffeeNetApp("Homepage", "https://synyx.de", new HashSet<>(emptyList())),
+                new CoffeeNetApp("Blog", "https://blog.synyx.de", new HashSet<>(emptyList())),
+                new CoffeeNetApp("Host Tagger", "https://hosttagger.synyx.coffee/",
+                    new HashSet<>(singletonList("ROLE_ADMIN"))));
     }
 }

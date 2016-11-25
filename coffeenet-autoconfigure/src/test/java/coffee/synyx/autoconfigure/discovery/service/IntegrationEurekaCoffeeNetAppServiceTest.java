@@ -34,9 +34,9 @@ import static java.util.Collections.singletonList;
  * @author  Tobias Schneider - schneider@synyx.de
  */
 @RunWith(MockitoJUnitRunner.class)
-public class EurekaAppServiceTest {
+public class IntegrationEurekaCoffeeNetAppServiceTest {
 
-    private EurekaAppService eurekaAppService;
+    private IntegrationEurekaCoffeeNetAppService eurekaAppService;
 
     @Mock
     private DiscoveryClient discoveryClientMock;
@@ -44,7 +44,7 @@ public class EurekaAppServiceTest {
     @Before
     public void setUp() {
 
-        eurekaAppService = new EurekaAppService(discoveryClientMock);
+        eurekaAppService = new IntegrationEurekaCoffeeNetAppService(discoveryClientMock);
     }
 
 
@@ -60,9 +60,9 @@ public class EurekaAppServiceTest {
         when(eurekaServiceInstance.getInstanceInfo()).thenReturn(instanceInfo);
         when(discoveryClientMock.getInstances("Frontpage")).thenReturn(singletonList(eurekaServiceInstance));
 
-        List<App> apps = eurekaAppService.getApps();
-        assertThat(apps, hasSize(1));
-        assertThat(apps.get(0).getAllowedAuthorities(), contains("ROLE_ADMIN"));
+        List<CoffeeNetApp> coffeeNetApps = eurekaAppService.getApps();
+        assertThat(coffeeNetApps, hasSize(1));
+        assertThat(coffeeNetApps.get(0).getAllowedAuthorities(), contains("ROLE_ADMIN"));
     }
 
 
@@ -71,7 +71,7 @@ public class EurekaAppServiceTest {
 
         when(discoveryClientMock.getServices()).thenReturn(asList("Frontpage", "Backpage"));
 
-        List<App> apps = eurekaAppService.getApps();
-        assertThat(apps, hasSize(0));
+        List<CoffeeNetApp> coffeeNetApps = eurekaAppService.getApps();
+        assertThat(coffeeNetApps, hasSize(0));
     }
 }
