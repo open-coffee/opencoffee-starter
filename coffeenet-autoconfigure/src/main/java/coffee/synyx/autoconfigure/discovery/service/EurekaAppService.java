@@ -10,11 +10,8 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient.EurekaServiceInstance;
 
 import java.util.List;
-import java.util.Set;
 
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGRATION;
-
-import static org.springframework.util.StringUtils.commaDelimitedListToSet;
 
 import static java.util.stream.Collectors.toList;
 
@@ -50,11 +47,11 @@ public class EurekaAppService implements AppService {
     private App getAppInstance(String applicationName) {
 
         EurekaServiceInstance eurekaServiceInstance = discoveryClient.getInstances(applicationName)
-            .stream()
-            .filter(serviceInstance -> serviceInstance instanceof EurekaServiceInstance)
-            .map(serviceInstance -> (EurekaServiceInstance) serviceInstance)
-            .findFirst()
-            .orElse(null);
+                .stream()
+                .filter(serviceInstance -> serviceInstance instanceof EurekaServiceInstance)
+                .map(serviceInstance -> (EurekaServiceInstance) serviceInstance)
+                .findFirst()
+                .orElse(null);
 
         return toApp(eurekaServiceInstance);
     }
@@ -67,8 +64,7 @@ public class EurekaAppService implements AppService {
         }
 
         InstanceInfo instanceInfo = serviceInstance.getInstanceInfo();
-        Set<String> allowedAuthorities = commaDelimitedListToSet(instanceInfo.getMetadata().get("allowedAuthorities"));
 
-        return new App(instanceInfo.getVIPAddress(), instanceInfo.getHomePageUrl(), allowedAuthorities);
+        return new App(instanceInfo.getVIPAddress(), instanceInfo.getHomePageUrl());
     }
 }

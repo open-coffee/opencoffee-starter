@@ -2,7 +2,6 @@ package coffee.synyx.autoconfigure.discovery.endpoint;
 
 import coffee.synyx.autoconfigure.discovery.service.App;
 import coffee.synyx.autoconfigure.discovery.service.AppService;
-import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 import coffee.synyx.autoconfigure.security.user.HumanCoffeeNetUser;
 
 import org.junit.Before;
@@ -30,7 +29,6 @@ import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.when;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
 
 
 /**
@@ -43,13 +41,11 @@ public class CoffeeNetAppsEndpointTest {
 
     @Mock
     private AppService appServiceMock;
-    @Mock
-    private CoffeeNetCurrentUserService coffeeNetCurrentUserServiceMock;
 
     @Before
     public void setUp() {
 
-        this.sut = new CoffeeNetAppsEndpoint(appServiceMock, coffeeNetCurrentUserServiceMock);
+        this.sut = new CoffeeNetAppsEndpoint(appServiceMock);
     }
 
 
@@ -77,15 +73,12 @@ public class CoffeeNetAppsEndpointTest {
     @Test
     public void invoke() {
 
-        when(appServiceMock.getApps()).thenReturn(asList(
-                new App("name1", "url1", new HashSet<>(singletonList("ROLE_ADMIN"))),
-                new App("name2", "url2", new HashSet<>(singletonList("ROLE_USER")))));
-
-        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(getHumanCoffeeUserWithRole("ROLE_ADMIN"));
+        when(appServiceMock.getApps()).thenReturn(asList(new App("name1", "url1"), new App("name2", "url2")));
 
         List<App> filteredAppList = sut.invoke();
-        assertThat(filteredAppList, hasSize(1));
+        assertThat(filteredAppList, hasSize(2));
         assertThat(filteredAppList.get(0).getName(), is("name1"));
+        assertThat(filteredAppList.get(1).getName(), is("name2"));
     }
 
 

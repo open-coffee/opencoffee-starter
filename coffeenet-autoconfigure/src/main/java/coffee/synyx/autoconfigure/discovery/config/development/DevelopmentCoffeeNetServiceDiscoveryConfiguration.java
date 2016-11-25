@@ -4,11 +4,8 @@ import coffee.synyx.autoconfigure.discovery.config.CoffeeNetServiceDiscoveryConf
 import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpoint;
 import coffee.synyx.autoconfigure.discovery.service.AppService;
 import coffee.synyx.autoconfigure.discovery.service.MockAppService;
-import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 
 import com.netflix.discovery.DiscoveryClient;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -42,9 +39,8 @@ public class DevelopmentCoffeeNetServiceDiscoveryConfiguration implements Coffee
 
     @Bean
     @Override
-    @Autowired
-    public CoffeeNetAppsEndpoint coffeeNetAppsEndpoint(CoffeeNetCurrentUserService coffeeNetCurrentUserService) {
+    public CoffeeNetAppsEndpoint coffeeNetAppsEndpoint() {
 
-        return new CoffeeNetAppsEndpoint(coffeeNetAppService(), coffeeNetCurrentUserService);
+        return new CoffeeNetAppsEndpoint(coffeeNetAppService());
     }
 }

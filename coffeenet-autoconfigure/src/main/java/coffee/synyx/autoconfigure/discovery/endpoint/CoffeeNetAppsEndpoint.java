@@ -2,13 +2,10 @@ package coffee.synyx.autoconfigure.discovery.endpoint;
 
 import coffee.synyx.autoconfigure.discovery.service.App;
 import coffee.synyx.autoconfigure.discovery.service.AppService;
-import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 
 import org.springframework.boot.actuate.endpoint.Endpoint;
 
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 
 /**
@@ -20,12 +17,10 @@ import static java.util.stream.Collectors.toList;
 public class CoffeeNetAppsEndpoint implements Endpoint<List<App>> {
 
     private AppService appService;
-    private CoffeeNetCurrentUserService coffeeNetCurrentUserService;
 
-    public CoffeeNetAppsEndpoint(AppService appService, CoffeeNetCurrentUserService coffeeNetCurrentUserService) {
+    public CoffeeNetAppsEndpoint(AppService appService) {
 
         this.appService = appService;
-        this.coffeeNetCurrentUserService = coffeeNetCurrentUserService;
     }
 
     @Override
@@ -52,9 +47,6 @@ public class CoffeeNetAppsEndpoint implements Endpoint<List<App>> {
     @Override
     public List<App> invoke() {
 
-        return appService.getApps()
-            .stream()
-            .filter(app -> app.isAllowedToAccessBy(coffeeNetCurrentUserService.get()))
-            .collect(toList());
+        return appService.getApps();
     }
 }

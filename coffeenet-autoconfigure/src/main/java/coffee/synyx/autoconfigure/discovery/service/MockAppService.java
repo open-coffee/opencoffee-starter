@@ -2,14 +2,11 @@ package coffee.synyx.autoconfigure.discovery.service;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
-import java.util.HashSet;
 import java.util.List;
 
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.DEVELOPMENT;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.emptyList;
-import static java.util.Collections.singletonList;
 
 
 /**
@@ -24,8 +21,7 @@ public class MockAppService implements AppService {
     @Override
     public List<App> getApps() {
 
-        return asList(new App("Homepage", "https://synyx.de", new HashSet<>(emptyList())),
-                new App("Blog", "https://blog.synyx.de", new HashSet<>(emptyList())),
-                new App("Host Tagger", "https://hosttagger.synyx.coffee/", new HashSet<>(singletonList("ROLE_ADMIN"))));
+        return asList(new App("Homepage", "https://synyx.de"), new App("Blog", "https://blog.synyx.de"),
+                new App("Host Tagger", "https://hosttagger.synyx.coffee/"));
     }
 }
