@@ -17,7 +17,7 @@ import static org.hamcrest.core.Is.is;
 /**
  * @author  Tobias Schneider
  */
-public class DevelopmentCoffeeNetCurrentUserServiceTest {
+public class DevelopmentCoffeeNetCurrentCoffeeNetUserServiceTest {
 
     private DevelopmentCoffeeNetCurrentUserService sut;
 

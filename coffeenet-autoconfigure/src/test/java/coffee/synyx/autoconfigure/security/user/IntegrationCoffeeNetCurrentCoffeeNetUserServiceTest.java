@@ -18,7 +18,7 @@ import static org.junit.Assert.assertThat;
 /**
  * @author  David Schilling - schilling@synyx.de
  */
-public class IntegrationCoffeeNetCurrentUserServiceTest {
+public class IntegrationCoffeeNetCurrentCoffeeNetUserServiceTest {
 
     private IntegrationCoffeeNetCurrentUserService sut = new IntegrationCoffeeNetCurrentUserService();
 

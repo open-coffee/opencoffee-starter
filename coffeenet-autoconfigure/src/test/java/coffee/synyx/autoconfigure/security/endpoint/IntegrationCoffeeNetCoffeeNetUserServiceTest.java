@@ -1,4 +1,4 @@
-package coffee.synyx.autoconfigure.user.service;
+package coffee.synyx.autoconfigure.security.endpoint;
 
 import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 import coffee.synyx.autoconfigure.security.user.CoffeeNetUserDetails;
@@ -19,23 +19,23 @@ import static org.mockito.Mockito.when;
 /**
  * @author  David Schilling - schilling@synyx.de
  */
-public class UserServiceImplTest {
+public class IntegrationCoffeeNetCoffeeNetUserServiceTest {
 
-    private UserServiceImpl sut;
+    private IntegrationCoffeeNetUserService sut;
 
     private CoffeeNetCurrentUserService coffeeNetCurrentUserServiceMock = mock(CoffeeNetCurrentUserService.class);
 
     @Test
     public void getUser() {
 
-        sut = new UserServiceImpl(coffeeNetCurrentUserServiceMock);
+        sut = new IntegrationCoffeeNetUserService(coffeeNetCurrentUserServiceMock);
 
         CoffeeNetUserDetails coffeeNetUserDetails = new HumanCoffeeNetUser("foo", "foo@bar.de", new HashSet<>());
         when(coffeeNetCurrentUserServiceMock.get()).thenReturn(coffeeNetUserDetails);
 
-        User user = sut.getUser();
+        CoffeeNetUser coffeeNetUser = sut.getUser();
 
-        assertThat(user.getUsername(), is("foo"));
-        assertThat(user.getEmail(), is("foo@bar.de"));
+        assertThat(coffeeNetUser.getUsername(), is("foo"));
+        assertThat(coffeeNetUser.getEmail(), is("foo@bar.de"));
     }
 }

@@ -2,6 +2,4 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 coffee.synyx.autoconfigure.discovery.config.CoffeeNetDiscoveryConfiguration,\
 coffee.synyx.autoconfigure.discovery.config.integration.CoffeeNetDiscoveryPropertiesConfiguration,\
 coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityConfiguration,\
-coffee.synyx.autoconfigure.logging.config.CoffeeNetLoggingConfiguration,\
-coffee.synyx.autoconfigure.user.config.UserConfiguration,\
-coffee.synyx.autoconfigure.user.config.MockUserConfiguration
+coffee.synyx.autoconfigure.logging.config.CoffeeNetLoggingConfiguration
