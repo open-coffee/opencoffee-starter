@@ -1,11 +1,14 @@
 package coffee.synyx.autoconfigure.discovery.config.integration;
 
 import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpoint;
+import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsFilterEndpoint;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.IntegrationEurekaCoffeeNetAppService;
+import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -48,9 +51,20 @@ public class IntegrationCoffeeNetServiceDiscoveryConfiguration {
 
 
     @Bean
-    @ConditionalOnMissingBean(CoffeeNetAppsEndpoint.class)
+    @ConditionalOnMissingBean({ CoffeeNetAppsEndpoint.class, CoffeeNetCurrentUserService.class })
     public CoffeeNetAppsEndpoint coffeeNetAppsEndpoint() {
 
         return new CoffeeNetAppsEndpoint(coffeeNetAppService());
+    }
+
+
+    @Bean
+    @Autowired
+    @ConditionalOnMissingBean(CoffeeNetAppsFilterEndpoint.class)
+    @ConditionalOnBean(CoffeeNetCurrentUserService.class)
+    public CoffeeNetAppsFilterEndpoint coffeeNetAppsEndpointWithFilter(
+        CoffeeNetCurrentUserService coffeeNetCurrentUserService) {
+
+        return new CoffeeNetAppsFilterEndpoint(coffeeNetAppService(), coffeeNetCurrentUserService);
     }
 }

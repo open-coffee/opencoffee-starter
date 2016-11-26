@@ -12,6 +12,7 @@ import org.mockito.Mock;
 
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.HashSet;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,6 +24,7 @@ import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.when;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 
 
 /**
@@ -67,8 +69,9 @@ public class CoffeeNetAppsEndpointTest {
     @Test
     public void invoke() {
 
-        when(coffeeNetAppServiceMock.getApps()).thenReturn(asList(new CoffeeNetApp("name1", "url1"),
-                new CoffeeNetApp("name2", "url2")));
+        when(coffeeNetAppServiceMock.getApps()).thenReturn(asList(
+                new CoffeeNetApp("name1", "url1", new HashSet<>(singletonList("ROLE_ADMIN"))),
+                new CoffeeNetApp("name2", "url2", new HashSet<>(singletonList("ROLE_USER")))));
 
         List<CoffeeNetApp> filteredCoffeeNetAppList = sut.invoke();
         assertThat(filteredCoffeeNetAppList, hasSize(2));

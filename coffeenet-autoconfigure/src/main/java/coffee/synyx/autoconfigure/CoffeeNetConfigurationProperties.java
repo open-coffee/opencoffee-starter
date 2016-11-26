@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Global coffeenet configuration properties.
  *
+ * @author  Tobias Schneider - schneider@synyx.de
  * @author  Yannic Klem - klem@synyx.de
  */
 @ConfigurationProperties(prefix = "coffeenet")
@@ -21,20 +22,8 @@ public class CoffeeNetConfigurationProperties {
     }
 
     private String applicationName;
-
+    private String allowedAuthorities;
     private Profile profile = Profile.DEVELOPMENT;
-
-    public Profile getProfile() {
-
-        return profile;
-    }
-
-
-    public void setProfile(Profile profile) {
-
-        this.profile = profile;
-    }
-
 
     public String getApplicationName() {
 
@@ -45,5 +34,29 @@ public class CoffeeNetConfigurationProperties {
     public void setApplicationName(String applicationName) {
 
         this.applicationName = applicationName;
+    }
+
+
+    public String getAllowedAuthorities() {
+
+        return allowedAuthorities;
+    }
+
+
+    public void setAllowedAuthorities(String allowedAuthorities) {
+
+        this.allowedAuthorities = allowedAuthorities;
+    }
+
+
+    public Profile getProfile() {
+
+        return profile;
+    }
+
+
+    public void setProfile(Profile profile) {
+
+        this.profile = profile;
     }
 }

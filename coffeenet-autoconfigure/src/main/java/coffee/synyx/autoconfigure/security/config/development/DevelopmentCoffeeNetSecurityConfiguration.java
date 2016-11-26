@@ -1,13 +1,11 @@
 package coffee.synyx.autoconfigure.security.config.development;
 
-import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityProperties;
 import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 import coffee.synyx.autoconfigure.security.user.DevelopmentCoffeeNetCurrentUserService;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +25,6 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.DEVELO
 @Configuration
 @ConditionalOnClass({ OAuth2ClientContext.class, WebSecurityConfigurerAdapter.class })
 @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
-@EnableConfigurationProperties(CoffeeNetSecurityProperties.class)
 public class DevelopmentCoffeeNetSecurityConfiguration {
 
     @Bean

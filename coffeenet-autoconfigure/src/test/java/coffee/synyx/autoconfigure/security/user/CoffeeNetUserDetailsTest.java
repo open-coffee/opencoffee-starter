@@ -3,12 +3,17 @@ package coffee.synyx.autoconfigure.security.user;
 import org.junit.Test;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
+
+import static org.hamcrest.Matchers.hasItems;
 
 import static org.hamcrest.core.Is.is;
 
 import static org.junit.Assert.assertThat;
+
+import static java.util.Arrays.asList;
 
 
 /**
@@ -24,6 +29,14 @@ public class CoffeeNetUserDetailsTest {
         assertThat(coffeeNetUserDetails.isAccountNonLocked(), is(true));
         assertThat(coffeeNetUserDetails.isCredentialsNonExpired(), is(true));
         assertThat(coffeeNetUserDetails.isEnabled(), is(true));
+    }
+
+
+    @Test
+    public void getAuthoritiesAsString() {
+
+        CoffeeNetUserDetails coffeeNetUserDetails = new CoffeeNetUserDetailsStub();
+        assertThat(coffeeNetUserDetails.getAuthoritiesAsString(), is(hasItems("COFFEENET-ADMIN", "COFFEENET-USER")));
     }
 
     private class CoffeeNetUserDetailsStub implements CoffeeNetUserDetails {
@@ -45,7 +58,7 @@ public class CoffeeNetUserDetailsTest {
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
 
-            return null;
+            return asList(new SimpleGrantedAuthority("COFFEENET-ADMIN"), new SimpleGrantedAuthority("COFFEENET-USER"));
         }
 
 

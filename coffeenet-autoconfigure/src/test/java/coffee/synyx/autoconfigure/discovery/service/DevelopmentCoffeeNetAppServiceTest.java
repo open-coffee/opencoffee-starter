@@ -9,6 +9,8 @@ import static org.hamcrest.CoreMatchers.is;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.emptyIterable;
 import static org.hamcrest.Matchers.hasSize;
 
 
@@ -31,8 +33,10 @@ public class DevelopmentCoffeeNetAppServiceTest {
 
         List<CoffeeNetApp> coffeeNetApps = sut.getApps();
         assertThat(coffeeNetApps, hasSize(3));
-        assertThat(coffeeNetApps.get(0).getName(), is("Homepage"));
+        assertThat(coffeeNetApps.get(0).getAllowedAuthorities(), is(emptyIterable()));
         assertThat(coffeeNetApps.get(1).getName(), is("Blog"));
+        assertThat(coffeeNetApps.get(1).getAllowedAuthorities(), is(emptyIterable()));
         assertThat(coffeeNetApps.get(2).getName(), is("Host Tagger"));
+        assertThat(coffeeNetApps.get(2).getAllowedAuthorities(), contains("ROLE_ADMIN"));
     }
 }
