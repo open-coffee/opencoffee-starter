@@ -1,6 +1,5 @@
 package coffee.synyx.autoconfigure.discovery.config.integration;
 
-import coffee.synyx.autoconfigure.discovery.config.CoffeeNetServiceDiscoveryConfiguration;
 import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpoint;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.IntegrationEurekaCoffeeNetAppService;
@@ -29,9 +28,8 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
 @Configuration
 @EnableEurekaClient
 @ConditionalOnClass(DiscoveryClient.class)
-@ConditionalOnMissingBean(CoffeeNetServiceDiscoveryConfiguration.class)
 @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
-public class IntegrationCoffeeNetServiceDiscoveryConfiguration implements CoffeeNetServiceDiscoveryConfiguration {
+public class IntegrationCoffeeNetServiceDiscoveryConfiguration {
 
     private final DiscoveryClient discoveryClient;
 
@@ -42,7 +40,7 @@ public class IntegrationCoffeeNetServiceDiscoveryConfiguration implements Coffee
     }
 
     @Bean
-    @Override
+    @ConditionalOnMissingBean(CoffeeNetAppService.class)
     public CoffeeNetAppService coffeeNetAppService() {
 
         return new IntegrationEurekaCoffeeNetAppService(discoveryClient);
@@ -50,7 +48,7 @@ public class IntegrationCoffeeNetServiceDiscoveryConfiguration implements Coffee
 
 
     @Bean
-    @Override
+    @ConditionalOnMissingBean(CoffeeNetAppsEndpoint.class)
     public CoffeeNetAppsEndpoint coffeeNetAppsEndpoint() {
 
         return new CoffeeNetAppsEndpoint(coffeeNetAppService());
