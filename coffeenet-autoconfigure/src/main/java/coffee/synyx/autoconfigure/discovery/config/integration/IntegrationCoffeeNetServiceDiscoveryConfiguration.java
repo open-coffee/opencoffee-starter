@@ -1,7 +1,6 @@
 package coffee.synyx.autoconfigure.discovery.config.integration;
 
 import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpoint;
-import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsFilterEndpoint;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.IntegrationEurekaCoffeeNetAppService;
 import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
@@ -20,6 +19,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGRATION;
+
+import static java.util.Collections.emptySet;
 
 
 /**
@@ -54,17 +55,16 @@ public class IntegrationCoffeeNetServiceDiscoveryConfiguration {
     @ConditionalOnMissingBean({ CoffeeNetAppsEndpoint.class, CoffeeNetCurrentUserService.class })
     public CoffeeNetAppsEndpoint coffeeNetAppsEndpoint() {
 
-        return new CoffeeNetAppsEndpoint(coffeeNetAppService());
+        return new CoffeeNetAppsEndpoint(coffeeNetAppService(), emptySet());
     }
 
 
     @Bean
     @Autowired
-    @ConditionalOnMissingBean(CoffeeNetAppsFilterEndpoint.class)
+    @ConditionalOnMissingBean(CoffeeNetAppsEndpoint.class)
     @ConditionalOnBean(CoffeeNetCurrentUserService.class)
-    public CoffeeNetAppsFilterEndpoint coffeeNetAppsEndpointWithFilter(
-        CoffeeNetCurrentUserService coffeeNetCurrentUserService) {
+    public CoffeeNetAppsEndpoint coffeeNetAppsEndpointWithFilter(CoffeeNetCurrentUserService currentUserService) {
 
-        return new CoffeeNetAppsFilterEndpoint(coffeeNetAppService(), coffeeNetCurrentUserService);
+        return new CoffeeNetAppsEndpoint(coffeeNetAppService(), currentUserService.get().getAuthoritiesAsString());
     }
 }

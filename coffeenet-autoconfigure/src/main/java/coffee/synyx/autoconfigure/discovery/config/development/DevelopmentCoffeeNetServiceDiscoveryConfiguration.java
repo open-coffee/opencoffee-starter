@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Configuration;
 
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.DEVELOPMENT;
 
+import static java.util.Collections.emptySet;
+
 
 /**
  * Development service discovery mock bean instantiation.
@@ -39,6 +41,6 @@ public class DevelopmentCoffeeNetServiceDiscoveryConfiguration {
     @ConditionalOnMissingBean(CoffeeNetAppsEndpoint.class)
     public CoffeeNetAppsEndpoint coffeeNetAppsEndpoint() {
 
-        return new CoffeeNetAppsEndpoint(coffeeNetAppService());
+        return new CoffeeNetAppsEndpoint(coffeeNetAppService(), emptySet());
     }
 }

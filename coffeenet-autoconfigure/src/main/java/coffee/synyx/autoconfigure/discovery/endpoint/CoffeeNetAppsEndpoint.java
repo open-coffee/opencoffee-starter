@@ -6,6 +6,9 @@ import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import org.springframework.boot.actuate.endpoint.Endpoint;
 
 import java.util.List;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toList;
 
 
 /**
@@ -16,11 +19,13 @@ import java.util.List;
  */
 public class CoffeeNetAppsEndpoint implements Endpoint<List<CoffeeNetApp>> {
 
-    private CoffeeNetAppService coffeeNetAppService;
+    private CoffeeNetAppService appService;
+    private Set<String> authorities;
 
-    public CoffeeNetAppsEndpoint(CoffeeNetAppService coffeeNetAppService) {
+    public CoffeeNetAppsEndpoint(CoffeeNetAppService appService, Set<String> authorities) {
 
-        this.coffeeNetAppService = coffeeNetAppService;
+        this.appService = appService;
+        this.authorities = authorities;
     }
 
     @Override
@@ -47,6 +52,6 @@ public class CoffeeNetAppsEndpoint implements Endpoint<List<CoffeeNetApp>> {
     @Override
     public List<CoffeeNetApp> invoke() {
 
-        return coffeeNetAppService.getApps();
+        return appService.getApps().stream().filter(app -> app.isAllowedToAccessBy(authorities)).collect(toList());
     }
 }
