@@ -2,6 +2,8 @@ package coffee.synyx.autoconfigure.discovery.config.integration;
 
 import coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 
 import org.springframework.cloud.commons.util.InetUtils;
@@ -23,6 +25,7 @@ class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
     /**
      * The hostname if it can be determined at configuration time (otherwise it will be guessed from OS primitives).
      */
+    @NotBlank
     private String hostname = "localhost";
 
     private CoffeeNetConfigurationProperties coffeeNetConfigurationProperties;

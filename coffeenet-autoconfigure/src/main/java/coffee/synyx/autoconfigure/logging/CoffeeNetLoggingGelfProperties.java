@@ -1,6 +1,10 @@
 package coffee.synyx.autoconfigure.logging;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.validation.constraints.Min;
 
 
 /**
@@ -15,8 +19,14 @@ public class CoffeeNetLoggingGelfProperties {
     private static final int DEFAULT_PORT = 12201;
 
     private Boolean enabled;
+
+    @NotBlank
     private String server = "localhost";
+
+    @Min(1)
     private int port = DEFAULT_PORT;
+
+    @NotBlank
     private String protocol = "UDP";
 
     public Boolean isEnabled() {

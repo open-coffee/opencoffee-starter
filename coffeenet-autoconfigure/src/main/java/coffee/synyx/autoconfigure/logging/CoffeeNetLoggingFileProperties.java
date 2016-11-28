@@ -1,6 +1,11 @@
 package coffee.synyx.autoconfigure.logging;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -13,9 +18,18 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class CoffeeNetLoggingFileProperties {
 
     private Boolean enabled;
+
+    @NotBlank
     private String file = "logs/app.log";
+
+    @NotBlank
     private String fileNamePattern = "logs/app-%d{yyyy-MM-dd}.log";
+
+    @NotBlank
     private String pattern = "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n%wEx";
+
+    @Min(1)
+    @NotNull
     private int maxHistory = 30;
 
     public Boolean isEnabled() {
