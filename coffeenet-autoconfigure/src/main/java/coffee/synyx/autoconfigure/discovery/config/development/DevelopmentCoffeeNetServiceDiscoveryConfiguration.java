@@ -1,6 +1,7 @@
 package coffee.synyx.autoconfigure.discovery.config.development;
 
 import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpoint;
+import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpointNoFilter;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.DevelopmentCoffeeNetAppService;
 
@@ -14,8 +15,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.DEVELOPMENT;
-
-import static java.util.Collections.emptySet;
 
 
 /**
@@ -39,8 +38,8 @@ public class DevelopmentCoffeeNetServiceDiscoveryConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(CoffeeNetAppsEndpoint.class)
-    public CoffeeNetAppsEndpoint coffeeNetAppsEndpoint() {
+    public CoffeeNetAppsEndpointNoFilter coffeeNetAppsEndpoint() {
 
-        return new CoffeeNetAppsEndpoint(coffeeNetAppService(), emptySet());
+        return new CoffeeNetAppsEndpointNoFilter(coffeeNetAppService());
     }
 }

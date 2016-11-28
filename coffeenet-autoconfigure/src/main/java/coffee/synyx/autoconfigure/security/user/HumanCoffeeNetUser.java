@@ -7,6 +7,8 @@ import org.springframework.util.Assert;
 
 import java.util.Collection;
 
+import static java.util.Collections.emptySet;
+
 
 /**
  * Human user implementation for {@link CoffeeNetUserDetails}.
@@ -20,7 +22,7 @@ public final class HumanCoffeeNetUser implements CoffeeNetUserDetails {
 
     private final String username;
     private final String email;
-    private final Collection<GrantedAuthority> authorities;
+    private Collection<GrantedAuthority> authorities = emptySet();
 
     /**
      * @param  username  Must not be null.
