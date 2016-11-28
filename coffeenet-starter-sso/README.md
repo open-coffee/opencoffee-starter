@@ -26,8 +26,8 @@ Für die _integrative lokale Entwicklung_ können folgende properties verwendet 
               id: oauth2-resource *
               user-info-uri: http://localhost:9999/user *
             client:
-              client-id: testClient
-              client-secret: testClientSecret
+              client-id: coffeeNetClient
+              client-secret: coffeeNetClientSecret
               user-authorization-uri: http://localhost:9999/oauth/authorize *
               access-token-uri: http://localhost:9999/oauth/token *
             logout-success-url: http://localhost:9999/logout *
@@ -39,8 +39,8 @@ Daraus ergibt sich folgende noch zu konfigurierende Eigenschaften:
           profile: integration
           security:
             client:
-              client-id: testClient
-              client-secret: testClientSecret
+              client-id: coffeeNetClient
+              client-secret: coffeeNetClientSecret
 
 ### Produktiv
 

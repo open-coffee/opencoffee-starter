@@ -14,6 +14,12 @@ import org.springframework.security.oauth2.client.token.grant.code.Authorization
 @ConfigurationProperties("coffeenet.security.client")
 public class CoffeeNetSecurityClientProperties extends AuthorizationCodeResourceDetails {
 
+    @NotBlank
+    private String clientId = "coffeeNetClient";
+
+    @NotBlank
+    private String clientSecret = "coffeeNetClientSecret";
+
     @URL
     @NotBlank
     private String accessTokenUri = "http://localhost:9999/oauth/token";
@@ -21,6 +27,34 @@ public class CoffeeNetSecurityClientProperties extends AuthorizationCodeResource
     @URL
     @NotBlank
     private String userAuthorizationUri = "http://localhost:9999/oauth/authorize";
+
+    @Override
+    public String getClientId() {
+
+        return clientId;
+    }
+
+
+    @Override
+    public void setClientId(String clientId) {
+
+        this.clientId = clientId;
+    }
+
+
+    @Override
+    public String getClientSecret() {
+
+        return clientSecret;
+    }
+
+
+    @Override
+    public void setClientSecret(String clientSecret) {
+
+        this.clientSecret = clientSecret;
+    }
+
 
     @Override
     public String getAccessTokenUri() {
