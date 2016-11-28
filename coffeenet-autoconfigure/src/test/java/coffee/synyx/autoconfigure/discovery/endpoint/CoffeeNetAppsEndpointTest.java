@@ -47,6 +47,23 @@ public class CoffeeNetAppsEndpointTest {
 
 
     @Test
+    public void invokeWithNullUserRoles() {
+
+        CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, null);
+
+        when(coffeeNetAppServiceMock.getApps()).thenReturn(asList(
+                new CoffeeNetApp("NoRights", "urlNoRights", emptySet()),
+                new CoffeeNetApp("OneRight", "urlAdminRights", roles("ROLE_COFFEENET-ADMIN")),
+                new CoffeeNetApp("MultipleRights", "urlUserRights",
+                    roles("ROLE_COFFEENET-USER", "ROLE_COFFEENET-ADMIN"))));
+
+        List<CoffeeNetApp> filteredCoffeeNetAppList = sut.invoke();
+        assertThat(filteredCoffeeNetAppList, hasSize(1));
+        assertThat(filteredCoffeeNetAppList.get(0).getName(), is("NoRights"));
+    }
+
+
+    @Test
     public void invokeWithEmptyUserRoles() {
 
         CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, emptySet());
