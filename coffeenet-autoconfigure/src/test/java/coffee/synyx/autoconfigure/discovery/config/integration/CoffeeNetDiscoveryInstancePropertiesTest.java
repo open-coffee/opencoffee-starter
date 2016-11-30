@@ -89,4 +89,33 @@ public class CoffeeNetDiscoveryInstancePropertiesTest {
         assertThat(sut.getVirtualHostName(), is(unknownApplicationName));
         assertThat(sut.getSecureVirtualHostName(), is(unknownApplicationName));
     }
+
+
+    @Test
+    public void allowedAuthorities() {
+
+        String allowedAuthorities = "COFFEENET-ADMIN,COFFEENET-USER";
+        CoffeeNetConfigurationProperties coffeeNetConfigurationProperties = new CoffeeNetConfigurationProperties();
+        coffeeNetConfigurationProperties.setAllowedAuthorities(allowedAuthorities);
+
+        CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
+                    new InetUtilsProperties()), new ServerProperties(), coffeeNetConfigurationProperties);
+
+        sut.afterPropertiesSet();
+
+        assertThat(sut.getMetadataMap().get("allowedAuthorities"), is(allowedAuthorities));
+    }
+
+
+    @Test
+    public void allowedAuthoritiesNotProvided() {
+
+        CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
+                    new InetUtilsProperties()), new ServerProperties(), new CoffeeNetConfigurationProperties());
+        sut.getMetadataMap().put("allowedAuthorities", "alreadySetAndNoneFromCoffeeNet");
+
+        sut.afterPropertiesSet();
+
+        assertThat(sut.getMetadataMap().get("allowedAuthorities"), is("alreadySetAndNoneFromCoffeeNet"));
+    }
 }

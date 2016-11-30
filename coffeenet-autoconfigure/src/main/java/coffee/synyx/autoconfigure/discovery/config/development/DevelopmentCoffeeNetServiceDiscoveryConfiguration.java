@@ -1,7 +1,7 @@
 package coffee.synyx.autoconfigure.discovery.config.development;
 
-import coffee.synyx.autoconfigure.discovery.config.CoffeeNetServiceDiscoveryConfiguration;
 import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpoint;
+import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpointNoFilter;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.DevelopmentCoffeeNetAppService;
 
@@ -25,12 +25,11 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.DEVELO
  */
 @Configuration
 @ConditionalOnClass(DiscoveryClient.class)
-@ConditionalOnMissingBean(CoffeeNetServiceDiscoveryConfiguration.class)
 @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
-public class DevelopmentCoffeeNetServiceDiscoveryConfiguration implements CoffeeNetServiceDiscoveryConfiguration {
+public class DevelopmentCoffeeNetServiceDiscoveryConfiguration {
 
     @Bean
-    @Override
+    @ConditionalOnMissingBean(CoffeeNetAppService.class)
     public CoffeeNetAppService coffeeNetAppService() {
 
         return new DevelopmentCoffeeNetAppService();
@@ -38,9 +37,9 @@ public class DevelopmentCoffeeNetServiceDiscoveryConfiguration implements Coffee
 
 
     @Bean
-    @Override
-    public CoffeeNetAppsEndpoint coffeeNetAppsEndpoint() {
+    @ConditionalOnMissingBean(CoffeeNetAppsEndpoint.class)
+    public CoffeeNetAppsEndpointNoFilter coffeeNetAppsEndpoint() {
 
-        return new CoffeeNetAppsEndpoint(coffeeNetAppService());
+        return new CoffeeNetAppsEndpointNoFilter(coffeeNetAppService());
     }
 }

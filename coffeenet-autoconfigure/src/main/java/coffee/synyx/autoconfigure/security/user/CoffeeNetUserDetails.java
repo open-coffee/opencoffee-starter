@@ -5,6 +5,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 
 import java.util.Collection;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toSet;
 
 
 /**
@@ -63,5 +66,11 @@ public interface CoffeeNetUserDetails extends UserDetails {
     default boolean isEnabled() {
 
         return true;
+    }
+
+
+    default Set<String> getAuthoritiesAsString() {
+
+        return getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(toSet());
     }
 }

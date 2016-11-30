@@ -60,6 +60,12 @@ class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
     @Override
     public void afterPropertiesSet() {
 
+        String allowedAuthorities = coffeeNetConfigurationProperties.getAllowedAuthorities();
+
+        if (allowedAuthorities != null) {
+            getMetadataMap().put("allowedAuthorities", allowedAuthorities);
+        }
+
         String applicationName = coffeeNetConfigurationProperties.getApplicationName();
 
         if (StringUtils.hasText(applicationName)) {
