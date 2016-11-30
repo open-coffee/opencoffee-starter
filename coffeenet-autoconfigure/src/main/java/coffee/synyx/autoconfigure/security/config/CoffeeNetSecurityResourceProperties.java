@@ -18,14 +18,14 @@ public class CoffeeNetSecurityResourceProperties extends ResourceServerPropertie
     /**
      * Identifier of the resource.
      */
-    @NotBlank
+    @NotBlank(message = "Please provide the id of your oauth resource")
     private String id = "oauth2-resource";
 
     /**
      * URI of the user endpoint.
      */
-    @URL
-    @NotBlank
+    @URL(message = "Please provide a valid url to your oauth user endpoint")
+    @NotBlank(message = "Please provide the user endpoint of the oauth server usually ending with /user")
     private String userInfoUri = "http://localhost:9999/user";
 
     @Override

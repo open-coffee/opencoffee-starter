@@ -13,8 +13,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("coffeenet.security")
 public class CoffeeNetSecurityProperties {
 
-    @URL
-    @NotBlank
+    @URL(message = "Please provide a valid url to your oauth logout endpoint")
+    @NotBlank(message = "Please provide the logout endpoint of the oauth server usually ending with /logout")
     private String logoutSuccessUrl = "http://localhost:9999/logout";
 
     /**

@@ -6,6 +6,8 @@ import org.springframework.util.Assert;
 
 import java.util.Collection;
 
+import static java.util.Collections.emptySet;
+
 
 /**
  * Machine user implementation for {@link CoffeeNetUserDetails}.
@@ -17,7 +19,7 @@ public final class MachineCoffeeNetUser implements CoffeeNetUserDetails {
     private static final long serialVersionUID = -2951903502295199963L;
 
     private final String username;
-    private final Collection<GrantedAuthority> authorities;
+    private Collection<GrantedAuthority> authorities = emptySet();
 
     /**
      * @param  username  Must not be null.

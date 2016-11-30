@@ -54,14 +54,18 @@ public final class CoffeeNetApp {
             userAuthoritiesNN = emptySet();
         }
 
+        boolean isAllowed = false;
+
         for (String allowedAuthority : this.authorities) {
             for (String authority : userAuthoritiesNN) {
                 if (allowedAuthority.equalsIgnoreCase(authority)) {
-                    return true;
+                    isAllowed = true;
+
+                    break;
                 }
             }
         }
 
-        return false;
+        return isAllowed;
     }
 }

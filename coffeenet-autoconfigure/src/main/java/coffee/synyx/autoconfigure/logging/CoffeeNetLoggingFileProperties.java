@@ -17,20 +17,22 @@ import javax.validation.constraints.NotNull;
 @ConfigurationProperties("coffeenet.logging.file")
 public class CoffeeNetLoggingFileProperties {
 
+    private static final int DEFAULT_HISTORY_30 = 30;
+
     private Boolean enabled;
 
-    @NotBlank
+    @NotBlank(message = "Please provide a file where your logs will be written e.g. logs/app.log")
     private String file = "logs/app.log";
 
-    @NotBlank
+    @NotBlank(message = "Please provide a file name pattern with a date pattern e.g. logs/app-%d{yyyy-MM-dd}.log")
     private String fileNamePattern = "logs/app-%d{yyyy-MM-dd}.log";
 
-    @NotBlank
+    @NotBlank(message = "Please provide a log patter for your logs.")
     private String pattern = "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n%wEx";
 
-    @Min(1)
-    @NotNull
-    private int maxHistory = 30;
+    @Min(value = 1, message = "Only positive integers are allowed for the maximum amount of history files.")
+    @NotNull(message = "Please provide a maximum amount of history files you want to keep.")
+    private int maxHistory = DEFAULT_HISTORY_30;
 
     public Boolean isEnabled() {
 
