@@ -20,10 +20,14 @@ public class DependencyCheckTest {
     public void checkCorrectSlicing() {
 
         ConstraintBuilder graph = classpath().noJars()
-                .printTo("violations.graphml")
-                .including("coffee.synyx.autoconfigure.**")
-                .withSlicing("module", "coffee.synyx.autoconfigure.(*).**")
-                .allow(oneOf("discovery", "logging", "security"));
+            .printTo("violations.graphml")
+            .including("coffee.synyx.autoconfigure.**")
+            .excluding("coffee.synyx.autoconfigure.**.CoffeeNetDiscoveryConfiguration")
+            .excluding("coffee.synyx.autoconfigure.**.IntegrationCoffeeNetServiceDiscoveryConfiguration")
+            .excluding("coffee.synyx.autoconfigure.**.CoffeeNetAppsEndpoint")
+            .excluding("coffee.synyx.autoconfigure.**.CoffeeNetAppsEndpointTest*")
+            .withSlicing("module", "coffee.synyx.autoconfigure.(*).**")
+            .allow(oneOf("discovery", "logging", "security"));
 
         assertThat(graph, is(violationFree()));
     }

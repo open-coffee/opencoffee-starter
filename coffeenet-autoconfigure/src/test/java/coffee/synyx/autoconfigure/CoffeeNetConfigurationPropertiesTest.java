@@ -23,6 +23,7 @@ public class CoffeeNetConfigurationPropertiesTest {
         assertThat(CoffeeNetConfigurationProperties.DEVELOPMENT, is("development"));
         assertThat(CoffeeNetConfigurationProperties.INTEGRATION, is("integration"));
         assertThat(sut.getApplicationName(), is(nullValue()));
+        assertThat(sut.getAllowedAuthorities(), is(nullValue()));
         assertThat(sut.getProfile(), is(DEVELOPMENT));
     }
 }

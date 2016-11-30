@@ -1,12 +1,14 @@
 package coffee.synyx.autoconfigure.discovery.config.integration;
 
-import coffee.synyx.autoconfigure.discovery.config.CoffeeNetServiceDiscoveryConfiguration;
 import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpoint;
+import coffee.synyx.autoconfigure.discovery.endpoint.CoffeeNetAppsEndpointNoFilter;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.IntegrationEurekaCoffeeNetAppService;
+import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -29,9 +31,8 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
 @Configuration
 @EnableEurekaClient
 @ConditionalOnClass(DiscoveryClient.class)
-@ConditionalOnMissingBean(CoffeeNetServiceDiscoveryConfiguration.class)
 @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
-public class IntegrationCoffeeNetServiceDiscoveryConfiguration implements CoffeeNetServiceDiscoveryConfiguration {
+public class IntegrationCoffeeNetServiceDiscoveryConfiguration {
 
     private final DiscoveryClient discoveryClient;
 
@@ -42,7 +43,7 @@ public class IntegrationCoffeeNetServiceDiscoveryConfiguration implements Coffee
     }
 
     @Bean
-    @Override
+    @ConditionalOnMissingBean(CoffeeNetAppService.class)
     public CoffeeNetAppService coffeeNetAppService() {
 
         return new IntegrationEurekaCoffeeNetAppService(discoveryClient);
@@ -50,9 +51,18 @@ public class IntegrationCoffeeNetServiceDiscoveryConfiguration implements Coffee
 
 
     @Bean
-    @Override
-    public CoffeeNetAppsEndpoint coffeeNetAppsEndpoint() {
+    @ConditionalOnMissingBean(CoffeeNetCurrentUserService.class)
+    public CoffeeNetAppsEndpointNoFilter coffeeNetAppsEndpoint() {
 
-        return new CoffeeNetAppsEndpoint(coffeeNetAppService());
+        return new CoffeeNetAppsEndpointNoFilter(coffeeNetAppService());
+    }
+
+
+    @Bean
+    @Autowired
+    @ConditionalOnBean(CoffeeNetCurrentUserService.class)
+    public CoffeeNetAppsEndpoint coffeeNetAppsEndpointWithFilter(CoffeeNetCurrentUserService currentUserService) {
+
+        return new CoffeeNetAppsEndpoint(coffeeNetAppService(), currentUserService);
     }
 }
