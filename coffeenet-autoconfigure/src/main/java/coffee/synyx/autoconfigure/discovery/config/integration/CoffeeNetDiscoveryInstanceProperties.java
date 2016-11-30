@@ -25,7 +25,7 @@ class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
     /**
      * The hostname if it can be determined at configuration time (otherwise it will be guessed from OS primitives).
      */
-    @NotBlank
+    @NotBlank(message = "Please provide a hostname of your application.")
     private String hostname = "localhost";
 
     private CoffeeNetConfigurationProperties coffeeNetConfigurationProperties;

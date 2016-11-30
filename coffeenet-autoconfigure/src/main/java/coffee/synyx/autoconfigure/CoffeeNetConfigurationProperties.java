@@ -25,10 +25,13 @@ public class CoffeeNetConfigurationProperties {
         INTEGRATION;
     }
 
-    @NotNull
+    @NotNull(message = "Please choose the profile or mode in which your CoffeeNet application should start.")
     private Profile profile = Profile.DEVELOPMENT;
 
-    @NotBlank
+    @NotBlank(
+        message = "Please define the name of your application. "
+            + "This will be used in the navigation bar or for logging purposes e.g."
+    )
     private String applicationName;
 
     private String allowedAuthorities;

@@ -20,13 +20,13 @@ public class CoffeeNetLoggingGelfProperties {
 
     private Boolean enabled;
 
-    @NotBlank
+    @NotBlank(message = "Please provide the server address of your graylog server.")
     private String server = "localhost";
 
-    @Min(1)
+    @Min(value = 1, message = "Please provide the port of your graylog server.")
     private int port = DEFAULT_PORT;
 
-    @NotBlank
+    @NotBlank(message = "Please provide the protocol of the communication with your graylog server.")
     private String protocol = "UDP";
 
     public Boolean isEnabled() {
