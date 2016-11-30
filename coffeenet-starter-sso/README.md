@@ -31,8 +31,8 @@ Der CoffeeNet Auth-Server hat folgende Daten hinterlegt für eine lokale Entwick
 coffeenet:
   security:
     client:
-      client-id: testClient
-      client-secret: testClientSecret
+      client-id: coffeeNetClient
+      client-secret: coffeeNetClientSecret
 ```
 
 ### Produktiv
