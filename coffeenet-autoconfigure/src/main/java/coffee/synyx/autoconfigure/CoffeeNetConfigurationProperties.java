@@ -1,6 +1,10 @@
 package coffee.synyx.autoconfigure;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -21,9 +25,28 @@ public class CoffeeNetConfigurationProperties {
         INTEGRATION;
     }
 
-    private String applicationName;
-    private String allowedAuthorities;
+    @NotNull(message = "Please choose the profile or mode in which your CoffeeNet application should start.")
     private Profile profile = Profile.DEVELOPMENT;
+
+    @NotBlank(
+        message = "Please define the name of your application. "
+            + "This will be used in the navigation bar or for logging purposes e.g."
+    )
+    private String applicationName;
+
+    private String allowedAuthorities;
+
+    public Profile getProfile() {
+
+        return profile;
+    }
+
+
+    public void setProfile(Profile profile) {
+
+        this.profile = profile;
+    }
+
 
     public String getApplicationName() {
 
@@ -46,17 +69,5 @@ public class CoffeeNetConfigurationProperties {
     public void setAllowedAuthorities(String allowedAuthorities) {
 
         this.allowedAuthorities = allowedAuthorities;
-    }
-
-
-    public Profile getProfile() {
-
-        return profile;
-    }
-
-
-    public void setProfile(Profile profile) {
-
-        this.profile = profile;
     }
 }
