@@ -2,6 +2,8 @@ package coffee.synyx.autoconfigure.discovery.endpoint;
 
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
+import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
+import coffee.synyx.autoconfigure.security.user.CoffeeNetUserDetails;
 
 import org.junit.Test;
 
@@ -11,6 +13,11 @@ import org.mockito.Mock;
 
 import org.mockito.runners.MockitoJUnitRunner;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
@@ -24,6 +31,7 @@ import static org.mockito.Mockito.when;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptySet;
+import static java.util.stream.Collectors.toList;
 
 
 /**
@@ -34,11 +42,13 @@ public class CoffeeNetAppsEndpointTest {
 
     @Mock
     private CoffeeNetAppService coffeeNetAppServiceMock;
+    @Mock
+    private CoffeeNetCurrentUserService coffeeNetCurrentUserServiceMock;
 
     @Test
     public void testDefaultValues() {
 
-        CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, emptySet());
+        CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, coffeeNetCurrentUserServiceMock);
 
         assertThat(sut.getId(), is("coffeenet/apps"));
         assertThat(sut.isEnabled(), is(true));
@@ -47,32 +57,17 @@ public class CoffeeNetAppsEndpointTest {
 
 
     @Test
-    public void invokeWithNullUserRoles() {
-
-        CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, null);
-
-        when(coffeeNetAppServiceMock.getApps()).thenReturn(asList(
-                new CoffeeNetApp("NoRights", "urlNoRights", emptySet()),
-                new CoffeeNetApp("OneRight", "urlAdminRights", roles("ROLE_COFFEENET-ADMIN")),
-                new CoffeeNetApp("MultipleRights", "urlUserRights",
-                    roles("ROLE_COFFEENET-USER", "ROLE_COFFEENET-ADMIN"))));
-
-        List<CoffeeNetApp> filteredCoffeeNetAppList = sut.invoke();
-        assertThat(filteredCoffeeNetAppList, hasSize(1));
-        assertThat(filteredCoffeeNetAppList.get(0).getName(), is("NoRights"));
-    }
-
-
-    @Test
     public void invokeWithEmptyUserRoles() {
 
-        CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, emptySet());
+        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(new UserStub(emptySet()));
+
+        CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, coffeeNetCurrentUserServiceMock);
 
         when(coffeeNetAppServiceMock.getApps()).thenReturn(asList(
                 new CoffeeNetApp("NoRights", "urlNoRights", emptySet()),
-                new CoffeeNetApp("OneRight", "urlAdminRights", roles("ROLE_COFFEENET-ADMIN")),
+                new CoffeeNetApp("OneRight", "urlAdminRights", rolesToSet("ROLE_COFFEENET-ADMIN")),
                 new CoffeeNetApp("MultipleRights", "urlUserRights",
-                    roles("ROLE_COFFEENET-USER", "ROLE_COFFEENET-ADMIN"))));
+                    rolesToSet("ROLE_COFFEENET-USER", "ROLE_COFFEENET-ADMIN"))));
 
         List<CoffeeNetApp> filteredCoffeeNetAppList = sut.invoke();
         assertThat(filteredCoffeeNetAppList, hasSize(1));
@@ -83,14 +78,16 @@ public class CoffeeNetAppsEndpointTest {
     @Test
     public void invokeWithOneUserRoles() {
 
-        HashSet<String> userRoles = roles("ROLE_COFFEENET-ADMIN");
-        CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, userRoles);
+        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(new UserStub(
+                rolesToAuthorities("ROLE_COFFEENET-ADMIN")));
+
+        CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, coffeeNetCurrentUserServiceMock);
 
         when(coffeeNetAppServiceMock.getApps()).thenReturn(asList(
                 new CoffeeNetApp("NoRights", "urlNoRights", emptySet()),
-                new CoffeeNetApp("OneRight", "urlAdminRights", roles("ROLE_COFFEENET-ADMIN")),
+                new CoffeeNetApp("OneRight", "urlAdminRights", rolesToSet("ROLE_COFFEENET-ADMIN")),
                 new CoffeeNetApp("MultipleRights", "urlUserRights",
-                    roles("ROLE_COFFEENET-USER", "ROLE_COFFEENET-ADMIN"))));
+                    rolesToSet("ROLE_COFFEENET-USER", "ROLE_COFFEENET-ADMIN"))));
 
         List<CoffeeNetApp> filteredCoffeeNetAppList = sut.invoke();
         assertThat(filteredCoffeeNetAppList, hasSize(3));
@@ -103,15 +100,17 @@ public class CoffeeNetAppsEndpointTest {
     @Test
     public void invokeMultipleUserRoles() {
 
-        HashSet<String> userRoles = roles("ROLE_COFFEENET-ADMIN", "ROLE_COFFEENET-SADMIN");
-        CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, userRoles);
+        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(new UserStub(
+                rolesToAuthorities("ROLE_COFFEENET-ADMIN", "ROLE_COFFEENET-SADMIN")));
+
+        CoffeeNetAppsEndpoint sut = new CoffeeNetAppsEndpoint(coffeeNetAppServiceMock, coffeeNetCurrentUserServiceMock);
 
         when(coffeeNetAppServiceMock.getApps()).thenReturn(asList(
                 new CoffeeNetApp("NoRights", "urlNoRights", emptySet()),
-                new CoffeeNetApp("OneRight", "urlAdminRights", roles("ROLE_COFFEENET-ADMIN")),
+                new CoffeeNetApp("OneRight", "urlAdminRights", rolesToSet("ROLE_COFFEENET-ADMIN")),
                 new CoffeeNetApp("MultipleRights", "urlUserRights",
-                    roles("ROLE_COFFEENET-USER", "ROLE_COFFEENET-ADMIN")),
-                new CoffeeNetApp("SAdminRight", "SAdminRight", roles("ROLE_COFFEENET-SADMIN"))));
+                    rolesToSet("ROLE_COFFEENET-USER", "ROLE_COFFEENET-ADMIN")),
+                new CoffeeNetApp("SAdminRight", "SAdminRight", rolesToSet("ROLE_COFFEENET-SADMIN"))));
 
         List<CoffeeNetApp> filteredCoffeeNetAppList = sut.invoke();
         assertThat(filteredCoffeeNetAppList, hasSize(4));
@@ -122,8 +121,58 @@ public class CoffeeNetAppsEndpointTest {
     }
 
 
-    private HashSet<String> roles(String... roles) {
+    private Collection<? extends GrantedAuthority> rolesToAuthorities(String... roles) {
+
+        return Arrays.stream(roles).map(SimpleGrantedAuthority::new).collect(toList());
+    }
+
+
+    private HashSet<String> rolesToSet(String... roles) {
 
         return new HashSet<>(asList(roles));
+    }
+
+    private class UserStub implements CoffeeNetUserDetails {
+
+        private Collection<? extends GrantedAuthority> authorities;
+
+        UserStub(Collection<? extends GrantedAuthority> authorities) {
+
+            this.authorities = authorities;
+        }
+
+        @Override
+        public String getUsername() {
+
+            return null;
+        }
+
+
+        @Override
+        public String getEmail() {
+
+            return null;
+        }
+
+
+        @Override
+        public Collection<? extends GrantedAuthority> getAuthorities() {
+
+            return authorities;
+        }
+
+
+        @Override
+        public boolean isAdmin() {
+
+            return false;
+        }
+
+
+        @Override
+        public boolean isMachineUser() {
+
+            return false;
+        }
     }
 }
