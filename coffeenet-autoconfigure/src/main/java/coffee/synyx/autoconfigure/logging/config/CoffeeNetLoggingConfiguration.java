@@ -160,7 +160,13 @@ public class CoffeeNetLoggingConfiguration {
         gelfAppender.setContext(loggerContext);
         gelfAppender.setProtocol(coffeeNetLoggingGelfProperties.getProtocol());
         gelfAppender.setPort(coffeeNetLoggingGelfProperties.getPort());
-        gelfAppender.setLayout(new PatternLayout());
+
+        PatternLayout patternLayout = new PatternLayout();
+        patternLayout.setContext(loggerContext);
+        patternLayout.setPattern("%m %n");
+        patternLayout.start();
+
+        gelfAppender.setLayout(patternLayout);
         gelfAppender.start();
 
         return gelfAppender;
