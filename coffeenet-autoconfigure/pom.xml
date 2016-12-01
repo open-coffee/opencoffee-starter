@@ -3,22 +3,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>autoconfigure</artifactId>
-    <version>0.10.0-SNAPSHOT</version>
-
-    <packaging>jar</packaging>
-
-    <name>CoffeeNet Autoconfigure</name>
-    <description>
-        Autoconfigure will be used in the starter dependencies to configure different integrations into the coffeenet
-    </description>
-
     <parent>
         <groupId>coffee.synyx</groupId>
         <artifactId>coffeenet-starter-parent</artifactId>
         <version>0.1.0-SNAPSHOT</version>
         <relativePath>../coffeenet-starter-parent/pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
+
+    <artifactId>autoconfigure</artifactId>
+    <version>0.10.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>CoffeeNet Autoconfigure</name>
+    <description>
+        Autoconfigure will be used in the starter dependencies to configure different integrations into the coffeenet
+    </description>
 
     <dependencies>
 

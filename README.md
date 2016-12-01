@@ -1,25 +1,35 @@
 # CoffeeNet Starter
 
-## Beschreibung
-Dieser Starter bietet die Integration in das CoffeeNet und beinhaltet diese Komponenten:
- * [Single-Sign-On](https://gitlab.synyx.de/coffeenet/coffeenet-starter-sso/blob/master/README.md)
- * [Service Discovery](https://gitlab.synyx.de/coffeenet/coffeenet-starter-discovery/blob/master/README.md)
- * [Logging](https://gitlab.synyx.de/coffeenet/coffeenet-starter-logging/blob/master/README.md)
- * [Navigation Bar](https://gitlab.synyx.de/coffeenet/coffeenet-navigation-bar/blob/master/README.md)
+Dieses Projekt beinhaltet alle CoffeeNet-Starter, welche verwendet werden können, um sich an das CoffeeNet anzubinden.
 
-Falls ihr nicht alle dieser Komponenten benötigt und zum Beispiel keine Authentifizierung eures Services braucht.
-Dann könnt ihr einfach die einzelnen Starter zu diesen Komponenten verwenden.
+[Application](https://gitlab.synyx.de/coffeenet/coffeenet-starter-application/blob/master/README.md)
+Starter bietet volle Integration in das CoffeeNet durch
+[Single-Sign-On](https://gitlab.synyx.de/coffeenet/coffeenet-starter-sso/blob/master/README.md),
+[Service Discovery](https://gitlab.synyx.de/coffeenet/coffeenet-starter-discovery/blob/master/README.md),
+[Logging](https://gitlab.synyx.de/coffeenet/coffeenet-starter-logging/blob/master/README.md) und der
+[Navigation Bar](https://gitlab.synyx.de/coffeenet/coffeenet-navigation-bar/blob/master/README.md)
 
-### CoffeeNet Banner
-Ihr bekommt mit diesem Starter automatisch einen 'CoffeeNet Banner', welcher euch beim Starten eurer Anwendung angezeigt wird.
-Falls ihr diesen überschreiben wollt, könnt ihr einen eigenen Banner (banner.txt) unter `src/main/resources` legen.
+
+[Single-Sign-On](https://gitlab.synyx.de/coffeenet/coffeenet-starter-sso/blob/master/README.md)
+Starter bietet die Authentifizierung gegen den CoffeeNet-Auth Server.
+
+[Service Discovery](https://gitlab.synyx.de/coffeenet/coffeenet-starter-discovery/blob/master/README.md)
+Starter bietet die Integration zum Verteilen bzw. Auffinden der Anwendungen im CoffeeNet.
+
+[Logging](https://gitlab.synyx.de/coffeenet/coffeenet-starter-logging/blob/master/README.md)
+Starter bietet ein einheitliches und automatisiertes zentralisiertes Logging.
+
+[Navigation Bar](https://gitlab.synyx.de/coffeenet/coffeenet-navigation-bar/blob/master/README.md)
+bietet für die Anwendungen eine Navigationsleiste zur Navigation innerhalb des CoffeeNets
+
 
 ## Repository
-        <repositories>
-          <repository>
-            <id>releases.nexus.synyx.de</id>
-            <url>http://nexus.synyx.de/content/repositories/releases</url>
-          </repository>
-        </repositories>
 
-Bitte sicherstellen, dass das synyx nexus release repository hinterlegt ist.
+```xml
+<repositories>
+  <repository>
+    <id>releases.nexus.synyx.de</id>
+    <url>http://nexus.synyx.de/content/repositories/releases</url>
+  </repository>
+</repositories>
+```
