@@ -22,5 +22,6 @@ public class CoffeeNetLoggingGelfPropertiesTest {
         assertThat(sut.getServer(), is("localhost"));
         assertThat(sut.getPort(), is(12201));
         assertThat(sut.getProtocol(), is("UDP"));
+        assertThat(sut.getLayout(), is("%m %n"));
     }
 }

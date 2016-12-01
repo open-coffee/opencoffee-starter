@@ -163,7 +163,7 @@ public class CoffeeNetLoggingConfiguration {
 
         PatternLayout patternLayout = new PatternLayout();
         patternLayout.setContext(loggerContext);
-        patternLayout.setPattern("%m %n");
+        patternLayout.setPattern(coffeeNetLoggingGelfProperties.getLayout());
         patternLayout.start();
 
         gelfAppender.setLayout(patternLayout);

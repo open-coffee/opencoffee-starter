@@ -29,6 +29,9 @@ public class CoffeeNetLoggingGelfProperties {
     @NotBlank(message = "Please provide the protocol of the communication with your graylog server.")
     private String protocol = "UDP";
 
+    @NotBlank(message = "Please provide the layout of the message which will be send to the graylog server.")
+    private String layout = "%m %n";
+
     public Boolean isEnabled() {
 
         return enabled;
@@ -74,5 +77,17 @@ public class CoffeeNetLoggingGelfProperties {
     public void setProtocol(String protocol) {
 
         this.protocol = protocol;
+    }
+
+
+    public String getLayout() {
+
+        return layout;
+    }
+
+
+    public void setLayout(String layout) {
+
+        this.layout = layout;
     }
 }
