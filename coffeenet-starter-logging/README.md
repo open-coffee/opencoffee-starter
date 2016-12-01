@@ -1,6 +1,6 @@
 # CoffeeNet Starter - Logging
 
-Diese Abhängigkeit konfiguriert automatisch ein einheitliches Logging der Anwendung im CoffeeNet.
+Dieser CoffeeNet-Starter konfiguriert ein einheitliches Logging der Anwendung im CoffeeNet.
 
 
 ## Verwendung

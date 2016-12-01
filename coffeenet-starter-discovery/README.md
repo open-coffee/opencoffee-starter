@@ -1,6 +1,6 @@
 # CoffeeNet Starter - Discovery
 
-Dieser Starter startet automatisch die 'ServiceDiscovery'-Konfiguration einer Anwendung im CoffeeNet.
+Dieser CoffeeNet-Starter startet die 'Service-Discovery'-Konfiguration einer Anwendung im CoffeeNet.
 
 ## Konfiguration
 

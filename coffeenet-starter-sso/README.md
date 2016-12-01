@@ -1,6 +1,8 @@
 # CoffeeNet Starter - Security
 
-Dieser Starter startet automatisch die 'Security'-Konfiguration einer Anwendung des CoffeeNets.
+Dieser CoffeeNet-Starter sichert automatisch die Anwendung innerhalb des CoffeeNets anhand von Single-Sign-On ab.
+Standardmäßig werden alle Endpunkte abgesichert. Anhand einer manuell erstellten Konfiguration in der Anwendung kann 
+diese überschrieben werden. 
 
 
 ## Konfiguration
@@ -25,7 +27,7 @@ coffeenet:
 Die Konfigurationsmöglichkeiten mit deren Standardwerte.
 
 
-Der CoffeeNet Auth-Server hat folgende Daten hinterlegt für eine lokale Entwicklung:
+Der CoffeeNet Auth-Server hat folgende Daten hinterlegt für eine lokale integrative Entwicklung:
 
 ```yaml
 coffeenet:
@@ -44,7 +46,6 @@ coffeenet:
   profile: integration
   security:
     resource:
-      id: oauth2-resource
       user-info-uri: https://auth.synyx.coffee/user
     client:
       client-id: ${clientId}
@@ -54,25 +55,25 @@ coffeenet:
     logout-success-url: https://auth.synyx.coffee/logout
 ```
 
-Zu beachten:
-* *Https* verwenden ansonsten wird dem redirect in der Anwendung nicht gefolgt.
+**Zu beachten:**
+* *Https* verwenden, ansonsten wird dem redirect in der Anwendung nicht gefolgt
 * ${clientId} ersetzen mit der für die Applikation im Auth-Server eingetragenen ID
 * ${clientSecret} ersetzen mit dem für die Applikation im Auth-Server eingetragenen Passwort
 
-Bevor die neue Applikation bei dem Auth-Server verwendet werden kann, muss die neue Applikation im Auth-Server hinterlegt werden.
-Dies kann von jedem Benutzer durchgeführt werden, der die Rolle "COFFEENET-ADMIN" hat.
+Bevor die neue Applikation bei dem Auth-Server verwendet werden kann, muss diese Applikation im Auth-Server, mit deren Daten, hinterlegt werden.
+Dies kann von jedem Benutzer durchgeführt werden, der die Rolle `COFFEENET-ADMIN` hat.
 
 
 ## Aktivierung des Single-Sign-Ons
 
 Sofern ihr in eurer application.[properties|yml] die option
-```java
+```yaml
 coffeenet:
   profile: integration
 ```
 
-gesetzt habt, wird der SSO Mechanismus automatisch verwendet. Standardmäßig erfordert jeder Request eine authentifizierung.
-Falls diese Einstellung auf `coffeenet.profile: development` gestellt ist, wird statt des SSO ein Form-Login durchgeführt.
+gesetzt habt, wird der SSO Mechanismus automatisch verwendet. Standardmäßig erfordert jeder Request eine Authentifizierung.
+Falls diese Einstellung auf `coffeenet.profile: development` gestellt ist, wird statt des Single-Sign-Ons ein Form-Login durchgeführt.
 Standardmäßig sind die Zugangsdaten dann folgende:
 
 | User       | Passwort   | Rollen   |
