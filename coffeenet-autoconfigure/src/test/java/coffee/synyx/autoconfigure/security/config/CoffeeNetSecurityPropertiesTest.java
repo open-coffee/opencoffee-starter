@@ -18,6 +18,7 @@ public class CoffeeNetSecurityPropertiesTest {
     public void testDefaultValues() {
 
         CoffeeNetSecurityProperties sut = new CoffeeNetSecurityProperties();
+        assertThat(sut.isEnabled(), is(true));
         assertThat(sut.getDefaultLoginSuccessUrl(), is(nullValue()));
         assertThat(sut.getLogoutSuccessUrl(), is("http://localhost:9999/logout"));
     }
