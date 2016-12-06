@@ -33,7 +33,7 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
 @ConditionalOnClass(DiscoveryClient.class)
 @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
 @AutoConfigureBefore(EurekaClientAutoConfiguration.class)
-@EnableConfigurationProperties(CoffeeNetConfigurationProperties.class)
+@EnableConfigurationProperties({ CoffeeNetConfigurationProperties.class, CoffeeNetDiscoveryProperties.class })
 public class CoffeeNetDiscoveryPropertiesConfiguration {
 
     private CoffeeNetConfigurationProperties coffeeNetConfigurationProperties;
