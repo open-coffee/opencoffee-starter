@@ -47,7 +47,7 @@ public class CoffeeNetDiscoveryPropertiesConfiguration {
 
     @Bean
     @ConfigurationProperties(prefix = "coffeenet.discovery.instance")
-    public CoffeeNetDiscoveryInstanceProperties coffeeNetDiscoveryInstanceProperties(InetUtils inetUtils,
+    public CoffeeNetDiscoveryInstanceProperties eurekaInstanceConfigBean(InetUtils inetUtils,
         ServerProperties serverProperties) {
 
         return new CoffeeNetDiscoveryInstanceProperties(inetUtils, serverProperties, coffeeNetConfigurationProperties);
@@ -56,7 +56,7 @@ public class CoffeeNetDiscoveryPropertiesConfiguration {
 
     @Bean
     @ConfigurationProperties(prefix = "coffeenet.discovery.client")
-    public EurekaClientConfigBean coffeeNetDiscoveryClientProperties() {
+    public EurekaClientConfigBean eurekaClientConfigBean() {
 
         return new EurekaClientConfigBean();
     }
