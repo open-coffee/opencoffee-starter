@@ -23,6 +23,6 @@ import org.springframework.context.annotation.Import;
         IntegrationCoffeeNetUserEndpointConfiguration.class, DevelopmentCoffeeNetUserEndpointConfiguration.class
     }
 )
-@ConditionalOnProperty(prefix = "coffeenet.security", name = "enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = "coffeenet.security", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class CoffeeNetSecurityConfiguration {
 }
