@@ -1,5 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 coffee.synyx.autoconfigure.discovery.config.global.CoffeeNetDiscoveryConfiguration,\
-coffee.synyx.autoconfigure.discovery.config.integration.CoffeeNetDiscoveryPropertiesConfiguration,\
 coffee.synyx.autoconfigure.security.config.global.CoffeeNetSecurityConfiguration,\
 coffee.synyx.autoconfigure.logging.config.CoffeeNetLoggingConfiguration
