@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.URL;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import javax.validation.constraints.NotNull;
+
 
 /**
  * @author  Tobias Schneider - schneider@synyx.de
@@ -12,6 +14,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties("coffeenet.security")
 public class CoffeeNetSecurityProperties {
+
+    @NotNull
+    private boolean enabled = true;
 
     @URL(message = "Please provide a valid url to your oauth logout endpoint")
     @NotBlank(message = "Please provide the logout endpoint of the oauth server usually ending with /logout")
@@ -22,6 +27,18 @@ public class CoffeeNetSecurityProperties {
      * login. If not the user will be redirected to the url he/she visited before he/she got redirected to /login.
      */
     private String defaultLoginSuccessUrl;
+
+    public boolean isEnabled() {
+
+        return enabled;
+    }
+
+
+    public void setEnabled(boolean enabled) {
+
+        this.enabled = enabled;
+    }
+
 
     public String getLogoutSuccessUrl() {
 

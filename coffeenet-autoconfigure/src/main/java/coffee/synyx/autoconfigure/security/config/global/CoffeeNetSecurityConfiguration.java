@@ -5,6 +5,8 @@ import coffee.synyx.autoconfigure.security.config.integration.IntegrationCoffeeN
 import coffee.synyx.autoconfigure.security.endpoint.DevelopmentCoffeeNetUserEndpointConfiguration;
 import coffee.synyx.autoconfigure.security.endpoint.IntegrationCoffeeNetUserEndpointConfiguration;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -21,5 +23,6 @@ import org.springframework.context.annotation.Import;
         IntegrationCoffeeNetUserEndpointConfiguration.class, DevelopmentCoffeeNetUserEndpointConfiguration.class
     }
 )
+@ConditionalOnProperty(prefix = "coffeenet.security", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class CoffeeNetSecurityConfiguration {
 }

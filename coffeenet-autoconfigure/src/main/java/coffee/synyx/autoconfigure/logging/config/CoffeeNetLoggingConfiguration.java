@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import org.springframework.context.annotation.Configuration;
@@ -66,6 +67,7 @@ import static org.slf4j.Logger.ROOT_LOGGER_NAME;
         CoffeeNetConfigurationProperties.class, CoffeeNetLoggingConsoleProperties.class
     }
 )
+@ConditionalOnProperty(prefix = "coffeenet.logging", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class CoffeeNetLoggingConfiguration {
 
     private static final String CONSOLE = "CONSOLE";
