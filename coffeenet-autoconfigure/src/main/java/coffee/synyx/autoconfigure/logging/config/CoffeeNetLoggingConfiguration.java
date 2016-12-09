@@ -25,6 +25,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 import org.springframework.context.annotation.Configuration;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 import javax.annotation.PostConstruct;
 
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGRATION;
@@ -156,12 +158,24 @@ public class CoffeeNetLoggingConfiguration {
     private GelfAppender gelfAppender(LoggerContext loggerContext) {
 
         GelfAppender gelfAppender = new GelfAppender();
+        gelfAppender.setContext(loggerContext);
         gelfAppender.setName(COFFEENET_GELF);
         gelfAppender.setServer(coffeeNetLoggingGelfProperties.getServer());
-        gelfAppender.setHostName(coffeeNetConfigurationProperties.getApplicationName());
-        gelfAppender.setContext(loggerContext);
         gelfAppender.setProtocol(coffeeNetLoggingGelfProperties.getProtocol());
         gelfAppender.setPort(coffeeNetLoggingGelfProperties.getPort());
+
+        ConcurrentHashMap<String, String> additionalFields = new ConcurrentHashMap<>();
+
+        if (coffeeNetConfigurationProperties.getApplicationName() != null) {
+            additionalFields.put("application", coffeeNetConfigurationProperties.getApplicationName());
+        }
+
+        if (coffeeNetLoggingGelfProperties.getEnvironment() != null) {
+            additionalFields.put("environment", coffeeNetLoggingGelfProperties.getEnvironment());
+        }
+
+        String additionalFieldsStr = additionalFields.reduce(1, (k, v) -> k + "=" + v, (r1, r2) -> r1 + "," + r2);
+        gelfAppender.setAdditionalFields(additionalFieldsStr);
 
         PatternLayout patternLayout = new PatternLayout();
         patternLayout.setContext(loggerContext);
