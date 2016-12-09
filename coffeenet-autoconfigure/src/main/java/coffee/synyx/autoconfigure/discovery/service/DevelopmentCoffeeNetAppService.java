@@ -1,11 +1,7 @@
 package coffee.synyx.autoconfigure.discovery.service;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-
 import java.util.HashSet;
 import java.util.List;
-
-import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.DEVELOPMENT;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -18,7 +14,6 @@ import static java.util.Collections.singletonList;
  * @author  David Schilling - schilling@synyx.de
  * @author  Tobias Schneider - schneider@synyx.de
  */
-@ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
 public class DevelopmentCoffeeNetAppService implements CoffeeNetAppService {
 
     @Override
