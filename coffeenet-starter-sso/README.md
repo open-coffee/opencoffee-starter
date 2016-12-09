@@ -13,6 +13,7 @@ Der CoffeeNet-Starter Security hängt sich standardmäßig an die Eigenschaft ``
 coffeenet:
   profile: development
   security:
+    enabled: true
     resource:
       id: oauth2-resource
       user-info-uri: http://localhost:9999/user

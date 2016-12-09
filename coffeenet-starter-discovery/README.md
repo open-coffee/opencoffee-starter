@@ -10,6 +10,7 @@ coffeenet:
   allowed-authorities:
   profile: development
   discovery:
+    enabled: true
     client:
       service-url:
         defaultZone: http://localhost:8761/eureka/

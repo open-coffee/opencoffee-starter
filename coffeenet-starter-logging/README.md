@@ -25,22 +25,23 @@ die Möglichkeit jeden einzelnen Appender zu aktivieren bzw deaktivieren.
 
 ```yaml
 coffeenet:
- application-name:
- profile: development
- logging:
-   console:
-     enabled:
-   file:
-     enabled:
-     file: logs/app.log
-     max-history: 30
-     rolling-file-name-pattern: logs/app-%d{yyyy-MM-dd}.log
-     pattern: %d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n%wEx
-   gelf:
-     enabled:
-     server: localhost
-     port: 12201
-     protocol: UDP
+  application-name:
+  profile: development
+  logging:
+    enabled: true
+    console:
+      enabled:
+    file:
+      enabled:
+      file: logs/app.log
+      max-history: 30
+      rolling-file-name-pattern: logs/app-%d{yyyy-MM-dd}.log
+      pattern: %d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n%wEx
+    gelf:
+      enabled:
+      server: localhost
+      port: 12201
+      protocol: UDP
 ```
 
 Die Konfigurationsmöglichkeiten mit deren Standardwerte.
