@@ -23,6 +23,8 @@ public class CoffeeNetLoggingGelfProperties {
     @NotBlank(message = "Please provide the server address of your graylog server.")
     private String server = "localhost";
 
+    private String environment;
+
     @Min(value = 1, message = "Please provide the port of your graylog server.")
     private int port = DEFAULT_PORT;
 
@@ -53,6 +55,18 @@ public class CoffeeNetLoggingGelfProperties {
     public void setServer(String server) {
 
         this.server = server;
+    }
+
+
+    public String getEnvironment() {
+
+        return environment;
+    }
+
+
+    public void setEnvironment(String environment) {
+
+        this.environment = environment;
     }
 
 

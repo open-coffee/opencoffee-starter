@@ -156,12 +156,13 @@ public class CoffeeNetLoggingConfiguration {
     private GelfAppender gelfAppender(LoggerContext loggerContext) {
 
         GelfAppender gelfAppender = new GelfAppender();
+        gelfAppender.setContext(loggerContext);
         gelfAppender.setName(COFFEENET_GELF);
         gelfAppender.setServer(coffeeNetLoggingGelfProperties.getServer());
-        gelfAppender.setHostName(coffeeNetConfigurationProperties.getApplicationName());
-        gelfAppender.setContext(loggerContext);
         gelfAppender.setProtocol(coffeeNetLoggingGelfProperties.getProtocol());
         gelfAppender.setPort(coffeeNetLoggingGelfProperties.getPort());
+        gelfAppender.addAdditionalField("application", coffeeNetConfigurationProperties.getApplicationName());
+        gelfAppender.addAdditionalField("environment", coffeeNetLoggingGelfProperties.getEnvironment());
 
         PatternLayout patternLayout = new PatternLayout();
         patternLayout.setContext(loggerContext);
