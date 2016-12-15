@@ -1,6 +1,7 @@
 package coffee.synyx.autoconfigure.logging.config;
 
 import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
@@ -29,6 +30,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 
@@ -68,8 +70,8 @@ public class CoffeeNetLoggingConfigurationTest {
         RollingPolicy rollingPolicy = rollingFileAppender.getRollingPolicy();
         assertThat(rollingPolicy, is(instanceOf(TimeBasedRollingPolicy.class)));
 
-        TimeBasedRollingPolicy fixedRollingPolicy = (TimeBasedRollingPolicy) rollingFileAppender.getRollingPolicy();
-        assertThat(fixedRollingPolicy.getFileNamePattern(), is("logs/app-%d{yyyy-MM-dd}.log"));
+        TimeBasedRollingPolicy timeBasedRollingPolicy = (TimeBasedRollingPolicy) rollingFileAppender.getRollingPolicy();
+        assertThat(timeBasedRollingPolicy.getFileNamePattern(), is("logs/app-%d{yyyy-MM-dd}.log"));
 
         PatternLayoutEncoder encoder = (PatternLayoutEncoder) rollingFileAppender.getEncoder();
         assertThat(encoder.getPattern(), is("%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n%wEx"));
@@ -77,5 +79,14 @@ public class CoffeeNetLoggingConfigurationTest {
         // Check Gelf Appender
         Appender<ILoggingEvent> gelfAppender = logger.getAppender("COFFEENET-GELF");
         assertThat(gelfAppender, is(instanceOf(GelfAppender.class)));
+
+        GelfAppender gelfAppender1 = (GelfAppender) gelfAppender;
+        assertThat(gelfAppender1.getName(), is("COFFEENET-GELF"));
+        assertThat(gelfAppender1.getServer(), is("localServer"));
+        assertThat(gelfAppender1.getProtocol(), is("TCP"));
+        assertThat(gelfAppender1.getPort(), is(1337));
+        assertThat(((PatternLayout) gelfAppender1.getLayout()).getPattern(), is("%m"));
+        assertThat(gelfAppender1.getAdditionalFields(), hasEntry("environment", "test"));
+        assertThat(gelfAppender1.getAdditionalFields(), hasEntry("application", "CoffeeNetApplication"));
     }
 }
