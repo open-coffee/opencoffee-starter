@@ -42,6 +42,8 @@ coffeenet:
       server: localhost
       port: 12201
       protocol: UDP
+      environment:
+      layout: %m %n
 ```
 
 Die Konfigurationsmöglichkeiten mit deren Standardwerte.
