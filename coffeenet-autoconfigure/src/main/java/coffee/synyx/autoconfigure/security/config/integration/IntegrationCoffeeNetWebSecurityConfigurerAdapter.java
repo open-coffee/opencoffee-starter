@@ -12,12 +12,9 @@ import org.springframework.http.MediaType;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
@@ -47,9 +44,9 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
     private static final String LOGOUT = "/logout";
 
     private CoffeeNetSecurityProperties securityConfigurationProperties;
-    private OAuth2RestTemplate userInfoRestTemplate;
     private UserInfoTokenServices userInfoTokenServices;
     private CoffeeNetSecurityResourceProperties coffeenetResource;
+    private OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -80,22 +77,8 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
             .defaultAuthenticationEntryPointFor(new HttpStatusEntryPoint(UNAUTHORIZED),
                     new RequestHeaderRequestMatcher("X-Requested-With", "XMLHttpRequest"))
             .and()
-            .addFilterBefore(oAuth2ClientAuthenticationProcessingFilter(), BasicAuthenticationFilter.class)
+            .addFilterBefore(oAuth2ClientAuthenticationProcessingFilter, BasicAuthenticationFilter.class)
             .addFilterBefore(apiTokenAccessFilter(), AbstractPreAuthenticatedProcessingFilter.class);
-    }
-
-
-    private Filter oAuth2ClientAuthenticationProcessingFilter() {
-
-        OAuth2ClientAuthenticationProcessingFilter oAuthFilter = new OAuth2ClientAuthenticationProcessingFilter(LOGIN);
-        oAuthFilter.setRestTemplate(userInfoRestTemplate);
-        oAuthFilter.setTokenServices(userInfoTokenServices);
-
-        if (securityConfigurationProperties.getDefaultLoginSuccessUrl() != null) {
-            oAuthFilter.setAuthenticationSuccessHandler(defaultLoginSuccessUrlHandler());
-        }
-
-        return oAuthFilter;
     }
 
 
@@ -122,27 +105,10 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
     }
 
 
-    private AuthenticationSuccessHandler defaultLoginSuccessUrlHandler() {
-
-        SavedRequestAwareAuthenticationSuccessHandler handler = new SavedRequestAwareAuthenticationSuccessHandler();
-        handler.setDefaultTargetUrl(securityConfigurationProperties.getDefaultLoginSuccessUrl());
-        handler.setAlwaysUseDefaultTargetUrl(true);
-
-        return handler;
-    }
-
-
     @Autowired
     public void setSecurityConfigurationProperties(CoffeeNetSecurityProperties securityConfigurationProperties) {
 
         this.securityConfigurationProperties = securityConfigurationProperties;
-    }
-
-
-    @Autowired
-    public void setUserInfoRestTemplate(OAuth2RestTemplate userInfoRestTemplate) {
-
-        this.userInfoRestTemplate = userInfoRestTemplate;
     }
 
 
@@ -157,5 +123,13 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
     public void setCoffeenetResource(CoffeeNetSecurityResourceProperties coffeenetResource) {
 
         this.coffeenetResource = coffeenetResource;
+    }
+
+
+    @Autowired
+    public void setoAuth2ClientAuthenticationProcessingFilter(
+        OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter) {
+
+        this.oAuth2ClientAuthenticationProcessingFilter = oAuth2ClientAuthenticationProcessingFilter;
     }
 }

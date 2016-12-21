@@ -25,8 +25,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
+import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGRATION;
 
@@ -48,17 +52,21 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
 @EnableOAuth2Client
 public class IntegrationCoffeeNetSecurityConfiguration {
 
+    private static final String LOGIN = "/login";
     private static final int OAUTH_CLIENT_CONTEXT_FILTER_ORDER = -100;
 
     private final CoffeeNetSecurityClientProperties oAuth2ProtectedResourceDetails;
     private final CoffeeNetSecurityResourceProperties coffeeNetSecurityResourceProperties;
+    private final CoffeeNetSecurityProperties coffeeNetSecurityProperties;
 
     @Autowired
     public IntegrationCoffeeNetSecurityConfiguration(CoffeeNetSecurityClientProperties oAuth2ProtectedResourceDetails,
-        CoffeeNetSecurityResourceProperties coffeeNetSecurityResourceProperties) {
+        CoffeeNetSecurityResourceProperties coffeeNetSecurityResourceProperties,
+        CoffeeNetSecurityProperties coffeeNetSecurityProperties) {
 
         this.oAuth2ProtectedResourceDetails = oAuth2ProtectedResourceDetails;
         this.coffeeNetSecurityResourceProperties = coffeeNetSecurityResourceProperties;
+        this.coffeeNetSecurityProperties = coffeeNetSecurityProperties;
     }
 
     @Bean
@@ -127,5 +135,52 @@ public class IntegrationCoffeeNetSecurityConfiguration {
     public static PrincipalExtractor coffeeNetPrincipalExtractor(AuthoritiesExtractor authoritiesExtractor) {
 
         return new CoffeeNetPrincipalExtractor(authoritiesExtractor);
+    }
+
+
+    @Bean
+    @ConditionalOnMissingBean(OAuth2ClientAuthenticationProcessingFilter.class)
+    public OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter(
+        OAuth2RestTemplate userInfoRestTemplate, UserInfoTokenServices userInfoTokenServices,
+        AuthenticationSuccessHandler defaultLoginSuccessUrlHandler,
+        AuthenticationFailureHandler defaultAuthenticationFailureHandler) {
+
+        OAuth2ClientAuthenticationProcessingFilter oAuthFilter = new OAuth2ClientAuthenticationProcessingFilter(LOGIN);
+        oAuthFilter.setRestTemplate(userInfoRestTemplate);
+        oAuthFilter.setTokenServices(userInfoTokenServices);
+        oAuthFilter.setAuthenticationSuccessHandler(defaultLoginSuccessUrlHandler);
+        oAuthFilter.setAuthenticationFailureHandler(defaultAuthenticationFailureHandler);
+
+        return oAuthFilter;
+    }
+
+
+    @Bean
+    @ConditionalOnMissingBean(AuthenticationSuccessHandler.class)
+    public AuthenticationSuccessHandler defaultLoginSuccessUrlHandler() {
+
+        SavedRequestAwareAuthenticationSuccessHandler handler = new SavedRequestAwareAuthenticationSuccessHandler();
+
+        if (coffeeNetSecurityProperties.getDefaultLoginSuccessUrl() != null) {
+            handler.setDefaultTargetUrl(coffeeNetSecurityProperties.getDefaultLoginSuccessUrl());
+            handler.setAlwaysUseDefaultTargetUrl(true);
+        }
+
+        return handler;
+    }
+
+
+    @Bean
+    @ConditionalOnMissingBean(AuthenticationFailureHandler.class)
+    public AuthenticationFailureHandler defaultAuthenticationFailureHandler() {
+
+        LoggingSimpleUrlAuthenticationFailureHandler failureHandler =
+            new LoggingSimpleUrlAuthenticationFailureHandler();
+
+        if (coffeeNetSecurityProperties.getDefaultLoginFailureUrl() != null) {
+            failureHandler.setDefaultFailureUrl(coffeeNetSecurityProperties.getDefaultLoginFailureUrl());
+        }
+
+        return failureHandler;
     }
 }
