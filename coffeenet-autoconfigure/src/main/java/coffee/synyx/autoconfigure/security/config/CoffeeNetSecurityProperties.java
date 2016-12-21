@@ -34,6 +34,10 @@ public class CoffeeNetSecurityProperties {
      * triggers the login and is redirected back to the client, there is no session and the authentication will fail.
      * This would end in a 401 white label error page. The redirect will hide this error from the user.
      */
+    @NotBlank(
+        message = "Please provide a default login failure url. The user will be redirected to this url on a failed"
+            + " authentication. Otherwise the user would see a white label error page."
+    )
     private String defaultLoginFailureUrl = "/";
 
     public boolean isEnabled() {
