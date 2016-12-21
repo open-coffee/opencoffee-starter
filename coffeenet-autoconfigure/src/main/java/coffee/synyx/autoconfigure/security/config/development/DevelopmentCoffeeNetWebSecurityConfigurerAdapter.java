@@ -17,7 +17,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableConfigurationProperties(CoffeeNetSecurityProperties.class)
 public class DevelopmentCoffeeNetWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private CoffeeNetSecurityProperties securityConfigurationProperties;
 
     @Override
@@ -55,5 +54,12 @@ public class DevelopmentCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
             .withUser("coffeenet")
             .password("coffeenet")
             .roles("COFFEENET-ADMIN");
+    }
+
+
+    @Autowired
+    public void setSecurityConfigurationProperties(CoffeeNetSecurityProperties securityConfigurationProperties) {
+
+        this.securityConfigurationProperties = securityConfigurationProperties;
     }
 }

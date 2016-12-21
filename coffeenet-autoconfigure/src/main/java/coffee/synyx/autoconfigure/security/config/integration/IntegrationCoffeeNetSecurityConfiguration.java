@@ -52,16 +52,13 @@ public class IntegrationCoffeeNetSecurityConfiguration {
 
     private final CoffeeNetSecurityClientProperties oAuth2ProtectedResourceDetails;
     private final CoffeeNetSecurityResourceProperties coffeeNetSecurityResourceProperties;
-    private final CoffeeNetSecurityProperties coffeeNetSecurityProperties;
 
     @Autowired
     public IntegrationCoffeeNetSecurityConfiguration(CoffeeNetSecurityClientProperties oAuth2ProtectedResourceDetails,
-        CoffeeNetSecurityResourceProperties coffeeNetSecurityResourceProperties,
-        CoffeeNetSecurityProperties coffeeNetSecurityProperties) {
+        CoffeeNetSecurityResourceProperties coffeeNetSecurityResourceProperties) {
 
         this.oAuth2ProtectedResourceDetails = oAuth2ProtectedResourceDetails;
         this.coffeeNetSecurityResourceProperties = coffeeNetSecurityResourceProperties;
-        this.coffeeNetSecurityProperties = coffeeNetSecurityProperties;
     }
 
     @Bean
@@ -87,11 +84,9 @@ public class IntegrationCoffeeNetSecurityConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(WebSecurityConfigurerAdapter.class)
-    public IntegrationCoffeeNetWebSecurityConfigurerAdapter integrationCoffeeNetWebSecurityConfigurerAdapter(
-        OAuth2RestTemplate oAuth2RestTemplate, UserInfoTokenServices userInfoTokenServices) {
+    public IntegrationCoffeeNetWebSecurityConfigurerAdapter integrationCoffeeNetWebSecurityConfigurerAdapter() {
 
-        return new IntegrationCoffeeNetWebSecurityConfigurerAdapter(oAuth2RestTemplate, userInfoTokenServices,
-                coffeeNetSecurityResourceProperties, coffeeNetSecurityProperties);
+        return new IntegrationCoffeeNetWebSecurityConfigurerAdapter();
     }
 
 
