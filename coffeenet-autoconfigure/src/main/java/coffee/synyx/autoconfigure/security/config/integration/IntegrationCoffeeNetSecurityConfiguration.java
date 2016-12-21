@@ -28,8 +28,10 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGRATION;
 
@@ -145,12 +147,14 @@ public class IntegrationCoffeeNetSecurityConfiguration {
     @ConditionalOnMissingBean(OAuth2ClientAuthenticationProcessingFilter.class)
     public OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter(
         OAuth2RestTemplate userInfoRestTemplate, UserInfoTokenServices userInfoTokenServices,
-        AuthenticationSuccessHandler defaultLoginSuccessUrlHandler) {
+        AuthenticationSuccessHandler defaultLoginSuccessUrlHandler,
+        AuthenticationFailureHandler defaultAuthenticationFailureHandler) {
 
         OAuth2ClientAuthenticationProcessingFilter oAuthFilter = new OAuth2ClientAuthenticationProcessingFilter(LOGIN);
         oAuthFilter.setRestTemplate(userInfoRestTemplate);
         oAuthFilter.setTokenServices(userInfoTokenServices);
         oAuthFilter.setAuthenticationSuccessHandler(defaultLoginSuccessUrlHandler);
+        oAuthFilter.setAuthenticationFailureHandler(defaultAuthenticationFailureHandler);
 
         return oAuthFilter;
     }
@@ -170,4 +174,17 @@ public class IntegrationCoffeeNetSecurityConfiguration {
         return handler;
     }
 
+
+    @Bean
+    @ConditionalOnMissingBean(AuthenticationFailureHandler.class)
+    public AuthenticationFailureHandler defaultAuthenticationFailureHandler() {
+
+        SimpleUrlAuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler();
+
+        if (coffeeNetSecurityProperties.getDefaultLoginFailureUrl() != null) {
+            failureHandler.setDefaultFailureUrl(coffeeNetSecurityProperties.getDefaultLoginFailureUrl());
+        }
+
+        return failureHandler;
+    }
 }
