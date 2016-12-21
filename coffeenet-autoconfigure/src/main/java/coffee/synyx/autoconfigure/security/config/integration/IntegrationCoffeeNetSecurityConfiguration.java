@@ -53,7 +53,7 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
 @EnableOAuth2Client
 public class IntegrationCoffeeNetSecurityConfiguration {
 
-    static final String LOGIN = "/login";
+    private static final String LOGIN = "/login";
     private static final int OAUTH_CLIENT_CONTEXT_FILTER_ORDER = -100;
 
     private final CoffeeNetSecurityClientProperties oAuth2ProtectedResourceDetails;
