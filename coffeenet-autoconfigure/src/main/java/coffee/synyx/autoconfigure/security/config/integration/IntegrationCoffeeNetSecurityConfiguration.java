@@ -93,13 +93,9 @@ public class IntegrationCoffeeNetSecurityConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(WebSecurityConfigurerAdapter.class)
-    public IntegrationCoffeeNetWebSecurityConfigurerAdapter integrationCoffeeNetWebSecurityConfigurerAdapter(
-        UserInfoTokenServices userInfoTokenServices,
-        OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter) {
+    public IntegrationCoffeeNetWebSecurityConfigurerAdapter integrationCoffeeNetWebSecurityConfigurerAdapter() {
 
-        return new IntegrationCoffeeNetWebSecurityConfigurerAdapter(userInfoTokenServices,
-                coffeeNetSecurityResourceProperties, coffeeNetSecurityProperties,
-                oAuth2ClientAuthenticationProcessingFilter);
+        return new IntegrationCoffeeNetWebSecurityConfigurerAdapter();
     }
 
 

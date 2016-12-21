@@ -3,6 +3,8 @@ package coffee.synyx.autoconfigure.security.config.integration;
 import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityProperties;
 import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityResourceProperties;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
@@ -41,20 +43,10 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
     private static final String LOGIN = "/login";
     private static final String LOGOUT = "/logout";
 
-    private final CoffeeNetSecurityProperties securityConfigurationProperties;
-    private final UserInfoTokenServices userInfoTokenServices;
-    private final CoffeeNetSecurityResourceProperties coffeenetResource;
-    private final OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter;
-
-    public IntegrationCoffeeNetWebSecurityConfigurerAdapter(UserInfoTokenServices userInfoTokenServices,
-        CoffeeNetSecurityResourceProperties coffeenetResource, CoffeeNetSecurityProperties coffeeNetSecurityProperties,
-        OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter) {
-
-        this.userInfoTokenServices = userInfoTokenServices;
-        this.coffeenetResource = coffeenetResource;
-        this.securityConfigurationProperties = coffeeNetSecurityProperties;
-        this.oAuth2ClientAuthenticationProcessingFilter = oAuth2ClientAuthenticationProcessingFilter;
-    }
+    private CoffeeNetSecurityProperties securityConfigurationProperties;
+    private UserInfoTokenServices userInfoTokenServices;
+    private CoffeeNetSecurityResourceProperties coffeenetResource;
+    private OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -110,5 +102,34 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
         matcher.setIgnoredMediaTypes(singleton(ALL));
 
         return matcher;
+    }
+
+
+    @Autowired
+    public void setSecurityConfigurationProperties(CoffeeNetSecurityProperties securityConfigurationProperties) {
+
+        this.securityConfigurationProperties = securityConfigurationProperties;
+    }
+
+
+    @Autowired
+    public void setUserInfoTokenServices(UserInfoTokenServices userInfoTokenServices) {
+
+        this.userInfoTokenServices = userInfoTokenServices;
+    }
+
+
+    @Autowired
+    public void setCoffeenetResource(CoffeeNetSecurityResourceProperties coffeenetResource) {
+
+        this.coffeenetResource = coffeenetResource;
+    }
+
+
+    @Autowired
+    public void setoAuth2ClientAuthenticationProcessingFilter(
+        OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter) {
+
+        this.oAuth2ClientAuthenticationProcessingFilter = oAuth2ClientAuthenticationProcessingFilter;
     }
 }
