@@ -25,8 +25,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
+import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGRATION;
 
@@ -48,6 +51,7 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
 @EnableOAuth2Client
 public class IntegrationCoffeeNetSecurityConfiguration {
 
+    static final String LOGIN = "/login";
     private static final int OAUTH_CLIENT_CONTEXT_FILTER_ORDER = -100;
 
     private final CoffeeNetSecurityClientProperties oAuth2ProtectedResourceDetails;
@@ -88,10 +92,12 @@ public class IntegrationCoffeeNetSecurityConfiguration {
     @Bean
     @ConditionalOnMissingBean(WebSecurityConfigurerAdapter.class)
     public IntegrationCoffeeNetWebSecurityConfigurerAdapter integrationCoffeeNetWebSecurityConfigurerAdapter(
-        OAuth2RestTemplate oAuth2RestTemplate, UserInfoTokenServices userInfoTokenServices) {
+        UserInfoTokenServices userInfoTokenServices,
+        OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter) {
 
-        return new IntegrationCoffeeNetWebSecurityConfigurerAdapter(oAuth2RestTemplate, userInfoTokenServices,
-                coffeeNetSecurityResourceProperties, coffeeNetSecurityProperties);
+        return new IntegrationCoffeeNetWebSecurityConfigurerAdapter(userInfoTokenServices,
+                coffeeNetSecurityResourceProperties, coffeeNetSecurityProperties,
+                oAuth2ClientAuthenticationProcessingFilter);
     }
 
 
@@ -133,4 +139,35 @@ public class IntegrationCoffeeNetSecurityConfiguration {
 
         return new CoffeeNetPrincipalExtractor(authoritiesExtractor);
     }
+
+
+    @Bean
+    @ConditionalOnMissingBean(OAuth2ClientAuthenticationProcessingFilter.class)
+    public OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter(
+        OAuth2RestTemplate userInfoRestTemplate, UserInfoTokenServices userInfoTokenServices,
+        AuthenticationSuccessHandler defaultLoginSuccessUrlHandler) {
+
+        OAuth2ClientAuthenticationProcessingFilter oAuthFilter = new OAuth2ClientAuthenticationProcessingFilter(LOGIN);
+        oAuthFilter.setRestTemplate(userInfoRestTemplate);
+        oAuthFilter.setTokenServices(userInfoTokenServices);
+        oAuthFilter.setAuthenticationSuccessHandler(defaultLoginSuccessUrlHandler);
+
+        return oAuthFilter;
+    }
+
+
+    @Bean
+    @ConditionalOnMissingBean(AuthenticationSuccessHandler.class)
+    public AuthenticationSuccessHandler defaultLoginSuccessUrlHandler() {
+
+        SavedRequestAwareAuthenticationSuccessHandler handler = new SavedRequestAwareAuthenticationSuccessHandler();
+
+        if (coffeeNetSecurityProperties.getDefaultLoginSuccessUrl() != null) {
+            handler.setDefaultTargetUrl(coffeeNetSecurityProperties.getDefaultLoginSuccessUrl());
+            handler.setAlwaysUseDefaultTargetUrl(true);
+        }
+
+        return handler;
+    }
+
 }
