@@ -23,7 +23,7 @@ import static java.util.Collections.emptyList;
 /**
  * @author  Tobias Schneider
  */
-public class DevelopmentCoffeeNetCurrentCoffeeNetUserServiceTest {
+public class DevelopmentCoffeeNetCurrentUserServiceTest {
 
     private DevelopmentCoffeeNetCurrentUserService sut;
 
