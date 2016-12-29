@@ -14,6 +14,9 @@ coffeenet:
   profile: development
   security:
     enabled: true
+    logout-success-url: http://localhost:9999/logout
+    default-login-success-url:
+    default-login-failure-url: /
     resource:
       id: oauth2-resource
       user-info-uri: http://localhost:9999/user
