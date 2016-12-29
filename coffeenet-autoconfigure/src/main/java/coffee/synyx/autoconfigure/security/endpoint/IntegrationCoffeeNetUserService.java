@@ -3,8 +3,6 @@ package coffee.synyx.autoconfigure.security.endpoint;
 import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
 import coffee.synyx.autoconfigure.security.user.CoffeeNetUserDetails;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 
 /**
  * This integrative service provides the current logged in {@link CoffeeNetUser}.
@@ -16,8 +14,7 @@ public class IntegrationCoffeeNetUserService implements CoffeeNetUserService {
 
     private final CoffeeNetCurrentUserService coffeeNetCurrentUserService;
 
-    @Autowired
-    public IntegrationCoffeeNetUserService(CoffeeNetCurrentUserService coffeeNetCurrentUserService) {
+    IntegrationCoffeeNetUserService(CoffeeNetCurrentUserService coffeeNetCurrentUserService) {
 
         this.coffeeNetCurrentUserService = coffeeNetCurrentUserService;
     }

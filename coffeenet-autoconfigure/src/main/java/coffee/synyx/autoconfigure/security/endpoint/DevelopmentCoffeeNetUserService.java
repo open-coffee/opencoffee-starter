@@ -1,5 +1,9 @@
 package coffee.synyx.autoconfigure.security.endpoint;
 
+import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
+import coffee.synyx.autoconfigure.security.user.CoffeeNetUserDetails;
+
+
 /**
  * Development user service with a mock user named "Coffy"
  *
@@ -8,11 +12,18 @@ package coffee.synyx.autoconfigure.security.endpoint;
  */
 public class DevelopmentCoffeeNetUserService implements CoffeeNetUserService {
 
+    private final CoffeeNetCurrentUserService coffeeNetCurrentUserService;
+
+    DevelopmentCoffeeNetUserService(CoffeeNetCurrentUserService coffeeNetCurrentUserService) {
+
+        this.coffeeNetCurrentUserService = coffeeNetCurrentUserService;
+    }
+
     @Override
     public CoffeeNetUser getUser() {
 
-        String name = "Coffy";
+        CoffeeNetUserDetails coffeeNetUserDetails = coffeeNetCurrentUserService.get();
 
-        return new CoffeeNetUser(name, name + "@felinepredator.net");
+        return new CoffeeNetUser(coffeeNetUserDetails.getUsername(), coffeeNetUserDetails.getEmail());
     }
 }

@@ -1,5 +1,7 @@
 package coffee.synyx.autoconfigure.security.endpoint;
 
+import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -23,9 +25,10 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.DEVELO
 public class DevelopmentCoffeeNetUserEndpointConfiguration {
 
     @Bean
-    public CoffeeNetUserService coffeeNetUserService() {
+    @Autowired
+    public CoffeeNetUserService coffeeNetUserService(CoffeeNetCurrentUserService coffeeNetCurrentUserService) {
 
-        return new DevelopmentCoffeeNetUserService();
+        return new DevelopmentCoffeeNetUserService(coffeeNetCurrentUserService);
     }
 
 

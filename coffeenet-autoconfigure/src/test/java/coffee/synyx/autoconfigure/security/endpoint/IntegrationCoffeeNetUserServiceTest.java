@@ -27,10 +27,10 @@ import static java.util.Collections.emptyList;
 @RunWith(MockitoJUnitRunner.class)
 public class IntegrationCoffeeNetUserServiceTest {
 
+    private IntegrationCoffeeNetUserService sut;
+
     @Mock
     private CoffeeNetCurrentUserService coffeeNetCurrentUserServiceMock;
-
-    private IntegrationCoffeeNetUserService sut;
 
     @Before
     public void setUp() {
@@ -43,13 +43,13 @@ public class IntegrationCoffeeNetUserServiceTest {
     public void getUser() {
 
         String username = "username";
-        String emailUsername = "emailUsername";
-        HumanCoffeeNetUser user = new HumanCoffeeNetUser(username, emailUsername, emptyList());
+        String email = "email";
+        HumanCoffeeNetUser user = new HumanCoffeeNetUser(username, email, emptyList());
 
         when(coffeeNetCurrentUserServiceMock.get()).thenReturn(user);
 
         CoffeeNetUser coffeeNetUser = sut.getUser();
         assertThat(coffeeNetUser.getUsername(), is(username));
-        assertThat(coffeeNetUser.getEmail(), is(emailUsername));
+        assertThat(coffeeNetUser.getEmail(), is(email));
     }
 }
