@@ -48,7 +48,8 @@ public class DevelopmentCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
             .roles("COFFEENET-ADMIN")
             .and()
             .withUser("user")
-            .password("user");
+            .password("user")
+            .roles();
     }
 
 
