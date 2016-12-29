@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.core.userdetails.User;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -37,7 +38,7 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
     @Test
     public void getAdmin() {
 
-        providePrinciple(new HumanCoffeeNetUser("admin", "", emptyList()));
+        providePrinciple(new User("admin", "", emptyList()));
 
         CoffeeNetUserDetails coffeeNetUserDetails = sut.get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
@@ -51,7 +52,7 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
     @Test
     public void getDefault() {
 
-        providePrinciple(new HumanCoffeeNetUser("", "", emptyList()));
+        providePrinciple(new User("default", "", emptyList()));
 
         CoffeeNetUserDetails coffeeNetUserDetails = sut.get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
@@ -65,7 +66,7 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
     @Test
     public void getUser() {
 
-        providePrinciple(new HumanCoffeeNetUser("user", "", emptyList()));
+        providePrinciple(new User("user", "", emptyList()));
 
         CoffeeNetUserDetails coffeeNetUserDetails = sut.get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
@@ -76,7 +77,7 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
     }
 
 
-    private void providePrinciple(CoffeeNetUserDetails principal) {
+    private void providePrinciple(User principal) {
 
         SecurityContextImpl context = new SecurityContextImpl();
         context.setAuthentication(new UsernamePasswordAuthenticationToken(principal, null));

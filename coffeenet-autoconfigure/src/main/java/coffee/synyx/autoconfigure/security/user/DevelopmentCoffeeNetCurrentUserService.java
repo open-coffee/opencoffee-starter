@@ -2,6 +2,7 @@ package coffee.synyx.autoconfigure.security.user;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.HashSet;
 
@@ -20,8 +21,7 @@ public class DevelopmentCoffeeNetCurrentUserService implements CoffeeNetCurrentU
     @Override
     public CoffeeNetUserDetails get() {
 
-        CoffeeNetUserDetails principal = (CoffeeNetUserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         switch (principal.getUsername()) {
             case "user":
