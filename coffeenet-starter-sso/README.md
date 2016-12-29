@@ -77,11 +77,10 @@ gesetzt habt, wird der SSO Mechanismus automatisch verwendet. Standardmäßig er
 Falls diese Einstellung auf `coffeenet.profile: development` gestellt ist, wird statt des Single-Sign-Ons ein Form-Login durchgeführt.
 Standardmäßig sind die Zugangsdaten dann folgende:
 
-| User       | Passwort   | Rollen   |
-| ---------- |------------| :-------:|
-| admin      | admin      | SYSADMIN |
-| user       | user       | EMPLOYEE |
-| coffeenet  | coffeenet  | COFFEENET-ADMIN |
+| User       | Passwort   | Email   | Rollen   |
+| ---------- |------------|------------| :-------:|
+| admin      | admin      | admin@coffeenet | COFFEENET-ADMIN |
+| user       | user       | user@coffeenet | |
 
 
 ## Verhalten anpassen
