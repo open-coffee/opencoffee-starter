@@ -1,0 +1,281 @@
+
+:global *, :global *::before, :global *::after {
+    box-sizing: border-box;
+}
+
+.coffeenet--html {
+    height: 100%;
+}
+.coffeenet--body {
+    display: flex;
+    min-height: 100%;
+}
+
+.coffeenet--header-container {
+    flex: 0 0 auto; /* (grow = no, shrink = no, basis: auto) */
+    min-height: 100%;
+    padding: 20px;
+    box-shadow: 0 0 5px #9E9E9E;
+    background-color: #EEEEEE;
+    width: 65px;
+}
+.coffeenet--header-container.visible {
+    width: 200px;
+}
+
+/** style resets **/
+.coffeenet--nav-container ul {
+    margin: 0;
+    padding: 0;
+}
+.coffeenet--nav-container a {
+    color: #337ab7;
+}
+.coffeenet--nav-container a:hover,
+.coffeenet--nav-container a:focus,
+.coffeenet--nav-container a:active {
+    color: #23527c;
+    text-decoration: underline;
+}
+
+/** coffeenet--hamburger menu **/
+
+.coffeenet--coffeenet--hamburger {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    display: block;
+    cursor: pointer;
+    height: 21px;
+    margin-bottom: 20px;
+    padding-top: 9px;
+}
+.coffeenet--coffeenet--hamburger span,
+.coffeenet--coffeenet--hamburger span::after, .coffeenet--coffeenet--hamburger span::before {
+    display: block;
+    width: 25px;
+    height: 4px;
+    background-color: #525252;
+    transition-delay: 0.2s;
+}
+.coffeenet--coffeenet--hamburger span {
+    position: relative;
+    transition-duration: 0;
+}
+.coffeenet--coffeenet--hamburger span::after, .coffeenet--coffeenet--hamburger span::before {
+    display: block;
+    content: '';
+    position: absolute;
+    transition-duration: 0.2s;
+}
+.coffeenet--coffeenet--hamburger span::before {
+    margin-top: -6px;
+}
+.coffeenet--coffeenet--hamburger span::after {
+    margin-top: 6px;
+}
+
+
+
+.coffeenet--personalisation-container {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.coffeenet--avatar {
+    border: 1px solid #C1C1C1;
+    border-radius: 100%;
+    background-color: white;
+    padding: 2px;
+}
+.coffeenet--avatar img {
+    border: none;
+    border-radius: 100%;
+    width: 33px;
+    height: 33px;
+}
+.coffeenet--avatar img:hover {
+    animation: SPIN 2s infinite;
+    transform: rotateY( -226deg );
+}
+
+@keyframes SPIN {
+    0%   { transform: rotateY(0deg)   }
+    100% { transform: rotateY(360deg) }
+}
+
+.coffeenet--header-container.visible .coffeenet--avatar {
+    padding: 5px;
+}
+.coffeenet--header-container.visible .coffeenet--avatar img {
+    width: 64px;
+    height: 64px;
+}
+
+.coffeenet--username {
+    margin: 10px 0 0 0;
+    padding: 0;
+    font-size: 1.5em;
+}
+.coffeenet--username a {
+    color: black;
+    text-decoration: none;
+}
+
+.coffeenet--username,
+.coffeenet--header-container nav {
+    display: none;
+}
+.coffeenet--header-container.visible .coffeenet--username,
+.coffeenet--header-container.visible nav {
+    display: block;
+}
+
+
+.coffeenet--nav-section-title {
+    margin: 20px 0 0 0;
+    padding: 0;
+    font-size: 1em;
+    color: #BEBEBE;
+    text-transform: uppercase;
+}
+
+.coffeenet--nav-section-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.coffeenet--nav-section-list li {
+    display: flex;
+    align-items: center;
+}
+.coffeenet--nav-section-list li > a {
+    text-decoration: none;
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.coffeenet--nav-section-list li > a,
+.coffeenet--nav-section-list li > a + span {
+    transition: background-color ease 150ms;
+    padding: 5px;
+    display: block;
+}
+.coffeenet--nav-section-list li.active > a,
+.coffeenet--nav-section-list li.active > a + span,
+.coffeenet--nav-section-list li:hover > a,
+.coffeenet--nav-section-list li:hover > a + span {
+    background-color: #E0E0E0;
+}
+
+.coffeenet--button-logout {
+    margin-top: 20px;
+    border: none;
+    background-color: #AED581;
+    color: #33691E;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 0.3em 0;
+    transition: background-color ease 150ms;
+}
+.coffeenet--button-logout:focus, .coffeenet--button-logout:hover, .coffeenet--button-logout:active {
+    background-color: #8BC34A;
+    color: #1B5E20;
+}
+.coffeenet--button-logout:hover {
+    /* outline should exist on tab navigation but not on mouse click */
+    outline: none;
+}
+
+
+.coffeenet--header-container.visible .coffeenet--hamburger span{
+    background-color: transparent;
+}
+.coffeenet--header-container.visible .coffeenet--hamburger span::before, .coffeenet--header-container.visible .coffeenet--hamburger span::after {
+    margin-top: 0;
+    transition-delay: 0, 0.2s;
+}
+.coffeenet--header-container.visible .coffeenet--hamburger span::before {
+    transform: rotate(45deg);
+}
+.coffeenet--header-container.visible .coffeenet--hamburger span::after {
+    transform: rotate(-45deg);
+}
+
+
+@media screen and (min-width: 440px) {
+    /*
+        styling is for smaller devices by default
+        so we have to swap styling (by class names) on larger devices
+        small device: navbar should be hidden by default
+        big device: navbar should be visible by default
+        clicking coffeenet--hamburger toggles the `.visible` class which actually means hide me on a big screen
+     */
+    .coffeenet--header-container.visible {
+        width: 65px;
+    }
+    .coffeenet--header-container:not(.visible) {
+        width: 200px;
+    }
+
+    .coffeenet--header-container.visible .coffeenet--avatar {
+        padding: 2px;
+    }
+    .coffeenet--header-container:not(.visible) .coffeenet--avatar {
+        padding: 5px;
+    }
+    .coffeenet--header-container.visible .coffeenet--avatar img {
+        width: 33px;
+        height: 33px;
+    }
+    .coffeenet--header-container:not(.visible) .coffeenet--avatar img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .coffeenet--header-container.visible .coffeenet--username {
+        display: none;
+    }
+    .coffeenet--header-container:not(.visible) .coffeenet--username {
+        display: block;
+    }
+    .coffeenet--header-container.visible nav {
+        display: none;
+    }
+    .coffeenet--header-container:not(.visible) nav {
+        display: block;
+    }
+
+    .coffeenet--header-container:not(.visible) .coffeenet--hamburger span {
+        background-color: transparent;
+    }
+    .coffeenet--header-container:not(.visible) .coffeenet--hamburger span::before,
+    .coffeenet--header-container:not(.visible) .coffeenet--hamburger span::after {
+        margin-top: 0;
+        transition-delay: 0, 0.2s;
+    }
+    .coffeenet--header-container:not(.visible) .coffeenet--hamburger span::before {
+        transform: rotate(45deg);
+    }
+    .coffeenet--header-container:not(.visible) .coffeenet--hamburger span::after {
+        transform: rotate(-45deg);
+    }
+
+    .coffeenet--header-container.visible .coffeenet--hamburger span {
+        background-color: #525252;
+    }
+    .coffeenet--header-container.visible .coffeenet--hamburger span::before {
+        transition-delay: 0s;
+        transform: rotate(0deg);
+        margin-top: -6px;
+    }
+    .coffeenet--header-container.visible .coffeenet--hamburger span::after {
+        transition-delay: 0s;
+        transform: rotate(0deg);
+        margin-top: 6px;
+    }
+}

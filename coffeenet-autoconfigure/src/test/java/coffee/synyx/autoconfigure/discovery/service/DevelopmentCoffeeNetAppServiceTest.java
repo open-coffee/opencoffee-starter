@@ -33,10 +33,11 @@ public class DevelopmentCoffeeNetAppServiceTest {
 
         List<CoffeeNetApp> coffeeNetApps = sut.getApps();
         assertThat(coffeeNetApps, hasSize(3));
+        assertThat(coffeeNetApps.get(0).getName(), is("Coffee App"));
         assertThat(coffeeNetApps.get(0).getAuthorities(), is(emptyIterable()));
-        assertThat(coffeeNetApps.get(1).getName(), is("Blog"));
+        assertThat(coffeeNetApps.get(1).getName(), is("Profile"));
         assertThat(coffeeNetApps.get(1).getAuthorities(), is(emptyIterable()));
-        assertThat(coffeeNetApps.get(2).getName(), is("Host Tagger"));
-        assertThat(coffeeNetApps.get(2).getAuthorities(), contains("ROLE_ADMIN"));
+        assertThat(coffeeNetApps.get(2).getName(), is("CoffeeNet Admin App"));
+        assertThat(coffeeNetApps.get(2).getAuthorities(), contains("COFFEENET-ADMIN"));
     }
 }

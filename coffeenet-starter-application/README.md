@@ -4,7 +4,6 @@ Dieser Starter bietet die volle Integration in das CoffeeNet und beinhaltet dies
  * [Single-Sign-On](https://gitlab.synyx.de/coffeenet/coffeenet-starter-sso/blob/master/README.md)
  * [Service Discovery](https://gitlab.synyx.de/coffeenet/coffeenet-starter-discovery/blob/master/README.md)
  * [Logging](https://gitlab.synyx.de/coffeenet/coffeenet-starter-logging/blob/master/README.md)
- * [Navigation Bar](https://gitlab.synyx.de/coffeenet/coffeenet-navigation-bar/blob/master/README.md)
 
 Falls ihr nicht alle dieser Komponenten benötigt und zum Beispiel keine Authentifizierung eures Services braucht,
 könnt ihr einfach die einzelnen CoffeeNet-Starter verwenden.

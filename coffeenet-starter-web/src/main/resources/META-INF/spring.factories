@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+coffee.synyx.starter.web.CoffeeNetWebConfiguration

@@ -1,8 +1,8 @@
 package coffee.synyx.autoconfigure.security.oauth;
 
-import coffee.synyx.autoconfigure.security.user.CoffeeNetUserDetails;
-import coffee.synyx.autoconfigure.security.user.HumanCoffeeNetUser;
-import coffee.synyx.autoconfigure.security.user.MachineCoffeeNetUser;
+import coffee.synyx.autoconfigure.security.service.CoffeeNetUserDetails;
+import coffee.synyx.autoconfigure.security.service.HumanCoffeeNetUser;
+import coffee.synyx.autoconfigure.security.service.MachineCoffeeNetUser;
 
 import org.slf4j.Logger;
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="navigationbar">
+    <div id="coffeenet--header-container" class="coffeenet--header-container">
+        <div id="coffeenet--nav-hamburger" class="coffeenet--hamburger">
+            <span></span>
+        </div>
+        <div class="coffeenet--personalisation-container">
+            <div class="coffeenet--avatar">
+                <a th:if="${coffeenet.profileApp}" th:href="${coffeenet.profileApp.url}">
+                    <img src="/img/default_avatar.jpg"/>
+                </a>
+                <img th:unless="${coffeenet.profileApp}" src="/img/default_avatar.jpg"/>
+            </div>
+            <h2 class="coffeenet--username">
+                <a th:if="${coffeenet.profileApp}" th:href="${coffeenet.profileApp.url}"
+                   th:title="${coffeenet.profileApp.name}" th:text="${coffeenet.coffeeNetWebUser.username}">
+                    username
+                </a>
+                <span th:unless="${coffeenet.profileApp}" th:text="${coffeenet.coffeeNetWebUser.username}">
+                    username
+                </span>
+            </h2>
+        </div>
+        <nav class="coffeenet--nav-container">
+            <h2 class="coffeenet--nav-section-title">Anwendungen</h2>
+            <ul class="coffeenet--nav-section-list" th:each="coffeeNetApp : ${coffeenet.coffeeNetApps}">
+                <li>
+                    <a th:href="${coffeeNetApp.url}" th:title="${coffeeNetApp.name}" th:text="${coffeeNetApp.name}">
+                        CoffeeNet App
+                    </a>
+                </li>
+            </ul>
+
+            <h2 th:if="${coffeenet.profileApp}" class="coffeenet--nav-section-title">Einstellungen</h2>
+            <ul class="coffeenet--nav-section-list">
+                <li th:if="${coffeenet.profileApp}">
+                    <a th:href="${coffeenet.profileApp.url}" th:text="${coffeenet.profileApp.name}">Profile</a>
+                </li>
+            </ul>
+            <form th:action="${coffeenet.logoutPath}" method="post">
+                <button type="submit" class="coffeenet--button-logout">
+                    Logout
+                </button>
+            </form>
+        </nav>
+    </div>
+</th:block>
+
+</html>

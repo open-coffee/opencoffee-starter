@@ -1,8 +1,8 @@
 package coffee.synyx.autoconfigure.security.config.development;
 
 import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityProperties;
-import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
-import coffee.synyx.autoconfigure.security.user.DevelopmentCoffeeNetCurrentUserService;
+import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
+import coffee.synyx.autoconfigure.security.service.DevelopmentCoffeeNetCurrentUserService;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

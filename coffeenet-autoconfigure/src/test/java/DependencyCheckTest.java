@@ -23,6 +23,7 @@ public class DependencyCheckTest {
             .printTo("violations.graphml")
             .including("coffee.synyx.autoconfigure.**")
             .excluding("coffee.synyx.autoconfigure.**.CoffeeNetDiscoveryConfiguration")
+            .excluding("coffee.synyx.autoconfigure.**.DevelopmentCoffeeNetServiceDiscoveryConfiguration")
             .excluding("coffee.synyx.autoconfigure.**.IntegrationCoffeeNetServiceDiscoveryConfiguration")
             .excluding("coffee.synyx.autoconfigure.**.CoffeeNetAppsEndpoint")
             .excluding("coffee.synyx.autoconfigure.**.CoffeeNetAppsEndpointTest*")
