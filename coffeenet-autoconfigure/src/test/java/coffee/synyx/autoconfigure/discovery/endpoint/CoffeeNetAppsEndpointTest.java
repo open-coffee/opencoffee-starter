@@ -163,7 +163,7 @@ public class CoffeeNetAppsEndpointTest {
 
 
         @Override
-        public boolean isAdmin() {
+        public boolean isCoffeeNetAdmin() {
 
             return false;
         }

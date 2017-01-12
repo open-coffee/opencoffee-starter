@@ -29,7 +29,7 @@ public class MachineCoffeeNetUserTest {
 
         assertThat(sut.getUsername(), is("username"));
         assertThat(sut.getAuthorities().contains(new SimpleGrantedAuthority(sysadmin)), is(true));
-        assertThat(sut.isAdmin(), is(false));
+        assertThat(sut.isCoffeeNetAdmin(), is(false));
         assertThat(sut.isMachineUser(), is(true));
     }
 

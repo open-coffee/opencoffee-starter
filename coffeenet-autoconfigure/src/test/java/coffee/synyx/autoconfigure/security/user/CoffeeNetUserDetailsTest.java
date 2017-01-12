@@ -63,9 +63,9 @@ public class CoffeeNetUserDetailsTest {
 
 
         @Override
-        public boolean isAdmin() {
+        public boolean isCoffeeNetAdmin() {
 
-            return false;
+            return true;
         }
 
 

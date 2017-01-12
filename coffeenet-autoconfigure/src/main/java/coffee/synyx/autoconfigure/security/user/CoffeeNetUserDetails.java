@@ -28,7 +28,7 @@ public interface CoffeeNetUserDetails extends UserDetails {
     Collection<? extends GrantedAuthority> getAuthorities();
 
 
-    boolean isAdmin();
+    boolean isCoffeeNetAdmin();
 
 
     boolean isMachineUser();

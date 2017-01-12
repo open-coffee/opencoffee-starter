@@ -62,9 +62,9 @@ public final class HumanCoffeeNetUser implements CoffeeNetUserDetails {
 
 
     @Override
-    public boolean isAdmin() {
+    public boolean isCoffeeNetAdmin() {
 
-        return getAuthorities().contains(new SimpleGrantedAuthority("ROLE_SYSADMIN"));
+        return getAuthorities().contains(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN"));
     }
 
 
