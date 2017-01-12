@@ -31,6 +31,7 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.DEVELO
 public class DevelopmentCoffeeNetSecurityConfiguration {
 
     @Bean
+    @ConditionalOnMissingBean(CoffeeNetCurrentUserService.class)
     public CoffeeNetCurrentUserService coffeeNetCurrentUserService() {
 
         return new DevelopmentCoffeeNetCurrentUserService();
