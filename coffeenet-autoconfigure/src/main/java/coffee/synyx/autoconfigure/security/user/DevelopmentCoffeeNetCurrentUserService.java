@@ -1,13 +1,10 @@
 package coffee.synyx.autoconfigure.security.user;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 
-import java.util.HashSet;
-
-import static java.util.Collections.emptySet;
-import static java.util.Collections.singleton;
+import java.util.Collection;
 
 
 /**
@@ -21,28 +18,17 @@ public class DevelopmentCoffeeNetCurrentUserService implements CoffeeNetCurrentU
     @Override
     public CoffeeNetUserDetails get() {
 
-        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        switch (principal.getUsername()) {
-            case "user":
-                return getUser();
-
-            case "admin":
-            default:
-                return getAdmin();
-        }
+        return getCoffeeNetUserDetails(user);
     }
 
 
-    private CoffeeNetUserDetails getAdmin() {
+    private CoffeeNetUserDetails getCoffeeNetUserDetails(User user) {
 
-        return new HumanCoffeeNetUser("admin", "admin@coffeenet",
-                new HashSet<>(singleton(new SimpleGrantedAuthority("COFFEENET-ADMIN"))));
-    }
+        String username = user.getUsername();
+        Collection<GrantedAuthority> authorities = user.getAuthorities();
 
-
-    private static CoffeeNetUserDetails getUser() {
-
-        return new HumanCoffeeNetUser("user", "user@coffeenet", emptySet());
+        return new HumanCoffeeNetUser(username, username + "@coffeenet", authorities);
     }
 }

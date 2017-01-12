@@ -22,6 +22,6 @@ public class DevelopmentCoffeeNetAppService implements CoffeeNetAppService {
         return asList(new CoffeeNetApp("Homepage", "https://synyx.de", new HashSet<>(emptyList())),
                 new CoffeeNetApp("Blog", "https://blog.synyx.de", new HashSet<>(emptyList())),
                 new CoffeeNetApp("Host Tagger", "https://hosttagger.synyx.coffee/",
-                    new HashSet<>(singletonList("COFFEENET-ADMIN"))));
+                    new HashSet<>(singletonList("ROLE_COFFEENET-ADMIN"))));
     }
 }

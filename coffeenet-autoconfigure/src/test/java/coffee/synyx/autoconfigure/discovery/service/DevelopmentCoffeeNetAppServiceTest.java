@@ -37,6 +37,6 @@ public class DevelopmentCoffeeNetAppServiceTest {
         assertThat(coffeeNetApps.get(1).getName(), is("Blog"));
         assertThat(coffeeNetApps.get(1).getAuthorities(), is(emptyIterable()));
         assertThat(coffeeNetApps.get(2).getName(), is("Host Tagger"));
-        assertThat(coffeeNetApps.get(2).getAuthorities(), contains("ROLE_ADMIN"));
+        assertThat(coffeeNetApps.get(2).getAuthorities(), contains("ROLE_COFFEENET-ADMIN"));
     }
 }
