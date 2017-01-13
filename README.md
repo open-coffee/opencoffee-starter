@@ -2,21 +2,21 @@
 
 Dieses Projekt beinhaltet alle CoffeeNet-Starter, welche verwendet werden können, um sich an das CoffeeNet anzubinden.
 
-[Application](https://gitlab.synyx.de/coffeenet/coffeenet-starter-application/blob/master/README.md)
+[Application](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-application/README.md)
 Starter bietet volle Integration in das CoffeeNet durch
-[Single-Sign-On](https://gitlab.synyx.de/coffeenet/coffeenet-starter-sso/blob/master/README.md),
-[Service Discovery](https://gitlab.synyx.de/coffeenet/coffeenet-starter-discovery/blob/master/README.md),
-[Logging](https://gitlab.synyx.de/coffeenet/coffeenet-starter-logging/blob/master/README.md) und der
+[Single-Sign-On](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-sso/README.md),
+[Service Discovery](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-discovery/README.md),
+[Logging](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-logging/README.md) und der
 [Navigation Bar](https://gitlab.synyx.de/coffeenet/coffeenet-navigation-bar/blob/master/README.md)
 
 
-[Single-Sign-On](https://gitlab.synyx.de/coffeenet/coffeenet-starter-sso/blob/master/README.md)
+[Single-Sign-On](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-sso/README.md)
 Starter bietet die Authentifizierung gegen den CoffeeNet-Auth Server.
 
-[Service Discovery](https://gitlab.synyx.de/coffeenet/coffeenet-starter-discovery/blob/master/README.md)
+[Service Discovery](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-discovery/README.md)
 Starter bietet die Integration zum Verteilen bzw. Auffinden der Anwendungen im CoffeeNet.
 
-[Logging](https://gitlab.synyx.de/coffeenet/coffeenet-starter-logging/blob/master/README.md)
+[Logging](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-logging/README.md)
 Starter bietet ein einheitliches und automatisiertes zentralisiertes Logging.
 
 [Navigation Bar](https://gitlab.synyx.de/coffeenet/coffeenet-navigation-bar/blob/master/README.md)
