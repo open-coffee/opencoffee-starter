@@ -24,7 +24,7 @@ public class DevelopmentCoffeeNetAppService implements CoffeeNetAppService {
         coffeeNetApps.add(new CoffeeNetApp("Coffee App", "https://coffee-app.coffeenet", new HashSet<>(emptyList())));
         coffeeNetApps.add(new CoffeeNetApp("Profile", "https://profile.coffeenet", new HashSet<>(emptyList())));
         coffeeNetApps.add(new CoffeeNetApp("CoffeeNet Admin App", "https://coffee-admin-app.coffeenet",
-                new HashSet<>(singletonList("COFFEENET-ADMIN"))));
+                new HashSet<>(singletonList("ROLE_COFFEENET-ADMIN"))));
 
         return coffeeNetApps;
     }
