@@ -24,16 +24,17 @@ public class HumanCoffeeNetUserTest {
     @Test
     public void testHumanUserProperties() {
 
-        String sysadmin = "ROLE_SYSADMIN";
-        String cna = "ROLE_COFFEENET-ADMIN";
+        String coffeeNetUser = "ROLE_COFFEENET-USER";
+        String coffeeNetAdmin = "ROLE_COFFEENET-ADMIN";
 
-        List<GrantedAuthority> gAuth = asList(new SimpleGrantedAuthority(sysadmin), new SimpleGrantedAuthority(cna));
-        HumanCoffeeNetUser sut = new HumanCoffeeNetUser("username", "email@coffee.net", gAuth);
+        List<GrantedAuthority> gAuth = asList(new SimpleGrantedAuthority(coffeeNetUser),
+                new SimpleGrantedAuthority(coffeeNetAdmin));
+        HumanCoffeeNetUser sut = new HumanCoffeeNetUser("username", "email@coffeenet", gAuth);
 
         assertThat(sut.getUsername(), is("username"));
-        assertThat(sut.getEmail(), is("email@coffee.net"));
-        assertThat(sut.getAuthorities().contains(new SimpleGrantedAuthority(sysadmin)), is(true));
-        assertThat(sut.getAuthorities().contains(new SimpleGrantedAuthority(cna)), is(true));
+        assertThat(sut.getEmail(), is("email@coffeenet"));
+        assertThat(sut.getAuthorities().contains(new SimpleGrantedAuthority(coffeeNetUser)), is(true));
+        assertThat(sut.getAuthorities().contains(new SimpleGrantedAuthority(coffeeNetAdmin)), is(true));
         assertThat(sut.isMachineUser(), is(false));
     }
 
@@ -41,17 +42,17 @@ public class HumanCoffeeNetUserTest {
     @Test
     public void isAdmin() {
 
-        List<GrantedAuthority> authorities = singletonList(new SimpleGrantedAuthority("ROLE_SYSADMIN"));
-        HumanCoffeeNetUser sut = new HumanCoffeeNetUser("username", "email@coffee.net", authorities);
-        assertThat(sut.isAdmin(), is(true));
+        List<GrantedAuthority> authorities = singletonList(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN"));
+        HumanCoffeeNetUser sut = new HumanCoffeeNetUser("username", "email@coffeenet", authorities);
+        assertThat(sut.isCoffeeNetAdmin(), is(true));
     }
 
 
     @Test
     public void isAdminNotAndEmptyAuthorities() {
 
-        HumanCoffeeNetUser sut = new HumanCoffeeNetUser("username", "email@coffee.net", emptyList());
-        assertThat(sut.isAdmin(), is(false));
+        HumanCoffeeNetUser sut = new HumanCoffeeNetUser("username", "email@coffeenet", emptyList());
+        assertThat(sut.isCoffeeNetAdmin(), is(false));
     }
 
 
@@ -59,7 +60,7 @@ public class HumanCoffeeNetUserTest {
     public void isAdminNotAndWrongAuthorities() {
 
         List<GrantedAuthority> authorities = singletonList(new SimpleGrantedAuthority("ROLE_NO"));
-        HumanCoffeeNetUser sut = new HumanCoffeeNetUser("username", "email@coffee.net", authorities);
-        assertThat(sut.isAdmin(), is(false));
+        HumanCoffeeNetUser sut = new HumanCoffeeNetUser("username", "email@coffeenet", authorities);
+        assertThat(sut.isCoffeeNetAdmin(), is(false));
     }
 }

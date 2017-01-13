@@ -23,13 +23,13 @@ public class MachineCoffeeNetUserTest {
     @Test
     public void testMachineUserProperties() {
 
-        String sysadmin = "ROLE_SYSADMIN";
-        List<GrantedAuthority> gAuth = singletonList(new SimpleGrantedAuthority(sysadmin));
+        String coffeeNetAdmin = "ROLE_COFFEENET-ADMIN";
+        List<GrantedAuthority> gAuth = singletonList(new SimpleGrantedAuthority(coffeeNetAdmin));
         MachineCoffeeNetUser sut = new MachineCoffeeNetUser("username", gAuth);
 
         assertThat(sut.getUsername(), is("username"));
-        assertThat(sut.getAuthorities().contains(new SimpleGrantedAuthority(sysadmin)), is(true));
-        assertThat(sut.isAdmin(), is(false));
+        assertThat(sut.getAuthorities().contains(new SimpleGrantedAuthority(coffeeNetAdmin)), is(true));
+        assertThat(sut.isCoffeeNetAdmin(), is(false));
         assertThat(sut.isMachineUser(), is(true));
     }
 

@@ -37,7 +37,7 @@ public class CoffeeNetAuthoritiesExtractorTest {
 
         authoritiesList = new ArrayList<>();
         authoritiesList.add("ROLE_EMPLOYEE");
-        authoritiesList.add("ROLE_SYSADMIN");
+        authoritiesList.add("ROLE_COFFEENET-ADMIN");
 
         testPrincipal = new HashMap<>();
         testPrincipal.put("mail", "test@synyx.de");
@@ -61,7 +61,7 @@ public class CoffeeNetAuthoritiesExtractorTest {
 
         assertThat(grantedAuthorities.size(), is(2));
         assertThat(grantedAuthorities.contains(new SimpleGrantedAuthority("ROLE_EMPLOYEE")), is(true));
-        assertThat(grantedAuthorities.contains(new SimpleGrantedAuthority("ROLE_SYSADMIN")), is(true));
+        assertThat(grantedAuthorities.contains(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN")), is(true));
     }
 
 

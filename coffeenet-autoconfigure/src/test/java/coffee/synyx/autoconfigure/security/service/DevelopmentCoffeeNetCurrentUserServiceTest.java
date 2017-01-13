@@ -18,7 +18,9 @@ import static org.hamcrest.Matchers.nullValue;
 
 import static org.hamcrest.core.Is.is;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
+import static java.util.Collections.singleton;
 
 
 /**
@@ -38,28 +40,30 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
     @Test
     public void getAdmin() {
 
-        providePrinciple(new User("admin", "", emptyList()));
+        providePrinciple(new User("admin", "", singleton(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN"))));
 
         CoffeeNetUserDetails coffeeNetUserDetails = sut.get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
         assertThat(coffeeNetUserDetails.getPassword(), is(nullValue()));
         assertThat(coffeeNetUserDetails.getEmail(), is("admin@coffeenet"));
         assertThat(coffeeNetUserDetails.getUsername(), is("admin"));
-        assertThat(coffeeNetUserDetails.getAuthorities(), contains(new SimpleGrantedAuthority("COFFEENET-ADMIN")));
+        assertThat(coffeeNetUserDetails.getAuthorities(), contains(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN")));
     }
 
 
     @Test
-    public void getDefault() {
+    public void getAdminWihMultipleRoles() {
 
-        providePrinciple(new User("default", "", emptyList()));
+        providePrinciple(new User("admin", "",
+                asList(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN"), new SimpleGrantedAuthority("ROLE_ADMIN"))));
 
         CoffeeNetUserDetails coffeeNetUserDetails = sut.get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
         assertThat(coffeeNetUserDetails.getPassword(), is(nullValue()));
         assertThat(coffeeNetUserDetails.getEmail(), is("admin@coffeenet"));
         assertThat(coffeeNetUserDetails.getUsername(), is("admin"));
-        assertThat(coffeeNetUserDetails.getAuthorities(), contains(new SimpleGrantedAuthority("COFFEENET-ADMIN")));
+        assertThat(coffeeNetUserDetails.getAuthorities(),
+            contains(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN")));
     }
 
 

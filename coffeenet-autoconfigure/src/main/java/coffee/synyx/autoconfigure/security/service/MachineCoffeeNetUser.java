@@ -56,7 +56,7 @@ public final class MachineCoffeeNetUser implements CoffeeNetUserDetails {
 
 
     @Override
-    public boolean isAdmin() {
+    public boolean isCoffeeNetAdmin() {
 
         return false;
     }
