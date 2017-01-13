@@ -50,7 +50,7 @@ public class CoffeeNetPrincipalExtractorTest {
 
         List<String> authoritiesList = new ArrayList<>();
         authoritiesList.add("ROLE_EMPLOYEE");
-        authoritiesList.add("ROLE_SYSADMIN");
+        authoritiesList.add("ROLE_COFFEENET-ADMIN");
 
         testPrincipal = new HashMap<>();
         testPrincipal.put("mail", "test@synyx.de");
