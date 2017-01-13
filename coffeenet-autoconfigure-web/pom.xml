@@ -9,12 +9,12 @@
         <relativePath>../coffeenet-starter-parent/pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>starter-web</artifactId>
+    <artifactId>autoconfigure-web</artifactId>
     <version>0.15.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>CoffeeNet Starter Web</name>
-    <description>This starter is designed to provide the CoffeeNet web components</description>
+    <name>CoffeeNet Autoconfigure Web</name>
+    <description>This autoconfigure provides the implementation details and configuration of the coffeenet web starters</description>
 
     <dependencies>
         <!-- CoffeeNet -->
@@ -22,19 +22,21 @@
             <groupId>coffee.synyx</groupId>
             <artifactId>starter-discovery</artifactId>
             <version>0.15.0-SNAPSHOT</version>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>coffee.synyx</groupId>
             <artifactId>starter-sso</artifactId>
             <version>0.15.0-SNAPSHOT</version>
+            <optional>true</optional>
         </dependency>
 
-        <!-- CoffeeNet Web -->
+        <!-- Test -->
         <dependency>
-            <groupId>coffee.synyx</groupId>
-            <artifactId>autoconfigure-web</artifactId>
-            <version>0.15.0-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

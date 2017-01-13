@@ -18,6 +18,13 @@
     <description>This starter is designed to provide the CoffeeNet styling with javascript</description>
 
     <dependencies>
+        <!-- Bootstrap -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.6</version>
+        </dependency>
+
         <!-- CoffeeNet -->
         <dependency>
             <groupId>coffee.synyx</groupId>
@@ -30,13 +37,6 @@
             <groupId>coffee.synyx</groupId>
             <artifactId>navigation-bar</artifactId>
             <version>0.9.0</version>
-        </dependency>
-
-        <!-- Test -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
