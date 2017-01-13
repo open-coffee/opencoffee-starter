@@ -120,9 +120,9 @@ public class ExampleDevSecurityConfig extends DevelopmentCoffeeNetWebSecurityCon
 
     auth
         .inMemoryAuthentication()
-          .withUser("role1").password("role1").authorities("ROLE1")
+          .withUser("username").password("password").roles("COFFEENET-ADMIN")
         .and()
-          .withUser("role2").password("role2").authorities("ROLE2");
+          .withUser("anotherUsername").password("anotherPassword").roles("EMPLOYEE");
   }
 }
 ```
