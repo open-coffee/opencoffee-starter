@@ -20,7 +20,7 @@ import static java.lang.invoke.MethodHandles.lookup;
  */
 public class LoggingSimpleUrlAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass());
+    private static final Logger LOG = LoggerFactory.getLogger(lookup().lookupClass());
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
@@ -28,6 +28,6 @@ public class LoggingSimpleUrlAuthenticationFailureHandler extends SimpleUrlAuthe
 
         super.onAuthenticationFailure(request, response, exception);
 
-        LOGGER.info("//> An authentication failure occurred", exception);
+        LOG.info("//> An authentication failure occurred", exception);
     }
 }
