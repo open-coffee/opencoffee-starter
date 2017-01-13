@@ -24,7 +24,7 @@ public class DevelopmentCoffeeNetCurrentUserService implements CoffeeNetCurrentU
     }
 
 
-    private CoffeeNetUserDetails getCoffeeNetUserDetails(User user) {
+    private static CoffeeNetUserDetails getCoffeeNetUserDetails(User user) {
 
         String username = user.getUsername();
         Collection<GrantedAuthority> authorities = user.getAuthorities();
