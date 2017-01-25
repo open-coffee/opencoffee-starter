@@ -33,7 +33,7 @@
         <!-- CoffeeNet Web -->
         <dependency>
             <groupId>coffee.synyx</groupId>
-            <artifactId>autoconfigure-web</artifactId>
+            <artifactId>autoconfigure</artifactId>
             <version>0.15.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
