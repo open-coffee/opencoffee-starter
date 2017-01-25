@@ -5,8 +5,8 @@ import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityProperties;
 import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityResourceProperties;
 import coffee.synyx.autoconfigure.security.oauth.CoffeeNetAuthoritiesExtractor;
 import coffee.synyx.autoconfigure.security.oauth.CoffeeNetPrincipalExtractor;
-import coffee.synyx.autoconfigure.security.user.CoffeeNetCurrentUserService;
-import coffee.synyx.autoconfigure.security.user.IntegrationCoffeeNetCurrentUserService;
+import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
+import coffee.synyx.autoconfigure.security.service.IntegrationCoffeeNetCurrentUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

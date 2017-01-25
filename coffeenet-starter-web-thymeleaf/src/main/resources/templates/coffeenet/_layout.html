@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="coffeenet--html">
+
+<head>
+    <th:block th:replace="coffeenet/_head :: head"/>
+</head>
+
+<body class="coffeenet--body">
+    <th:block th:replace="coffeenet/_navigationbar :: navigationbar"/>
+
+    <main class="coffeenet--main" layout:fragment="main"></main>
+
+    <th:block th:replace="coffeenet/_scripts :: scripts"/>
+    <th:block layout:fragment="scripts"/>
+</body>
+</html>
