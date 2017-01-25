@@ -23,7 +23,6 @@
         <module>coffeenet-starter-logging</module>
         <module>coffeenet-starter-sso</module>
         <module>coffeenet-autoconfigure</module>
-        <module>coffeenet-autoconfigure-web</module>
         <module>coffeenet-starter-parent</module>
     </modules>
 
