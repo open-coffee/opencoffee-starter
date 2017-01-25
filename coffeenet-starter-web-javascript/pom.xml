@@ -25,6 +25,12 @@
             <version>3.3.6</version>
         </dependency>
 
+        <!-- Endpoints -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-actuator</artifactId>
+        </dependency>
+
         <!-- CoffeeNet -->
         <dependency>
             <groupId>coffee.synyx</groupId>
