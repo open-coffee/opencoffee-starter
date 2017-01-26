@@ -9,7 +9,7 @@ import java.util.Collection;
 
 
 /**
- * Prides a API to receive all registered CoffeeNet applications.
+ * Provides a API to receive all registered CoffeeNet applications.
  *
  * @author  David Schilling - schilling@synyx.de
  * @author  Tobias Schneider - schneider@synyx.de
