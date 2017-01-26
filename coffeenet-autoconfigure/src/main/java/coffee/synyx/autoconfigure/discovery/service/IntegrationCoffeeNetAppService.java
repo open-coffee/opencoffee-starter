@@ -20,11 +20,11 @@ import static java.util.stream.Collectors.toList;
  * @author  David Schilling - schilling@synyx.de
  * @author  Tobias Schneider - schneider@synyx.de
  */
-public class IntegrationEurekaCoffeeNetAppService implements CoffeeNetAppService {
+public class IntegrationCoffeeNetAppService implements CoffeeNetAppService {
 
     private DiscoveryClient discoveryClient;
 
-    public IntegrationEurekaCoffeeNetAppService(DiscoveryClient discoveryClient) {
+    public IntegrationCoffeeNetAppService(DiscoveryClient discoveryClient) {
 
         this.discoveryClient = discoveryClient;
     }

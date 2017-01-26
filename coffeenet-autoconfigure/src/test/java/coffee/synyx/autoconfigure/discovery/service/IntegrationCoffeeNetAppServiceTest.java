@@ -33,9 +33,9 @@ import static java.util.Collections.singletonList;
  * @author  Tobias Schneider - schneider@synyx.de
  */
 @RunWith(MockitoJUnitRunner.class)
-public class IntegrationEurekaCoffeeNetAppServiceTest {
+public class IntegrationCoffeeNetAppServiceTest {
 
-    private IntegrationEurekaCoffeeNetAppService eurekaAppService;
+    private IntegrationCoffeeNetAppService eurekaAppService;
 
     @Mock
     private DiscoveryClient discoveryClientMock;
@@ -43,7 +43,7 @@ public class IntegrationEurekaCoffeeNetAppServiceTest {
     @Before
     public void setUp() {
 
-        eurekaAppService = new IntegrationEurekaCoffeeNetAppService(discoveryClientMock);
+        eurekaAppService = new IntegrationCoffeeNetAppService(discoveryClientMock);
     }
 
 

@@ -3,7 +3,7 @@ package coffee.synyx.autoconfigure.discovery.config;
 import coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.DevelopmentCoffeeNetAppService;
-import coffee.synyx.autoconfigure.discovery.service.IntegrationEurekaCoffeeNetAppService;
+import coffee.synyx.autoconfigure.discovery.service.IntegrationCoffeeNetAppService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -68,7 +68,7 @@ public class CoffeeNetDiscoveryAutoConfiguration {
         @ConditionalOnMissingBean(CoffeeNetAppService.class)
         public CoffeeNetAppService coffeeNetAppService() {
 
-            return new IntegrationEurekaCoffeeNetAppService(discoveryClient);
+            return new IntegrationCoffeeNetAppService(discoveryClient);
         }
     }
 
