@@ -1,4 +1,4 @@
-package coffee.synyx.autoconfigure.security.oauth;
+package coffee.synyx.autoconfigure.security.config;
 
 import coffee.synyx.autoconfigure.security.service.CoffeeNetUserDetails;
 import coffee.synyx.autoconfigure.security.service.HumanCoffeeNetUser;

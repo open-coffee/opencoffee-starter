@@ -1,7 +1,4 @@
-package coffee.synyx.autoconfigure.security.config.integration;
-
-import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityProperties;
-import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityResourceProperties;
+package coffee.synyx.autoconfigure.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -84,7 +81,7 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
 
     private Filter apiTokenAccessFilter() {
 
-        return new ApiTokenAccessFilter(userInfoTokenServices, coffeenetResource);
+        return new CoffeeNetApiTokenAccessFilter(userInfoTokenServices, coffeenetResource);
     }
 
 

@@ -9,6 +9,9 @@ import org.springframework.security.oauth2.client.token.grant.code.Authorization
 
 
 /**
+ * This configuration properties class defines all properties that are defined under the prefix
+ * {@code coffeenet.security.client} to configure client information like the oauth/token or oauth/authorize paths.
+ *
  * @author  Tobias Schneider - schneider@synyx.de
  */
 @ConfigurationProperties("coffeenet.security.client")

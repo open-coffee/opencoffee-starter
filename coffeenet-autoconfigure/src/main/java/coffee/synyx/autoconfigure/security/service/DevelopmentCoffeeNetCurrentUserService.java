@@ -1,5 +1,7 @@
 package coffee.synyx.autoconfigure.security.service;
 
+import coffee.synyx.autoconfigure.security.config.DevelopmentCoffeeNetWebSecurityConfigurerAdapter;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -9,7 +11,7 @@ import java.util.Collection;
 
 /**
  * Development service with the two mock user."user" and "admin" to match the login data in
- * {@link coffee.synyx.autoconfigure.security.config.development.DevelopmentCoffeeNetWebSecurityConfigurerAdapter}.
+ * {@link DevelopmentCoffeeNetWebSecurityConfigurerAdapter}.
  *
  * @author  Tobias Schneider - schneider@synyx.de
  */

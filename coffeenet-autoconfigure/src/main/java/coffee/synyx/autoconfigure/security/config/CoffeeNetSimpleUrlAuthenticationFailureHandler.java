@@ -1,4 +1,4 @@
-package coffee.synyx.autoconfigure.security.config.integration;
+package coffee.synyx.autoconfigure.security.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +16,11 @@ import static java.lang.invoke.MethodHandles.lookup;
 
 
 /**
+ * Simple interceptor to log all authentication failures.
+ *
  * @author  Yannic Klem - klem@synyx.de
  */
-public class LoggingSimpleUrlAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class CoffeeNetSimpleUrlAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(lookup().lookupClass());
 

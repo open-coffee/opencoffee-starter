@@ -1,4 +1,4 @@
-package coffee.synyx.autoconfigure.security.oauth;
+package coffee.synyx.autoconfigure.security.config;
 
 import org.slf4j.Logger;
 

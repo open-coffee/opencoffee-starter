@@ -1,4 +1,4 @@
-package coffee.synyx.autoconfigure.security.config.integration;
+package coffee.synyx.autoconfigure.security.config;
 
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 
@@ -15,11 +15,11 @@ import org.springframework.security.oauth2.provider.token.ResourceServerTokenSer
  *
  * @author  Tobias Schneider - schneider@synyx.de
  */
-class ApiTokenAccessFilter extends OAuth2AuthenticationProcessingFilter {
+class CoffeeNetApiTokenAccessFilter extends OAuth2AuthenticationProcessingFilter {
 
     private final ResourceServerProperties resourceServerProperties;
 
-    ApiTokenAccessFilter(ResourceServerTokenServices resourceServerTokenServices,
+    CoffeeNetApiTokenAccessFilter(ResourceServerTokenServices resourceServerTokenServices,
         ResourceServerProperties resourceServerProperties) {
 
         super();

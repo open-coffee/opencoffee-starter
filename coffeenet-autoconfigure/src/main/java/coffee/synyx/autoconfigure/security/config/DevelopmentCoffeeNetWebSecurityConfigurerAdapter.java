@@ -1,6 +1,4 @@
-package coffee.synyx.autoconfigure.security.config.development;
-
-import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityProperties;
+package coffee.synyx.autoconfigure.security.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +10,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 
 /**
+ * This adapter configures the CoffeeNet development (mock) security configuration.
+ *
+ * <p>By default two user will be provided:</p>
+ *
+ * <ul>
+ * <li>admin with the password admin and the role 'COFFEENET-ADMIN'</li>*
+ * <li>user with the password user without a role</li>
+ * </ul>
+ *
  * @author  Tobias Schneider - schneider@synyx.de
  */
 @EnableConfigurationProperties(CoffeeNetSecurityProperties.class)
