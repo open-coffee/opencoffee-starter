@@ -32,14 +32,14 @@ import static org.slf4j.Logger.ROOT_LOGGER_NAME;
  * @author  Tobias Schneider
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = CoffeeNetLoggingConfiguration.class)
+@SpringBootTest(classes = CoffeeNetLoggingAutoConfiguration.class)
 @ContextConfiguration(initializers = ConfigFileApplicationContextInitializer.class)
-@TestPropertySource("classpath:logging/application-test-logging-development.properties")
+@TestPropertySource("classpath:logging/application-test-logging-integration-only-console.properties")
 @DirtiesContext
-public class CoffeeNetLoggingConfigurationDevelopmentTest {
+public class CoffeeNetLoggingAutoConfigurationIntegrationOnlyConsoleTest {
 
     @Autowired
-    private CoffeeNetLoggingConfiguration sut;
+    private CoffeeNetLoggingAutoConfiguration sut;
 
     @Test
     public void integration() {

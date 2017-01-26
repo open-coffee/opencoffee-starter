@@ -68,7 +68,7 @@ import static org.slf4j.Logger.ROOT_LOGGER_NAME;
     }
 )
 @ConditionalOnProperty(prefix = "coffeenet.logging", name = "enabled", havingValue = "true", matchIfMissing = true)
-public class CoffeeNetLoggingConfiguration {
+public class CoffeeNetLoggingAutoConfiguration {
 
     private static final String CONSOLE = "CONSOLE";
     private static final String COFFEENET_FILE_APPENDER = "COFFEENET-FILE";
@@ -83,7 +83,7 @@ public class CoffeeNetLoggingConfiguration {
     private final CoffeeNetConfigurationProperties coffeeNetConfigurationProperties;
 
     @Autowired
-    public CoffeeNetLoggingConfiguration(CoffeeNetLoggingFileProperties coffeeNetLoggingFileProperties,
+    public CoffeeNetLoggingAutoConfiguration(CoffeeNetLoggingFileProperties coffeeNetLoggingFileProperties,
         CoffeeNetLoggingGelfProperties coffeeNetLoggingGelfProperties,
         CoffeeNetConfigurationProperties coffeeNetConfigurationProperties,
         CoffeeNetLoggingConsoleProperties coffeeNetLoggingConsoleProperties) {
