@@ -45,7 +45,7 @@ public class CoffeeNetSecurityAutoConfiguration {
     @ConditionalOnClass({ OAuth2ClientContext.class, WebSecurityConfigurerAdapter.class })
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
     @EnableConfigurationProperties(CoffeeNetSecurityProperties.class)
-    public class DevelopmentCoffeeNetSecurityConfiguration {
+    public static class DevelopmentCoffeeNetSecurityConfiguration {
 
         @Bean
         @ConditionalOnMissingBean(CoffeeNetCurrentUserService.class)
@@ -73,7 +73,7 @@ public class CoffeeNetSecurityAutoConfiguration {
         }
     )
     @EnableOAuth2Client
-    public class IntegrationCoffeeNetSecurityConfiguration {
+    public static class IntegrationCoffeeNetSecurityConfiguration {
 
         private static final String LOGIN = "/login";
         private static final int OAUTH_CLIENT_CONTEXT_FILTER_ORDER = -100;

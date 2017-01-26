@@ -57,7 +57,7 @@ public class CoffeeNetWebAutoConfiguration {
      */
     @Configuration
     @ConditionalOnResource(resources = "classpath:/templates/coffeenet/_layout.html")
-    public class CoffeeNetWebServerSideRenderingConfiguration {
+    public static class CoffeeNetWebServerSideRenderingConfiguration {
 
         @Bean
         @Autowired
@@ -92,7 +92,7 @@ public class CoffeeNetWebAutoConfiguration {
      */
     @Configuration
     @ConditionalOnResource(resources = "classpath:/META-INF/resources/webjars/navigation-bar/bundle.js")
-    public class CoffeeNetWebClientSideRenderingConfiguration {
+    public static class CoffeeNetWebClientSideRenderingConfiguration {
 
         @Bean
         @Autowired

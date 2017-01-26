@@ -40,7 +40,7 @@ public class CoffeeNetDiscoveryAutoConfiguration {
     @Configuration
     @ConditionalOnClass(com.netflix.discovery.DiscoveryClient.class)
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
-    public class DevelopmentCoffeeNetServiceDiscoveryConfiguration {
+    public static class DevelopmentCoffeeNetServiceDiscoveryConfiguration {
 
         @Bean
         @ConditionalOnMissingBean(CoffeeNetAppService.class)
@@ -54,7 +54,7 @@ public class CoffeeNetDiscoveryAutoConfiguration {
     @EnableEurekaClient
     @ConditionalOnClass(DiscoveryClient.class)
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
-    public class IntegrationCoffeeNetServiceDiscoveryConfiguration {
+    public static class IntegrationCoffeeNetServiceDiscoveryConfiguration {
 
         private final DiscoveryClient discoveryClient;
 
@@ -77,7 +77,7 @@ public class CoffeeNetDiscoveryAutoConfiguration {
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
     @AutoConfigureBefore(EurekaClientAutoConfiguration.class)
     @EnableConfigurationProperties({ CoffeeNetConfigurationProperties.class, CoffeeNetDiscoveryProperties.class })
-    protected class CoffeeNetDiscoveryPropertiesConfiguration {
+    public static class CoffeeNetDiscoveryPropertiesConfiguration {
 
         private CoffeeNetConfigurationProperties coffeeNetConfigurationProperties;
 
