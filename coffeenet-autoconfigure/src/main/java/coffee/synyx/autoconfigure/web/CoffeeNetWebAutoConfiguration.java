@@ -30,7 +30,7 @@ public class CoffeeNetWebAutoConfiguration {
     private static final Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass());
 
     @Bean
-    CoffeeNetWebProperties coffeeNetWebProperties() {
+    public CoffeeNetWebProperties coffeeNetWebProperties() {
 
         return new CoffeeNetWebProperties();
     }
@@ -40,7 +40,7 @@ public class CoffeeNetWebAutoConfiguration {
     @Autowired
     @ConditionalOnBean({ CoffeeNetCurrentUserService.class, CoffeeNetAppService.class })
     @ConditionalOnMissingBean(CoffeeNetWebService.class)
-    CoffeeNetWebService coffeeNetWebService(CoffeeNetCurrentUserService coffeeNetCurrentUserService,
+    public CoffeeNetWebService coffeeNetWebService(CoffeeNetCurrentUserService coffeeNetCurrentUserService,
         CoffeeNetAppService coffeeNetAppService, CoffeeNetWebProperties coffeeNetWebProperties) {
 
         CoffeeNetWebServiceImpl coffeeNetWebService = new CoffeeNetWebServiceImpl(coffeeNetCurrentUserService,
@@ -62,7 +62,7 @@ public class CoffeeNetWebAutoConfiguration {
         @Bean
         @Autowired
         @ConditionalOnMissingBean(CoffeeNetWebInterceptor.class)
-        CoffeeNetWebInterceptor coffeeNetInterceptor(CoffeeNetWebService coffeeNetWebService) {
+        public CoffeeNetWebInterceptor coffeeNetInterceptor(CoffeeNetWebService coffeeNetWebService) {
 
             CoffeeNetWebInterceptor coffeeNetWebInterceptor = new CoffeeNetWebInterceptor(coffeeNetWebService);
 
@@ -75,7 +75,7 @@ public class CoffeeNetWebAutoConfiguration {
         @Bean
         @Autowired
         @ConditionalOnMissingBean(CoffeeNetWebMvcConfigurerAdapter.class)
-        CoffeeNetWebMvcConfigurerAdapter coffeeNetWebMvcConfigurerAdapter(
+        public CoffeeNetWebMvcConfigurerAdapter coffeeNetWebMvcConfigurerAdapter(
             CoffeeNetWebInterceptor coffeeNetWebInterceptor) {
 
             CoffeeNetWebMvcConfigurerAdapter coffeeNetWebMvcConfigurerAdapter = new CoffeeNetWebMvcConfigurerAdapter(
