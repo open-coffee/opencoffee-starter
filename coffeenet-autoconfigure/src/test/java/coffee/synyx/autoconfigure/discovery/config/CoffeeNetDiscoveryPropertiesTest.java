@@ -1,4 +1,4 @@
-package coffee.synyx.autoconfigure.discovery.config.integration;
+package coffee.synyx.autoconfigure.discovery.config;
 
 import org.junit.Test;
 
