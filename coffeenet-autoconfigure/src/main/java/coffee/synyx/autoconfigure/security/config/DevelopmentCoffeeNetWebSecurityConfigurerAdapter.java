@@ -15,7 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * <p>By default two user will be provided:</p>
  *
  * <ul>
- * <li>admin with the password admin and the role 'COFFEENET-ADMIN'</li>*
+ * <li>admin with the password admin and the role 'COFFEENET-ADMIN'</li>
  * <li>user with the password user without a role</li>
  * </ul>
  *
