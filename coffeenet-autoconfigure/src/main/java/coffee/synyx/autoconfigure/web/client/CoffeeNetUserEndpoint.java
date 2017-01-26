@@ -9,7 +9,8 @@ import org.springframework.boot.actuate.endpoint.Endpoint;
 /**
  * Provides information about the user.
  *
- * @author  Tobias Schneider - schneider@synyx.de*
+ * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
  * @deprecated  Please use {@link CoffeeNetWebEndpoint} instead
  */
 @Deprecated

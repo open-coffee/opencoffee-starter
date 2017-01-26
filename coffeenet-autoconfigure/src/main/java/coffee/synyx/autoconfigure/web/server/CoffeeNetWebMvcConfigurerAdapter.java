@@ -3,6 +3,7 @@ package coffee.synyx.autoconfigure.web.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -10,7 +11,10 @@ import static java.lang.invoke.MethodHandles.lookup;
 
 
 /**
+ * Register the {@link CoffeeNetWebInterceptor} as {@link HandlerInterceptor} for all requests.
+ *
  * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
  */
 public class CoffeeNetWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
 

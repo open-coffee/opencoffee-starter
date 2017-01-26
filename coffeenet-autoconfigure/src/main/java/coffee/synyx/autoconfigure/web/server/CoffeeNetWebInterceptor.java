@@ -17,7 +17,12 @@ import static java.util.Optional.ofNullable;
 
 
 /**
+ * This provided CoffeeNet {@link HandlerInterceptorAdapter} intercepts all communication between the application
+ * controllers and the frontend to provide all necessary information for the frontend with server side rendering engines
+ * like thymeleaf. Does only intercept if the request is not a {@code redirect} and contains a {@link ModelAndView}
+ *
  * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
  */
 public class CoffeeNetWebInterceptor extends HandlerInterceptorAdapter {
 

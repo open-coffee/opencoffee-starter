@@ -16,6 +16,13 @@ import org.springframework.context.annotation.Configuration;
 import static java.lang.invoke.MethodHandles.lookup;
 
 
+/**
+ * Configuration class to add the {@link CoffeeNetWebInterceptor} via {@link CoffeeNetWebMvcConfigurerAdapter} when the
+ * templates for server side rendering of the navigation bar are provided.
+ *
+ * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
+ */
 @Configuration
 @ConditionalOnResource(resources = "classpath:/templates/coffeenet/_layout.html")
 public class CoffeeNetWebServerSideRenderingConfiguration {

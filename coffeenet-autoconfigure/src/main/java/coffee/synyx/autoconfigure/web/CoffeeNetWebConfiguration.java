@@ -17,6 +17,12 @@ import org.springframework.context.annotation.Configuration;
 import static java.lang.invoke.MethodHandles.lookup;
 
 
+/**
+ * Global configuration class for the web starters to provide all needed services.
+ *
+ * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
+ */
 @Configuration
 public class CoffeeNetWebConfiguration {
 

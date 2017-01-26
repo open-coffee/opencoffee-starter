@@ -13,6 +13,7 @@ import java.util.Collection;
  *
  * @author  David Schilling - schilling@synyx.de
  * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
  * @deprecated  Please use {@link CoffeeNetWebEndpoint} instead
  */
 @Deprecated

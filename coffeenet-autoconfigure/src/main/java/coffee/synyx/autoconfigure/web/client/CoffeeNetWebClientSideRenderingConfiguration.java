@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * Provides all Endpoints that are needed to provide all information for the javascript CoffeeNet navigation.
  *
  * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
  */
 @Configuration
 @ConditionalOnResource(resources = "classpath:/META-INF/resources/webjars/navigation-bar/bundle.js")
