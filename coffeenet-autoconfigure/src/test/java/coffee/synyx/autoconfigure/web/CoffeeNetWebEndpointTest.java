@@ -1,9 +1,6 @@
-package coffee.synyx.autoconfigure.web.client;
+package coffee.synyx.autoconfigure.web;
 
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
-import coffee.synyx.autoconfigure.web.CoffeeNetWeb;
-import coffee.synyx.autoconfigure.web.CoffeeNetWebService;
-import coffee.synyx.autoconfigure.web.CoffeeNetWebUser;
 
 import org.hamcrest.core.Is;
 

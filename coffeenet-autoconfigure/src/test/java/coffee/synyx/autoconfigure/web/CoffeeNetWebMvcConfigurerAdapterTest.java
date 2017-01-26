@@ -1,4 +1,4 @@
-package coffee.synyx.autoconfigure.web.server;
+package coffee.synyx.autoconfigure.web;
 
 import org.junit.Before;
 import org.junit.Test;

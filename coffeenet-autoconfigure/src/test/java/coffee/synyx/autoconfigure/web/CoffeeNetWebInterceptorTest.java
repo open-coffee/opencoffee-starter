@@ -1,7 +1,4 @@
-package coffee.synyx.autoconfigure.web.server;
-
-import coffee.synyx.autoconfigure.web.CoffeeNetWeb;
-import coffee.synyx.autoconfigure.web.CoffeeNetWebService;
+package coffee.synyx.autoconfigure.web;
 
 import org.assertj.core.api.Assertions;
 

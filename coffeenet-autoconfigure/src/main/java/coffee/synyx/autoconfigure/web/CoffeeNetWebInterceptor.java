@@ -1,6 +1,4 @@
-package coffee.synyx.autoconfigure.web.server;
-
-import coffee.synyx.autoconfigure.web.CoffeeNetWebService;
+package coffee.synyx.autoconfigure.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

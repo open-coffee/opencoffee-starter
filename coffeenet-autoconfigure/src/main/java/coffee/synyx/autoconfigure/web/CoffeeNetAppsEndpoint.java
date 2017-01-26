@@ -1,7 +1,6 @@
-package coffee.synyx.autoconfigure.web.client;
+package coffee.synyx.autoconfigure.web;
 
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
-import coffee.synyx.autoconfigure.web.CoffeeNetWebService;
 
 import org.springframework.boot.actuate.endpoint.Endpoint;
 
