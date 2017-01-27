@@ -103,24 +103,6 @@ public class CoffeeNetWebAutoConfiguration {
 
         @Bean
         @Autowired
-        @ConditionalOnMissingBean(CoffeeNetUserEndpoint.class)
-        public CoffeeNetUserEndpoint coffeeNetUserEndpoint(CoffeeNetWebService coffeeNetWebService) {
-
-            return new CoffeeNetUserEndpoint(coffeeNetWebService);
-        }
-
-
-        @Bean
-        @Autowired
-        @ConditionalOnMissingBean(CoffeeNetAppsEndpoint.class)
-        public CoffeeNetAppsEndpoint coffeeNetAppsEndpoint(CoffeeNetWebService coffeeNetWebService) {
-
-            return new CoffeeNetAppsEndpoint(coffeeNetWebService);
-        }
-
-
-        @Bean
-        @Autowired
         @ConditionalOnMissingBean(CoffeeNetWebEndpoint.class)
         public CoffeeNetWebEndpoint coffeeNetWebEndpoint(CoffeeNetWebService coffeeNetWebService) {
 
