@@ -1,7 +1,6 @@
 package coffee.synyx.autoconfigure.discovery.service;
 
 import com.netflix.appinfo.InstanceInfo;
-import com.netflix.appinfo.MyDataCenterInstanceConfig;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,11 +13,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient.EurekaServiceInstance;
-import org.springframework.cloud.netflix.eureka.InstanceInfoFactory;
 
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
+
+import static org.hamcrest.core.Is.is;
 
 import static org.junit.Assert.assertThat;
 
@@ -50,17 +50,17 @@ public class IntegrationCoffeeNetAppServiceTest {
     @Test
     public void getApps() {
 
-        when(discoveryClientMock.getServices()).thenReturn(asList("Frontpage", "Backpage"));
+        when(discoveryClientMock.getServices()).thenReturn(asList("Profile", "Backpage", "Auth"));
 
-        InstanceInfo instanceInfo = new InstanceInfoFactory().create(new MyDataCenterInstanceConfig());
-        instanceInfo.getMetadata().put("allowedAuthorities", "ROLE_ADMIN");
-
-        EurekaServiceInstance eurekaServiceInstance = mock(EurekaServiceInstance.class);
-        when(eurekaServiceInstance.getInstanceInfo()).thenReturn(instanceInfo);
-        when(discoveryClientMock.getInstances("Frontpage")).thenReturn(singletonList(eurekaServiceInstance));
+        defineEurekaInstance("Profile");
+        defineEurekaInstance("Backpage");
+        defineEurekaInstance("Auth");
 
         List<CoffeeNetApp> coffeeNetApps = eurekaAppService.getApps();
-        assertThat(coffeeNetApps, hasSize(1));
+        assertThat(coffeeNetApps, hasSize(3));
+        assertThat(coffeeNetApps.get(0).getName(), is("Auth"));
+        assertThat(coffeeNetApps.get(1).getName(), is("Backpage"));
+        assertThat(coffeeNetApps.get(2).getName(), is("Profile"));
     }
 
 
@@ -71,5 +71,16 @@ public class IntegrationCoffeeNetAppServiceTest {
 
         List<CoffeeNetApp> coffeeNetApps = eurekaAppService.getApps();
         assertThat(coffeeNetApps, hasSize(0));
+    }
+
+
+    private void defineEurekaInstance(String name) {
+
+        InstanceInfo instanceInfo = InstanceInfo.Builder.newBuilder().setAppName(name).setVIPAddress(name).build();
+        instanceInfo.getMetadata().put("allowedAuthorities", "ROLE_ADMIN");
+
+        EurekaServiceInstance eurekaServiceInstance = mock(EurekaServiceInstance.class);
+        when(eurekaServiceInstance.getInstanceInfo()).thenReturn(instanceInfo);
+        when(discoveryClientMock.getInstances(name)).thenReturn(singletonList(eurekaServiceInstance));
     }
 }

@@ -5,6 +5,7 @@ import com.netflix.appinfo.InstanceInfo;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient.EurekaServiceInstance;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -36,6 +37,7 @@ public class IntegrationCoffeeNetAppService implements CoffeeNetAppService {
             .stream()
             .map(this::getAppInstance)
             .filter(Objects::nonNull)
+            .sorted(Comparator.comparing(CoffeeNetApp::getName))
             .collect(toList());
     }
 
