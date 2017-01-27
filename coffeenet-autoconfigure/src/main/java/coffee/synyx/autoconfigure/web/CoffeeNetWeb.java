@@ -5,6 +5,12 @@ import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
 import java.util.Collection;
 
 
+/**
+ * Data transfer object that provides all information for the frontend.
+ *
+ * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
+ */
 public final class CoffeeNetWeb {
 
     private final CoffeeNetWebUser coffeeNetWebUser;

@@ -8,7 +8,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
 /**
- * CoffeeNet security resource properties.
+ * This configuration properties class defines all properties that are defined under the prefix
+ * {@code coffeenet.security.resource} to configure the security resources like the user endpoint.
  *
  * @author  Tobias Schneider - schneider@synyx.de
  */

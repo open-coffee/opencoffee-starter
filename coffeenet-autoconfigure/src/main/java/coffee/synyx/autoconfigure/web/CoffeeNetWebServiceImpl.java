@@ -11,7 +11,11 @@ import static java.util.stream.Collectors.toList;
 
 
 /**
+ * This service exposes all information that are needed for the coffeenet navigation bar based in the server and client
+ * side rendering engines like thymeleaf or javascript.
+ *
  * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
  */
 public class CoffeeNetWebServiceImpl implements CoffeeNetWebService {
 
@@ -29,7 +33,6 @@ public class CoffeeNetWebServiceImpl implements CoffeeNetWebService {
 
     @Override
     public CoffeeNetWeb get() {
-
 
         CoffeeNetUserDetails coffeeNetUserDetails = coffeeNetCurrentUserService.get();
 

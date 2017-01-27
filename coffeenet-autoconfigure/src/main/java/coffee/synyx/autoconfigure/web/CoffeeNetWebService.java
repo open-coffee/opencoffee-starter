@@ -1,7 +1,10 @@
 package coffee.synyx.autoconfigure.web;
 
 /**
+ * Interface of the coffeenet web service.
+ *
  * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
  */
 public interface CoffeeNetWebService {
 

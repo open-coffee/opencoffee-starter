@@ -15,9 +15,10 @@ import static java.lang.invoke.MethodHandles.lookup;
 
 
 /**
- * Represents a coffeenet user.
+ * Represents a CoffeeNet user.
  *
  * @author  Tobias Schneider - schneider@synyx.de
+ * @since  0.15.0
  */
 public final class CoffeeNetWebUser {
 

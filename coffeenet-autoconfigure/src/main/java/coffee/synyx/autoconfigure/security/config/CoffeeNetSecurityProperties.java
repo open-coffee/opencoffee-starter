@@ -9,6 +9,9 @@ import javax.validation.constraints.NotNull;
 
 
 /**
+ * This configuration properties class defines all properties that are defined on the first level with the prefix
+ * {@code coffeenet.security} for e.g. to enable or disable the security or configure logout, success and failure urls.
+ *
  * @author  Tobias Schneider - schneider@synyx.de
  * @author  Yannic Klem - klem@synyx.de
  */
