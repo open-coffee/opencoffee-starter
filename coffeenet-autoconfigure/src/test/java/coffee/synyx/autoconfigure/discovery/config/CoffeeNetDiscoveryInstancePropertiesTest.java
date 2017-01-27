@@ -13,6 +13,8 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.commons.util.InetUtilsProperties;
 
+import org.springframework.mock.env.MockEnvironment;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import static org.hamcrest.Matchers.is;
@@ -65,7 +67,7 @@ public class CoffeeNetDiscoveryInstancePropertiesTest {
         CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
                     new InetUtilsProperties()), new ServerProperties(), coffeeNetConfigurationProperties);
 
-        sut.afterPropertiesSet();
+        sut.setEnvironment(new MockEnvironment());
 
         assertThat(sut.getAppname(), is(brandNewApplicationName));
         assertThat(sut.getVirtualHostName(), is(brandNewApplicationName));
@@ -82,7 +84,7 @@ public class CoffeeNetDiscoveryInstancePropertiesTest {
         CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
                     new InetUtilsProperties()), new ServerProperties(), coffeeNetConfigurationProperties);
 
-        sut.afterPropertiesSet();
+        sut.setEnvironment(new MockEnvironment());
 
         String unknownApplicationName = "unknown";
         assertThat(sut.getAppname(), is(unknownApplicationName));
@@ -101,7 +103,7 @@ public class CoffeeNetDiscoveryInstancePropertiesTest {
         CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
                     new InetUtilsProperties()), new ServerProperties(), coffeeNetConfigurationProperties);
 
-        sut.afterPropertiesSet();
+        sut.setEnvironment(new MockEnvironment());
 
         assertThat(sut.getMetadataMap().get("allowedAuthorities"), is(allowedAuthorities));
     }
@@ -114,7 +116,7 @@ public class CoffeeNetDiscoveryInstancePropertiesTest {
                     new InetUtilsProperties()), new ServerProperties(), new CoffeeNetConfigurationProperties());
         sut.getMetadataMap().put("allowedAuthorities", "alreadySetAndNoneFromCoffeeNet");
 
-        sut.afterPropertiesSet();
+        sut.setEnvironment(new MockEnvironment());
 
         assertThat(sut.getMetadataMap().get("allowedAuthorities"), is("alreadySetAndNoneFromCoffeeNet"));
     }

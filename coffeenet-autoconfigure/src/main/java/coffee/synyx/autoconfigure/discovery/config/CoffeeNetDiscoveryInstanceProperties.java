@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
 
+import org.springframework.core.env.Environment;
+
 import org.springframework.util.StringUtils;
 
 
@@ -61,7 +63,7 @@ class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
 
 
     @Override
-    public void afterPropertiesSet() {
+    public void setEnvironment(Environment environment) {
 
         String allowedAuthorities = coffeeNetConfigurationProperties.getAllowedAuthorities();
 
