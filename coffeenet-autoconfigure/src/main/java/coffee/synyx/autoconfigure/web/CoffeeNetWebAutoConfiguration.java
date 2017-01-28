@@ -4,6 +4,7 @@ import coffee.synyx.autoconfigure.discovery.config.CoffeeNetDiscoveryAutoConfigu
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityAutoConfiguration;
 import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
+import coffee.synyx.autoconfigure.web.CoffeeNetWebAutoConfiguration.ConditionOnSecurityAndDiscovery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.boot.autoconfigure.condition.AllNestedConditions;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
 import static java.lang.invoke.MethodHandles.lookup;
@@ -28,14 +31,13 @@ import static java.lang.invoke.MethodHandles.lookup;
  * @since  0.15.0
  */
 @Configuration
-@ConditionalOnBean(CoffeeNetAppService.class)
+@Conditional(ConditionOnSecurityAndDiscovery.class)
 @AutoConfigureAfter({ CoffeeNetDiscoveryAutoConfiguration.class, CoffeeNetSecurityAutoConfiguration.class })
 public class CoffeeNetWebAutoConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass());
 
     @Bean
-    @ConditionalOnBean(CoffeeNetCurrentUserService.class)
     public CoffeeNetWebProperties coffeeNetWebProperties() {
 
         return new CoffeeNetWebProperties();
@@ -43,7 +45,6 @@ public class CoffeeNetWebAutoConfiguration {
 
 
     @Bean
-    @ConditionalOnBean(CoffeeNetCurrentUserService.class)
     @ConditionalOnMissingBean(CoffeeNetWebService.class)
     public CoffeeNetWebService coffeeNetWebService(CoffeeNetCurrentUserService coffeeNetCurrentUserService,
         CoffeeNetAppService coffeeNetAppService, CoffeeNetWebProperties coffeeNetWebProperties) {
@@ -61,7 +62,6 @@ public class CoffeeNetWebAutoConfiguration {
      * the templates for server side rendering of the navigation bar are provided.
      */
     @Configuration
-    @ConditionalOnBean(CoffeeNetCurrentUserService.class)
     @ConditionalOnResource(resources = "classpath:/templates/coffeenet/_layout.html")
     public static class CoffeeNetWebServerSideRenderingConfiguration {
 
@@ -97,7 +97,6 @@ public class CoffeeNetWebAutoConfiguration {
      * Provides all Endpoints that are needed to provide all information for the javascript CoffeeNet navigation.
      */
     @Configuration
-    @ConditionalOnBean(CoffeeNetCurrentUserService.class)
     @ConditionalOnResource(resources = "classpath:/META-INF/resources/webjars/navigation-bar/bundle.js")
     public static class CoffeeNetWebClientSideRenderingConfiguration {
 
@@ -107,6 +106,25 @@ public class CoffeeNetWebAutoConfiguration {
         public CoffeeNetWebEndpoint coffeeNetWebEndpoint(CoffeeNetWebService coffeeNetWebService) {
 
             return new CoffeeNetWebEndpoint(coffeeNetWebService);
+        }
+    }
+
+    /**
+     * Security and Discovery bean must be in the bean factory to auto configure the web part.
+     */
+    static class ConditionOnSecurityAndDiscovery extends AllNestedConditions {
+
+        ConditionOnSecurityAndDiscovery() {
+
+            super(ConfigurationPhase.REGISTER_BEAN);
+        }
+
+        @ConditionalOnBean(CoffeeNetAppService.class)
+        static class OnDiscovery {
+        }
+
+        @ConditionalOnBean(CoffeeNetCurrentUserService.class)
+        static class OnSecurity {
         }
     }
 }
