@@ -2,17 +2,21 @@ package coffee.synyx.autoconfigure.discovery.service;
 
 import com.netflix.appinfo.InstanceInfo;
 
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient.EurekaServiceInstance;
 
-import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
 import static org.springframework.util.StringUtils.commaDelimitedListToSet;
 
+import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toSet;
 
 
 /**
@@ -31,38 +35,44 @@ public class IntegrationCoffeeNetAppService implements CoffeeNetAppService {
     }
 
     @Override
-    public List<CoffeeNetApp> getApps() {
+    public Map<String, List<CoffeeNetApp>> getApps() {
+
+        return getApps(AppQuery.builder().build());
+    }
+
+
+    @Override
+    public Map<String, List<CoffeeNetApp>> getApps(AppQuery query) {
 
         return discoveryClient.getServices()
             .stream()
-            .map(this::getAppInstance)
+            .filter(appName -> query.getAppNames().isEmpty() || query.getAppNames().contains(appName))
+            .collect(toMap(identity(), appName -> getAppInstances(appName, query)));
+    }
+
+
+    private List<CoffeeNetApp> getAppInstances(String appName, AppQuery query) {
+
+        return discoveryClient.getInstances(appName)
+            .stream()
+            .map(IntegrationCoffeeNetAppService::toApp)
             .filter(Objects::nonNull)
-            .sorted(Comparator.comparing(CoffeeNetApp::getName))
+            .filter(coffeeNetApp ->
+                        query.getAppRoles().isEmpty() || coffeeNetApp.isAllowedToAccessBy(query.getAppRoles()))
             .collect(toList());
     }
 
 
-    private CoffeeNetApp getAppInstance(String applicationName) {
+    private static CoffeeNetApp toApp(ServiceInstance serviceInstance) {
 
-        EurekaServiceInstance eurekaServiceInstance = discoveryClient.getInstances(applicationName)
-            .stream()
-            .filter(serviceInstance -> serviceInstance instanceof EurekaServiceInstance)
-            .map(serviceInstance -> (EurekaServiceInstance) serviceInstance)
-            .findFirst()
-            .orElse(null);
-
-        return toApp(eurekaServiceInstance);
-    }
-
-
-    private static CoffeeNetApp toApp(EurekaServiceInstance serviceInstance) {
-
-        if (serviceInstance == null) {
+        if (!(serviceInstance instanceof EurekaServiceInstance)) {
             return null;
         }
 
-        InstanceInfo instanceInfo = serviceInstance.getInstanceInfo();
-        Set<String> allowedAuthorities = commaDelimitedListToSet(instanceInfo.getMetadata().get("allowedAuthorities"));
+        EurekaServiceInstance eurekaServiceInstance = (EurekaServiceInstance) serviceInstance;
+        InstanceInfo instanceInfo = eurekaServiceInstance.getInstanceInfo();
+        Set<String> allowedAuthorities = commaDelimitedListToSet(instanceInfo.getMetadata().get("allowedAuthorities"))
+            .stream().map(String::trim).collect(toSet());
 
         return new CoffeeNetApp(instanceInfo.getVIPAddress(), instanceInfo.getHomePageUrl(), allowedAuthorities);
     }

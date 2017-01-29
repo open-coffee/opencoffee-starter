@@ -1,8 +1,9 @@
 package coffee.synyx.autoconfigure.discovery.service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
@@ -17,15 +18,27 @@ import static java.util.Collections.singletonList;
 public class DevelopmentCoffeeNetAppService implements CoffeeNetAppService {
 
     @Override
-    public List<CoffeeNetApp> getApps() {
+    public Map<String, List<CoffeeNetApp>> getApps() {
 
-        List<CoffeeNetApp> coffeeNetApps = new ArrayList<>();
+        Map<String, List<CoffeeNetApp>> apps = new HashMap<>();
 
-        coffeeNetApps.add(new CoffeeNetApp("Coffee App", "https://coffee-app.coffeenet", new HashSet<>(emptyList())));
-        coffeeNetApps.add(new CoffeeNetApp("Profile", "https://profile.coffeenet", new HashSet<>(emptyList())));
-        coffeeNetApps.add(new CoffeeNetApp("CoffeeNet Admin App", "https://coffee-admin-app.coffeenet",
-                new HashSet<>(singletonList("ROLE_COFFEENET-ADMIN"))));
+        apps.put("Coffee App",
+            singletonList(new CoffeeNetApp("Coffee App", "https://coffee-app.coffeenet", new HashSet<>(emptyList()))));
+        apps.put("Profile",
+            singletonList(new CoffeeNetApp("Profile", "https://profile.coffeenet", new HashSet<>(emptyList()))));
 
-        return coffeeNetApps;
+        apps.put("Coffee Admin App",
+            singletonList(
+                new CoffeeNetApp("Coffee Admin App", "https://coffee-admin-app.coffeenet",
+                    new HashSet<>(singletonList("ROLE_COFFEENET-ADMIN")))));
+
+        return apps;
+    }
+
+
+    @Override
+    public Map<String, List<CoffeeNetApp>> getApps(AppQuery query) {
+
+        return getApps();
     }
 }

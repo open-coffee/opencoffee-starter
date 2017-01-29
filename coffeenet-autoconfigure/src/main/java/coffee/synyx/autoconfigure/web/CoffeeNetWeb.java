@@ -2,7 +2,7 @@ package coffee.synyx.autoconfigure.web;
 
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
 
-import java.util.Collection;
+import java.util.List;
 
 
 /**
@@ -14,12 +14,12 @@ import java.util.Collection;
 public final class CoffeeNetWeb {
 
     private final CoffeeNetWebUser coffeeNetWebUser;
-    private final Collection<CoffeeNetApp> coffeeNetApps;
+    private final List<CoffeeNetApp> coffeeNetApps;
     private final CoffeeNetApp profileApp;
     private final String logoutPath;
 
-    public CoffeeNetWeb(CoffeeNetWebUser coffeeNetWebUser, Collection<CoffeeNetApp> coffeeNetApps,
-        CoffeeNetApp profileApp, String logoutPath) {
+    public CoffeeNetWeb(CoffeeNetWebUser coffeeNetWebUser, List<CoffeeNetApp> coffeeNetApps, CoffeeNetApp profileApp,
+        String logoutPath) {
 
         this.coffeeNetWebUser = coffeeNetWebUser;
         this.coffeeNetApps = coffeeNetApps;
@@ -33,7 +33,7 @@ public final class CoffeeNetWeb {
     }
 
 
-    public Collection<CoffeeNetApp> getCoffeeNetApps() {
+    public List<CoffeeNetApp> getCoffeeNetApps() {
 
         return coffeeNetApps;
     }

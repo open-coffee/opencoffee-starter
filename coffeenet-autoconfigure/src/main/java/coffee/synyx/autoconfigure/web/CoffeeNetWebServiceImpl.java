@@ -1,11 +1,14 @@
 package coffee.synyx.autoconfigure.web;
 
+import coffee.synyx.autoconfigure.discovery.service.AppQuery;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
 import coffee.synyx.autoconfigure.security.service.CoffeeNetUserDetails;
 
-import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
 
@@ -36,33 +39,32 @@ public class CoffeeNetWebServiceImpl implements CoffeeNetWebService {
 
         CoffeeNetUserDetails coffeeNetUserDetails = coffeeNetCurrentUserService.get();
 
-        Collection<CoffeeNetApp> coffeeNetApps = coffeeNetAppService.getApps();
-        coffeeNetApps = filterAppsByRoles(coffeeNetApps, coffeeNetUserDetails);
+        // apps
+        String profileServiceName = coffeeNetWebProperties.getProfileServiceName();
+        AppQuery query = AppQuery.builder().withRoles(coffeeNetUserDetails.getAuthoritiesAsString()).build();
+        Map<String, List<CoffeeNetApp>> coffeeNetApps = coffeeNetAppService.getApps(query);
 
-        CoffeeNetApp profileApp = extractProfileApp(coffeeNetApps);
-        coffeeNetApps.remove(profileApp);
+        List<CoffeeNetApp> profileApps = coffeeNetApps.get(profileServiceName);
+        CoffeeNetApp profileApp = null;
 
+        if (profileApps != null) {
+            profileApp = profileApps.get(0);
+            coffeeNetApps.remove(profileServiceName);
+        }
+
+        List<CoffeeNetApp> firstCoffeeNetApps = coffeeNetApps.entrySet()
+            .stream()
+            .map(entry -> entry.getValue().get(0))
+            .sorted(Comparator.comparing(CoffeeNetApp::getName))
+            .collect(toList());
+
+        // logout path
         String logoutPath = coffeeNetWebProperties.getLogoutPath();
 
+        // user
         CoffeeNetWebUser coffeeNetWebUser = new CoffeeNetWebUser(coffeeNetUserDetails.getUsername(),
                 coffeeNetUserDetails.getEmail());
 
-        return new CoffeeNetWeb(coffeeNetWebUser, coffeeNetApps, profileApp, logoutPath);
-    }
-
-
-    private static Collection<CoffeeNetApp> filterAppsByRoles(Collection<CoffeeNetApp> coffeeNetApps,
-        CoffeeNetUserDetails coffeeNetUserDetails) {
-
-        return coffeeNetApps.stream().filter(app ->
-                    app.isAllowedToAccessBy(coffeeNetUserDetails.getAuthoritiesAsString())).collect(toList());
-    }
-
-
-    private CoffeeNetApp extractProfileApp(Collection<CoffeeNetApp> coffeeNetApps) {
-
-        return coffeeNetApps.stream().filter(coffeeNetApp ->
-                        coffeeNetApp.getName()
-                        .equalsIgnoreCase(coffeeNetWebProperties.getProfileServiceName())).findFirst().orElse(null);
+        return new CoffeeNetWeb(coffeeNetWebUser, firstCoffeeNetApps, profileApp, logoutPath);
     }
 }
