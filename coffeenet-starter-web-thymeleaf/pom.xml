@@ -17,13 +17,6 @@
     <description>This starter is designed to provide the CoffeeNet styling with thymeleaf templates</description>
 
     <dependencies>
-        <!-- Bootstrap -->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>3.3.6</version>
-        </dependency>
-
         <!-- CoffeeNet -->
         <dependency>
             <groupId>coffee.synyx</groupId>

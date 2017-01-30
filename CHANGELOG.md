@@ -3,6 +3,7 @@
 ### 0.16.0
 * Fix get `CoffeeNetApps` in discovery starter ordered by their names
 * Fix hamburger menu in thymeleaf starter
+* Remove bootstrap dependency from navigation bar
 * Remove deprecated `coffeenet/user` and `coffeenet/apps` endpoints for the javascript navigation bar
 
 ### 0.15.1
