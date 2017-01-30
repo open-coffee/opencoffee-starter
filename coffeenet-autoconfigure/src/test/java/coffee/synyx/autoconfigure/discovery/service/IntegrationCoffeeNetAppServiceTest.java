@@ -78,8 +78,10 @@ public class IntegrationCoffeeNetAppServiceTest {
         assertThat(coffeeNetApps.get(profileName).get(0).getAuthorities(), hasItem("ROLE_ADMIN"));
         assertThat(coffeeNetApps.get(profileName).get(1).getName(), is(profileName));
         assertThat(coffeeNetApps.get(profileName).get(1).getAuthorities(), hasItem("ROLE_USER"));
+        assertThat(coffeeNetApps.get(backPageName), hasSize(1));
         assertThat(coffeeNetApps.get(backPageName).get(0).getName(), is(backPageName));
         assertThat(coffeeNetApps.get(backPageName).get(0).getAuthorities(), is(empty()));
+        assertThat(coffeeNetApps.get(authName), hasSize(1));
         assertThat(coffeeNetApps.get(authName).get(0).getName(), is(authName));
         assertThat(coffeeNetApps.get(authName).get(0).getAuthorities(), hasSize(1));
         assertThat(coffeeNetApps.get(authName).get(0).getAuthorities(), hasItem("ROLE_USER"));
