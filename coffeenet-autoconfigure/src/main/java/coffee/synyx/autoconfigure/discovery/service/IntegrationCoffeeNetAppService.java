@@ -10,8 +10,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.function.Supplier;
 
 import static org.springframework.util.StringUtils.commaDelimitedListToSet;
+
+import static java.lang.String.CASE_INSENSITIVE_ORDER;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
@@ -44,10 +48,12 @@ public class IntegrationCoffeeNetAppService implements CoffeeNetAppService {
     @Override
     public Map<String, List<CoffeeNetApp>> getApps(AppQuery query) {
 
+        Supplier<Map<String, List<CoffeeNetApp>>> map = () -> new TreeMap<>(CASE_INSENSITIVE_ORDER);
+
         return discoveryClient.getServices()
             .stream()
             .filter(appName -> query.getAppNames().isEmpty() || query.getAppNames().contains(appName))
-            .collect(toMap(identity(), appName -> getAppInstances(appName, query)));
+            .collect(toMap(identity(), appName -> getAppInstances(appName, query), (v1, v2) -> v1, map));
     }
 
 

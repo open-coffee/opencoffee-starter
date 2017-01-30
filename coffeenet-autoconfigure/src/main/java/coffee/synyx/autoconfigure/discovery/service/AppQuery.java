@@ -1,7 +1,9 @@
 package coffee.synyx.autoconfigure.discovery.service;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
+
+import static java.lang.String.CASE_INSENSITIVE_ORDER;
 
 
 /**
@@ -20,12 +22,22 @@ public class AppQuery {
         appRoles = builder.appRoles;
     }
 
+    /**
+     * Returns a case insensitive {@link TreeSet} of application names that matches the query.
+     *
+     * @return  case sensitive set of application names
+     */
     public Set<String> getAppNames() {
 
         return appNames;
     }
 
 
+    /**
+     * Returns a case insensitive {@link TreeSet} of application roles that matches the query.
+     *
+     * @return  case sensitive set of application roles
+     */
     public Set<String> getAppRoles() {
 
         return appRoles;
@@ -39,8 +51,8 @@ public class AppQuery {
 
     public static class Builder {
 
-        private final Set<String> appNames = new HashSet<>();
-        private final Set<String> appRoles = new HashSet<>();
+        private final Set<String> appNames = new TreeSet<>(CASE_INSENSITIVE_ORDER);
+        private final Set<String> appRoles = new TreeSet<>(CASE_INSENSITIVE_ORDER);
 
         public AppQuery build() {
 

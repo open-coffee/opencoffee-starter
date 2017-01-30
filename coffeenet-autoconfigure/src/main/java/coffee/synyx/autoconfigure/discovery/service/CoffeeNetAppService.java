@@ -13,7 +13,7 @@ import java.util.Map;
 public interface CoffeeNetAppService {
 
     /**
-     * Returns a map of all registered applications from the service discovery.
+     * Returns a case insensitive key map of all registered applications from the service discovery.
      *
      * @return  a map with the name of the {@link CoffeeNetApp} as key and a list of {@link CoffeeNetApp} as value
      */
@@ -21,7 +21,8 @@ public interface CoffeeNetAppService {
 
 
     /**
-     * Returns an map of {@link CoffeeNetApp} that matches the given {@link AppQuery}.
+     * Returns an case insensitive key map of {@link java.util.TreeSet} filled with {@link CoffeeNetApp} that matches
+     * the given {@link AppQuery}. Case insensitive to find "Frontpage" if you searched for "frontPage" e.g.
      *
      * @param  query  to filter the {@link CoffeeNetApp}s
      *

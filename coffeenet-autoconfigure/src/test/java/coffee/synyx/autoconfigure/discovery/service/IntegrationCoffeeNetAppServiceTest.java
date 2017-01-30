@@ -177,6 +177,23 @@ public class IntegrationCoffeeNetAppServiceTest {
 
 
     @Test
+    public void getAppsFilteredByCaseInsensitiveNames() {
+
+        String frontPageName = "Frontpage";
+        String frontPageNameCI = "frontpage";
+        EurekaServiceInstance frontPageWithAdminAndUser = getServiceInstance(frontPageName, null);
+        when(discoveryClientMock.getInstances(frontPageName)).thenReturn(singletonList(frontPageWithAdminAndUser));
+
+        when(discoveryClientMock.getServices()).thenReturn(singletonList(frontPageName));
+
+        AppQuery query = AppQuery.builder().withAppName(frontPageNameCI).build();
+        Map<String, List<CoffeeNetApp>> coffeeNetApps = coffeeNetAppService.getApps(query);
+        assertThat(coffeeNetApps.entrySet(), hasSize(1));
+        assertThat(coffeeNetApps.get(frontPageNameCI).get(0).getName(), is(frontPageName));
+    }
+
+
+    @Test
     public void getAppsAndInstancesNotFound() {
 
         when(discoveryClientMock.getServices()).thenReturn(emptyList());
