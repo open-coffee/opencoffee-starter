@@ -1,5 +1,12 @@
-:global *, :global *::before, :global *::after {
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 .coffeenet--html {
@@ -8,6 +15,11 @@
 .coffeenet--body {
     display: flex;
     min-height: 100%;
+    font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+    line-height: 1.42857143;
 }
 
 .coffeenet--main {
@@ -111,6 +123,7 @@
     border-radius: 100%;
     width: 33px;
     height: 33px;
+    vertical-align: middle;
 }
 .coffeenet--avatar img:hover {
     animation: SPIN 2s infinite;
@@ -134,6 +147,9 @@
     margin: 10px 0 0 0;
     padding: 0;
     font-size: 1.5em;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
 }
 .coffeenet--username a {
     color: black;
@@ -154,8 +170,10 @@
     margin: 20px 0 0 0;
     padding: 0;
     font-size: 1em;
+    font-weight: 500;
     color: #BEBEBE;
     text-transform: uppercase;
+    line-height: 1.1;
 }
 
 .coffeenet--nav-section-list {
@@ -196,6 +214,7 @@
     width: 100%;
     padding: 0.3em 0;
     transition: background-color ease 150ms;
+    cursor: pointer;
 }
 .coffeenet--button-logout:focus, .coffeenet--button-logout:hover, .coffeenet--button-logout:active {
     background-color: #8BC34A;
