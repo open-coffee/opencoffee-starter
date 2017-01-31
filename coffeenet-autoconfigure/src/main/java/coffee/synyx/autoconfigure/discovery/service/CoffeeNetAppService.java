@@ -1,6 +1,7 @@
 package coffee.synyx.autoconfigure.discovery.service;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -12,9 +13,21 @@ import java.util.List;
 public interface CoffeeNetAppService {
 
     /**
-     * Returns a list of all registered applications from the service discovery.
+     * Returns a case insensitive key map of all registered applications from the service discovery.
      *
-     * @return  List of {@link CoffeeNetApp}
+     * @return  a map with the name of the {@link CoffeeNetApp} as key and a list of {@link CoffeeNetApp} as value
      */
-    List<CoffeeNetApp> getApps();
+    Map<String, List<CoffeeNetApp>> getApps();
+
+
+    /**
+     * Returns an case insensitive key map of {@link java.util.TreeSet} filled with {@link CoffeeNetApp} that matches
+     * the given {@link AppQuery}. Case insensitive to find "Frontpage" if you searched for "frontPage" e.g.
+     *
+     * @param  query  to filter the {@link CoffeeNetApp}s
+     *
+     * @return  a filtered map with the name of the {@link CoffeeNetApp} as key and a list of {@link CoffeeNetApp} as
+     *          value
+     */
+    Map<String, List<CoffeeNetApp>> getApps(AppQuery query);
 }

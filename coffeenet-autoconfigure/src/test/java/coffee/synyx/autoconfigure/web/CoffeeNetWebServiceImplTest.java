@@ -1,11 +1,10 @@
 package coffee.synyx.autoconfigure.web;
 
+import coffee.synyx.autoconfigure.discovery.service.AppQuery;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
 import coffee.synyx.autoconfigure.security.service.HumanCoffeeNetUser;
-
-import org.assertj.core.api.Assertions;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,13 +15,21 @@ import org.mockito.Mock;
 
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import static org.mockito.Matchers.any;
 
 import static org.mockito.Mockito.when;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
+import static java.util.Collections.emptyMap;
 import static java.util.Collections.emptySet;
+import static java.util.Collections.singletonList;
 
 
 /**
@@ -49,23 +56,44 @@ public class CoffeeNetWebServiceImplTest {
     @Test
     public void get() {
 
-        CoffeeNetApp profileApp = new CoffeeNetApp("profile", "url", emptySet());
-        CoffeeNetApp someApp = new CoffeeNetApp("some", "url", emptySet());
+        String profileAppName = "profile";
+        CoffeeNetApp profileApp = new CoffeeNetApp(profileAppName, "profile.coffeenet", emptySet());
+        String coffeeAppName = "Coffee App";
+        CoffeeNetApp coffeeNetApp = new CoffeeNetApp(coffeeAppName, "coffeeapp.coffeenet", emptySet());
+        String xoffeeAppName = "Xoffee App";
+        CoffeeNetApp xoffeeNetApp = new CoffeeNetApp(xoffeeAppName, "xoffeeapp2.coffeenet", emptySet());
+        CoffeeNetApp xoffeeNetApp2 = new CoffeeNetApp(xoffeeAppName, "xoffeeapp.coffeenet", emptySet());
 
-        List<CoffeeNetApp> apps = new ArrayList<>();
-        apps.add(profileApp);
-        apps.add(someApp);
-        when(coffeeNetAppServiceMock.getApps()).thenReturn(apps);
+        Map<String, List<CoffeeNetApp>> apps = new HashMap<>();
+        apps.put(profileAppName, singletonList(profileApp));
+        apps.put(coffeeAppName, singletonList(coffeeNetApp));
+        apps.put(xoffeeAppName, asList(xoffeeNetApp, xoffeeNetApp2));
+        when(coffeeNetAppServiceMock.getApps(any(AppQuery.class))).thenReturn(apps);
 
         HumanCoffeeNetUser user = new HumanCoffeeNetUser("username", "email", emptyList());
         when(coffeeNetCurrentUserServiceMock.get()).thenReturn(user);
 
         CoffeeNetWeb coffeeNetWeb = sut.get();
-        Assertions.assertThat(coffeeNetWeb.getLogoutPath()).isEqualTo("/logout");
-        Assertions.assertThat(coffeeNetWeb.getCoffeeNetWebUser().getUsername()).isSameAs("username");
-        Assertions.assertThat(coffeeNetWeb.getCoffeeNetWebUser().getEmail()).isSameAs("email");
-        Assertions.assertThat(coffeeNetWeb.getProfileApp()).isSameAs(profileApp);
-        Assertions.assertThat(coffeeNetWeb.getCoffeeNetApps()).hasSize(1);
-        Assertions.assertThat(coffeeNetWeb.getCoffeeNetApps()).contains(someApp);
+        assertThat(coffeeNetWeb.getLogoutPath()).isEqualTo("/logout");
+        assertThat(coffeeNetWeb.getCoffeeNetWebUser().getUsername()).isSameAs("username");
+        assertThat(coffeeNetWeb.getCoffeeNetWebUser().getEmail()).isSameAs("email");
+        assertThat(coffeeNetWeb.getProfileApp()).isSameAs(profileApp);
+        assertThat(coffeeNetWeb.getCoffeeNetApps()).hasSize(2);
+        assertThat(coffeeNetWeb.getCoffeeNetApps().get(0)).isSameAs(coffeeNetApp);
+        assertThat(coffeeNetWeb.getCoffeeNetApps().get(1)).isSameAs(xoffeeNetApp);
+    }
+
+
+    @Test
+    public void getNoProfileApp() {
+
+        when(coffeeNetAppServiceMock.getApps(any(AppQuery.class))).thenReturn(emptyMap());
+        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(new HumanCoffeeNetUser("username", "email",
+                emptyList()));
+
+        CoffeeNetWeb coffeeNetWeb = sut.get();
+        assertThat(coffeeNetWeb.getCoffeeNetWebUser().getUsername()).isSameAs("username");
+        assertThat(coffeeNetWeb.getCoffeeNetWebUser().getEmail()).isSameAs("email");
+        assertThat(coffeeNetWeb.getProfileApp()).isNull();
     }
 }
