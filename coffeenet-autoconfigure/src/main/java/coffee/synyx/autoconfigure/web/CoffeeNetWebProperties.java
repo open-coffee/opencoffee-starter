@@ -4,6 +4,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import org.springframework.validation.annotation.Validated;
+
 
 /**
  * Properties for the web starters.
@@ -11,6 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.15.0
  */
+@Validated
 @ConfigurationProperties("coffeenet.web")
 class CoffeeNetWebProperties {
 
