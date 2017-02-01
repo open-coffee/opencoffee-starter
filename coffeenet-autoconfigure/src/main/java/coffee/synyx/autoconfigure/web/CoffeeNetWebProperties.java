@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
  */
 @Validated
 @ConfigurationProperties("coffeenet.web")
-class CoffeeNetWebProperties {
+public class CoffeeNetWebProperties {
 
     @NotEmpty
     private String profileServiceName = "profile";
