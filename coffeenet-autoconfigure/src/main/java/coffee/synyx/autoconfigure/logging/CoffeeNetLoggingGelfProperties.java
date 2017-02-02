@@ -4,8 +4,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import org.springframework.validation.annotation.Validated;
-
 import javax.validation.constraints.Min;
 
 
@@ -15,7 +13,6 @@ import javax.validation.constraints.Min;
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.9.0
  */
-@Validated
 @ConfigurationProperties("coffeenet.logging.gelf")
 public class CoffeeNetLoggingGelfProperties {
 

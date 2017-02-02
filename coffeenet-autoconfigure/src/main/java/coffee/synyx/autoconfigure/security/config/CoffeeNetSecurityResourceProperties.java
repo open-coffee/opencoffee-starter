@@ -6,8 +6,6 @@ import org.hibernate.validator.constraints.URL;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import org.springframework.validation.annotation.Validated;
-
 
 /**
  * This configuration properties class defines all properties that are defined under the prefix
@@ -15,7 +13,6 @@ import org.springframework.validation.annotation.Validated;
  *
  * @author  Tobias Schneider - schneider@synyx.de
  */
-@Validated
 @ConfigurationProperties("coffeenet.security.resource")
 public class CoffeeNetSecurityResourceProperties extends ResourceServerProperties {
 

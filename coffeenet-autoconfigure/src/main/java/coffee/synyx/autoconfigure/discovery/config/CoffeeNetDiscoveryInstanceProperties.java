@@ -13,13 +13,10 @@ import org.springframework.core.env.Environment;
 
 import org.springframework.util.StringUtils;
 
-import org.springframework.validation.annotation.Validated;
-
 
 /**
  * @author  Tobias Schneider - schneider@synyx.de
  */
-@Validated
 class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
 
     /**
