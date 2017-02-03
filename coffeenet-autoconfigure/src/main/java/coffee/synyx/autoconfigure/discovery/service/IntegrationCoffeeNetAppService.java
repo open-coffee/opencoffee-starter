@@ -17,7 +17,6 @@ import static org.springframework.util.StringUtils.commaDelimitedListToSet;
 
 import static java.lang.String.CASE_INSENSITIVE_ORDER;
 
-import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 import static java.util.stream.Collectors.toSet;
@@ -53,7 +52,11 @@ public class IntegrationCoffeeNetAppService implements CoffeeNetAppService {
         return discoveryClient.getServices()
             .stream()
             .filter(appName -> query.getAppNames().isEmpty() || query.getAppNames().contains(appName))
-            .collect(toMap(identity(), appName -> getAppInstances(appName, query), (v1, v2) -> v1, map));
+            .map(appName -> getAppInstances(appName, query))
+            .filter(coffeeNetApps -> !coffeeNetApps.isEmpty())
+            .collect(toMap(coffeeNetApps -> coffeeNetApps.get(0).getName(), coffeeNetApps -> coffeeNetApps,
+                    (v1, v2) -> v1,
+                    map));
     }
 
 
@@ -78,7 +81,7 @@ public class IntegrationCoffeeNetAppService implements CoffeeNetAppService {
         EurekaServiceInstance eurekaServiceInstance = (EurekaServiceInstance) serviceInstance;
         InstanceInfo instanceInfo = eurekaServiceInstance.getInstanceInfo();
         Set<String> allowedAuthorities = commaDelimitedListToSet(instanceInfo.getMetadata().get("allowedAuthorities"))
-            .stream().map(String::trim).collect(toSet());
+                .stream().map(String::trim).collect(toSet());
 
         return new CoffeeNetApp(instanceInfo.getVIPAddress(), instanceInfo.getHomePageUrl(), allowedAuthorities);
     }

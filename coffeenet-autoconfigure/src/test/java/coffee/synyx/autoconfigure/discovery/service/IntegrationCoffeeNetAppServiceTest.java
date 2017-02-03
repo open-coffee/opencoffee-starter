@@ -11,6 +11,7 @@ import org.mockito.Mock;
 
 import org.mockito.runners.MockitoJUnitRunner;
 
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient.EurekaServiceInstance;
 
@@ -192,6 +193,20 @@ public class IntegrationCoffeeNetAppServiceTest {
         Map<String, List<CoffeeNetApp>> coffeeNetApps = coffeeNetAppService.getApps(query);
         assertThat(coffeeNetApps.entrySet(), hasSize(1));
         assertThat(coffeeNetApps.get(frontPageNameCI).get(0).getName(), is(frontPageName));
+    }
+
+
+    @Test
+    public void getAppsNotOfTypeEurekaServiceInstance() {
+
+        String frontPageName = "frontpage";
+        ServiceInstance serviceInstance = mock(ServiceInstance.class);
+        when(discoveryClientMock.getInstances(frontPageName)).thenReturn(singletonList(serviceInstance));
+        when(discoveryClientMock.getServices()).thenReturn(singletonList(frontPageName));
+
+        AppQuery query = AppQuery.builder().withAppName(frontPageName).build();
+        Map<String, List<CoffeeNetApp>> coffeeNetApps = coffeeNetAppService.getApps(query);
+        assertThat(coffeeNetApps.entrySet(), hasSize(0));
     }
 
 
