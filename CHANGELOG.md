@@ -1,5 +1,8 @@
 # Changelog 
 
+### 0.16.1
+* Fix ignoring all service instances that are not from eureka
+
 ### 0.16.0
 * Upgrade to spring boot 1.5.1
 * Add `CoffeeNetAppService` can be queried to find the `CoffeeNetApp` you need
