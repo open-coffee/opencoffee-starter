@@ -7,7 +7,7 @@
         <div id="coffeenet--nav-hamburger" class="coffeenet--nav-hamburger">
             <span></span>
         </div>
-        <div class="coffeenet--personalisation-container">
+        <div th:if="${coffeenet.coffeeNetWebUser}" class="coffeenet--personalisation-container">
             <div class="coffeenet--avatar">
                 <a th:if="${coffeenet.profileApp}" th:href="${coffeenet.profileApp.url}">
                     <img th:src="${coffeenet.coffeeNetWebUser.getAvatar()}" src="/img/default_avatar.jpg"/>
@@ -24,7 +24,7 @@
                 </span>
             </h2>
         </div>
-        <nav class="coffeenet--nav-container">
+        <nav th:if="${coffeenet.coffeeNetApps}" class="coffeenet--nav-container">
             <h2 class="coffeenet--nav-section-title">Anwendungen</h2>
             <ul class="coffeenet--nav-section-list" th:each="coffeeNetApp : ${coffeenet.coffeeNetApps}">
                 <li>

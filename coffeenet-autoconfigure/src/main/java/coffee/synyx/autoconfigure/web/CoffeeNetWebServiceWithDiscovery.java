@@ -3,8 +3,6 @@ package coffee.synyx.autoconfigure.web;
 import coffee.synyx.autoconfigure.discovery.service.AppQuery;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
-import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
-import coffee.synyx.autoconfigure.security.service.CoffeeNetUserDetails;
 
 import java.util.Comparator;
 import java.util.List;
@@ -20,16 +18,14 @@ import static java.util.stream.Collectors.toList;
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.15.0
  */
-public class CoffeeNetWebServiceImpl implements CoffeeNetWebService {
+public class CoffeeNetWebServiceWithDiscovery implements CoffeeNetWebService {
 
-    private final CoffeeNetCurrentUserService coffeeNetCurrentUserService;
     private final CoffeeNetAppService coffeeNetAppService;
     private final CoffeeNetWebProperties coffeeNetWebProperties;
 
-    CoffeeNetWebServiceImpl(CoffeeNetCurrentUserService coffeeNetCurrentUserService,
-        CoffeeNetAppService coffeeNetAppService, CoffeeNetWebProperties coffeeNetWebProperties) {
+    CoffeeNetWebServiceWithDiscovery(CoffeeNetAppService coffeeNetAppService,
+        CoffeeNetWebProperties coffeeNetWebProperties) {
 
-        this.coffeeNetCurrentUserService = coffeeNetCurrentUserService;
         this.coffeeNetAppService = coffeeNetAppService;
         this.coffeeNetWebProperties = coffeeNetWebProperties;
     }
@@ -37,11 +33,9 @@ public class CoffeeNetWebServiceImpl implements CoffeeNetWebService {
     @Override
     public CoffeeNetWeb get() {
 
-        CoffeeNetUserDetails coffeeNetUserDetails = coffeeNetCurrentUserService.get();
-
         // apps
         String profileServiceName = coffeeNetWebProperties.getProfileServiceName();
-        AppQuery query = AppQuery.builder().withRoles(coffeeNetUserDetails.getAuthoritiesAsString()).build();
+        AppQuery query = AppQuery.builder().build();
         Map<String, List<CoffeeNetApp>> coffeeNetApps = coffeeNetAppService.getApps(query);
 
         List<CoffeeNetApp> profileApps = coffeeNetApps.get(profileServiceName);
@@ -61,10 +55,6 @@ public class CoffeeNetWebServiceImpl implements CoffeeNetWebService {
         // logout path
         String logoutPath = coffeeNetWebProperties.getLogoutPath();
 
-        // user
-        CoffeeNetWebUser coffeeNetWebUser = new CoffeeNetWebUser(coffeeNetUserDetails.getUsername(),
-                coffeeNetUserDetails.getEmail());
-
-        return new CoffeeNetWeb(coffeeNetWebUser, firstCoffeeNetApps, profileApp, logoutPath);
+        return new CoffeeNetWeb(null, firstCoffeeNetApps, profileApp, logoutPath);
     }
 }

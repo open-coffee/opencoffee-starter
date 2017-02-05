@@ -4,7 +4,6 @@ import coffee.synyx.autoconfigure.discovery.config.CoffeeNetDiscoveryAutoConfigu
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityAutoConfiguration;
 import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
-import coffee.synyx.autoconfigure.web.CoffeeNetWebAutoConfiguration.ConditionOnSecurityAndDiscovery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,6 @@ import static java.lang.invoke.MethodHandles.lookup;
  * @since  0.15.0
  */
 @Configuration
-@Conditional(ConditionOnSecurityAndDiscovery.class)
 @AutoConfigureAfter({ CoffeeNetDiscoveryAutoConfiguration.class, CoffeeNetSecurityAutoConfiguration.class })
 public class CoffeeNetWebAutoConfiguration {
 
@@ -45,14 +43,47 @@ public class CoffeeNetWebAutoConfiguration {
 
 
     @Bean
+    @Conditional(ConditionOnSecurityAndDiscovery.class)
     @ConditionalOnMissingBean(CoffeeNetWebService.class)
-    public CoffeeNetWebService coffeeNetWebService(CoffeeNetCurrentUserService coffeeNetCurrentUserService,
-        CoffeeNetAppService coffeeNetAppService, CoffeeNetWebProperties coffeeNetWebProperties) {
+    public CoffeeNetWebService coffeeNetWebServiceWithSecurityAndDiscovery(
+        CoffeeNetCurrentUserService coffeeNetCurrentUserService, CoffeeNetAppService coffeeNetAppService,
+        CoffeeNetWebProperties coffeeNetWebProperties) {
 
-        CoffeeNetWebServiceImpl coffeeNetWebService = new CoffeeNetWebServiceImpl(coffeeNetCurrentUserService,
-                coffeeNetAppService, coffeeNetWebProperties);
+        CoffeeNetWebService coffeeNetWebService = new CoffeeNetWebServiceWithDiscoveryAndSecurity(
+                coffeeNetCurrentUserService, coffeeNetAppService, coffeeNetWebProperties);
 
-        LOGGER.info("//> Created the CoffeeNetWebService");
+        LOGGER.info(
+            "//> Created the CoffeeNetWebService with CoffeeNetWebServiceWithDiscoveryAndSecurity implementation");
+
+        return coffeeNetWebService;
+    }
+
+
+    @Bean
+    @Conditional(ConditionOnDiscoveryAndNoSecurity.class)
+    @ConditionalOnMissingBean(CoffeeNetWebService.class)
+    public CoffeeNetWebService coffeeNetWebServiceWithDiscovery(CoffeeNetAppService coffeeNetAppService,
+        CoffeeNetWebProperties coffeeNetWebProperties) {
+
+        CoffeeNetWebService coffeeNetWebService = new CoffeeNetWebServiceWithDiscovery(coffeeNetAppService,
+                coffeeNetWebProperties);
+
+        LOGGER.info("//> Created the CoffeeNetWebService with CoffeeNetWebServiceWithDiscovery implementation");
+
+        return coffeeNetWebService;
+    }
+
+
+    @Bean
+    @Conditional(ConditionOnSecurityAndNoDiscovery.class)
+    @ConditionalOnMissingBean(CoffeeNetWebService.class)
+    public CoffeeNetWebService coffeeNetWebServiceWithSecurity(CoffeeNetCurrentUserService coffeeNetCurrentUserService,
+        CoffeeNetWebProperties coffeeNetWebProperties) {
+
+        CoffeeNetWebService coffeeNetWebService = new CoffeeNetWebServiceWithSecurity(coffeeNetCurrentUserService,
+                coffeeNetWebProperties);
+
+        LOGGER.info("//> Created the CoffeeNetWebService with CoffeeNetWebServiceWithSecurity implementation");
 
         return coffeeNetWebService;
     }
@@ -124,6 +155,38 @@ public class CoffeeNetWebAutoConfiguration {
         }
 
         @ConditionalOnBean(CoffeeNetCurrentUserService.class)
+        static class OnSecurity {
+        }
+    }
+
+    static class ConditionOnSecurityAndNoDiscovery extends AllNestedConditions {
+
+        ConditionOnSecurityAndNoDiscovery() {
+
+            super(ConfigurationPhase.REGISTER_BEAN);
+        }
+
+        @ConditionalOnMissingBean(CoffeeNetAppService.class)
+        static class OnDiscovery {
+        }
+
+        @ConditionalOnBean(CoffeeNetCurrentUserService.class)
+        static class OnSecurity {
+        }
+    }
+
+    static class ConditionOnDiscoveryAndNoSecurity extends AllNestedConditions {
+
+        ConditionOnDiscoveryAndNoSecurity() {
+
+            super(ConfigurationPhase.REGISTER_BEAN);
+        }
+
+        @ConditionalOnBean(CoffeeNetAppService.class)
+        static class OnDiscovery {
+        }
+
+        @ConditionalOnMissingBean(CoffeeNetCurrentUserService.class)
         static class OnSecurity {
         }
     }

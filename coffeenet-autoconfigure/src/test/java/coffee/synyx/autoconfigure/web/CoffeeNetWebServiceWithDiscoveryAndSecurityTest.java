@@ -36,9 +36,9 @@ import static java.util.Collections.singletonList;
  * @author  Tobias Schneider - schneider@synyx.de
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CoffeeNetWebServiceImplTest {
+public class CoffeeNetWebServiceWithDiscoveryAndSecurityTest {
 
-    private CoffeeNetWebServiceImpl sut;
+    private CoffeeNetWebServiceWithDiscoveryAndSecurity sut;
 
     @Mock
     private CoffeeNetCurrentUserService coffeeNetCurrentUserServiceMock;
@@ -48,7 +48,7 @@ public class CoffeeNetWebServiceImplTest {
     @Before
     public void setUp() throws Exception {
 
-        sut = new CoffeeNetWebServiceImpl(coffeeNetCurrentUserServiceMock, coffeeNetAppServiceMock,
+        sut = new CoffeeNetWebServiceWithDiscoveryAndSecurity(coffeeNetCurrentUserServiceMock, coffeeNetAppServiceMock,
                 new CoffeeNetWebProperties());
     }
 
