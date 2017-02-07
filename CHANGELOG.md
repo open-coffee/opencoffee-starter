@@ -1,5 +1,8 @@
 # Changelog 
 
+### 0.16.2
+* No user is needed to provide `CoffeeNetWeb`
+
 ### 0.16.1
 * Fix ignoring all service instances that are not from eureka
 
