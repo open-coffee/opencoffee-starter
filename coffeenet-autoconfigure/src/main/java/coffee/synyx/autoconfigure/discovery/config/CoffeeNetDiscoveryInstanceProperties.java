@@ -79,4 +79,13 @@ class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
             this.setSecureVirtualHostName(applicationName);
         }
     }
+
+
+    @Override
+    public String toString() {
+
+        return "CoffeeNetDiscoveryInstanceProperties{"
+            + "hostname='" + hostname + '\''
+            + ", coffeeNetConfigurationProperties=" + coffeeNetConfigurationProperties + '}';
+    }
 }

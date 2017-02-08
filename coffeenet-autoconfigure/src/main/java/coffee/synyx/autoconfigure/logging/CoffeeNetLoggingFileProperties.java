@@ -92,4 +92,16 @@ public class CoffeeNetLoggingFileProperties {
 
         this.fileNamePattern = rollingFNP;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "CoffeeNetLoggingFileProperties{"
+            + "enabled=" + enabled
+            + ", file='" + file + '\''
+            + ", fileNamePattern='" + fileNamePattern + '\''
+            + ", pattern='" + pattern + '\''
+            + ", maxHistory=" + maxHistory + '}';
+    }
 }

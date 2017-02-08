@@ -53,4 +53,13 @@ public class CoffeeNetSecurityClientProperties extends AuthorizationCodeResource
 
         this.userAuthorizationUri = userAuthorizationUri;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "CoffeeNetSecurityClientProperties{"
+            + "accessTokenUri='" + accessTokenUri + '\''
+            + ", userAuthorizationUri='" + userAuthorizationUri + '\'' + '}';
+    }
 }
