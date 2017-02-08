@@ -1,5 +1,8 @@
 # Changelog 
 
+### 0.17.0
+* Fix to mark the opened application in the navigation bar in thymeleaf template
+
 ### 0.16.2
 * No user is needed to provide `CoffeeNetWeb`
 
