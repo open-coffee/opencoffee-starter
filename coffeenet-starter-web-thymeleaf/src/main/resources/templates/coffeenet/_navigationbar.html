@@ -27,7 +27,7 @@
         <nav class="coffeenet--nav-container">
             <h2 class="coffeenet--nav-section-title">Anwendungen</h2>
             <ul class="coffeenet--nav-section-list" th:each="coffeeNetApp : ${coffeenet.coffeeNetApps}">
-                <li>
+                <li th:classappend="${#httpServletRequest.requestURL == coffeeNetApp.url} ? active : ''">
                     <a th:href="${coffeeNetApp.url}" th:title="${coffeeNetApp.name}" th:text="${coffeeNetApp.name}">
                         CoffeeNet App
                     </a>
@@ -36,7 +36,7 @@
 
             <h2 th:if="${coffeenet.profileApp}" class="coffeenet--nav-section-title">Einstellungen</h2>
             <ul class="coffeenet--nav-section-list">
-                <li th:if="${coffeenet.profileApp}">
+                <li th:if="${coffeenet.profileApp}" th:classappend="${#httpServletRequest.requestURL == coffeenet.profileApp.url} ? active : ''">
                     <a th:href="${coffeenet.profileApp.url}" th:text="${coffeenet.profileApp.name}">Profile</a>
                 </li>
             </ul>
