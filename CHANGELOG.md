@@ -1,6 +1,7 @@
 # Changelog 
 
 ### 0.17.0
+* Add only show "Anwendungen" headline in navigation bar if an application is present
 * Fix to mark the opened application in the navigation bar in thymeleaf template
 
 ### 0.16.2

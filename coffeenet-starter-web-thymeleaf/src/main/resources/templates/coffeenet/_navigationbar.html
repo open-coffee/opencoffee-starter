@@ -25,7 +25,7 @@
             </h2>
         </div>
         <nav class="coffeenet--nav-container">
-            <h2 class="coffeenet--nav-section-title">Anwendungen</h2>
+            <h2 th:if="${not #lists.isEmpty(coffeenet.coffeeNetApps)}" class="coffeenet--nav-section-title">Anwendungen</h2>
             <ul class="coffeenet--nav-section-list" th:each="coffeeNetApp : ${coffeenet.coffeeNetApps}">
                 <li th:classappend="${#httpServletRequest.requestURL == coffeeNetApp.url} ? active : ''">
                     <a th:href="${coffeeNetApp.url}" th:title="${coffeeNetApp.name}" th:text="${coffeeNetApp.name}">
