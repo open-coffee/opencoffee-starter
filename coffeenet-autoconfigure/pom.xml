@@ -31,6 +31,8 @@
             <artifactId>spring-boot</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <!-- Validation -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
