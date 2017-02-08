@@ -20,13 +20,6 @@
 
     <dependencies>
 
-        <!-- Spring Boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot</artifactId>
-            <optional>true</optional>
-        </dependency>
-
         <!-- Validation -->
         <dependency>
             <groupId>org.hibernate</groupId>
