@@ -20,6 +20,7 @@
 
     <dependencies>
 
+        <!-- Spring Boot -->
         <!-- Compile -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -28,6 +29,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
