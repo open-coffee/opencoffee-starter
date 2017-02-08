@@ -41,7 +41,14 @@ public class CoffeeNetWebServiceWithDiscoveryAndSecurity implements CoffeeNetWeb
 
         // apps
         String profileServiceName = coffeeNetWebProperties.getProfileServiceName();
-        AppQuery query = AppQuery.builder().withRoles(coffeeNetUserDetails.getAuthoritiesAsString()).build();
+        AppQuery.Builder builder = AppQuery.builder();
+
+        if (coffeeNetUserDetails != null) {
+            builder.withRoles(coffeeNetUserDetails.getAuthoritiesAsString());
+        }
+
+        AppQuery query = builder.build();
+
         Map<String, List<CoffeeNetApp>> coffeeNetApps = coffeeNetAppService.getApps(query);
 
         List<CoffeeNetApp> profileApps = coffeeNetApps.get(profileServiceName);
@@ -53,17 +60,21 @@ public class CoffeeNetWebServiceWithDiscoveryAndSecurity implements CoffeeNetWeb
         }
 
         List<CoffeeNetApp> firstCoffeeNetApps = coffeeNetApps.entrySet()
-            .stream()
-            .map(entry -> entry.getValue().get(0))
-            .sorted(Comparator.comparing(CoffeeNetApp::getName))
-            .collect(toList());
+                .stream()
+                .map(entry -> entry.getValue().get(0))
+                .sorted(Comparator.comparing(CoffeeNetApp::getName))
+                .collect(toList());
 
         // logout path
         String logoutPath = coffeeNetWebProperties.getLogoutPath();
 
         // user
-        CoffeeNetWebUser coffeeNetWebUser = new CoffeeNetWebUser(coffeeNetUserDetails.getUsername(),
-                coffeeNetUserDetails.getEmail());
+        CoffeeNetWebUser coffeeNetWebUser = null;
+
+        if (coffeeNetUserDetails != null) {
+            coffeeNetWebUser = new CoffeeNetWebUser(coffeeNetUserDetails.getUsername(),
+                    coffeeNetUserDetails.getEmail());
+        }
 
         return new CoffeeNetWeb(coffeeNetWebUser, firstCoffeeNetApps, profileApp, logoutPath);
     }

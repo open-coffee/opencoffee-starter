@@ -1,5 +1,12 @@
 # Changelog 
 
+### 0.17.0
+* Add only show "Anwendungen" headline in navigation bar if an application is present
+* Fix to mark the opened application in the navigation bar in thymeleaf template
+
+### 0.16.2
+* No user is needed to provide `CoffeeNetWeb`
+
 ### 0.16.1
 * Fix ignoring all service instances that are not from eureka
 

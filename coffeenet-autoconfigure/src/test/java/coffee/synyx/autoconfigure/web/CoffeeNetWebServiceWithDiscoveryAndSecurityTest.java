@@ -95,5 +95,19 @@ public class CoffeeNetWebServiceWithDiscoveryAndSecurityTest {
         assertThat(coffeeNetWeb.getCoffeeNetWebUser().getUsername()).isSameAs("username");
         assertThat(coffeeNetWeb.getCoffeeNetWebUser().getEmail()).isSameAs("email");
         assertThat(coffeeNetWeb.getProfileApp()).isNull();
+        assertThat(coffeeNetWeb.getLogoutPath()).isEqualTo("/logout");
+    }
+
+
+    @Test
+    public void getWithoutUser() {
+
+        when(coffeeNetAppServiceMock.getApps(any(AppQuery.class))).thenReturn(emptyMap());
+        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(null);
+
+        CoffeeNetWeb coffeeNetWeb = sut.get();
+        assertThat(coffeeNetWeb.getCoffeeNetWebUser()).isNull();
+        assertThat(coffeeNetWeb.getProfileApp()).isNull();
+        assertThat(coffeeNetWeb.getLogoutPath()).isEqualTo("/logout");
     }
 }
