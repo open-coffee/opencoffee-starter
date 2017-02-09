@@ -36,6 +36,9 @@
         <!-- Spring Cloud Dependency -->
         <spring-cloud-dependencies.version>Camden.SR4</spring-cloud-dependencies.version>
 
+        <!-- CoffeeNet Dependencies -->
+        <navigation-bar.version>0.11.0</navigation-bar.version>
+
         <!-- Third-Party Dependencies -->
         <logback-gelf-appender.version>1.2.2</logback-gelf-appender.version>
 
@@ -93,7 +96,7 @@
             <dependency>
                 <groupId>coffee.synyx</groupId>
                 <artifactId>navigation-bar</artifactId>
-                <version>0.11.0</version>
+                <version>${navigation-bar.version}</version>
             </dependency>
 
             <!-- Third-Party Dependencies -->
