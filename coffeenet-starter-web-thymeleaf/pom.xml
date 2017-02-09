@@ -21,7 +21,6 @@
         <dependency>
             <groupId>coffee.synyx</groupId>
             <artifactId>starter-web</artifactId>
-            <version>0.17.0-SNAPSHOT</version>
         </dependency>
 
         <!-- Thymeleaf -->
