@@ -1,5 +1,8 @@
 package coffee.synyx.autoconfigure.security.service;
 
+import java.util.Optional;
+
+
 /**
  * Interface for getting user information.
  *
@@ -12,5 +15,5 @@ public interface CoffeeNetCurrentUserService {
      *
      * @return  object with user information.
      */
-    CoffeeNetUserDetails get();
+    Optional<CoffeeNetUserDetails> get();
 }

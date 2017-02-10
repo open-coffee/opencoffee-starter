@@ -42,12 +42,13 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
 
         providePrinciple(new User("admin", "", singleton(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN"))));
 
-        CoffeeNetUserDetails coffeeNetUserDetails = sut.get();
+        CoffeeNetUserDetails coffeeNetUserDetails = sut.get().get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
         assertThat(coffeeNetUserDetails.getPassword(), is(nullValue()));
         assertThat(coffeeNetUserDetails.getEmail(), is("admin@coffeenet"));
         assertThat(coffeeNetUserDetails.getUsername(), is("admin"));
-        assertThat(coffeeNetUserDetails.getAuthorities(), contains(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN")));
+        assertThat(coffeeNetUserDetails.getAuthorities(),
+            contains(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN")));
     }
 
 
@@ -57,7 +58,7 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
         providePrinciple(new User("admin", "",
                 asList(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN"), new SimpleGrantedAuthority("ROLE_ADMIN"))));
 
-        CoffeeNetUserDetails coffeeNetUserDetails = sut.get();
+        CoffeeNetUserDetails coffeeNetUserDetails = sut.get().get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
         assertThat(coffeeNetUserDetails.getPassword(), is(nullValue()));
         assertThat(coffeeNetUserDetails.getEmail(), is("admin@coffeenet"));
@@ -72,7 +73,7 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
 
         providePrinciple(new User("user", "", emptyList()));
 
-        CoffeeNetUserDetails coffeeNetUserDetails = sut.get();
+        CoffeeNetUserDetails coffeeNetUserDetails = sut.get().get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
         assertThat(coffeeNetUserDetails.getPassword(), is(nullValue()));
         assertThat(coffeeNetUserDetails.getEmail(), is("user@coffeenet"));

@@ -18,6 +18,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -71,7 +72,7 @@ public class CoffeeNetWebServiceWithDiscoveryAndSecurityTest {
         when(coffeeNetAppServiceMock.getApps(any(AppQuery.class))).thenReturn(apps);
 
         HumanCoffeeNetUser user = new HumanCoffeeNetUser("username", "email", emptyList());
-        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(user);
+        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(Optional.of(user));
 
         CoffeeNetWeb coffeeNetWeb = sut.get();
         assertThat(coffeeNetWeb.getLogoutPath()).isEqualTo("/logout");
@@ -88,8 +89,8 @@ public class CoffeeNetWebServiceWithDiscoveryAndSecurityTest {
     public void getNoProfileApp() {
 
         when(coffeeNetAppServiceMock.getApps(any(AppQuery.class))).thenReturn(emptyMap());
-        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(new HumanCoffeeNetUser("username", "email",
-                emptyList()));
+        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(Optional.of(
+                new HumanCoffeeNetUser("username", "email", emptyList())));
 
         CoffeeNetWeb coffeeNetWeb = sut.get();
         assertThat(coffeeNetWeb.getCoffeeNetWebUser().getUsername()).isSameAs("username");
@@ -103,7 +104,7 @@ public class CoffeeNetWebServiceWithDiscoveryAndSecurityTest {
     public void getWithoutUser() {
 
         when(coffeeNetAppServiceMock.getApps(any(AppQuery.class))).thenReturn(emptyMap());
-        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(null);
+        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(Optional.empty());
 
         CoffeeNetWeb coffeeNetWeb = sut.get();
         assertThat(coffeeNetWeb.getCoffeeNetWebUser()).isNull();

@@ -37,7 +37,7 @@ public class CoffeeNetWebServiceWithDiscoveryAndSecurity implements CoffeeNetWeb
     @Override
     public CoffeeNetWeb get() {
 
-        CoffeeNetUserDetails coffeeNetUserDetails = coffeeNetCurrentUserService.get();
+        CoffeeNetUserDetails coffeeNetUserDetails = coffeeNetCurrentUserService.get().orElse(null);
 
         // apps
         String profileServiceName = coffeeNetWebProperties.getProfileServiceName();

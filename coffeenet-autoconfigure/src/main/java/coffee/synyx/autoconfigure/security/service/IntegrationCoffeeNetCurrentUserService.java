@@ -3,6 +3,8 @@ package coffee.synyx.autoconfigure.security.service;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.Optional;
+
 
 /**
  * @author  Tobias Schneider - schneider@synyx.de
@@ -11,20 +13,20 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class IntegrationCoffeeNetCurrentUserService implements CoffeeNetCurrentUserService {
 
     @Override
-    public CoffeeNetUserDetails get() {
+    public Optional<CoffeeNetUserDetails> get() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null) {
-            return null;
+            return Optional.empty();
         }
 
         Object principal = authentication.getPrincipal();
 
         if (!(principal instanceof CoffeeNetUserDetails)) {
-            return null;
+            return Optional.empty();
         }
 
-        return (CoffeeNetUserDetails) principal;
+        return Optional.of((CoffeeNetUserDetails) principal);
     }
 }

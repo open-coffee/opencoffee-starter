@@ -30,7 +30,7 @@ public class CoffeeNetWebServiceWithSecurity implements CoffeeNetWebService {
         String logoutPath = coffeeNetWebProperties.getLogoutPath();
 
         // user
-        CoffeeNetUserDetails coffeeNetUserDetails = coffeeNetCurrentUserService.get();
+        CoffeeNetUserDetails coffeeNetUserDetails = coffeeNetCurrentUserService.get().get();
         CoffeeNetWebUser coffeeNetWebUser = new CoffeeNetWebUser(coffeeNetUserDetails.getUsername(),
                 coffeeNetUserDetails.getEmail());
 
