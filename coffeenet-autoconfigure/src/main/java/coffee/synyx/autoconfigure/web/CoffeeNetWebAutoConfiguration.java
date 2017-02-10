@@ -11,14 +11,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.condition.AllNestedConditions;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
+
+import static coffee.synyx.autoconfigure.web.CoffeeNetWebExtractor.APP_SERVICE_NAME;
+import static coffee.synyx.autoconfigure.web.CoffeeNetWebExtractor.USER_SERVICE_NAME;
 
 import static java.lang.invoke.MethodHandles.lookup;
 
@@ -43,49 +44,54 @@ public class CoffeeNetWebAutoConfiguration {
 
 
     @Bean
-    @Conditional(ConditionOnSecurityAndDiscovery.class)
-    @ConditionalOnMissingBean(CoffeeNetWebService.class)
-    public CoffeeNetWebService coffeeNetWebServiceWithSecurityAndDiscovery(
-        CoffeeNetCurrentUserService coffeeNetCurrentUserService, CoffeeNetAppService coffeeNetAppService,
-        CoffeeNetWebProperties coffeeNetWebProperties) {
+    @ConditionalOnMissingBean(CoffeeNetWebExtractor.class)
+    public CoffeeNetWebExtractor coffeeNetWebExtractor(CoffeeNetWebProperties coffeeNetWebProperties) {
 
-        CoffeeNetWebService coffeeNetWebService = new CoffeeNetWebServiceWithDiscoveryAndSecurity(
-                coffeeNetCurrentUserService, coffeeNetAppService, coffeeNetWebProperties);
+        CoffeeNetWebExtractor coffeeNetWebExtractor = new CoffeeNetWebExtractor(coffeeNetWebProperties);
 
-        LOGGER.info(
-            "//> Created the CoffeeNetWebService with CoffeeNetWebServiceWithDiscoveryAndSecurity implementation");
+        LOGGER.info("//> Created the CoffeeNetWebExtractor");
 
-        return coffeeNetWebService;
+        return coffeeNetWebExtractor;
     }
 
 
     @Bean
-    @Conditional(ConditionOnDiscoveryAndNoSecurity.class)
     @ConditionalOnMissingBean(CoffeeNetWebService.class)
-    public CoffeeNetWebService coffeeNetWebServiceWithDiscovery(CoffeeNetAppService coffeeNetAppService,
-        CoffeeNetWebProperties coffeeNetWebProperties) {
+    public CoffeeNetWebService coffeeNetWebService(CoffeeNetWebExtractor coffeeNetWebExtractor) {
 
-        CoffeeNetWebService coffeeNetWebService = new CoffeeNetWebServiceWithDiscovery(coffeeNetAppService,
-                coffeeNetWebProperties);
+        CoffeeNetWebService coffeeNetWebService = new CoffeeNetWebServiceImpl(coffeeNetWebExtractor);
 
-        LOGGER.info("//> Created the CoffeeNetWebService with CoffeeNetWebServiceWithDiscovery implementation");
+        LOGGER.info("//> Created the CoffeeNetWebService");
 
         return coffeeNetWebService;
     }
 
+    @Configuration
+    @ConditionalOnBean(CoffeeNetCurrentUserService.class)
+    static class CoffeeNetCurrentUserServiceConfiguration {
 
-    @Bean
-    @Conditional(ConditionOnSecurityAndNoDiscovery.class)
-    @ConditionalOnMissingBean(CoffeeNetWebService.class)
-    public CoffeeNetWebService coffeeNetWebServiceWithSecurity(CoffeeNetCurrentUserService coffeeNetCurrentUserService,
-        CoffeeNetWebProperties coffeeNetWebProperties) {
+        @Autowired
+        CoffeeNetCurrentUserServiceConfiguration(CoffeeNetWebExtractor coffeeNetWebExtractor,
+            CoffeeNetCurrentUserService coffeeNetCurrentUserService) {
 
-        CoffeeNetWebService coffeeNetWebService = new CoffeeNetWebServiceWithSecurity(coffeeNetCurrentUserService,
-                coffeeNetWebProperties);
+            coffeeNetWebExtractor.addService(USER_SERVICE_NAME, coffeeNetCurrentUserService);
 
-        LOGGER.info("//> Created the CoffeeNetWebService with CoffeeNetWebServiceWithSecurity implementation");
+            LOGGER.info("//> Added the CoffeeNetCurrentUserService to the CoffeeNetWebExtractor");
+        }
+    }
 
-        return coffeeNetWebService;
+    @Configuration
+    @ConditionalOnBean(CoffeeNetAppService.class)
+    static class CoffeeNetAppServiceConfiguration {
+
+        @Autowired
+        CoffeeNetAppServiceConfiguration(CoffeeNetWebExtractor coffeeNetWebExtractor,
+            CoffeeNetAppService coffeeNetAppService) {
+
+            coffeeNetWebExtractor.addService(APP_SERVICE_NAME, coffeeNetAppService);
+
+            LOGGER.info("//> Added the CoffeeNetAppService to the CoffeeNetWebExtractor");
+        }
     }
 
     /**
@@ -137,57 +143,6 @@ public class CoffeeNetWebAutoConfiguration {
         public CoffeeNetWebEndpoint coffeeNetWebEndpoint(CoffeeNetWebService coffeeNetWebService) {
 
             return new CoffeeNetWebEndpoint(coffeeNetWebService);
-        }
-    }
-
-    /**
-     * Security and Discovery bean must be in the bean factory to auto configure the web part.
-     */
-    static class ConditionOnSecurityAndDiscovery extends AllNestedConditions {
-
-        ConditionOnSecurityAndDiscovery() {
-
-            super(ConfigurationPhase.REGISTER_BEAN);
-        }
-
-        @ConditionalOnBean(CoffeeNetAppService.class)
-        static class OnDiscovery {
-        }
-
-        @ConditionalOnBean(CoffeeNetCurrentUserService.class)
-        static class OnSecurity {
-        }
-    }
-
-    static class ConditionOnSecurityAndNoDiscovery extends AllNestedConditions {
-
-        ConditionOnSecurityAndNoDiscovery() {
-
-            super(ConfigurationPhase.REGISTER_BEAN);
-        }
-
-        @ConditionalOnMissingBean(CoffeeNetAppService.class)
-        static class OnDiscovery {
-        }
-
-        @ConditionalOnBean(CoffeeNetCurrentUserService.class)
-        static class OnSecurity {
-        }
-    }
-
-    static class ConditionOnDiscoveryAndNoSecurity extends AllNestedConditions {
-
-        ConditionOnDiscoveryAndNoSecurity() {
-
-            super(ConfigurationPhase.REGISTER_BEAN);
-        }
-
-        @ConditionalOnBean(CoffeeNetAppService.class)
-        static class OnDiscovery {
-        }
-
-        @ConditionalOnMissingBean(CoffeeNetCurrentUserService.class)
-        static class OnSecurity {
         }
     }
 }
