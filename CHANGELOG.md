@@ -1,8 +1,10 @@
 # Changelog 
 
 ### 0.17.0
+* Add parent pom functionality for starters **and** applications
 * Add only show "Anwendungen" headline in navigation bar if an application is present
 * Fix to mark the opened application in the navigation bar in thymeleaf template
+* Fix to improve guards in navigation bar to handle null values
 
 ### 0.16.2
 * No user is needed to provide `CoffeeNetWeb`

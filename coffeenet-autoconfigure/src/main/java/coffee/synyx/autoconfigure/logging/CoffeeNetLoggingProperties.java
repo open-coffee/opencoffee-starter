@@ -24,4 +24,12 @@ public class CoffeeNetLoggingProperties {
 
         this.enabled = enabled;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "CoffeeNetLoggingProperties{"
+            + "enabled=" + enabled + '}';
+    }
 }

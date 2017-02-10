@@ -89,4 +89,15 @@ public class CoffeeNetSecurityProperties {
 
         this.defaultLoginFailureUrl = defaultLoginFailureUrl;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "CoffeeNetSecurityProperties{"
+            + "enabled=" + enabled
+            + ", logoutSuccessUrl='" + logoutSuccessUrl + '\''
+            + ", defaultLoginSuccessUrl='" + defaultLoginSuccessUrl + '\''
+            + ", defaultLoginFailureUrl='" + defaultLoginFailureUrl + '\'' + '}';
+    }
 }

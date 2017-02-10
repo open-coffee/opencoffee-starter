@@ -70,4 +70,14 @@ public class CoffeeNetConfigurationProperties {
 
         this.allowedAuthorities = allowedAuthorities;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "CoffeeNetConfigurationProperties{"
+            + "profile=" + profile
+            + ", applicationName='" + applicationName + '\''
+            + ", allowedAuthorities='" + allowedAuthorities + '\'' + '}';
+    }
 }

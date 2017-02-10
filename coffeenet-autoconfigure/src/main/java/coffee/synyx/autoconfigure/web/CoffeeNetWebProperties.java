@@ -42,4 +42,13 @@ public class CoffeeNetWebProperties {
 
         this.logoutPath = logoutPath;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "CoffeeNetWebProperties{"
+            + "profileServiceName='" + profileServiceName + '\''
+            + ", logoutPath='" + logoutPath + '\'' + '}';
+    }
 }

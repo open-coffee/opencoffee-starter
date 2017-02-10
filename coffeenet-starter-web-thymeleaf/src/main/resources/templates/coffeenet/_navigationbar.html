@@ -3,23 +3,23 @@
 
 <!--/*@thymesVar id="coffeenet" type="coffee.synyx.autoconfigure.web.CoffeeNetWeb"*/-->
 <th:block th:fragment="navigationbar">
-    <div id="coffeenet--header-container" class="coffeenet--header-container">
+    <div th:if="${coffeenet != null}" id="coffeenet--header-container" class="coffeenet--header-container">
         <div id="coffeenet--nav-hamburger" class="coffeenet--nav-hamburger">
             <span></span>
         </div>
-        <div th:if="${coffeenet.coffeeNetWebUser}" class="coffeenet--personalisation-container">
+        <div th:if="${coffeenet.coffeeNetWebUser != null}" class="coffeenet--personalisation-container">
             <div class="coffeenet--avatar">
-                <a th:if="${coffeenet.profileApp}" th:href="${coffeenet.profileApp.url}">
+                <a th:if="${coffeenet.profileApp != null}" th:href="${coffeenet.profileApp.url}">
                     <img th:src="${coffeenet.coffeeNetWebUser.getAvatar()}" src="/img/default_avatar.jpg"/>
                 </a>
-                <img th:unless="${coffeenet.profileApp}" th:src="${coffeenet.coffeeNetWebUser.getAvatar()}" src="/img/default_avatar.jpg"/>
+                <img th:if="${coffeenet.profileApp == null}" th:src="${coffeenet.coffeeNetWebUser.getAvatar()}" src="/img/default_avatar.jpg"/>
             </div>
             <h2 class="coffeenet--username">
-                <a th:if="${coffeenet.profileApp}" th:href="${coffeenet.profileApp.url}"
+                <a th:if="${coffeenet.profileApp != null}" th:href="${coffeenet.profileApp.url}"
                    th:title="${coffeenet.profileApp.name}" th:text="${coffeenet.coffeeNetWebUser.username}">
                     username
                 </a>
-                <span th:unless="${coffeenet.profileApp}" th:text="${coffeenet.coffeeNetWebUser.username}">
+                <span th:if="${coffeenet.profileApp == null}" th:text="${coffeenet.coffeeNetWebUser.username}">
                     username
                 </span>
             </h2>
@@ -34,9 +34,9 @@
                 </li>
             </ul>
 
-            <h2 th:if="${coffeenet.profileApp}" class="coffeenet--nav-section-title">Einstellungen</h2>
+            <h2 th:if="${coffeenet.profileApp != null}" class="coffeenet--nav-section-title">Einstellungen</h2>
             <ul class="coffeenet--nav-section-list">
-                <li th:if="${coffeenet.profileApp}" th:classappend="${#httpServletRequest.requestURL == coffeenet.profileApp.url} ? active : ''">
+                <li th:if="${coffeenet.profileApp != null}" th:classappend="${#httpServletRequest.requestURL == coffeenet.profileApp.url} ? active : ''">
                     <a th:href="${coffeenet.profileApp.url}" th:text="${coffeenet.profileApp.name}">Profile</a>
                 </li>
             </ul>

@@ -104,4 +104,17 @@ public class CoffeeNetLoggingGelfProperties {
 
         this.layout = layout;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "CoffeeNetLoggingGelfProperties{"
+            + "enabled=" + enabled
+            + ", server='" + server + '\''
+            + ", environment='" + environment + '\''
+            + ", port=" + port
+            + ", protocol='" + protocol + '\''
+            + ", layout='" + layout + '\'' + '}';
+    }
 }

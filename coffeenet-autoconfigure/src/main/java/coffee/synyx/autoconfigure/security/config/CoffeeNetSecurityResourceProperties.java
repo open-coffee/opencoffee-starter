@@ -55,4 +55,13 @@ public class CoffeeNetSecurityResourceProperties extends ResourceServerPropertie
 
         this.userInfoUri = userInfoUri;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "CoffeeNetSecurityResourceProperties{"
+            + "id='" + id + '\''
+            + ", userInfoUri='" + userInfoUri + '\'' + '}';
+    }
 }
