@@ -26,7 +26,6 @@
         <dependency>
             <groupId>coffee.synyx</groupId>
             <artifactId>autoconfigure</artifactId>
-            <version>0.17.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

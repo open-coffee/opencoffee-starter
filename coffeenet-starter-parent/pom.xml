@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>coffee.synyx</groupId>
@@ -8,6 +9,13 @@
     <packaging>pom</packaging>
 
     <name>CoffeeNet Boot Starter Parent</name>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.1.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
     <distributionManagement>
         <repository>
@@ -21,13 +29,20 @@
     </distributionManagement>
 
     <properties>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <!-- Spring Cloud Dependency -->
+        <spring-cloud-dependencies.version>Camden.SR4</spring-cloud-dependencies.version>
+
+        <!-- CoffeeNet Dependencies -->
+        <navigation-bar.version>0.11.0</navigation-bar.version>
+
+        <!-- Third-Party Dependencies -->
         <logback-gelf-appender.version>1.2.2</logback-gelf-appender.version>
 
-        <java.version>1.8</java.version>
-
+        <!-- OWASP Configuration -->
         <dependency.check.report.dir>${project.build.directory}/dependency-check</dependency.check.report.dir>
         <sonar.dependencyCheck.reportPath>${dependency.check.report.dir}/dependency-check-report.xml
         </sonar.dependencyCheck.reportPath>
@@ -35,17 +50,68 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!-- CoffeeNet Dependencies -->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.5.1.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>coffee.synyx</groupId>
+                <artifactId>autoconfigure</artifactId>
+                <version>0.17.0-SNAPSHOT</version>
             </dependency>
+
+            <dependency>
+                <groupId>coffee.synyx</groupId>
+                <artifactId>starter-sso</artifactId>
+                <version>0.17.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>coffee.synyx</groupId>
+                <artifactId>starter-discovery</artifactId>
+                <version>0.17.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>coffee.synyx</groupId>
+                <artifactId>starter-logging</artifactId>
+                <version>0.17.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>coffee.synyx</groupId>
+                <artifactId>starter-web</artifactId>
+                <version>0.17.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>coffee.synyx</groupId>
+                <artifactId>starter-web-thymeleaf</artifactId>
+                <version>0.17.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>coffee.synyx</groupId>
+                <artifactId>starter-web-javascript</artifactId>
+                <version>0.17.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>coffee.synyx</groupId>
+                <artifactId>navigation-bar</artifactId>
+                <version>${navigation-bar.version}</version>
+            </dependency>
+
+            <!-- Third-Party Dependencies -->
+            <dependency>
+                <groupId>de.appelgriepsch.logback</groupId>
+                <artifactId>logback-gelf-appender</artifactId>
+                <version>${logback-gelf-appender.version}</version>
+            </dependency>
+
+            <!-- Spring Cloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Camden.SR4</version>
+                <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -54,11 +120,11 @@
 
     <build>
         <pluginManagement>
-            <plugins>                 <!-- Override some plugin versions from Spring Boot Starter -->
+            <plugins> <!-- Override some plugin versions from Spring Boot Starter -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.6.0</version>
+                    <version>3.6.1</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
@@ -98,7 +164,7 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>1.4.4.1</version>
+                    <version>1.4.5</version>
                     <configuration>
                         <failOnError>false</failOnError>
                         <format>XML</format>
