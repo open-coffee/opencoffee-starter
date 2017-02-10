@@ -38,7 +38,7 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
 public class CoffeeNetDiscoveryAutoConfiguration {
 
     @Configuration
-    @ConditionalOnClass(com.netflix.discovery.DiscoveryClient.class)
+    @ConditionalOnClass(DiscoveryClient.class)
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
     public static class DevelopmentCoffeeNetServiceDiscoveryConfiguration {
 
