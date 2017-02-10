@@ -74,7 +74,7 @@ html {
 }
 .coffeenet--nav-hamburger span {
     position: relative;
-    transition-duration: 0;
+    transition-duration: 0s;
 }
 .coffeenet--nav-hamburger span::after, .coffeenet--nav-hamburger span::before {
     display: block;
@@ -93,7 +93,7 @@ html {
 }
 .coffeenet--header-container.visible .coffeenet--nav-hamburger span::before, .coffeenet--header-container.visible .coffeenet--nav-hamburger span::after {
     margin-top: 0;
-    transition-delay: 0, 0.2s;
+    transition-delay: 0s, 0.2s;
 }
 .coffeenet--header-container.visible .coffeenet--nav-hamburger span::before {
     transform: rotate(45deg);
@@ -275,7 +275,7 @@ html {
     .coffeenet--header-container:not(.visible) .coffeenet--nav-hamburger span::before,
     .coffeenet--header-container:not(.visible) .coffeenet--nav-hamburger span::after {
         margin-top: 0;
-        transition-delay: 0, 0.2s;
+        transition-delay: 0s, 0.2s;
     }
     .coffeenet--header-container:not(.visible) .coffeenet--nav-hamburger span::before {
         transform: rotate(45deg);
