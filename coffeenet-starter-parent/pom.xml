@@ -34,7 +34,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Spring Cloud Dependency -->
-        <spring-cloud-dependencies.version>Camden.SR4</spring-cloud-dependencies.version>
+        <spring-cloud-dependencies.version>Camden.SR5</spring-cloud-dependencies.version>
 
         <!-- CoffeeNet Dependencies -->
         <navigation-bar.version>0.11.0</navigation-bar.version>
