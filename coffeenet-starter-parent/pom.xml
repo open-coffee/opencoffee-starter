@@ -39,7 +39,7 @@
         <navigation-bar.version>0.11.0</navigation-bar.version>
 
         <!-- Third-Party Dependencies -->
-        <logback-gelf-appender.version>1.2.2</logback-gelf-appender.version>
+        <logback-gelf-appender.version>1.2.3</logback-gelf-appender.version>
 
         <!-- OWASP Configuration -->
         <dependency.check.report.dir>${project.build.directory}/dependency-check</dependency.check.report.dir>
