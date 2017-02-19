@@ -1,7 +1,7 @@
 # Changelog 
 
 ### 0.18.0
-* Upgrade logback-gelf-appender to 1.2.3
+* Upgrade logback-gelf-appender to 1.3.0
 
 ### 0.17.0
 * Upgrade to spring-cloud-dependencies Camden.SR5
