@@ -1,6 +1,10 @@
 # Changelog 
 
+### 0.18.0
+* Upgrade logback-gelf-appender to 1.3.0
+
 ### 0.17.0
+* Upgrade to spring-cloud-dependencies Camden.SR5
 * Add parent pom functionality for starters **and** applications
 * Add only show "Anwendungen" headline in navigation bar if an application is present
 * Fix to mark the opened application in the navigation bar in thymeleaf template

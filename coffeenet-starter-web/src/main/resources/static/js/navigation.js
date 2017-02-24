@@ -10,9 +10,11 @@ if (initiallyVisible) {
     header.classList.add('visible');
 }
 
-header.addEventListener('click', event => {
-        if (event.target.id === 'coffeenet--nav-hamburger' || event.target.parentNode.id === 'coffeenet--nav-hamburger') {
-            handleHamburgerClick();
+if (header != null) {
+    header.addEventListener('click', event => {
+            if (event.target.id === 'coffeenet--nav-hamburger' || event.target.parentNode.id === 'coffeenet--nav-hamburger') {
+                handleHamburgerClick();
+            }
         }
-    }
-);
+    );
+}
