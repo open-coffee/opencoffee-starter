@@ -2,6 +2,7 @@
 
 ### 0.18.0
 * Upgrade logback-gelf-appender to 1.3.0
+* Security (SSO) and Discovery Starter are now optional for the Web Starter
 
 ### 0.17.0
 * Upgrade to spring-cloud-dependencies Camden.SR5

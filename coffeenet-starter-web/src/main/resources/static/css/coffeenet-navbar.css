@@ -39,6 +39,9 @@ html {
 }
 
 /** style resets **/
+.coffeenet--nav-container {
+    margin-top: 40px;
+}
 .coffeenet--nav-container ul {
     margin: 0;
     padding: 0;

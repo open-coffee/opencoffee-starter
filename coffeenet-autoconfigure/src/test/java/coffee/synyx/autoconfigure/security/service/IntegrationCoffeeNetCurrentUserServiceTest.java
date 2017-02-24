@@ -8,9 +8,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextImpl;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
 
 import static org.junit.Assert.assertThat;
 
@@ -39,43 +39,37 @@ public class IntegrationCoffeeNetCurrentUserServiceTest {
         context.setAuthentication(new UsernamePasswordAuthenticationToken(principal, null));
         SecurityContextHolder.setContext(context);
 
-        CoffeeNetUserDetails result = sut.get();
+        CoffeeNetUserDetails result = sut.get().get();
 
         assertThat(result, is(principal));
     }
 
 
-    @Test
+    @Test(expected = NoSuchElementException.class)
     public void getWithoutAuthenticationInContext() {
 
-        CoffeeNetUserDetails result = sut.get();
-
-        assertThat(result, nullValue());
+        sut.get().get();
     }
 
 
-    @Test
+    @Test(expected = NoSuchElementException.class)
     public void getWithoutPrincipal() {
 
         SecurityContextImpl context = new SecurityContextImpl();
         context.setAuthentication(new UsernamePasswordAuthenticationToken(null, null));
         SecurityContextHolder.setContext(context);
 
-        CoffeeNetUserDetails result = sut.get();
-
-        assertThat(result, nullValue());
+        sut.get().get();
     }
 
 
-    @Test
+    @Test(expected = NoSuchElementException.class)
     public void getWithoutCoffeenetPrincipal() {
 
         SecurityContextImpl context = new SecurityContextImpl();
         context.setAuthentication(new UsernamePasswordAuthenticationToken(new Object(), null));
         SecurityContextHolder.setContext(context);
 
-        CoffeeNetUserDetails result = sut.get();
-
-        assertThat(result, nullValue());
+        sut.get().get();
     }
 }

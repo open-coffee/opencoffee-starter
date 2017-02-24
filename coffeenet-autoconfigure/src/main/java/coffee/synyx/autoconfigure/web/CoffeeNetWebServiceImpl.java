@@ -1,16 +1,10 @@
 package coffee.synyx.autoconfigure.web;
 
-import coffee.synyx.autoconfigure.discovery.service.AppQuery;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetApp;
-import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
-import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
-import coffee.synyx.autoconfigure.security.service.CoffeeNetUserDetails;
 
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
-import static java.util.stream.Collectors.toList;
 
 
 /**
@@ -18,64 +12,33 @@ import static java.util.stream.Collectors.toList;
  * side rendering engines like thymeleaf or javascript.
  *
  * @author  Tobias Schneider - schneider@synyx.de
- * @since  0.15.0
+ * @since  0.17.0
  */
 public class CoffeeNetWebServiceImpl implements CoffeeNetWebService {
 
-    private final CoffeeNetCurrentUserService coffeeNetCurrentUserService;
-    private final CoffeeNetAppService coffeeNetAppService;
-    private final CoffeeNetWebProperties coffeeNetWebProperties;
+    private final CoffeeNetWebExtractor coffeeNetWebExtractor;
 
-    CoffeeNetWebServiceImpl(CoffeeNetCurrentUserService coffeeNetCurrentUserService,
-        CoffeeNetAppService coffeeNetAppService, CoffeeNetWebProperties coffeeNetWebProperties) {
+    CoffeeNetWebServiceImpl(CoffeeNetWebExtractor coffeeNetWebExtractor) {
 
-        this.coffeeNetCurrentUserService = coffeeNetCurrentUserService;
-        this.coffeeNetAppService = coffeeNetAppService;
-        this.coffeeNetWebProperties = coffeeNetWebProperties;
+        this.coffeeNetWebExtractor = coffeeNetWebExtractor;
     }
 
     @Override
     public CoffeeNetWeb get() {
 
-        CoffeeNetUserDetails coffeeNetUserDetails = coffeeNetCurrentUserService.get();
+        CoffeeNetWebUser coffeeNetWebUser = coffeeNetWebExtractor.extractUser().orElse(null);
+        Map<String, List<CoffeeNetApp>> apps = coffeeNetWebExtractor.extractApps().orElseGet(Collections::emptyMap);
+        String logoutPath = coffeeNetWebExtractor.extractLogoutPath();
 
-        // apps
-        String profileServiceName = coffeeNetWebProperties.getProfileServiceName();
-        AppQuery.Builder builder = AppQuery.builder();
-
-        if (coffeeNetUserDetails != null) {
-            builder.withRoles(coffeeNetUserDetails.getAuthoritiesAsString());
-        }
-
-        AppQuery query = builder.build();
-
-        Map<String, List<CoffeeNetApp>> coffeeNetApps = coffeeNetAppService.getApps(query);
-
-        List<CoffeeNetApp> profileApps = coffeeNetApps.get(profileServiceName);
+        List<CoffeeNetApp> profileApps = apps.get("profile");
         CoffeeNetApp profileApp = null;
 
-        if (profileApps != null) {
+        if (profileApps != null && !profileApps.isEmpty()) {
             profileApp = profileApps.get(0);
-            coffeeNetApps.remove(profileServiceName);
         }
 
-        List<CoffeeNetApp> firstCoffeeNetApps = coffeeNetApps.entrySet()
-                .stream()
-                .map(entry -> entry.getValue().get(0))
-                .sorted(Comparator.comparing(CoffeeNetApp::getName))
-                .collect(toList());
+        List<CoffeeNetApp> coffeeNetApps = apps.get("apps");
 
-        // logout path
-        String logoutPath = coffeeNetWebProperties.getLogoutPath();
-
-        // user
-        CoffeeNetWebUser coffeeNetWebUser = null;
-
-        if (coffeeNetUserDetails != null) {
-            coffeeNetWebUser = new CoffeeNetWebUser(coffeeNetUserDetails.getUsername(),
-                    coffeeNetUserDetails.getEmail());
-        }
-
-        return new CoffeeNetWeb(coffeeNetWebUser, firstCoffeeNetApps, profileApp, logoutPath);
+        return new CoffeeNetWeb(coffeeNetWebUser, coffeeNetApps, profileApp, logoutPath);
     }
 }

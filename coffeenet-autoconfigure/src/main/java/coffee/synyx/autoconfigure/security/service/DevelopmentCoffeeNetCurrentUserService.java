@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
+import java.util.Optional;
 
 
 /**
@@ -18,7 +19,7 @@ import java.util.Collection;
 public class DevelopmentCoffeeNetCurrentUserService implements CoffeeNetCurrentUserService {
 
     @Override
-    public CoffeeNetUserDetails get() {
+    public Optional<CoffeeNetUserDetails> get() {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -26,11 +27,11 @@ public class DevelopmentCoffeeNetCurrentUserService implements CoffeeNetCurrentU
     }
 
 
-    private static CoffeeNetUserDetails getCoffeeNetUserDetails(User user) {
+    private static Optional<CoffeeNetUserDetails> getCoffeeNetUserDetails(User user) {
 
         String username = user.getUsername();
         Collection<GrantedAuthority> authorities = user.getAuthorities();
 
-        return new HumanCoffeeNetUser(username, username + "@coffeenet", authorities);
+        return Optional.of(new HumanCoffeeNetUser(username, username + "@coffeenet", authorities));
     }
 }
