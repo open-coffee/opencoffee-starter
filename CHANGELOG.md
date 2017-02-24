@@ -2,7 +2,8 @@
 
 ### 0.18.0
 * Upgrade logback-gelf-appender to 1.3.0
-* Security (SSO) and Discovery Starter are now optional for the Web Starter
+* Add Security (SSO) and Discovery Starter are now optional for the Web Starter
+* Fix to mark the opened application in the navigation bar when url only starts with the given url
 
 ### 0.17.0
 * Upgrade to spring-cloud-dependencies Camden.SR5
