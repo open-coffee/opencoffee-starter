@@ -31,6 +31,7 @@ import static java.lang.invoke.MethodHandles.lookup;
  * @since  0.15.0
  */
 @Configuration
+@ConditionalOnResource(resources = "classpath:/static/css/coffeenet-navbar.css")
 @AutoConfigureAfter({ CoffeeNetDiscoveryAutoConfiguration.class, CoffeeNetSecurityAutoConfiguration.class })
 public class CoffeeNetWebAutoConfiguration {
 

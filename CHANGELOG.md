@@ -1,5 +1,9 @@
 # Changelog 
 
+
+### 0.18.1
+* Add check to start `CoffeeNetWebAutoConfiguration` configuring when `coffeenet-starter-web` is used
+
 ### 0.18.0
 * Upgrade logback-gelf-appender to 1.3.0
 * Add Security (SSO) and Discovery Starter are now optional for the Web Starter
