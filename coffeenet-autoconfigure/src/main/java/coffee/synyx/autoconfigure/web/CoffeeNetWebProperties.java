@@ -14,10 +14,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("coffeenet.web")
 public class CoffeeNetWebProperties {
 
-    @NotEmpty
+    @NotEmpty(message = "Please provide the name of the profile application")
     private String profileServiceName = "profile";
 
-    @NotEmpty
+    @NotEmpty(message = "Please provide the path to the logout functionality or stay forever in the CoffeeNet")
     private String logoutPath = "/logout";
 
     public String getProfileServiceName() {
