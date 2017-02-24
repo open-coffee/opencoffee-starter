@@ -8,6 +8,7 @@ import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
 import coffee.synyx.autoconfigure.security.service.CoffeeNetUserDetails;
 
 import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,7 @@ class CoffeeNetWebExtractor {
     }
 
     private CoffeeNetWebProperties coffeeNetWebProperties;
-    private Map<CoffeeNetServices, Object> services = new HashMap<>();
+    private Map<CoffeeNetServices, Object> services = new EnumMap<>(CoffeeNetServices.class);
 
     CoffeeNetWebExtractor(CoffeeNetWebProperties coffeeNetWebProperties) {
 
