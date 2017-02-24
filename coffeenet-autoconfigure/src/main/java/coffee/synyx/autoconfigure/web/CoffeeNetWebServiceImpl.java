@@ -18,7 +18,7 @@ public class CoffeeNetWebServiceImpl implements CoffeeNetWebService {
 
     private final CoffeeNetWebExtractor coffeeNetWebExtractor;
 
-    public CoffeeNetWebServiceImpl(CoffeeNetWebExtractor coffeeNetWebExtractor) {
+    CoffeeNetWebServiceImpl(CoffeeNetWebExtractor coffeeNetWebExtractor) {
 
         this.coffeeNetWebExtractor = coffeeNetWebExtractor;
     }

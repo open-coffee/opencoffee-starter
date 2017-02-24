@@ -13,24 +13,32 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static coffee.synyx.autoconfigure.web.CoffeeNetWebExtractor.CoffeeNetServices.APP_SERVICE;
+import static coffee.synyx.autoconfigure.web.CoffeeNetWebExtractor.CoffeeNetServices.USER_SERVICE;
+
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 
 
 /**
  * @author  Tobias Schneider - schneider@synyx.de
- * @since  0.17.0
+ * @since  0.18.0
  */
-public class CoffeeNetWebExtractor {
+class CoffeeNetWebExtractor {
 
-    static final String APP_SERVICE_NAME = "appServiceName";
-    static final String USER_SERVICE_NAME = "userServiceName";
+    /**
+     * Service to register.
+     */
+    public enum CoffeeNetServices {
+
+        APP_SERVICE,
+        USER_SERVICE
+    }
 
     private CoffeeNetWebProperties coffeeNetWebProperties;
+    private Map<CoffeeNetServices, Object> services = new HashMap<>();
 
-    private Map<String, Object> services = new HashMap<>();
-
-    public CoffeeNetWebExtractor(CoffeeNetWebProperties coffeeNetWebProperties) {
+    CoffeeNetWebExtractor(CoffeeNetWebProperties coffeeNetWebProperties) {
 
         this.coffeeNetWebProperties = coffeeNetWebProperties;
     }
@@ -41,25 +49,27 @@ public class CoffeeNetWebExtractor {
      *
      * @return  map of {@link CoffeeNetApp}s
      */
-    public Optional<Map<String, List<CoffeeNetApp>>> extractApps() {
+    Optional<Map<String, List<CoffeeNetApp>>> extractApps() {
 
-        CoffeeNetAppService coffeeNetAppService = (CoffeeNetAppService) services.get(APP_SERVICE_NAME);
+        Optional<CoffeeNetAppService> coffeeNetAppService = getCoffeeNetAppService();
 
-        if (coffeeNetAppService == null) {
+        if (!coffeeNetAppService.isPresent()) {
             return Optional.empty();
         }
 
         Map<String, List<CoffeeNetApp>> preparedCoffeeNetApps = new HashMap<>();
-        CoffeeNetCurrentUserService userService = (CoffeeNetCurrentUserService) services.get(USER_SERVICE_NAME);
+        Optional<CoffeeNetCurrentUserService> userService = getCoffeeNetCurrentUserService();
 
-        // create to retrieve CoffeeNetApps
+        // create to retrieve CoffeeNet apps
         Builder queryBuilder = AppQuery.builder();
 
-        if (userService != null) {
-            userService.get().ifPresent(userDetails -> queryBuilder.withRoles(userDetails.getAuthoritiesAsString()));
-        }
+        // add user roles to query if there is a CoffeeNet user
+        userService.ifPresent(coffeeNetCurrentUserService ->
+                coffeeNetCurrentUserService.get()
+                .ifPresent(userDetails -> queryBuilder.withRoles(userDetails.getAuthoritiesAsString())));
 
-        Map<String, List<CoffeeNetApp>> filteredCoffeeNetApps = coffeeNetAppService.getApps(queryBuilder.build());
+        Map<String, List<CoffeeNetApp>> filteredCoffeeNetApps = coffeeNetAppService.get()
+                .getApps(queryBuilder.build());
 
         // extract profile application
         String profileServiceName = coffeeNetWebProperties.getProfileServiceName();
@@ -72,9 +82,11 @@ public class CoffeeNetWebExtractor {
         }
 
         // retrieve all CoffeeNetApps
-        List<CoffeeNetApp> firstCoffeeNetApps = filteredCoffeeNetApps.entrySet().stream().map(entry ->
-                    entry.getValue()
-                    .get(0)).sorted(Comparator.comparing(CoffeeNetApp::getName)).collect(toList());
+        List<CoffeeNetApp> firstCoffeeNetApps = filteredCoffeeNetApps.entrySet()
+                .stream()
+                .map(entry -> entry.getValue().get(0))
+                .sorted(Comparator.comparing(CoffeeNetApp::getName))
+                .collect(toList());
         preparedCoffeeNetApps.put("apps", firstCoffeeNetApps);
 
         return Optional.of(preparedCoffeeNetApps);
@@ -89,13 +101,13 @@ public class CoffeeNetWebExtractor {
      * @return  an {@code Optional<CoffeeNetWebUser>} if {@link CoffeeNetCurrentUserService} is available and user is
      *          logged in, otherwise empty {@link Optional}
      */
-    public Optional<CoffeeNetWebUser> extractUser() {
+    Optional<CoffeeNetWebUser> extractUser() {
 
         Optional<CoffeeNetWebUser> coffeeNetWebUser = Optional.empty();
-        CoffeeNetCurrentUserService userService = (CoffeeNetCurrentUserService) services.get(USER_SERVICE_NAME);
+        Optional<CoffeeNetCurrentUserService> userService = getCoffeeNetCurrentUserService();
 
-        if (userService != null) {
-            Optional<CoffeeNetUserDetails> coffeeNetUserDetails = userService.get();
+        if (userService.isPresent()) {
+            Optional<CoffeeNetUserDetails> coffeeNetUserDetails = userService.get().get();
 
             if (coffeeNetUserDetails.isPresent()) {
                 String username = coffeeNetUserDetails.get().getUsername();
@@ -113,14 +125,44 @@ public class CoffeeNetWebExtractor {
      *
      * @return  logout path
      */
-    public String extractLogoutPath() {
+    String extractLogoutPath() {
 
         return coffeeNetWebProperties.getLogoutPath();
     }
 
 
-    public void addService(String serviceName, Object service) {
+    /**
+     * Registers a CoffeeNet service to retrieve information from.
+     *
+     * @param  serviceName  as identification
+     * @param  service  service to register
+     */
+    void registerService(CoffeeNetServices serviceName, Object service) {
 
         services.put(serviceName, service);
+    }
+
+
+    private Optional<CoffeeNetAppService> getCoffeeNetAppService() {
+
+        Object service = services.get(APP_SERVICE);
+
+        if (service == null) {
+            return Optional.empty();
+        }
+
+        return Optional.of((CoffeeNetAppService) service);
+    }
+
+
+    private Optional<CoffeeNetCurrentUserService> getCoffeeNetCurrentUserService() {
+
+        Object service = services.get(USER_SERVICE);
+
+        if (service == null) {
+            return Optional.empty();
+        }
+
+        return Optional.of((CoffeeNetCurrentUserService) service);
     }
 }

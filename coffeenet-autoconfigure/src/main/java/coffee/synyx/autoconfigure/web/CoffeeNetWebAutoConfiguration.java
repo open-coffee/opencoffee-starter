@@ -18,8 +18,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static coffee.synyx.autoconfigure.web.CoffeeNetWebExtractor.APP_SERVICE_NAME;
-import static coffee.synyx.autoconfigure.web.CoffeeNetWebExtractor.USER_SERVICE_NAME;
+import static coffee.synyx.autoconfigure.web.CoffeeNetWebExtractor.CoffeeNetServices.APP_SERVICE;
+import static coffee.synyx.autoconfigure.web.CoffeeNetWebExtractor.CoffeeNetServices.USER_SERVICE;
 
 import static java.lang.invoke.MethodHandles.lookup;
 
@@ -74,7 +74,7 @@ public class CoffeeNetWebAutoConfiguration {
         CoffeeNetCurrentUserServiceConfiguration(CoffeeNetWebExtractor coffeeNetWebExtractor,
             CoffeeNetCurrentUserService coffeeNetCurrentUserService) {
 
-            coffeeNetWebExtractor.addService(USER_SERVICE_NAME, coffeeNetCurrentUserService);
+            coffeeNetWebExtractor.registerService(USER_SERVICE, coffeeNetCurrentUserService);
 
             LOGGER.info("//> Added the CoffeeNetCurrentUserService to the CoffeeNetWebExtractor");
         }
@@ -88,7 +88,7 @@ public class CoffeeNetWebAutoConfiguration {
         CoffeeNetAppServiceConfiguration(CoffeeNetWebExtractor coffeeNetWebExtractor,
             CoffeeNetAppService coffeeNetAppService) {
 
-            coffeeNetWebExtractor.addService(APP_SERVICE_NAME, coffeeNetAppService);
+            coffeeNetWebExtractor.registerService(APP_SERVICE, coffeeNetAppService);
 
             LOGGER.info("//> Added the CoffeeNetAppService to the CoffeeNetWebExtractor");
         }
