@@ -17,11 +17,11 @@ This example will help you to understand how to use the starter. The `thymeleaf-
 </head>
 
 <body>
-<main layout:fragment="main">
+<main layout:fragment="coffeenet-main">
   <!-- your main code belongs here -->
 </main>
 
-<th:block layout:fragment="scripts">
+<th:block layout:fragment="coffeenet-scripts">
   <!-- your scripts belongs here -->
 </th:block>
 </body>
