@@ -1,6 +1,11 @@
 # Changelog 
 
 
+### 0.19.0
+* Change thymeleaf "main" fragment name to "coffeenet-main"
+* Change thymeleaf "scripts" fragment name to "coffeenet-scripts"
+* Prefix thymeleaf intern fragment names with "coffeenet-*"
+
 ### 0.18.1
 * Add check to start `CoffeeNetWebAutoConfiguration` configuring when `coffeenet-starter-web` is used
 

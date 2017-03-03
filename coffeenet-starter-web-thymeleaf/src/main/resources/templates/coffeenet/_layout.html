@@ -3,15 +3,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="coffeenet--html">
 
 <head>
-    <th:block th:replace="coffeenet/_head :: head"/>
+    <th:block th:replace="coffeenet/_head :: coffeenet-head"/>
 </head>
 
 <body class="coffeenet--body">
-    <th:block th:replace="coffeenet/_navigationbar :: navigationbar"/>
+    <th:block th:replace="coffeenet/_navigationbar :: coffeenet-navigationbar"/>
 
-    <main class="coffeenet--main" layout:fragment="main"></main>
+    <main class="coffeenet--main" layout:fragment="coffeenet-main"></main>
 
-    <th:block th:replace="coffeenet/_scripts :: scripts"/>
-    <th:block layout:fragment="scripts"/>
+    <th:block th:replace="coffeenet/_scripts :: coffeenet-scripts"/>
+    <th:block layout:fragment="coffeenet-scripts"/>
 </body>
 </html>
