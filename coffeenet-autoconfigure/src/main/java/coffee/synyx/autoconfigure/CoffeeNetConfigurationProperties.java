@@ -4,6 +4,8 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import org.springframework.validation.annotation.Validated;
+
 import javax.validation.constraints.NotNull;
 
 
@@ -13,6 +15,7 @@ import javax.validation.constraints.NotNull;
  * @author  Tobias Schneider - schneider@synyx.de
  * @author  Yannic Klem - klem@synyx.de
  */
+@Validated
 @ConfigurationProperties(prefix = "coffeenet")
 public class CoffeeNetConfigurationProperties {
 

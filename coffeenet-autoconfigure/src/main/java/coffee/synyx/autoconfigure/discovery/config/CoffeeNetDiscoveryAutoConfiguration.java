@@ -24,6 +24,8 @@ import org.springframework.cloud.netflix.eureka.EurekaClientConfigBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.validation.annotation.Validated;
+
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.DEVELOPMENT;
 import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGRATION;
 
@@ -89,6 +91,7 @@ public class CoffeeNetDiscoveryAutoConfiguration {
         }
 
         @Bean
+        @Validated
         @ConfigurationProperties(prefix = "coffeenet.discovery.instance")
         public CoffeeNetDiscoveryInstanceProperties eurekaInstanceConfigBean(InetUtils inetUtils,
             ServerProperties serverProperties) {
@@ -99,6 +102,7 @@ public class CoffeeNetDiscoveryAutoConfiguration {
 
 
         @Bean
+        @Validated
         @ConfigurationProperties(prefix = "coffeenet.discovery.client")
         public EurekaClientConfigBean eurekaClientConfigBean() {
 

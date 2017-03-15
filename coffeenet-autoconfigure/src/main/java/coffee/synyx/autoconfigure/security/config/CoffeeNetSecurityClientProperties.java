@@ -7,6 +7,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 
+import org.springframework.validation.annotation.Validated;
+
 
 /**
  * This configuration properties class defines all properties that are defined under the prefix
@@ -14,6 +16,7 @@ import org.springframework.security.oauth2.client.token.grant.code.Authorization
  *
  * @author  Tobias Schneider - schneider@synyx.de
  */
+@Validated
 @ConfigurationProperties("coffeenet.security.client")
 public class CoffeeNetSecurityClientProperties extends AuthorizationCodeResourceDetails {
 
