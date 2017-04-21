@@ -2,7 +2,7 @@
 
 
 ### 0.19.0
-* Upgrade to spring boot 1.5.2
+* Upgrade to spring boot 1.5.3
 * Upgrade to spring-cloud-dependencies Camden.SR6
   * Add @Validated to all @ConfigurationProperties with Validation
 * Change thymeleaf "main" fragment name to "coffeenet-main"
