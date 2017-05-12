@@ -77,7 +77,15 @@ coffeenet:
 ```
 
 gesetzt habt, wird der SSO Mechanismus automatisch verwendet. Standardmäßig erfordert jeder Request eine Authentifizierung.
-Falls diese Einstellung auf `coffeenet.profile: development` gestellt ist, wird statt des Single-Sign-Ons ein Form-Login durchgeführt.
+
+Falls diese Einstellung auf
+
+```yaml
+coffeenet
+  profile: development
+```
+
+gestellt ist, wird statt des Single-Sign-Ons ein Form-Login durchgeführt.
 Standardmäßig sind die Zugangsdaten dann folgende:
 
 | User       | Passwort   | Email   | Rollen   |
