@@ -19,11 +19,11 @@
     <distributionManagement>
         <repository>
             <id>releases.nexus.synyx.de</id>
-            <url>http://nexus.synyx.de/content/repositories/releases</url>
+            <url>http://nexus.synyx.de/content/repositories/public-releases</url>
         </repository>
         <snapshotRepository>
             <id>snapshots.nexus.synyx.de</id>
-            <url>http://nexus.synyx.de/content/repositories/snapshots</url>
+            <url>http://nexus.synyx.de/content/repositories/public-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 

@@ -31,7 +31,7 @@ bietet für die Anwendungen eine Navigationsleiste zur Navigation innerhalb des 
 <repositories>
   <repository>
     <id>releases.nexus.synyx.de</id>
-    <url>http://nexus.synyx.de/content/repositories/releases</url>
+    <url>http://nexus.synyx.de/content/repositories/public-releases</url>
   </repository>
 </repositories>
 ```
