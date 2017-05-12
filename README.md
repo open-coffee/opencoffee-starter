@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/coffeenet/coffeenet-starter.svg?branch=master)](https://travis-ci.org/coffeenet/coffeenet-starter)
+
 # CoffeeNet Starter
 
 Dieses Projekt beinhaltet alle CoffeeNet-Starter, welche verwendet werden können, um sich an das CoffeeNet anzubinden.
