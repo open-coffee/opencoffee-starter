@@ -112,7 +112,7 @@ Standardmäßig sind die Zugangsdaten dann folgende:
       }
     }
 ```
-Wenn eine spezifischere Konfiguration für abzusichernde Requests notwendig ist, kann eine Konfigurationsklasse erstellt werden die von [IntegrationCoffeeNetWebSecurityConfigurerAdapter](https://gitlab.synyx.de/coffeenet/coffeenet-autoconfigure/blob/master/src/main/java/coffee/synyx/autoconfigure/security/config/integration/IntegrationCoffeeNetWebSecurityConfigurerAdapter.java)
+Wenn eine spezifischere Konfiguration für abzusichernde Requests notwendig ist, kann eine Konfigurationsklasse erstellt werden die von [IntegrationCoffeeNetWebSecurityConfigurerAdapter](https://github.com/coffeenet/coffeenet-starter/blob/master/coffeenet-autoconfigure/src/main/java/coffee/synyx/autoconfigure/security/config/IntegrationCoffeeNetWebSecurityConfigurerAdapter.java)
 erbt.
 
 
@@ -134,4 +134,4 @@ public class ExampleDevSecurityConfig extends DevelopmentCoffeeNetWebSecurityCon
   }
 }
 ```
-Wenn für die Dev-Konfiguration z.B. spezfische Rollen benötigt werden, kann eine Konfigurationsklasse erstellt werden, die von [DevelopmentCoffeeNetWebSecurityConfigurerAdapter](https://gitlab.synyx.de/coffeenet/coffeenet-autoconfigure/blob/master/src/main/java/coffee/synyx/autoconfigure/security/config/development/DevelopmentCoffeeNetWebSecurityConfigurerAdapter.java) erbt.
+Wenn für die Dev-Konfiguration z.B. spezfische Rollen benötigt werden, kann eine Konfigurationsklasse erstellt werden, die von [DevelopmentCoffeeNetWebSecurityConfigurerAdapter](https://github.com/coffeenet/coffeenet-starter/blob/master/coffeenet-autoconfigure/src/main/java/coffee/synyx/autoconfigure/security/config/DevelopmentCoffeeNetWebSecurityConfigurerAdapter.java) erbt.
