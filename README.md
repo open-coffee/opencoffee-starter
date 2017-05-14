@@ -4,26 +4,20 @@
 
 Dieses Projekt beinhaltet alle CoffeeNet-Starter, welche verwendet werden können, um sich an das CoffeeNet anzubinden.
 
-[Application](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-application/README.md)
-Starter bietet volle Integration in das CoffeeNet durch
-[Single-Sign-On](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-sso/README.md),
-[Service Discovery](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-discovery/README.md),
-[Logging](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-logging/README.md) und der
-[Navigation Bar](https://gitlab.synyx.de/coffeenet/coffeenet-navigation-bar/blob/master/README.md)
-
-
-[Single-Sign-On](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-sso/README.md)
+[Security](./coffeenet-starter-sso/README.md)
 Starter bietet die Authentifizierung gegen den CoffeeNet-Auth Server.
 
-[Service Discovery](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-discovery/README.md)
+[Service Discovery](./coffeenet-starter-discovery/README.md)
 Starter bietet die Integration zum Verteilen bzw. Auffinden der Anwendungen im CoffeeNet.
 
-[Logging](https://gitlab.synyx.de/coffeenet/coffeenet-starter/blob/master/coffeenet-starter-logging/README.md)
+[Logging](./coffeenet-starter-logging/README.md)
 Starter bietet ein einheitliches und automatisiertes zentralisiertes Logging.
 
-[Navigation Bar](https://gitlab.synyx.de/coffeenet/coffeenet-navigation-bar/blob/master/README.md)
-bietet für die Anwendungen eine Navigationsleiste zur Navigation innerhalb des CoffeeNets
+[Web Thymleaf](./coffeenet-starter-web-thymeleaf/README.md)
+provides the server side rendering of the navigation bar via thymeleaf.
 
+[Web Javascript](./coffeenet-starter-web-javascript/README.md)
+provides client side rendering of the navigation bar with javasript.
 
 ## Repository
 
