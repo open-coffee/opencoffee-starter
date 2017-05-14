@@ -53,18 +53,18 @@ public class CoffeeNetPrincipalExtractorTest {
         authoritiesList.add("ROLE_COFFEENET-ADMIN");
 
         testPrincipal = new HashMap<>();
-        testPrincipal.put("mail", "test@synyx.de");
-        testPrincipal.put("username", "testPrincipal");
+        testPrincipal.put("mail", "coffy@coffeenet");
+        testPrincipal.put("username", "coffy");
         testPrincipal.put("authorities", authoritiesList);
 
         userInfoHashMap = new HashMap<>();
         userInfoHashMap.put("clientOnly", false);
-        userInfoHashMap.put("id", "testPrincipal");
-        userInfoHashMap.put("name", "testPrincipal");
+        userInfoHashMap.put("id", "coffy");
+        userInfoHashMap.put("name", "coffy");
         userInfoHashMap.put("principal", testPrincipal);
 
         when(authoritiesExtractorMock.extractAuthorities(userInfoHashMap)).thenReturn(AuthorityUtils
-            .createAuthorityList("ROLE_DUMMY"));
+            .createAuthorityList("ROLE_COFFEENET-USER"));
     }
 
 
@@ -78,7 +78,7 @@ public class CoffeeNetPrincipalExtractorTest {
         assertThat(principal, instanceOf(MachineCoffeeNetUser.class));
 
         MachineCoffeeNetUser machineCoffeeUser = (MachineCoffeeNetUser) principal;
-        assertThat(machineCoffeeUser.getUsername(), is("testPrincipal"));
+        assertThat(machineCoffeeUser.getUsername(), is("coffy"));
         assertThat(machineCoffeeUser.getAuthorities().size(), is(1));
     }
 
@@ -125,8 +125,8 @@ public class CoffeeNetPrincipalExtractorTest {
         assertThat(principal, instanceOf(HumanCoffeeNetUser.class));
 
         HumanCoffeeNetUser humanCoffeeUser = (HumanCoffeeNetUser) principal;
-        assertThat(humanCoffeeUser.getEmail(), is("test@synyx.de"));
-        assertThat(humanCoffeeUser.getUsername(), is("testPrincipal"));
+        assertThat(humanCoffeeUser.getEmail(), is("coffy@coffeenet"));
+        assertThat(humanCoffeeUser.getUsername(), is("coffy"));
         assertThat(humanCoffeeUser.getAuthorities().size(), is(1));
     }
 
@@ -139,8 +139,8 @@ public class CoffeeNetPrincipalExtractorTest {
         assertThat(principal, instanceOf(HumanCoffeeNetUser.class));
 
         HumanCoffeeNetUser humanCoffeeUser = (HumanCoffeeNetUser) principal;
-        assertThat(humanCoffeeUser.getEmail(), is("test@synyx.de"));
-        assertThat(humanCoffeeUser.getUsername(), is("testPrincipal"));
+        assertThat(humanCoffeeUser.getEmail(), is("coffy@coffeenet"));
+        assertThat(humanCoffeeUser.getUsername(), is("coffy"));
         assertThat(humanCoffeeUser.getAuthorities().size(), is(1));
     }
 
@@ -187,7 +187,7 @@ public class CoffeeNetPrincipalExtractorTest {
         assertThat(principal, instanceOf(HumanCoffeeNetUser.class));
 
         HumanCoffeeNetUser humanCoffeeUser = (HumanCoffeeNetUser) principal;
-        assertThat(humanCoffeeUser.getEmail(), is("test@synyx.de"));
+        assertThat(humanCoffeeUser.getEmail(), is("coffy@coffeenet"));
         assertThat(humanCoffeeUser.getUsername(), is("UNKNOWN"));
         assertThat(humanCoffeeUser.getAuthorities().size(), is(1));
     }
@@ -203,7 +203,7 @@ public class CoffeeNetPrincipalExtractorTest {
         assertThat(principal, instanceOf(HumanCoffeeNetUser.class));
 
         HumanCoffeeNetUser humanCoffeeUser = (HumanCoffeeNetUser) principal;
-        assertThat(humanCoffeeUser.getEmail(), is("test@synyx.de"));
+        assertThat(humanCoffeeUser.getEmail(), is("coffy@coffeenet"));
         assertThat(humanCoffeeUser.getUsername(), is("UNKNOWN"));
         assertThat(humanCoffeeUser.getAuthorities().size(), is(1));
     }
@@ -220,7 +220,7 @@ public class CoffeeNetPrincipalExtractorTest {
 
         HumanCoffeeNetUser humanCoffeeUser = (HumanCoffeeNetUser) principal;
         assertThat(humanCoffeeUser.getEmail(), is("UNKNOWN"));
-        assertThat(humanCoffeeUser.getUsername(), is("testPrincipal"));
+        assertThat(humanCoffeeUser.getUsername(), is("coffy"));
         assertThat(humanCoffeeUser.getAuthorities().size(), is(1));
     }
 
@@ -236,7 +236,7 @@ public class CoffeeNetPrincipalExtractorTest {
 
         HumanCoffeeNetUser humanCoffeeUser = (HumanCoffeeNetUser) principal;
         assertThat(humanCoffeeUser.getEmail(), is("UNKNOWN"));
-        assertThat(humanCoffeeUser.getUsername(), is("testPrincipal"));
+        assertThat(humanCoffeeUser.getUsername(), is("coffy"));
         assertThat(humanCoffeeUser.getAuthorities().size(), is(1));
     }
 }

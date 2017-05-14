@@ -36,18 +36,18 @@ public class CoffeeNetAuthoritiesExtractorTest {
     public void setUp() {
 
         authoritiesList = new ArrayList<>();
-        authoritiesList.add("ROLE_EMPLOYEE");
+        authoritiesList.add("ROLE_COFFEENET-USER");
         authoritiesList.add("ROLE_COFFEENET-ADMIN");
 
         testPrincipal = new HashMap<>();
-        testPrincipal.put("mail", "test@synyx.de");
-        testPrincipal.put("username", "testPrincipal");
+        testPrincipal.put("mail", "coffy@coffeenet");
+        testPrincipal.put("username", "coffy");
         testPrincipal.put("authorities", authoritiesList);
 
         userInfoHashMap = new HashMap<>();
         userInfoHashMap.put("clientOnly", false);
-        userInfoHashMap.put("id", "testPrincipal");
-        userInfoHashMap.put("name", "testPrincipal");
+        userInfoHashMap.put("id", "coffy");
+        userInfoHashMap.put("name", "coffy");
         userInfoHashMap.put("principal", testPrincipal);
 
         sut = new CoffeeNetAuthoritiesExtractor();
@@ -60,7 +60,7 @@ public class CoffeeNetAuthoritiesExtractorTest {
         List<GrantedAuthority> grantedAuthorities = sut.extractAuthorities(userInfoHashMap);
 
         assertThat(grantedAuthorities.size(), is(2));
-        assertThat(grantedAuthorities.contains(new SimpleGrantedAuthority("ROLE_EMPLOYEE")), is(true));
+        assertThat(grantedAuthorities.contains(new SimpleGrantedAuthority("ROLE_COFFEENET-USER")), is(true));
         assertThat(grantedAuthorities.contains(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN")), is(true));
     }
 
@@ -105,7 +105,7 @@ public class CoffeeNetAuthoritiesExtractorTest {
     @Test
     public void extractAuthoritiesReturnsDefaultAuthorityIfAuthoritiesIsNotOfTypeCollection() {
 
-        testPrincipal.put("authorities", "ROLE_EMPLOYEE");
+        testPrincipal.put("authorities", "ROLE_COFFEENET-USER");
 
         List<GrantedAuthority> grantedAuthorities = sut.extractAuthorities(userInfoHashMap);
 
