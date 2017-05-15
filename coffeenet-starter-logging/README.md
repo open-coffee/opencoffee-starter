@@ -1,6 +1,6 @@
 # CoffeeNet Starter - Logging
 
-This CoffeeNet-Starter preconfigure a consistent logging through all of your CoffeeNet applications.
+This CoffeeNet starter configures a consistent logging format and behaviour through all of your CoffeeNet applications.
 
 ## Usage
 
