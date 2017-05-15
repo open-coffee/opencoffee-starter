@@ -1,17 +1,17 @@
 [![Build Status](https://travis-ci.org/coffeenet/coffeenet-starter.svg?branch=master)](https://travis-ci.org/coffeenet/coffeenet-starter)
 
-# CoffeeNet Starter
+# CoffeeNet Starters
 
-Dieses Projekt beinhaltet alle CoffeeNet-Starter, welche verwendet werden können, um sich an das CoffeeNet anzubinden.
+These projects contains all CoffeeNet starters, which can be used to integrate an application into the CoffeeNet.
 
 [Security](./coffeenet-starter-sso/README.md)
-Starter bietet die Authentifizierung gegen den CoffeeNet-Auth Server.
+provides the authentication against the CoffeeNet auth server.
 
 [Service Discovery](./coffeenet-starter-discovery/README.md)
-Starter bietet die Integration zum Verteilen bzw. Auffinden der Anwendungen im CoffeeNet.
+provides the integration to dustribute and search of CoffeeNet applications.
 
 [Logging](./coffeenet-starter-logging/README.md)
-Starter bietet ein einheitliches und automatisiertes zentralisiertes Logging.
+provides a consistent and centralised logging.
 
 [Web Thymleaf](./coffeenet-starter-web-thymeleaf/README.md)
 provides the server side rendering of the navigation bar via thymeleaf.
