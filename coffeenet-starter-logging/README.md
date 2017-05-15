@@ -1,9 +1,8 @@
 # CoffeeNet Starter - Logging
 
-Dieser CoffeeNet-Starter konfiguriert ein einheitliches Logging der Anwendung im CoffeeNet.
+This CoffeeNet-Starter preconfigure a consistent logging through all of your CoffeeNet applications.
 
-
-## Verwendung
+## Usage
 
 ```java
 import ch.qos.logback.classic.Logger;
@@ -16,12 +15,10 @@ public class LoggingClass {
 }
 ```
 
-## Konfiguration
+## Configuration
+The logging starter configuration depends on the CoffeeNet profile ```coffeenet.profile```.
 
-Der Starter-Logging hängt sich standardmäßig an die Eigenschaft ```coffeenet.profile```.
-
-Jedoch hat man sowohl bei ```development``` als auch bei ```integration``` jederzeit, unabhängig vom Profil,
-die Möglichkeit jeden einzelnen Appender zu aktivieren bzw deaktivieren.
+But it is possible to change the configuration, independent of the chosen profile ```development``` or ```integration``` at any time and remove or add specific appenders.
 
 ```yaml
 coffeenet:
@@ -46,23 +43,22 @@ coffeenet:
       layout: %m %n
 ```
 
-Die Konfigurationsmöglichkeiten mit deren Standardwerte.
+The configuration with their default values.
 
-```coffeenet.application-name``` wird für das Logging in den Graylog verwendet, damit die Applikation identifiziert werden kann.
+```coffeenet.application-name``` will be used to identify the application when logging into the Graylog server.
 
 ### Development
 
-Ist ```coffeenet.profile``` auf ```development``` gesetzt, wird per default:
+Is the ```coffeenet.profile``` set to ```development``` by default:
 
-* der console appender automatisch _aktiviert_
-* der file appender aotomatisch _deaktiviert_
-* der gelf (Graylog Extended Log Format) appender aotomatisch _deaktiviert_
+* the console appender will be _activated_
+* the file appender will be _deactivated_
+* the gelf (Graylog Extended Log Format) appender will be _deactivated_
 
 
 ### Integration
+Is the ```coffeenet.profile``` set to ```integration``` by default:
 
-Ist ```coffeenet.profile``` auf ```integration``` gesetzt, wird per default:
-
-* der console appender automatisch _deaktiviert_
-* der file appender aotomatisch _aktiviert_
-* der gelf (Graylog Extended Log Format) appender aotomatisch _aktiviert_
+* the console appender will be _deactivated_
+* the file appender will be _activated_
+* the gelf (Graylog Extended Log Format) appender will be _activated_
