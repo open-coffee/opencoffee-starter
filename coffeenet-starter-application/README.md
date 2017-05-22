@@ -1,7 +1,7 @@
 # CoffeeNet Starter - Application
 
 Dieser Starter bietet die volle Integration in das CoffeeNet und beinhaltet diese Komponenten:
- * [Single-Sign-On](../coffeenet-starter-sso/README.md)
+ * [Single-Sign-On](../coffeenet-starter-security/README.md)
  * [Service Discovery](../coffeenet-starter-discovery/README.md)
  * [Logging](../coffeenet-starter-logging/README.md)
 

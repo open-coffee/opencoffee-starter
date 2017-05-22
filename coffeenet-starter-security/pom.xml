@@ -9,12 +9,12 @@
         <relativePath>../coffeenet-starter-parent/pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>starter-sso</artifactId>
+    <artifactId>starter-security</artifactId>
     <version>0.20.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>CoffeeNet Starter Single-Sign-On</name>
-    <description>This starter is designed to provide single sign on integration into the CoffeeNet</description>
+    <name>CoffeeNet Starter Security</name>
+    <description>This starter is designed to provide security and Single-Sign-On integration into the CoffeeNet</description>
 
     <dependencies>
         <dependency>

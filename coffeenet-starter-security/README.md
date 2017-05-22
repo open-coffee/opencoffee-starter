@@ -2,7 +2,7 @@
 
 Dieser CoffeeNet-Starter sichert automatisch die Anwendung innerhalb des CoffeeNets anhand von Single-Sign-On ab.
 Standardmäßig werden alle Endpunkte abgesichert. Anhand einer manuell erstellten Konfiguration in der Anwendung kann 
-diese überschrieben werden. 
+diese überschrieben werden.
 
 
 ## Konfiguration

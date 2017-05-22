@@ -20,7 +20,7 @@
         <!-- CoffeeNet -->
         <dependency>
             <groupId>coffee.synyx</groupId>
-            <artifactId>starter-sso</artifactId>
+            <artifactId>starter-security</artifactId>
         </dependency>
 
         <dependency>

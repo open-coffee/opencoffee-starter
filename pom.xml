@@ -21,7 +21,7 @@
         <module>coffeenet-starter-application</module>
         <module>coffeenet-starter-discovery</module>
         <module>coffeenet-starter-logging</module>
-        <module>coffeenet-starter-sso</module>
+        <module>coffeenet-starter-security</module>
         <module>coffeenet-autoconfigure</module>
         <module>coffeenet-starter-parent</module>
     </modules>

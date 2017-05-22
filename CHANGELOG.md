@@ -4,6 +4,7 @@
 * Upgrade to spring-cloud-dependencies Camden.SR7
 * New global CoffeeNet banner
 * New favicon in the default resource directory
+* Rename 'starter-sso' to 'starter-security'
 
 ### 0.19.0
 * Upgrade to spring boot 1.5.3

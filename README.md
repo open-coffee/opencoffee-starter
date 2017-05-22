@@ -4,7 +4,7 @@
 
 These projects contains all CoffeeNet starters, which can be used to integrate an application into the CoffeeNet.
 
-[Security](./coffeenet-starter-sso/README.md)
+[Security](coffeenet-starter-security/README.md)
 provides the authentication against the CoffeeNet auth server.
 
 [Service Discovery](./coffeenet-starter-discovery/README.md)
