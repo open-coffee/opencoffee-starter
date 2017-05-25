@@ -27,8 +27,8 @@ public final class MachineCoffeeNetUser implements CoffeeNetUserDetails {
      */
     public MachineCoffeeNetUser(String username, Collection<GrantedAuthority> authorities) {
 
-        Assert.notNull(username);
-        Assert.notNull(authorities);
+        Assert.notNull(username, "Please provide a username");
+        Assert.notNull(authorities, "Please provide authorities");
 
         this.username = username;
         this.authorities = authorities;

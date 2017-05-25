@@ -31,9 +31,9 @@ public final class HumanCoffeeNetUser implements CoffeeNetUserDetails {
      */
     public HumanCoffeeNetUser(String username, String email, Collection<GrantedAuthority> authorities) {
 
-        Assert.notNull(username);
-        Assert.notNull(email);
-        Assert.notNull(authorities);
+        Assert.notNull(username, "Please provide a username");
+        Assert.notNull(email, "Please provide a email");
+        Assert.notNull(authorities, "Please provide authorities");
 
         this.username = username;
         this.email = email;
