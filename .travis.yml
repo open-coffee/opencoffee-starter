@@ -16,3 +16,14 @@ deploy:
     on:
       tags: true
       repo: coffeenet/coffeenet-starter
+  - provider: script
+    script: echo "<settings><servers><server><id>releases.public.nexus.synyx.de</id><username>$NEXUS_USERNAME</username><password>$NEXUS_PASS</password></server></servers></settings>" > ~/settings.xml; mvn deploy --settings ~/settings.xml -DskipTests
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: coffeenet/coffeenet-starter
+
+env:
+  global:
+  - secure: qnnvMYqUIAUkdoY94SY+2pKFM1Nm7tF0jjWTM5hMzMWFe9+kAMH4mZm+iKHsYDPFdpuPteravDSrcb2z+QMY9z8v3UjoUOwlNaMY+DrLbAb6lP/bgBJkW9+x9T/J/iOkYvR7IrMRBrg7XeTvtVOyu7HVzKNBiQ4G8yXpen2rKDNKSJh06Px/i77XJJtnoG4dgvtPr++DlyPoNJS7ZliIMlvvH3Z3fpplO89JihjQ5WlaSr43ITPZ68y4RwWDaQZRCwQl/BCxsIIx2McN+HdCi+9HVcZBfZcu5CkFZYJJbFOjgYD4Ny1NqTuDxV/7Zq0tHshL5MvCvQM6sj0oAPJRIqfAnagGaHG+0uCXAtkmIEfOenXTjCLMQlfYB0Lzprx+9KN6QtWLnkrLKInOpcFV/Lh0iG7oIeH2a/TWvIcHL9cdKWax6F8xuFkbm7//xDJ2OZLbCzYXChrhwFE5PHfWPd95kOh0g10fwc15CMnvE4It6D7udz+d5KUjAFcKwswZa5V7WdJxyd5TgwKfh1/RS7sJqenUCayjpp/FHVQi29DE7XI7uw1WhHafnMB+bo6YMeHEyCCLyC0W6mEE8Ay+ihcnNFsKXjRAIcO99ZKtkyq+LJFGJFFj7Rp/WEQEVnyhSibmZNUUGCC5ZoHsO3O9/6leCQPMx8z8PJsJeI3e52I=
+  - secure: NZhQgbMtjJW6LnhcZyEHtq2//ukq4p8pT//4MWectihaxqOvrmia3RZKY+BZg+fyFpp7BgTUtlpuCtdWeeLy++cnYdzrvjLbsnSa87/erVz4ZFLaSGJrbZVY36fcgUCNHPD7CTa/vgBZN8EiVJFwSnhC4ft1M6tlcDRBJ3htI9m6FbCKlro5lh8/1AnYVN8e3ZgY/dFsKex047kjajSexUKc5HRBrXK/6vDMMBR4NeNOO16+ouORHMqVnerYYKt1w/t8toDYcj8VbeBRW1PYCK9JXzxRk8d//MG6zb6cikB1vUUKuHQfaDxG+bgiikxm9b79qgrFiIoscmYd/5hfuuTiv4iglfXHENkFjjIMUnQhpKw4mP1MjprjD9lel6wQb48Y6HUkTMbFcaGFcb6pHHxtKqIChG3gWIBfRjc923plLOm9K9xnPUyH2/fCjzgdFvg8HQYeitQ2Z0tzFzJ6flho5xrgPUfakpZgpmCiqpy9V9pq0Qq2Wgr31Qy3Zk2TQh5V+MwgHVsZVPdefH5DZeRiYbUs3q+zY5f5kUVIM/ot5EazAfUAXzIpgVenWCFdFG3/jDGpD+RWxwqtXi5spdWe0d3SyMRRSdRF87vpxNmfo4MAlZTyWW8vnbO0qTk2EwGdViplAT0XZzXBnKWVND4BKhE4WGRli7z5cRpqREI=
