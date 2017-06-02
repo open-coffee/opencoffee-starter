@@ -18,7 +18,6 @@
         <module>coffeenet-starter-web-javascript</module>
         <module>coffeenet-starter-web-thymeleaf</module>
         <module>coffeenet-starter-web</module>
-        <module>coffeenet-starter-application</module>
         <module>coffeenet-starter-discovery</module>
         <module>coffeenet-starter-logging</module>
         <module>coffeenet-starter-security</module>

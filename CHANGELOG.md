@@ -1,5 +1,8 @@
 # Changelog 
 
+### 0.21.0
+* Remove coffeenet-starter-application
+
 ### 0.20.0
 * Upgrade to spring-cloud-dependencies Camden.SR7
 * New global CoffeeNet banner
