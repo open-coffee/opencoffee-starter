@@ -1,49 +1,67 @@
 # CoffeeNet Starter Web - Javascript
 
-This CoffeeNet started is dedicated to provide a simple and easy way to integrate the coffeenet web behaviour with javascript as your rendering engine.
+This CoffeeNet started is dedicated to provide a simple and easy way to
+integrate the CoffeeNet web behaviour with javascript as your rendering engine.
 
-## Example
+## Getting started
 
-This example will help you to use the starter. First of all you have to add the CoffeeNet javascript files at the end of the body
+This is a module in the starter set, so you first need to declare your project
+as a child of the starter `parent` by editing the `pom.xml` file.
 
-```html
-<script src="/webjars/navigation-bar/bundle.min.js"></script>
+```xml
+<parent>
+    <groupId>coffee.synyx</groupId>
+    <artifactId>coffeenet-starter-parent</artifactId>
+    <version>${parent.version}</version>
+    <relativePath />
+</parent>
 ```
 
-Now just add the simple html snipped listed below where you want to show the CoffeeNet header
+and adding the repository to receive the dependencies
 
-```html
-<!-- CoffeeNet header -->
-<header id="coffeenet-header"></header>
+```xml
+<repositories>
+  <repository>
+    <id>releases.public.nexus.synyx.de</id>
+    <url>http://nexus.synyx.de/content/repositories/public-releases</url>
+  </repository>
+</repositories>
 ```
-and use the 
 
-```html
-<main class="coffeenet--main">
-  <!-- your main code belongs here -->
-</main>
+Now you can enable the web javascript navigation bar in your project, by first adding the
+dependency:
+
+```xml
+<dependency>
+    <groupId>coffee.synyx</groupId>
+    <artifactId>starter-web-javascript</artifactId>
+</dependency>
 ```
-to have the correct alignment of the `<main>` element.
 
-If you did everything correct it should look like this
+In order to get everything up and running there are some requirements that
+your project must fulfill.
+
+
+## Usage
+
+Just add the html snipped listed below with the jQuery and bootstrap
+files in the body and the bootstrap css in the header.
 
 ```html
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <!-- your head code belongs here -->
-</head>
+<header>
+    <link rel="stylesheet" href="webjars/bootstrap/${bootstrap.version}/dist/css/bootstrap.min.css">
+    <!-- Your header stuff here -->
+</header>
+
 <body>
+    <!-- CoffeeNet header -->
+    <header id="coffeenet-header"></header>
 
-<!-- CoffeeNet Header -->
-<header id="coffeenet-header"></header>
+    <!-- Your html here -->
 
-<main class="coffeenet--main">
-  <!-- your main code belongs here -->
-</main>
-
-<script src="/webjars/navigation-bar/bundle.min.js"></script>
-  <!-- your scripts belongs here -->
+    <script src="/webjars/navigation-bar/bundle.min.js"></script>
+    <script src="/webjars/jquery/${jquery.version}/dist/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/${bootstrap.version}/dist/js/bootstrap.min.js"></script>
+    <!-- Your scripts here -->
 </body>
-</html>
 ```
