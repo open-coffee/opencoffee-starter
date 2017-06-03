@@ -1,8 +1,49 @@
 # CoffeeNet Starter - Discovery
 
-Dieser CoffeeNet-Starter startet die 'Service-Discovery'-Konfiguration einer Anwendung im CoffeeNet.
+This CoffeeNet starter configures the service discovery for your application,
+provides your application as client to the discovery service and offers already
+known clients to you by the `IntegrationCoffeeNetAppService`. 
 
-## Konfiguration
+
+## Getting started
+
+This is a module in the starter set, so you first need to declare your project
+as a child of the starter `parent` by editing the `pom.xml` file.
+
+```xml
+<parent>
+    <groupId>coffee.synyx</groupId>
+    <artifactId>coffeenet-starter-parent</artifactId>
+    <version>${parent.version}</version>
+    <relativePath />
+</parent>
+```
+
+and adding the repository to receive the dependencies
+
+```xml
+<repositories>
+  <repository>
+    <id>releases.public.nexus.synyx.de</id>
+    <url>http://nexus.synyx.de/content/repositories/public-releases</url>
+  </repository>
+</repositories>
+```
+
+Now you can enable service discovery in your project, by first adding the dependency:
+
+```xml
+<dependency>
+    <groupId>coffee.synyx</groupId>
+    <artifactId>starter-discovery</artifactId>
+</dependency>
+```
+
+In order to get everything up and running there are some requirements that
+your project must fulfill.
+
+
+## Configuration
 
 ```yaml
 coffeenet:
@@ -20,14 +61,14 @@ coffeenet:
       home-page-url:
 ```
 
-Die Konfigurationsmöglichkeiten mit deren Standardwerte.
+The configuration with their default values.
 
-`coffeenet.allowed-authorities` Kommaseparierte Liste anhand von dieser wird die Applikation automatisch aus der Liste 
-der Anwendungen entfernt, sofern der Nutzer diese Berechtigung nicht besitzt.
+`coffeenet.allowed-authorities` is a comma separated list that filters the application
+from the navigation bar if the user does not have the required roles.
 
-Die Service Discovery wird automatisch aktiviert, sofern ihr in eurer application.[properties|yml] die option
+The service discovery tries to communicate with the discovery service, if the configuration
 ```yaml
 coffeenet:
   profile: integration
 ```
-gesetzt habt. Falls diese Einstellung auf 'development' gestellt ist wird ein 'Mock Service Discovery Server' verwendet.
+is activated. If it is on `development` a mock service will be used.
