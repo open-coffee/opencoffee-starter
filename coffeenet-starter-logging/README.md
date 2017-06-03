@@ -1,16 +1,57 @@
 # CoffeeNet Starter - Logging
 
-This CoffeeNet starter configures a consistent logging format and behaviour through all of your CoffeeNet applications.
+This CoffeeNet starter configures a consistent logging format
+and behaviour through all of your CoffeeNet applications.
+
+
+## Getting started
+
+This is a module in the starter set, so you first need to declare your project
+as a child of the starter `parent` by editing the `pom.xml` file.
+
+```xml
+<parent>
+    <groupId>coffee.synyx</groupId>
+    <artifactId>coffeenet-starter-parent</artifactId>
+    <version>${parent.version}</version>
+    <relativePath />
+</parent>
+```
+
+and adding the repository to receive the dependencies
+
+```xml
+<repositories>
+  <repository>
+    <id>releases.public.nexus.synyx.de</id>
+    <url>http://nexus.synyx.de/content/repositories/public-releases</url>
+  </repository>
+</repositories>
+```
+
+Now you can enable logging in your project, by first adding the dependency:
+
+```xml
+<dependency>
+    <groupId>coffee.synyx</groupId>
+    <artifactId>starter-logging</artifactId>
+</dependency>
+```
+
+In order to get everything up and running there are some requirements that
+your project must fulfill.
+
 
 ## Usage
 
 ```java
-import ch.qos.logback.classic.Logger;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.lang.invoke.MethodHandles;
 
 public class LoggingClass {
 
-  private static final Logger LOGGER = (Logger) LoggerFactory.getLogger("LoggingClass");
+  private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
   ...
 }
 ```
