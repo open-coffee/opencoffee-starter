@@ -17,20 +17,13 @@
     <description>This starter is designed to provide the CoffeeNet styling with javascript</description>
 
     <dependencies>
-        <!-- Bootstrap -->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>3.3.6</version>
-        </dependency>
-
         <!-- Endpoints -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-actuator</artifactId>
         </dependency>
 
-        <!-- CoffeeNet -->
+        <!-- CoffeeNet Web -->
         <dependency>
             <groupId>coffee.synyx</groupId>
             <artifactId>starter-web</artifactId>
