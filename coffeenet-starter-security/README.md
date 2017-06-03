@@ -1,11 +1,49 @@
 # CoffeeNet Starter - Security
 
-Dieser CoffeeNet-Starter sichert automatisch die Anwendung innerhalb des CoffeeNets anhand von Single-Sign-On ab.
-Standardmäßig werden alle Endpunkte abgesichert. Anhand einer manuell erstellten Konfiguration in der Anwendung kann 
-diese überschrieben werden.
+Dieser CoffeeNet-Starter sichert automatisch die Anwendung innerhalb des CoffeeNets
+anhand von Single-Sign-On ab. Standardmäßig werden alle Endpunkte abgesichert.
+Anhand einer manuell erstellten Konfiguration in der Anwendung kann diese überschrieben werden.
 
 
-## Konfiguration
+## Getting started
+
+This is a module in the starter set, so you first need to declare your project
+as a child of the starter `parent` by editing the `pom.xml` file.
+
+```xml
+<parent>
+    <groupId>coffee.synyx</groupId>
+    <artifactId>coffeenet-starter-parent</artifactId>
+    <version>${parent.version}</version>
+    <relativePath />
+</parent>
+```
+
+and adding the repository to receive the dependencies
+
+```xml
+<repositories>
+  <repository>
+    <id>releases.public.nexus.synyx.de</id>
+    <url>http://nexus.synyx.de/content/repositories/public-releases</url>
+  </repository>
+</repositories>
+```
+
+Now you can enable security in your project, by first adding the dependency:
+
+```xml
+<dependency>
+    <groupId>coffee.synyx</groupId>
+    <artifactId>starter-security</artifactId>
+</dependency>
+```
+
+In order to get everything up and running there are some requirements that
+your project must fulfill.
+
+
+## Configuration
 
 Der CoffeeNet-Starter Security hängt sich standardmäßig an die Eigenschaft ```coffeenet.profile```.
 
