@@ -2,7 +2,7 @@
 
 This CoffeeNet starter configures the service discovery for your application,
 provides your application as client to the discovery service and offers already
-known clients to you by the `IntegrationCoffeeNetAppService`. 
+known clients to you by the `coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService`.
 
 
 ## Getting started
