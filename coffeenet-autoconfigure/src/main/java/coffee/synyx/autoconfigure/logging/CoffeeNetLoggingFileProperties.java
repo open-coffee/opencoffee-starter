@@ -91,9 +91,9 @@ public class CoffeeNetLoggingFileProperties {
     }
 
 
-    public void setFileNamePattern(String rollingFNP) {
+    public void setFileNamePattern(String fileNamePattern) {
 
-        this.fileNamePattern = rollingFNP;
+        this.fileNamePattern = fileNamePattern;
     }
 
 

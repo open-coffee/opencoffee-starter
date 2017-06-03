@@ -73,7 +73,7 @@ coffeenet:
       enabled:
       file: logs/app.log
       max-history: 30
-      rolling-file-name-pattern: logs/app-%d{yyyy-MM-dd}.log
+      file-name-pattern: logs/app-%d{yyyy-MM-dd}.log
       pattern: %d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%t] %-40.40logger{39} : %m%n%wEx
     gelf:
       enabled:
