@@ -2,6 +2,7 @@
 
 ### 0.21.0
 * Remove coffeenet-starter-application
+* Security Starter: admin and user in development mode both have now the role "USER"
 
 ### 0.20.0
 * Upgrade to spring-cloud-dependencies Camden.SR7

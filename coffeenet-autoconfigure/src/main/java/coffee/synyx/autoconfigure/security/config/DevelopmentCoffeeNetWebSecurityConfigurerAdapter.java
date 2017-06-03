@@ -52,11 +52,11 @@ public class DevelopmentCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
         auth.inMemoryAuthentication()
             .withUser("admin")
             .password("admin")
-            .roles("COFFEENET-ADMIN")
+            .roles("COFFEENET-ADMIN", "USER")
             .and()
             .withUser("user")
             .password("user")
-            .roles();
+            .roles("USER");
     }
 
 

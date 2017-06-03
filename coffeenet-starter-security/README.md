@@ -128,8 +128,8 @@ Standardmäßig sind die Zugangsdaten dann folgende:
 
 | User       | Passwort   | Email   | Rollen   |
 | ---------- |------------|------------| :-------:|
-| admin      | admin      | admin@coffeenet | COFFEENET-ADMIN |
-| user       | user       | user@coffeenet | |
+| admin      | admin      | admin@coffeenet | COFFEENET-ADMIN & USER |
+| user       | user       | user@coffeenet | USER |
 
 
 ## Verhalten anpassen
