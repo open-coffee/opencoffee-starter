@@ -2,7 +2,8 @@
 
 # CoffeeNet Starters
 
-These projects contains all CoffeeNet starters, which can be used to integrate an application into the CoffeeNet.
+These projects contains all CoffeeNet starters, which can be used
+to integrate an application into the CoffeeNet.
 
 [Security](coffeenet-starter-security/README.md)
 provides the authentication against the CoffeeNet auth server.
