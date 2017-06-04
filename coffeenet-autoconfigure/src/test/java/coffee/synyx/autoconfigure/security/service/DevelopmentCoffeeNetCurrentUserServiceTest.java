@@ -9,6 +9,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.User;
 
+import java.util.Optional;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import static org.hamcrest.Matchers.contains;
@@ -79,6 +81,14 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
         assertThat(coffeeNetUserDetails.getEmail(), is("user@coffeenet"));
         assertThat(coffeeNetUserDetails.getUsername(), is("user"));
         assertThat(coffeeNetUserDetails.getAuthorities(), hasSize(0));
+    }
+
+
+    @Test
+    public void emptyAuthentication() {
+
+        Optional<CoffeeNetUserDetails> coffeeNetUserDetails = sut.get();
+        assertThat(coffeeNetUserDetails.isPresent(), is(false));
     }
 
 

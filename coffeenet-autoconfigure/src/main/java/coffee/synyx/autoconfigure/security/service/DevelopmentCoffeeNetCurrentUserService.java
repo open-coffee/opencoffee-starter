@@ -2,6 +2,7 @@ package coffee.synyx.autoconfigure.security.service;
 
 import coffee.synyx.autoconfigure.security.config.DevelopmentCoffeeNetWebSecurityConfigurerAdapter;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -21,7 +22,13 @@ public class DevelopmentCoffeeNetCurrentUserService implements CoffeeNetCurrentU
     @Override
     public Optional<CoffeeNetUserDetails> get() {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null) {
+            return Optional.empty();
+        }
+
+        User user = (User) authentication.getPrincipal();
 
         return getCoffeeNetUserDetails(user);
     }

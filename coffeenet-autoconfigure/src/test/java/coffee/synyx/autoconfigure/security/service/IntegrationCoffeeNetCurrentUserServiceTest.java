@@ -1,5 +1,7 @@
 package coffee.synyx.autoconfigure.security.service;
 
+import org.hamcrest.MatcherAssert;
+
 import org.junit.After;
 import org.junit.Test;
 
@@ -9,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextImpl;
 
 import java.util.HashSet;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
 
@@ -45,10 +48,11 @@ public class IntegrationCoffeeNetCurrentUserServiceTest {
     }
 
 
-    @Test(expected = NoSuchElementException.class)
+    @Test
     public void getWithoutAuthenticationInContext() {
 
-        sut.get().get();
+        Optional<CoffeeNetUserDetails> coffeeNetUserDetails = sut.get();
+        MatcherAssert.assertThat(coffeeNetUserDetails.isPresent(), is(false));
     }
 
 
