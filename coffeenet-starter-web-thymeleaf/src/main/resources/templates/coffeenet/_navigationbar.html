@@ -41,7 +41,7 @@
                 </li>
             </ul>
 
-            <form th:if="${coffeenet.logoutPath != null}" th:action="${coffeenet.logoutPath}" method="post">
+            <form th:if="${coffeenet.coffeeNetWebUser != null and coffeenet.logoutPath != null}" th:action="${coffeenet.logoutPath}" method="post">
                 <button type="submit" class="coffeenet--button-logout">
                     Logout
                 </button>
