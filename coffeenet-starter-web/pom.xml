@@ -17,7 +17,18 @@
     <description>This starter is designed to provide the CoffeeNet web components</description>
 
     <dependencies>
-        <!-- CoffeeNet Autoconfigure -->
+        <!-- CoffeeNet -->
+        <dependency>
+            <groupId>coffee.synyx</groupId>
+            <artifactId>starter-discovery</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>coffee.synyx</groupId>
+            <artifactId>starter-security</artifactId>
+        </dependency>
+
+        <!-- CoffeeNet Web -->
         <dependency>
             <groupId>coffee.synyx</groupId>
             <artifactId>autoconfigure</artifactId>
