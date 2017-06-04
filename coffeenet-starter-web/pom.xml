@@ -17,15 +17,9 @@
     <description>This starter is designed to provide the CoffeeNet web components</description>
 
     <dependencies>
-        <!-- CoffeeNet -->
         <dependency>
-            <groupId>coffee.synyx</groupId>
-            <artifactId>starter-discovery</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>coffee.synyx</groupId>
-            <artifactId>starter-security</artifactId>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
         </dependency>
 
         <!-- CoffeeNet Web -->
