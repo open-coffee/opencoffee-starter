@@ -20,18 +20,7 @@ import static java.util.Arrays.asList;
 /**
  * @author  Tobias Schneider - schneider@synyx.de
  */
-public class CoffeeNetUserDetailsTest {
-
-    @Test
-    public void testDefaultValue() {
-
-        CoffeeNetUserDetails coffeeNetUserDetails = new CoffeeNetUserDetailsStub();
-        assertThat(coffeeNetUserDetails.isAccountNonExpired(), is(true));
-        assertThat(coffeeNetUserDetails.isAccountNonLocked(), is(true));
-        assertThat(coffeeNetUserDetails.isCredentialsNonExpired(), is(true));
-        assertThat(coffeeNetUserDetails.isEnabled(), is(true));
-    }
-
+public class AbstractCoffeeNetUserTest {
 
     @Test
     public void hasRoles() {
@@ -89,7 +78,7 @@ public class CoffeeNetUserDetailsTest {
             is(hasItems("ROLE_COFFEENET-ADMIN", "ROLE_COFFEENET-USER")));
     }
 
-    private class CoffeeNetUserDetailsStub implements CoffeeNetUserDetails {
+    private class CoffeeNetUserDetailsStub extends AbstractCoffeeNetUser {
 
         @Override
         public String getUsername() {
@@ -127,7 +116,7 @@ public class CoffeeNetUserDetailsTest {
         }
     }
 
-    private class CoffeeNetUserDetailsEmptyStub implements CoffeeNetUserDetails {
+    private class CoffeeNetUserDetailsEmptyStub extends AbstractCoffeeNetUser {
 
         @Override
         public String getUsername() {

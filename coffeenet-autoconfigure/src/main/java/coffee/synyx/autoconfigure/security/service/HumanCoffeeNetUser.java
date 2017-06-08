@@ -7,8 +7,6 @@ import org.springframework.util.Assert;
 
 import java.util.Collection;
 
-import static java.util.Collections.emptySet;
-
 
 /**
  * Human user implementation for {@link CoffeeNetUserDetails}.
@@ -16,13 +14,10 @@ import static java.util.Collections.emptySet;
  * @author  Tobias Schneider - schneider@synyx.de
  * @author  David Schilling - schilling@synyx.de
  */
-public final class HumanCoffeeNetUser implements CoffeeNetUserDetails {
+public final class HumanCoffeeNetUser extends AbstractCoffeeNetUser {
 
-    private static final long serialVersionUID = 3475117968680202370L;
-
-    private final String username;
     private final String email;
-    private Collection<GrantedAuthority> authorities = emptySet();
+    private final UserDetailsInstance userDetailsInstance;
 
     /**
      * @param  username  Must not be null.
@@ -35,15 +30,14 @@ public final class HumanCoffeeNetUser implements CoffeeNetUserDetails {
         Assert.notNull(email, "Please provide a email");
         Assert.notNull(authorities, "Please provide authorities");
 
-        this.username = username;
         this.email = email;
-        this.authorities = authorities;
+        this.userDetailsInstance = new UserDetailsInstance(username, authorities);
     }
 
     @Override
     public String getUsername() {
 
-        return username;
+        return userDetailsInstance.getUsername();
     }
 
 
@@ -57,7 +51,7 @@ public final class HumanCoffeeNetUser implements CoffeeNetUserDetails {
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
 
-        return authorities;
+        return userDetailsInstance.getAuthorities();
     }
 
 

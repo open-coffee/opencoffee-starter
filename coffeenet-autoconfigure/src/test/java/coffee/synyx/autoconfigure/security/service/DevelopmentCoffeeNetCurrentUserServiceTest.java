@@ -16,7 +16,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.nullValue;
 
 import static org.hamcrest.core.Is.is;
 
@@ -46,7 +45,6 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
 
         CoffeeNetUserDetails coffeeNetUserDetails = sut.get().get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
-        assertThat(coffeeNetUserDetails.getPassword(), is(nullValue()));
         assertThat(coffeeNetUserDetails.getEmail(), is("admin@coffeenet"));
         assertThat(coffeeNetUserDetails.getUsername(), is("admin"));
         assertThat(coffeeNetUserDetails.getAuthorities(),
@@ -62,7 +60,6 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
 
         CoffeeNetUserDetails coffeeNetUserDetails = sut.get().get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
-        assertThat(coffeeNetUserDetails.getPassword(), is(nullValue()));
         assertThat(coffeeNetUserDetails.getEmail(), is("admin@coffeenet"));
         assertThat(coffeeNetUserDetails.getUsername(), is("admin"));
         assertThat(coffeeNetUserDetails.getAuthorities(),
@@ -77,7 +74,6 @@ public class DevelopmentCoffeeNetCurrentUserServiceTest {
 
         CoffeeNetUserDetails coffeeNetUserDetails = sut.get().get();
         assertThat(coffeeNetUserDetails, instanceOf(HumanCoffeeNetUser.class));
-        assertThat(coffeeNetUserDetails.getPassword(), is(nullValue()));
         assertThat(coffeeNetUserDetails.getEmail(), is("user@coffeenet"));
         assertThat(coffeeNetUserDetails.getUsername(), is("user"));
         assertThat(coffeeNetUserDetails.getAuthorities(), hasSize(0));
