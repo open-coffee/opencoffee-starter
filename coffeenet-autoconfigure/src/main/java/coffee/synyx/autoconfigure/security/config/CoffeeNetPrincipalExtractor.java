@@ -46,8 +46,8 @@ public class CoffeeNetPrincipalExtractor implements PrincipalExtractor {
      *
      * @param  map  The map that contains all information of the user endpoint of the auth-server.
      *
-     * @return  An instance of {@link CoffeeNetUserDetails}. Returns an instance {@link HumanCoffeeNetUser} that returns
-     *          {@link CoffeeNetPrincipalExtractor#UNKNOWN_VALUE} for every field.
+     * @return  An instance of {@link CoffeeNetUserDetails}. Returns an instance {@link HumanCoffeeNetUser} that
+     *          returns {@link CoffeeNetPrincipalExtractor#UNKNOWN_VALUE} for every field.
      */
     @Override
     public Object extractPrincipal(Map<String, Object> map) {

@@ -6,20 +6,16 @@ import org.springframework.util.Assert;
 
 import java.util.Collection;
 
-import static java.util.Collections.emptySet;
-
 
 /**
  * Machine user implementation for {@link CoffeeNetUserDetails}.
  *
+ * @author  Tobias Schneider - schneider@synyx.de
  * @author  David Schilling - schilling@synyx.de
  */
-public final class MachineCoffeeNetUser implements CoffeeNetUserDetails {
+public final class MachineCoffeeNetUser extends AbstractCoffeeNetUser {
 
-    private static final long serialVersionUID = -2951903502295199963L;
-
-    private final String username;
-    private Collection<GrantedAuthority> authorities = emptySet();
+    private final UserDetailsInstance userDetailsInstance;
 
     /**
      * @param  username  Must not be null.
@@ -30,14 +26,13 @@ public final class MachineCoffeeNetUser implements CoffeeNetUserDetails {
         Assert.notNull(username, "Please provide a username");
         Assert.notNull(authorities, "Please provide authorities");
 
-        this.username = username;
-        this.authorities = authorities;
+        this.userDetailsInstance = new UserDetailsInstance(username, authorities);
     }
 
     @Override
     public String getUsername() {
 
-        return username;
+        return userDetailsInstance.getUsername();
     }
 
 
@@ -51,7 +46,7 @@ public final class MachineCoffeeNetUser implements CoffeeNetUserDetails {
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
 
-        return authorities;
+        return userDetailsInstance.getAuthorities();
     }
 
 
