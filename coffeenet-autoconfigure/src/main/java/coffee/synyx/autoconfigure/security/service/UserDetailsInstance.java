@@ -16,6 +16,8 @@ import static java.util.Collections.emptySet;
  */
 class UserDetailsInstance implements UserDetails {
 
+    private static final long serialVersionUID = 3475227969680202370L;
+
     private final String username;
     private Collection<GrantedAuthority> authorities = emptySet();
 
