@@ -44,14 +44,13 @@ your project must fulfill.
 
 ## Usage
 
-Just add the html snipped listed below with the jQuery and bootstrap
-files in the body and the bootstrap css in the header.
+Just add the html snipped listed below:
 
 ```html
-<header>
-    <link rel="stylesheet" href="webjars/bootstrap/${bootstrap.version}/dist/css/bootstrap.min.css">
+<html>
+<head>
     <!-- Your header stuff here -->
-</header>
+</head>
 
 <body>
     <!-- CoffeeNet header -->
@@ -60,8 +59,7 @@ files in the body and the bootstrap css in the header.
     <!-- Your html here -->
 
     <script src="/webjars/navigation-bar/bundle.min.js"></script>
-    <script src="/webjars/jquery/${jquery.version}/dist/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/${bootstrap.version}/dist/js/bootstrap.min.js"></script>
     <!-- Your scripts here -->
 </body>
+</html>
 ```
