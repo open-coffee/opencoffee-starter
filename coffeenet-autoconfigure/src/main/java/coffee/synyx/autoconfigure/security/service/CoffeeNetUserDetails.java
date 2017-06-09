@@ -66,5 +66,5 @@ public interface CoffeeNetUserDetails {
     /**
      * @return  the authorities of this user
      */
-    Collection<? extends GrantedAuthority> getAuthorities();
+    Collection<GrantedAuthority> getAuthorities();
 }

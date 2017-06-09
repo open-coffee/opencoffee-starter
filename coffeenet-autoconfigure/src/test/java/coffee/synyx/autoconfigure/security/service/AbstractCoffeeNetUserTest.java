@@ -95,7 +95,7 @@ public class AbstractCoffeeNetUserTest {
 
 
         @Override
-        public Collection<? extends GrantedAuthority> getAuthorities() {
+        public Collection<GrantedAuthority> getAuthorities() {
 
             return asList(new SimpleGrantedAuthority("ROLE_COFFEENET-ADMIN"),
                     new SimpleGrantedAuthority("ROLE_COFFEENET-USER"));
@@ -133,7 +133,7 @@ public class AbstractCoffeeNetUserTest {
 
 
         @Override
-        public Collection<? extends GrantedAuthority> getAuthorities() {
+        public Collection<GrantedAuthority> getAuthorities() {
 
             return Collections.emptyList();
         }
