@@ -17,6 +17,12 @@
     <description>This starter is designed to provide the CoffeeNet styling with javascript</description>
 
     <dependencies>
+        <!--  Spring web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- Endpoints -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
