@@ -1,5 +1,8 @@
 # Changelog 
 
+### 0.21.1
+* Add missing `spring-boot-starter-web` in `starter-web-javascript`
+
 ### 0.21.0
 * Starters now complete independent usable from each other
 * Remove coffeenet-starter-application
