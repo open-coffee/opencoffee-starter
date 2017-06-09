@@ -40,7 +40,7 @@ public interface CoffeeNetUserDetails {
 
 
     /**
-     * @return  @return {@code true} if user is a machine admin, otherwise {@code false}
+     * @return  {@code true} if user is a machine admin, otherwise {@code false}
      */
     boolean isMachineUser();
 
