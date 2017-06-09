@@ -1,7 +1,9 @@
 # Changelog 
 
-### 0.21.1
+### 0.22.0
 * Add missing `spring-boot-starter-web` in `starter-web-javascript`
+* Upgrade navigation bar to 0.12.0
+  * Remove bootstrap dependency
 
 ### 0.21.0
 * Starters now complete independent usable from each other
