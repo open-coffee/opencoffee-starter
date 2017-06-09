@@ -1,6 +1,7 @@
 # Changelog 
 
 ### 0.21.0
+* Starters now complete independent usable from each other
 * Remove coffeenet-starter-application
 * Security Starter: admin and user in development mode both have now the role "USER"
 * Upgrade to spring boot 1.5.4
