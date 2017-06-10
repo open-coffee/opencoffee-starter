@@ -1,5 +1,7 @@
 # Changelog 
 
+### 0.23.0
+
 ### 0.22.0
 * Add missing `spring-boot-starter-web` in `starter-web-javascript`
 * Upgrade navigation bar to 0.12.0
