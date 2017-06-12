@@ -20,6 +20,7 @@ import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration;
 import org.springframework.cloud.netflix.eureka.EurekaClientConfigBean;
+import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,7 +41,7 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
 public class CoffeeNetDiscoveryAutoConfiguration {
 
     @Configuration
-    @ConditionalOnClass(DiscoveryClient.class)
+    @ConditionalOnClass(EurekaDiscoveryClient.class)
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
     public static class DevelopmentCoffeeNetServiceDiscoveryConfiguration {
 
@@ -54,7 +55,7 @@ public class CoffeeNetDiscoveryAutoConfiguration {
 
     @Configuration
     @EnableEurekaClient
-    @ConditionalOnClass(DiscoveryClient.class)
+    @ConditionalOnClass(EurekaDiscoveryClient.class)
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
     public static class IntegrationCoffeeNetServiceDiscoveryConfiguration {
 
@@ -75,7 +76,7 @@ public class CoffeeNetDiscoveryAutoConfiguration {
     }
 
     @Configuration
-    @ConditionalOnClass(DiscoveryClient.class)
+    @ConditionalOnClass(EurekaDiscoveryClient.class)
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
     @AutoConfigureBefore(EurekaClientAutoConfiguration.class)
     @EnableConfigurationProperties({ CoffeeNetConfigurationProperties.class, CoffeeNetDiscoveryProperties.class })

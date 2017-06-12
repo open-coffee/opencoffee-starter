@@ -1,6 +1,8 @@
 # Changelog 
 
-### 0.23.0
+### 0.22.1
+* Use `EurekaDiscoveryClient` as guard for `starter-discovery`
+  instead of the `DiscoveryClient` that is also used by other libraries.
 
 ### 0.22.0
 * Add missing `spring-boot-starter-web` in `starter-web-javascript`
