@@ -4,8 +4,6 @@ import coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-
 import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
 
@@ -20,11 +18,6 @@ import org.springframework.util.StringUtils;
 class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
 
     /**
-     * The default server port if nothing else is specified.
-     */
-    private static final int DEFAULT_SERVER_PORT = 8080;
-
-    /**
      * The hostname if it can be determined at configuration time (otherwise it will be guessed from OS primitives).
      */
     @NotBlank(message = "Please provide a hostname of your application.")
@@ -32,20 +25,12 @@ class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
 
     private CoffeeNetConfigurationProperties coffeeNetConfigurationProperties;
 
-    CoffeeNetDiscoveryInstanceProperties(InetUtils inetUtils, ServerProperties serverProperties,
+    CoffeeNetDiscoveryInstanceProperties(InetUtils inetUtils,
         CoffeeNetConfigurationProperties coffeeNetConfigurationProperties) {
 
         super(inetUtils);
 
         this.coffeeNetConfigurationProperties = coffeeNetConfigurationProperties;
-
-        Integer serverPort = serverProperties.getPort();
-
-        if (serverPort == null) {
-            serverPort = DEFAULT_SERVER_PORT;
-        }
-
-        setNonSecurePort(serverPort);
     }
 
     @Override
@@ -64,12 +49,6 @@ class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
 
     @Override
     public void setEnvironment(Environment environment) {
-
-        String allowedAuthorities = coffeeNetConfigurationProperties.getAllowedAuthorities();
-
-        if (allowedAuthorities != null) {
-            getMetadataMap().put("allowedAuthorities", allowedAuthorities);
-        }
 
         String applicationName = coffeeNetConfigurationProperties.getApplicationName();
 

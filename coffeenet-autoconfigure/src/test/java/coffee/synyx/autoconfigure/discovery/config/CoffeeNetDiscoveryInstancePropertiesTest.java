@@ -8,8 +8,6 @@ import org.junit.runner.RunWith;
 
 import org.mockito.runners.MockitoJUnitRunner;
 
-import org.springframework.boot.autoconfigure.web.ServerProperties;
-
 import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.commons.util.InetUtilsProperties;
 
@@ -29,30 +27,10 @@ public class CoffeeNetDiscoveryInstancePropertiesTest {
     @Test
     public void defaultValues() {
 
-        InetUtils inetUtils = new InetUtils(new InetUtilsProperties());
-        ServerProperties serverProperties = new ServerProperties();
-        CoffeeNetConfigurationProperties coffeeNetConfigurationProperties = new CoffeeNetConfigurationProperties();
-
-        CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(inetUtils, serverProperties,
-                coffeeNetConfigurationProperties);
-
-        assertThat(sut.getNonSecurePort(), is(8080));
-        assertThat(sut.getHostname(), is("localhost"));
-    }
-
-
-    @Test
-    public void setServerPort() {
-
-        int port = 9999;
-
-        ServerProperties serverProperties = new ServerProperties();
-        serverProperties.setPort(port);
-
         CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
-                    new InetUtilsProperties()), serverProperties, new CoffeeNetConfigurationProperties());
+                    new InetUtilsProperties()), new CoffeeNetConfigurationProperties());
 
-        assertThat(sut.getNonSecurePort(), is(port));
+        assertThat(sut.getHostname(), is("localhost"));
     }
 
 
@@ -65,7 +43,7 @@ public class CoffeeNetDiscoveryInstancePropertiesTest {
         coffeeNetConfigurationProperties.setApplicationName(brandNewApplicationName);
 
         CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
-                    new InetUtilsProperties()), new ServerProperties(), coffeeNetConfigurationProperties);
+                    new InetUtilsProperties()), coffeeNetConfigurationProperties);
 
         sut.setEnvironment(new MockEnvironment());
 
@@ -82,7 +60,7 @@ public class CoffeeNetDiscoveryInstancePropertiesTest {
         coffeeNetConfigurationProperties.setApplicationName("");
 
         CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
-                    new InetUtilsProperties()), new ServerProperties(), coffeeNetConfigurationProperties);
+                    new InetUtilsProperties()), coffeeNetConfigurationProperties);
 
         sut.setEnvironment(new MockEnvironment());
 
@@ -90,34 +68,5 @@ public class CoffeeNetDiscoveryInstancePropertiesTest {
         assertThat(sut.getAppname(), is(unknownApplicationName));
         assertThat(sut.getVirtualHostName(), is(unknownApplicationName));
         assertThat(sut.getSecureVirtualHostName(), is(unknownApplicationName));
-    }
-
-
-    @Test
-    public void allowedAuthorities() {
-
-        String allowedAuthorities = "COFFEENET-ADMIN,COFFEENET-USER";
-        CoffeeNetConfigurationProperties coffeeNetConfigurationProperties = new CoffeeNetConfigurationProperties();
-        coffeeNetConfigurationProperties.setAllowedAuthorities(allowedAuthorities);
-
-        CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
-                    new InetUtilsProperties()), new ServerProperties(), coffeeNetConfigurationProperties);
-
-        sut.setEnvironment(new MockEnvironment());
-
-        assertThat(sut.getMetadataMap().get("allowedAuthorities"), is(allowedAuthorities));
-    }
-
-
-    @Test
-    public void allowedAuthoritiesNotProvided() {
-
-        CoffeeNetDiscoveryInstanceProperties sut = new CoffeeNetDiscoveryInstanceProperties(new InetUtils(
-                    new InetUtilsProperties()), new ServerProperties(), new CoffeeNetConfigurationProperties());
-        sut.getMetadataMap().put("allowedAuthorities", "alreadySetAndNoneFromCoffeeNet");
-
-        sut.setEnvironment(new MockEnvironment());
-
-        assertThat(sut.getMetadataMap().get("allowedAuthorities"), is("alreadySetAndNoneFromCoffeeNet"));
     }
 }
