@@ -1,7 +1,7 @@
 # Changelog 
 
 ### 0.23.0
-* Upgrade to `spring-cloud-dependencies` Dalston.SR1
+* Upgrade to `spring-cloud-dependencies` to Dalston.SR1
 * Upgrade navigation bar to 0.12.1
 
 ### 0.22.1
