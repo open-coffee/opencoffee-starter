@@ -67,7 +67,7 @@ public class CoffeeNetPrincipalExtractor implements PrincipalExtractor {
                     authoritiesExtractor.extractAuthorities(map));
         }
 
-        LOGGER.warn(String.format(ERROR_MSG_TEMPLATE, PRINCIPAL_NAME_KEY, UNKNOWN_VALUE));
+        LOGGER.warn(ERROR_MSG_TEMPLATE, PRINCIPAL_NAME_KEY, UNKNOWN_VALUE);
 
         return new MachineCoffeeNetUser(UNKNOWN_VALUE, authoritiesExtractor.extractAuthorities(map));
     }
@@ -85,7 +85,7 @@ public class CoffeeNetPrincipalExtractor implements PrincipalExtractor {
         } else {
             humanCoffeeUser = new HumanCoffeeNetUser(UNKNOWN_VALUE, UNKNOWN_VALUE,
                     authoritiesExtractor.extractAuthorities(map));
-            LOGGER.warn(String.format(ERROR_MSG_TEMPLATE, PRINCIPAL_KEY, humanCoffeeUser.toString()));
+            LOGGER.warn(ERROR_MSG_TEMPLATE, PRINCIPAL_KEY, humanCoffeeUser);
         }
 
         return humanCoffeeUser;
@@ -99,7 +99,7 @@ public class CoffeeNetPrincipalExtractor implements PrincipalExtractor {
         if (principal.containsKey(USERNAME_KEY) && principal.get(USERNAME_KEY) instanceof String) {
             username = (String) principal.get(USERNAME_KEY);
         } else {
-            LOGGER.warn(String.format(ERROR_MSG_TEMPLATE, USERNAME_KEY, UNKNOWN_VALUE));
+            LOGGER.warn(ERROR_MSG_TEMPLATE, USERNAME_KEY, UNKNOWN_VALUE);
             username = UNKNOWN_VALUE;
         }
 
@@ -114,7 +114,7 @@ public class CoffeeNetPrincipalExtractor implements PrincipalExtractor {
         if (principal.containsKey(MAIL_KEY) && principal.get(MAIL_KEY) instanceof String) {
             mail = (String) principal.get(MAIL_KEY);
         } else {
-            LOGGER.warn(String.format(ERROR_MSG_TEMPLATE, MAIL_KEY, UNKNOWN_VALUE));
+            LOGGER.warn(ERROR_MSG_TEMPLATE, MAIL_KEY, UNKNOWN_VALUE);
             mail = UNKNOWN_VALUE;
         }
 

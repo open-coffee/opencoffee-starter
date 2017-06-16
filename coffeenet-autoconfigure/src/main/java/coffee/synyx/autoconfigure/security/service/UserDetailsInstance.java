@@ -81,4 +81,13 @@ class UserDetailsInstance implements UserDetails {
 
         return true;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "UserDetailsInstance{"
+            + "username='" + username + '\''
+            + ", authorities=" + authorities + '}';
+    }
 }

@@ -67,4 +67,13 @@ public final class HumanCoffeeNetUser extends AbstractCoffeeNetUser {
 
         return false;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "HumanCoffeeNetUser{"
+            + "email='" + email + '\''
+            + ", userDetailsInstance=" + userDetailsInstance + '}';
+    }
 }

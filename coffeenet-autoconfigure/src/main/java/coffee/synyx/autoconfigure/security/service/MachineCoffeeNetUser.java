@@ -62,4 +62,12 @@ public final class MachineCoffeeNetUser extends AbstractCoffeeNetUser {
 
         return true;
     }
+
+
+    @Override
+    public String toString() {
+
+        return "MachineCoffeeNetUser{"
+            + "userDetailsInstance=" + userDetailsInstance + '}';
+    }
 }
