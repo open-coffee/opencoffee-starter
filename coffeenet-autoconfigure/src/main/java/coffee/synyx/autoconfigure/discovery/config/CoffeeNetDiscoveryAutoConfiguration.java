@@ -41,7 +41,7 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
 import static org.springframework.cloud.commons.util.IdUtils.getDefaultInstanceId;
 
 import static java.lang.Boolean.parseBoolean;
-import static java.lang.Integer.valueOf;
+import static java.lang.Integer.parseInt;
 
 
 /**
@@ -116,8 +116,8 @@ public class CoffeeNetDiscoveryAutoConfiguration {
             String hostname = coffeeNetPropertyResolver.getProperty("hostname");
 
             boolean preferIpAddress = parseBoolean(coffeeNetPropertyResolver.getProperty("preferIpAddress"));
-            int nonSecurePort = valueOf(resolver.getProperty("server.port", resolver.getProperty("port", "8080")));
-            int managementPort = valueOf(resolver.getProperty("management.port", String.valueOf(nonSecurePort)));
+            int nonSecurePort = parseInt(resolver.getProperty("server.port", resolver.getProperty("port", "8080")));
+            int managementPort = parseInt(resolver.getProperty("management.port", String.valueOf(nonSecurePort)));
             String managementContextPath = resolver.getProperty("management.contextPath",
                     resolver.getProperty("server.contextPath", "/"));
 
