@@ -1,6 +1,7 @@
 # Changelog 
 
 ### 0.24.0
+* Upgrade `logback-gelf-appender` to `1.3.1`
 
 ### 0.23.0
 * Upgrade to `spring-cloud-dependencies` to Dalston.SR1
