@@ -2,6 +2,8 @@
 
 ### 0.24.0
 * Upgrade `logback-gelf-appender` to `1.3.1`
+* Fix not available discovery dependency in
+  autoconfigure for relations between auto configures
 
 ### 0.23.0
 * Upgrade to `spring-cloud-dependencies` to Dalston.SR1
