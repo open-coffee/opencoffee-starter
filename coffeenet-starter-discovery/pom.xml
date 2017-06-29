@@ -14,7 +14,10 @@
     <packaging>jar</packaging>
 
     <name>CoffeeNet Starter Discovery</name>
-    <description>This starter is designed to provide service discovery integration into the CoffeeNet</description>
+    <description>
+        This starter is designed to provide service discovery
+        integration into the CoffeeNet
+    </description>
 
     <dependencies>
         <dependency>

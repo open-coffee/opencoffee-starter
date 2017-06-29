@@ -14,7 +14,10 @@
     <packaging>jar</packaging>
 
     <name>CoffeeNet Starter Security</name>
-    <description>This starter is designed to provide security and Single-Sign-On integration into the CoffeeNet</description>
+    <description>
+        This starter is designed to provide security and
+        Single-Sign-On integration into the CoffeeNet
+    </description>
 
     <dependencies>
         <dependency>

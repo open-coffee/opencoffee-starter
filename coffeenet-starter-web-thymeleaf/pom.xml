@@ -14,7 +14,10 @@
     <packaging>jar</packaging>
 
     <name>CoffeeNet Starter Web Thymeleaf</name>
-    <description>This starter is designed to provide the CoffeeNet styling with thymeleaf templates</description>
+    <description>
+        This starter is designed to provide the
+        CoffeeNet styling with thymeleaf templates
+    </description>
 
     <dependencies>
         <!-- CoffeeNet -->

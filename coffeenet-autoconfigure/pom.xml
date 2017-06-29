@@ -15,7 +15,8 @@
 
     <name>CoffeeNet Autoconfigure</name>
     <description>
-        Autoconfigure will be used in the starter dependencies to configure different integrations into the coffeenet
+        Autoconfigure will be used in the starter dependencies
+        to configure different integrations into the coffeenet
     </description>
 
     <dependencies>

@@ -14,7 +14,10 @@
     <packaging>jar</packaging>
 
     <name>CoffeeNet Starter Web</name>
-    <description>This starter is designed to provide the CoffeeNet web components</description>
+    <description>
+        This starter is designed to provide the
+        CoffeeNet web components
+    </description>
 
     <dependencies>
         <!-- CoffeeNet Web -->

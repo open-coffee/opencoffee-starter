@@ -14,7 +14,10 @@
     <packaging>jar</packaging>
 
     <name>CoffeeNet Starter Web Javascript</name>
-    <description>This starter is designed to provide the CoffeeNet styling with javascript</description>
+    <description>
+        This starter is designed to provide the
+        CoffeeNet styling with javascript
+    </description>
 
     <dependencies>
         <!--  Spring web -->

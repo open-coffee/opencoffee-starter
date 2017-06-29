@@ -14,7 +14,10 @@
     <packaging>jar</packaging>
 
     <name>CoffeeNet Starter Logging</name>
-    <description>This starter is designed to provide logging configuration of the CoffeeNet</description>
+    <description>
+        This starter is designed to provide logging
+        configuration of the CoffeeNet
+    </description>
 
     <dependencies>
         <dependency>
