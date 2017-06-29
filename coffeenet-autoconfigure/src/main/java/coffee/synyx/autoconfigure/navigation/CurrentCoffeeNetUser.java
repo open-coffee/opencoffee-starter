@@ -20,14 +20,14 @@ import static java.lang.invoke.MethodHandles.lookup;
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.15.0
  */
-public final class CoffeeNetWebUser {
+public final class CurrentCoffeeNetUser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass());
 
     private final String username;
     private final String email;
 
-    public CoffeeNetWebUser(String username, String email) {
+    public CurrentCoffeeNetUser(String username, String email) {
 
         this.username = username;
         this.email = email;

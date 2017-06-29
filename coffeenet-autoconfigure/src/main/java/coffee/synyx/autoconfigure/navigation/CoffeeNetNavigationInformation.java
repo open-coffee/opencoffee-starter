@@ -11,25 +11,25 @@ import java.util.List;
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.15.0
  */
-public final class CoffeeNetWeb {
+public final class CoffeeNetNavigationInformation {
 
-    private final CoffeeNetWebUser coffeeNetWebUser;
+    private final CurrentCoffeeNetUser currentCoffeeNetUser;
     private final List<CoffeeNetApp> coffeeNetApps;
     private final CoffeeNetApp profileApp;
     private final String logoutPath;
 
-    public CoffeeNetWeb(CoffeeNetWebUser coffeeNetWebUser, List<CoffeeNetApp> coffeeNetApps, CoffeeNetApp profileApp,
-        String logoutPath) {
+    CoffeeNetNavigationInformation(CurrentCoffeeNetUser currentCoffeeNetUser, List<CoffeeNetApp> coffeeNetApps,
+        CoffeeNetApp profileApp, String logoutPath) {
 
-        this.coffeeNetWebUser = coffeeNetWebUser;
+        this.currentCoffeeNetUser = currentCoffeeNetUser;
         this.coffeeNetApps = coffeeNetApps;
         this.profileApp = profileApp;
         this.logoutPath = logoutPath;
     }
 
-    public CoffeeNetWebUser getCoffeeNetWebUser() {
+    public CurrentCoffeeNetUser getCurrentCoffeeNetUser() {
 
-        return coffeeNetWebUser;
+        return currentCoffeeNetUser;
     }
 
 

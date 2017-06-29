@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<!--/*@thymesVar id="coffeenet" type="coffee.synyx.autoconfigure.navigation.CoffeeNetWeb"*/-->
+<!--/*@thymesVar id="coffeenet" type="coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationInformation"*/-->
 <th:block th:fragment="coffeenet-navigationbar">
     <div th:if="${coffeenet != null}" id="coffeenet--header-container" class="coffeenet--header-container">
         <div id="coffeenet--nav-hamburger" class="coffeenet--nav-hamburger">
             <span></span>
         </div>
-        <div th:if="${coffeenet.coffeeNetWebUser != null}" class="coffeenet--personalisation-container">
+        <div th:if="${coffeenet.currentCoffeeNetUser != null}" class="coffeenet--personalisation-container">
             <div class="coffeenet--avatar">
                 <a th:if="${coffeenet.profileApp != null}" th:href="${coffeenet.profileApp.url}">
-                    <img th:src="${coffeenet.coffeeNetWebUser.getAvatar()}" src="/img/default_avatar.jpg"/>
+                    <img th:src="${coffeenet.currentCoffeeNetUser.getAvatar()}" src="/img/default_avatar.jpg"/>
                 </a>
-                <img th:if="${coffeenet.profileApp == null}" th:src="${coffeenet.coffeeNetWebUser.getAvatar()}" src="/img/default_avatar.jpg"/>
+                <img th:if="${coffeenet.profileApp == null}" th:src="${coffeenet.currentCoffeeNetUser.getAvatar()}" src="/img/default_avatar.jpg"/>
             </div>
             <h2 class="coffeenet--username">
                 <a th:if="${coffeenet.profileApp != null}" th:href="${coffeenet.profileApp.url}"
-                   th:title="${coffeenet.profileApp.name}" th:text="${coffeenet.coffeeNetWebUser.username}">
+                   th:title="${coffeenet.profileApp.name}" th:text="${coffeenet.currentCoffeeNetUser.username}">
                     username
                 </a>
-                <span th:if="${coffeenet.profileApp == null}" th:text="${coffeenet.coffeeNetWebUser.username}">
+                <span th:if="${coffeenet.profileApp == null}" th:text="${coffeenet.currentCoffeeNetUser.username}">
                     username
                 </span>
             </h2>
@@ -41,7 +41,7 @@
                 </li>
             </ul>
 
-            <form th:if="${coffeenet.coffeeNetWebUser != null and coffeenet.logoutPath != null}" th:action="${coffeenet.logoutPath}" method="post">
+            <form th:if="${coffeenet.currentCoffeeNetUser != null and coffeenet.logoutPath != null}" th:action="${coffeenet.logoutPath}" method="post">
                 <button type="submit" class="coffeenet--button-logout">
                     Logout
                 </button>

@@ -9,19 +9,19 @@ import org.springframework.boot.actuate.endpoint.Endpoint;
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.15.0
  */
-public class CoffeeNetWebEndpoint implements Endpoint<CoffeeNetWeb> {
+public class CoffeeNetNavigationEndpoint implements Endpoint<CoffeeNetNavigationInformation> {
 
-    private final CoffeeNetWebService coffeeNetWebService;
+    private final CoffeeNetNavigationService coffeeNetNavigationService;
 
-    CoffeeNetWebEndpoint(CoffeeNetWebService coffeeNetWebService) {
+    CoffeeNetNavigationEndpoint(CoffeeNetNavigationService coffeeNetNavigationService) {
 
-        this.coffeeNetWebService = coffeeNetWebService;
+        this.coffeeNetNavigationService = coffeeNetNavigationService;
     }
 
     @Override
     public String getId() {
 
-        return "coffeenet/web";
+        return "coffeenet/navigation";
     }
 
 
@@ -40,8 +40,8 @@ public class CoffeeNetWebEndpoint implements Endpoint<CoffeeNetWeb> {
 
 
     @Override
-    public CoffeeNetWeb invoke() {
+    public CoffeeNetNavigationInformation invoke() {
 
-        return coffeeNetWebService.get();
+        return coffeeNetNavigationService.get();
     }
 }

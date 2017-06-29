@@ -21,17 +21,17 @@ import static org.mockito.Mockito.when;
  * @author  Tobias Schneider
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CoffeeNetWebMvcConfigurerAdapterTest {
+public class CoffeeNetNavigationInformationMvcConfigurerAdapterTest {
 
     private CoffeeNetWebMvcConfigurerAdapter sut;
 
     @Mock
-    private CoffeeNetWebInterceptor coffeeNetWebInterceptorMock;
+    private CoffeeNetNavigationInterceptor coffeeNetNavigationInterceptorMock;
 
     @Before
     public void setup() {
 
-        sut = new CoffeeNetWebMvcConfigurerAdapter(coffeeNetWebInterceptorMock);
+        sut = new CoffeeNetWebMvcConfigurerAdapter(coffeeNetNavigationInterceptorMock);
     }
 
 
@@ -40,12 +40,12 @@ public class CoffeeNetWebMvcConfigurerAdapterTest {
 
         InterceptorRegistry interceptorRegistryMock = mock(InterceptorRegistry.class);
         InterceptorRegistration interceptorRegistrationMock = mock(InterceptorRegistration.class);
-        when(interceptorRegistryMock.addInterceptor(coffeeNetWebInterceptorMock)).thenReturn(
+        when(interceptorRegistryMock.addInterceptor(coffeeNetNavigationInterceptorMock)).thenReturn(
             interceptorRegistrationMock);
 
         sut.addInterceptors(interceptorRegistryMock);
 
-        verify(interceptorRegistryMock).addInterceptor(coffeeNetWebInterceptorMock);
+        verify(interceptorRegistryMock).addInterceptor(coffeeNetNavigationInterceptorMock);
         verify(interceptorRegistrationMock).addPathPatterns("/**");
     }
 }

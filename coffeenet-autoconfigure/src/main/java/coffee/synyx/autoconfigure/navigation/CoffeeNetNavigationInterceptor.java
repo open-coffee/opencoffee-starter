@@ -23,15 +23,15 @@ import static java.util.Optional.ofNullable;
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.15.0
  */
-public class CoffeeNetWebInterceptor extends HandlerInterceptorAdapter {
+public class CoffeeNetNavigationInterceptor extends HandlerInterceptorAdapter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass());
 
-    private final CoffeeNetWebService coffeeNetWebService;
+    private final CoffeeNetNavigationService coffeeNetNavigationService;
 
-    CoffeeNetWebInterceptor(CoffeeNetWebService coffeeNetWebService) {
+    CoffeeNetNavigationInterceptor(CoffeeNetNavigationService coffeeNetNavigationService) {
 
-        this.coffeeNetWebService = coffeeNetWebService;
+        this.coffeeNetNavigationService = coffeeNetNavigationService;
     }
 
     @Override
@@ -49,9 +49,9 @@ public class CoffeeNetWebInterceptor extends HandlerInterceptorAdapter {
         boolean isNotRedirect = !view.contains("redirect:");
 
         if (isNotRedirect) {
-            modelAndView.addObject("coffeenet", coffeeNetWebService.get());
+            modelAndView.addObject("coffeenet", coffeeNetNavigationService.get());
 
-            LOGGER.debug("//> Added CoffeeNetWeb to the intercepted model and view '{}'", view);
+            LOGGER.debug("//> Added CoffeeNetNavigationInformation to the intercepted model and view '{}'", view);
         } else {
             LOGGER.debug("//> Ignoring intercepted view target: '{}'", view);
         }

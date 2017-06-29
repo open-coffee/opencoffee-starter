@@ -24,8 +24,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static coffee.synyx.autoconfigure.navigation.CoffeeNetWebExtractor.CoffeeNetServices.APP_SERVICE;
-import static coffee.synyx.autoconfigure.navigation.CoffeeNetWebExtractor.CoffeeNetServices.USER_SERVICE;
+import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.APP_SERVICE;
+import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.USER_SERVICE;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -43,9 +43,9 @@ import static java.util.Optional.of;
  * @author  Tobias Schneider - schneider@synyx.de
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CoffeeNetWebExtractorTest {
+public class CoffeeNetNavigationInformationExtractorTest {
 
-    private CoffeeNetWebExtractor sut;
+    private CoffeeNetNavigationDataExtractor sut;
 
     @Mock
     private CoffeeNetAppService coffeeNetAppServiceMock;
@@ -55,7 +55,7 @@ public class CoffeeNetWebExtractorTest {
     @Before
     public void setUp() throws Exception {
 
-        sut = new CoffeeNetWebExtractor(new CoffeeNetWebProperties());
+        sut = new CoffeeNetNavigationDataExtractor(new CoffeeNetNavigationProperties());
     }
 
 
@@ -197,7 +197,7 @@ public class CoffeeNetWebExtractorTest {
         Optional<CoffeeNetUserDetails> user = of(new HumanCoffeeNetUser("username", "email", emptyList()));
         when(coffeeNetCurrentUserServiceMock.get()).thenReturn(user);
 
-        Optional<CoffeeNetWebUser> coffeeNetWebUser = sut.extractUser();
+        Optional<CurrentCoffeeNetUser> coffeeNetWebUser = sut.extractUser();
         assertThat(coffeeNetWebUser.get().getEmail()).isSameAs("email");
         assertThat(coffeeNetWebUser.get().getUsername()).isSameAs("username");
     }
@@ -210,7 +210,7 @@ public class CoffeeNetWebExtractorTest {
 
         when(coffeeNetCurrentUserServiceMock.get()).thenReturn(Optional.empty());
 
-        Optional<CoffeeNetWebUser> coffeeNetWebUser = sut.extractUser();
+        Optional<CurrentCoffeeNetUser> coffeeNetWebUser = sut.extractUser();
         assertThat(coffeeNetWebUser).isSameAs(Optional.empty());
     }
 
@@ -218,7 +218,7 @@ public class CoffeeNetWebExtractorTest {
     @Test
     public void extractUserNoUserService() {
 
-        Optional<CoffeeNetWebUser> coffeeNetWebUser = sut.extractUser();
+        Optional<CurrentCoffeeNetUser> coffeeNetWebUser = sut.extractUser();
         assertThat(coffeeNetWebUser).isSameAs(Optional.empty());
     }
 }

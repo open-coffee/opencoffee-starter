@@ -24,25 +24,26 @@ import static org.mockito.Mockito.when;
  * @author  Tobias Schneider
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CoffeeNetWebInterceptorTest {
+public class CoffeeNetNavigationInformationInterceptorTest {
 
-    private CoffeeNetWebInterceptor sut;
+    private CoffeeNetNavigationInterceptor sut;
 
     @Mock
-    private CoffeeNetWebService coffeeNetWebServiceMock;
+    private CoffeeNetNavigationService coffeeNetNavigationServiceMock;
 
     @Before
     public void setup() {
 
-        sut = new CoffeeNetWebInterceptor(coffeeNetWebServiceMock);
+        sut = new CoffeeNetNavigationInterceptor(coffeeNetNavigationServiceMock);
     }
 
 
     @Test
     public void postHandleWithModelAndView() throws Exception {
 
-        CoffeeNetWeb coffeeNetWeb = new CoffeeNetWeb(null, null, null, null);
-        when(coffeeNetWebServiceMock.get()).thenReturn(coffeeNetWeb);
+        CoffeeNetNavigationInformation coffeeNetNavigationInformation = new CoffeeNetNavigationInformation(null, null,
+                null, null);
+        when(coffeeNetNavigationServiceMock.get()).thenReturn(coffeeNetNavigationInformation);
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -50,8 +51,9 @@ public class CoffeeNetWebInterceptorTest {
 
         assertThat(modelAndView.getModelMap().containsKey("coffeenet")).isEqualTo(true);
 
-        CoffeeNetWeb coffeenet = (CoffeeNetWeb) modelAndView.getModelMap().get("coffeenet");
-        Assertions.assertThat(coffeenet).isEqualTo(coffeeNetWeb);
+        CoffeeNetNavigationInformation coffeenet = (CoffeeNetNavigationInformation) modelAndView
+            .getModelMap().get("coffeenet");
+        Assertions.assertThat(coffeenet).isEqualTo(coffeeNetNavigationInformation);
     }
 
 
@@ -60,7 +62,7 @@ public class CoffeeNetWebInterceptorTest {
 
         sut.postHandle(null, null, null, null);
 
-        verify(coffeeNetWebServiceMock, never()).get();
+        verify(coffeeNetNavigationServiceMock, never()).get();
     }
 
 
@@ -69,6 +71,6 @@ public class CoffeeNetWebInterceptorTest {
 
         sut.postHandle(null, null, null, new ModelAndView("redirect:coffeeNetView"));
 
-        verify(coffeeNetWebServiceMock, never()).get();
+        verify(coffeeNetNavigationServiceMock, never()).get();
     }
 }

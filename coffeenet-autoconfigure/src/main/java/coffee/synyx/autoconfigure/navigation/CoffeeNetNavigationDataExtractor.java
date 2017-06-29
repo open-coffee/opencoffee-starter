@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static coffee.synyx.autoconfigure.navigation.CoffeeNetWebExtractor.CoffeeNetServices.APP_SERVICE;
-import static coffee.synyx.autoconfigure.navigation.CoffeeNetWebExtractor.CoffeeNetServices.USER_SERVICE;
+import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.APP_SERVICE;
+import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.USER_SERVICE;
 
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
@@ -25,7 +25,7 @@ import static java.util.stream.Collectors.toList;
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.18.0
  */
-class CoffeeNetWebExtractor {
+class CoffeeNetNavigationDataExtractor {
 
     /**
      * Service to register.
@@ -36,12 +36,12 @@ class CoffeeNetWebExtractor {
         USER_SERVICE
     }
 
-    private CoffeeNetWebProperties coffeeNetWebProperties;
+    private CoffeeNetNavigationProperties coffeeNetNavigationProperties;
     private Map<CoffeeNetServices, Object> services = new EnumMap<>(CoffeeNetServices.class);
 
-    CoffeeNetWebExtractor(CoffeeNetWebProperties coffeeNetWebProperties) {
+    CoffeeNetNavigationDataExtractor(CoffeeNetNavigationProperties coffeeNetNavigationProperties) {
 
-        this.coffeeNetWebProperties = coffeeNetWebProperties;
+        this.coffeeNetNavigationProperties = coffeeNetNavigationProperties;
     }
 
     /**
@@ -70,10 +70,10 @@ class CoffeeNetWebExtractor {
                 .ifPresent(userDetails -> queryBuilder.withRoles(userDetails.getAuthoritiesAsString())));
 
         Map<String, List<CoffeeNetApp>> filteredCoffeeNetApps = coffeeNetAppService.get()
-                .getApps(queryBuilder.build());
+            .getApps(queryBuilder.build());
 
         // extract profile application
-        String profileServiceName = coffeeNetWebProperties.getProfileServiceName();
+        String profileServiceName = coffeeNetNavigationProperties.getProfileServiceName();
         List<CoffeeNetApp> profileApps = filteredCoffeeNetApps.get(profileServiceName);
 
         if (profileApps != null) {
@@ -83,11 +83,9 @@ class CoffeeNetWebExtractor {
         }
 
         // retrieve all CoffeeNetApps
-        List<CoffeeNetApp> firstCoffeeNetApps = filteredCoffeeNetApps.entrySet()
-                .stream()
-                .map(entry -> entry.getValue().get(0))
-                .sorted(Comparator.comparing(CoffeeNetApp::getName))
-                .collect(toList());
+        List<CoffeeNetApp> firstCoffeeNetApps = filteredCoffeeNetApps.entrySet().stream().map(entry ->
+                    entry.getValue()
+                    .get(0)).sorted(Comparator.comparing(CoffeeNetApp::getName)).collect(toList());
         preparedCoffeeNetApps.put("apps", firstCoffeeNetApps);
 
         return Optional.of(preparedCoffeeNetApps);
@@ -95,16 +93,16 @@ class CoffeeNetWebExtractor {
 
 
     /**
-     * Extracts the {@link CoffeeNetWebUser} and returns an {@link Optional}. That is filled with the
-     * {@link CoffeeNetWebUser} when the {@link CoffeeNetCurrentUserService} is present and a authenticated user is
+     * Extracts the {@link CurrentCoffeeNetUser} and returns an {@link Optional}. That is filled with the
+     * {@link CurrentCoffeeNetUser} when the {@link CoffeeNetCurrentUserService} is present and a authenticated user is
      * available.Otherwise it will return an empty {@link Optional}
      *
      * @return  an {@code Optional<CoffeeNetWebUser>} if {@link CoffeeNetCurrentUserService} is available and user is
      *          logged in, otherwise empty {@link Optional}
      */
-    Optional<CoffeeNetWebUser> extractUser() {
+    Optional<CurrentCoffeeNetUser> extractUser() {
 
-        Optional<CoffeeNetWebUser> coffeeNetWebUser = Optional.empty();
+        Optional<CurrentCoffeeNetUser> coffeeNetWebUser = Optional.empty();
         Optional<CoffeeNetCurrentUserService> userService = getCoffeeNetCurrentUserService();
 
         if (userService.isPresent()) {
@@ -113,7 +111,7 @@ class CoffeeNetWebExtractor {
             if (coffeeNetUserDetails.isPresent()) {
                 String username = coffeeNetUserDetails.get().getUsername();
                 String email = coffeeNetUserDetails.get().getEmail();
-                coffeeNetWebUser = Optional.of(new CoffeeNetWebUser(username, email));
+                coffeeNetWebUser = Optional.of(new CurrentCoffeeNetUser(username, email));
             }
         }
 
@@ -128,7 +126,7 @@ class CoffeeNetWebExtractor {
      */
     String extractLogoutPath() {
 
-        return coffeeNetWebProperties.getLogoutPath();
+        return coffeeNetNavigationProperties.getLogoutPath();
     }
 
 

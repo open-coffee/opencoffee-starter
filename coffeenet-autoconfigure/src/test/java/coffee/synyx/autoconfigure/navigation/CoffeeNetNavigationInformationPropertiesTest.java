@@ -10,12 +10,12 @@ import static org.junit.Assert.assertThat;
 /**
  * @author  Tobias Schneider - schneider@synyx.de
  */
-public class CoffeeNetWebPropertiesTest {
+public class CoffeeNetNavigationInformationPropertiesTest {
 
     @Test
     public void testDefaultValues() {
 
-        CoffeeNetWebProperties sut = new CoffeeNetWebProperties();
+        CoffeeNetNavigationProperties sut = new CoffeeNetNavigationProperties();
 
         assertThat(sut.getLogoutPath(), is("/logout"));
         assertThat(sut.getProfileServiceName(), is("profile"));

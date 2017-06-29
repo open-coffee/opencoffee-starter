@@ -11,7 +11,7 @@ import static java.lang.invoke.MethodHandles.lookup;
 
 
 /**
- * Register the {@link CoffeeNetWebInterceptor} as {@link HandlerInterceptor} for all requests.
+ * Register the {@link CoffeeNetNavigationInterceptor} as {@link HandlerInterceptor} for all requests.
  *
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.15.0
@@ -20,17 +20,17 @@ public class CoffeeNetWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass());
 
-    private CoffeeNetWebInterceptor coffeeNetWebInterceptor;
+    private CoffeeNetNavigationInterceptor coffeeNetNavigationInterceptor;
 
-    CoffeeNetWebMvcConfigurerAdapter(CoffeeNetWebInterceptor coffeeNetWebInterceptor) {
+    CoffeeNetWebMvcConfigurerAdapter(CoffeeNetNavigationInterceptor coffeeNetNavigationInterceptor) {
 
-        this.coffeeNetWebInterceptor = coffeeNetWebInterceptor;
+        this.coffeeNetNavigationInterceptor = coffeeNetNavigationInterceptor;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        registry.addInterceptor(coffeeNetWebInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(coffeeNetNavigationInterceptor).addPathPatterns("/**");
 
         LOGGER.info("//> Added the CoffeeNetWebInterceptor");
     }

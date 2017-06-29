@@ -8,14 +8,14 @@ import org.springframework.validation.annotation.Validated;
 
 
 /**
- * Properties for the web starters.
+ * Properties for the navigation starters.
  *
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.15.0
  */
 @Validated
-@ConfigurationProperties("coffeenet.web")
-public class CoffeeNetWebProperties {
+@ConfigurationProperties("coffeenet.navigation")
+public class CoffeeNetNavigationProperties {
 
     @NotEmpty(message = "Please provide the name of the profile application")
     private String profileServiceName = "profile";
@@ -50,7 +50,7 @@ public class CoffeeNetWebProperties {
     @Override
     public String toString() {
 
-        return "CoffeeNetWebProperties{"
+        return "CoffeeNetNavigationProperties{"
             + "profileServiceName='" + profileServiceName + '\''
             + ", logoutPath='" + logoutPath + '\'' + '}';
     }
