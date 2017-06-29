@@ -15,9 +15,9 @@
     <name>CoffeeNet Starter</name>
 
     <modules>
-        <module>coffeenet-starter-web-javascript</module>
-        <module>coffeenet-starter-web-thymeleaf</module>
-        <module>coffeenet-starter-web</module>
+        <module>coffeenet-starter-navigation-javascript</module>
+        <module>coffeenet-starter-navigation-thymeleaf</module>
+        <module>coffeenet-starter-navigation</module>
         <module>coffeenet-starter-discovery</module>
         <module>coffeenet-starter-logging</module>
         <module>coffeenet-starter-security</module>

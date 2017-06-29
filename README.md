@@ -14,10 +14,10 @@ provides the integration to dustribute and search of CoffeeNet applications.
 [Logging](./coffeenet-starter-logging/README.md)
 provides a consistent and centralised logging.
 
-[Web Thymleaf](./coffeenet-starter-web-thymeleaf/README.md)
+[Navigation Thymleaf](./coffeenet-starter-navigation-thymeleaf/README.md)
 provides the server side rendering of the navigation bar via thymeleaf.
 
-[Web Javascript](./coffeenet-starter-web-javascript/README.md)
+[Navigation Javascript](./coffeenet-starter-navigation-javascript/README.md)
 provides client side rendering of the navigation bar with javasript.
 
 ## Repository
