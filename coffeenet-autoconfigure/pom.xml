@@ -79,7 +79,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Web -->
+        <!-- Navigation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-actuator</artifactId>
