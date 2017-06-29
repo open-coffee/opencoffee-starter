@@ -5,6 +5,8 @@ import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.DevelopmentCoffeeNetAppService;
 import coffee.synyx.autoconfigure.discovery.service.IntegrationCoffeeNetAppService;
 
+import com.netflix.discovery.EurekaClientConfig;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -55,7 +57,7 @@ import static java.lang.Integer.parseInt;
 public class CoffeeNetDiscoveryAutoConfiguration {
 
     @Configuration
-    @ConditionalOnClass(EurekaDiscoveryClient.class)
+    @ConditionalOnClass(EurekaClientConfig.class)
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
     static class DevelopmentCoffeeNetServiceDiscoveryConfiguration {
 
@@ -69,7 +71,7 @@ public class CoffeeNetDiscoveryAutoConfiguration {
 
     @Configuration
     @EnableDiscoveryClient
-    @ConditionalOnClass(EurekaDiscoveryClient.class)
+    @ConditionalOnClass(EurekaClientConfig.class)
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
     static class IntegrationCoffeeNetServiceDiscoveryConfiguration {
 
