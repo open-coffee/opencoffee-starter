@@ -59,7 +59,8 @@ public class LoggingClass {
 ## Configuration
 The logging starter configuration depends on the CoffeeNet profile ```coffeenet.profile```.
 
-But it is possible to change the configuration, independent of the chosen profile ```development``` or ```integration``` at any time and remove or add specific appenders.
+But it is possible to change the configuration, independent of the chosen profile
+`development``` or ```integration``` at any time and remove or add specific appenders.
 
 ```yaml
 coffeenet:
@@ -84,9 +85,19 @@ coffeenet:
       layout: '%m %n'
 ```
 
-The configuration with their default values.
+The `coffeenet.application-name` will be used to identify the application when logging into the Graylog server.
 
-```coffeenet.application-name``` will be used to identify the application when logging into the Graylog server.
+If you want to change the logging level for packages for example,
+then you can use the default spring behaviour
+
+```yaml
+logging:
+  level:
+    coffee.synyx: ${LogLevel}
+    coffee.synyx.auth: ${LogLevel}
+    ...
+```
+
 
 ### Development
 
