@@ -4,6 +4,7 @@
 * Upgrade `logback-gelf-appender` to `1.3.1`
 * Fix not available discovery dependency in
   autoconfigure for relations between auto configures
+* Fix auto completion of `coffeenet.discovery.*` in your IDE
 * Renaming
   * `coffeenet-starter-web` -> `coffeenet-starter-navigation`
   * `coffeenet-starter-web-javascript` -> `coffeenet-starter-navigation-javascript`

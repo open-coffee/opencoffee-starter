@@ -4,6 +4,8 @@ import coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.netflix.eureka.EurekaInstanceConfigBean;
 
@@ -11,10 +13,14 @@ import org.springframework.core.env.Environment;
 
 import org.springframework.util.StringUtils;
 
+import org.springframework.validation.annotation.Validated;
+
 
 /**
  * @author  Tobias Schneider - schneider@synyx.de
  */
+@Validated
+@ConfigurationProperties(prefix = "coffeenet.discovery.instance")
 class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
 
     /**

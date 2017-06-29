@@ -14,14 +14,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration;
-import org.springframework.cloud.netflix.eureka.EurekaClientConfigBean;
 import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 
 import org.springframework.context.annotation.Bean;
@@ -31,8 +29,6 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.PropertyResolver;
 
 import org.springframework.util.StringUtils;
-
-import org.springframework.validation.annotation.Validated;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -106,8 +102,6 @@ public class CoffeeNetDiscoveryAutoConfiguration {
         }
 
         @Bean
-        @Validated
-        @ConfigurationProperties(prefix = "coffeenet.discovery.instance")
         CoffeeNetDiscoveryInstanceProperties eurekaInstanceConfigBean(InetUtils inetUtils, ConfigurableEnvironment env)
             throws MalformedURLException {
 
@@ -168,11 +162,9 @@ public class CoffeeNetDiscoveryAutoConfiguration {
 
 
         @Bean
-        @Validated
-        @ConfigurationProperties(prefix = "coffeenet.discovery.client")
-        EurekaClientConfigBean eurekaClientConfigBean() {
+        CoffeeNetDiscoveryClientProperties eurekaClientConfigBean() {
 
-            return new EurekaClientConfigBean();
+            return new CoffeeNetDiscoveryClientProperties();
         }
     }
 }
