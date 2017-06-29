@@ -38,11 +38,11 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
  * @author  Tobias Schneider - schneider@synyx.de
  */
 @Configuration
+@ConditionalOnClass({ OAuth2ClientContext.class, WebSecurityConfigurerAdapter.class })
 @ConditionalOnProperty(prefix = "coffeenet.security", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class CoffeeNetSecurityAutoConfiguration {
 
     @Configuration
-    @ConditionalOnClass({ OAuth2ClientContext.class, WebSecurityConfigurerAdapter.class })
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
     @EnableConfigurationProperties(CoffeeNetSecurityProperties.class)
     public static class DevelopmentCoffeeNetSecurityConfiguration {
@@ -64,7 +64,6 @@ public class CoffeeNetSecurityAutoConfiguration {
     }
 
     @Configuration
-    @ConditionalOnClass(OAuth2ClientContext.class)
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
     @EnableConfigurationProperties(
         {
@@ -78,17 +77,17 @@ public class CoffeeNetSecurityAutoConfiguration {
         private static final String LOGIN = "/login";
         private static final int OAUTH_CLIENT_CONTEXT_FILTER_ORDER = -100;
 
-        private final CoffeeNetSecurityClientProperties oAuth2ProtectedResourceDetails;
+        private final CoffeeNetSecurityClientProperties coffeeNetSecurityClientProperties;
         private final CoffeeNetSecurityResourceProperties coffeeNetSecurityResourceProperties;
         private final CoffeeNetSecurityProperties coffeeNetSecurityProperties;
 
         @Autowired
         public IntegrationCoffeeNetSecurityConfiguration(
-            CoffeeNetSecurityClientProperties oAuth2ProtectedResourceDetails,
+            CoffeeNetSecurityClientProperties coffeeNetSecurityClientProperties,
             CoffeeNetSecurityResourceProperties coffeeNetSecurityResourceProperties,
             CoffeeNetSecurityProperties coffeeNetSecurityProperties) {
 
-            this.oAuth2ProtectedResourceDetails = oAuth2ProtectedResourceDetails;
+            this.coffeeNetSecurityClientProperties = coffeeNetSecurityClientProperties;
             this.coffeeNetSecurityResourceProperties = coffeeNetSecurityResourceProperties;
             this.coffeeNetSecurityProperties = coffeeNetSecurityProperties;
         }
@@ -126,7 +125,7 @@ public class CoffeeNetSecurityAutoConfiguration {
         @ConditionalOnMissingBean(OAuth2RestTemplate.class)
         public OAuth2RestTemplate coffeeNetUserInfoRestTemplate(OAuth2ClientContext oauth2ClientContext) {
 
-            return new OAuth2RestTemplate(oAuth2ProtectedResourceDetails, oauth2ClientContext);
+            return new OAuth2RestTemplate(coffeeNetSecurityClientProperties, oauth2ClientContext);
         }
 
 
@@ -136,7 +135,8 @@ public class CoffeeNetSecurityAutoConfiguration {
             AuthoritiesExtractor authoritiesExtractor, PrincipalExtractor principalExtractor) {
 
             UserInfoTokenServices userInfoTokenServices = new UserInfoTokenServices(
-                    coffeeNetSecurityResourceProperties.getUserInfoUri(), oAuth2ProtectedResourceDetails.getClientId());
+                    coffeeNetSecurityResourceProperties.getUserInfoUri(),
+                    coffeeNetSecurityClientProperties.getClientId());
 
             userInfoTokenServices.setAuthoritiesExtractor(authoritiesExtractor);
             userInfoTokenServices.setPrincipalExtractor(principalExtractor);
@@ -184,7 +184,8 @@ public class CoffeeNetSecurityAutoConfiguration {
         @ConditionalOnMissingBean(AuthenticationSuccessHandler.class)
         public AuthenticationSuccessHandler defaultLoginSuccessUrlHandler() {
 
-            SavedRequestAwareAuthenticationSuccessHandler handler = new SavedRequestAwareAuthenticationSuccessHandler();
+            SavedRequestAwareAuthenticationSuccessHandler handler =
+                new SavedRequestAwareAuthenticationSuccessHandler();
 
             if (coffeeNetSecurityProperties.getDefaultLoginSuccessUrl() != null) {
                 handler.setDefaultTargetUrl(coffeeNetSecurityProperties.getDefaultLoginSuccessUrl());
