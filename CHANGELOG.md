@@ -4,6 +4,10 @@
 * Upgrade `logback-gelf-appender` to `1.3.1`
 * Fix not available discovery dependency in
   autoconfigure for relations between auto configures
+* Renaming
+  * `coffeenet-starter-web` -> `coffeenet-starter-navigation`
+  * `coffeenet-starter-web-javascript` -> `coffeenet-starter-navigation-javascript`
+  * `coffeenet-starter-web-thymeleaf` -> `coffeenet-starter-navigation-thymeleaf`
 
 ### 0.23.0
 * Upgrade to `spring-cloud-dependencies` to Dalston.SR1
