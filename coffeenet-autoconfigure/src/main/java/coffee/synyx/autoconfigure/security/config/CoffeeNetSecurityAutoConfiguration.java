@@ -38,11 +38,11 @@ import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGR
  * @author  Tobias Schneider - schneider@synyx.de
  */
 @Configuration
+@ConditionalOnClass({ OAuth2ClientContext.class, WebSecurityConfigurerAdapter.class })
 @ConditionalOnProperty(prefix = "coffeenet.security", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class CoffeeNetSecurityAutoConfiguration {
 
     @Configuration
-    @ConditionalOnClass({ OAuth2ClientContext.class, WebSecurityConfigurerAdapter.class })
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = DEVELOPMENT, matchIfMissing = true)
     @EnableConfigurationProperties(CoffeeNetSecurityProperties.class)
     public static class DevelopmentCoffeeNetSecurityConfiguration {
@@ -64,7 +64,6 @@ public class CoffeeNetSecurityAutoConfiguration {
     }
 
     @Configuration
-    @ConditionalOnClass(OAuth2ClientContext.class)
     @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
     @EnableConfigurationProperties(
         {
@@ -136,7 +135,8 @@ public class CoffeeNetSecurityAutoConfiguration {
             AuthoritiesExtractor authoritiesExtractor, PrincipalExtractor principalExtractor) {
 
             UserInfoTokenServices userInfoTokenServices = new UserInfoTokenServices(
-                    coffeeNetSecurityResourceProperties.getUserInfoUri(), oAuth2ProtectedResourceDetails.getClientId());
+                    coffeeNetSecurityResourceProperties.getUserInfoUri(),
+                    oAuth2ProtectedResourceDetails.getClientId());
 
             userInfoTokenServices.setAuthoritiesExtractor(authoritiesExtractor);
             userInfoTokenServices.setPrincipalExtractor(principalExtractor);
@@ -184,7 +184,8 @@ public class CoffeeNetSecurityAutoConfiguration {
         @ConditionalOnMissingBean(AuthenticationSuccessHandler.class)
         public AuthenticationSuccessHandler defaultLoginSuccessUrlHandler() {
 
-            SavedRequestAwareAuthenticationSuccessHandler handler = new SavedRequestAwareAuthenticationSuccessHandler();
+            SavedRequestAwareAuthenticationSuccessHandler handler =
+                new SavedRequestAwareAuthenticationSuccessHandler();
 
             if (coffeeNetSecurityProperties.getDefaultLoginSuccessUrl() != null) {
                 handler.setDefaultTargetUrl(coffeeNetSecurityProperties.getDefaultLoginSuccessUrl());
