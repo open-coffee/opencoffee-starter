@@ -77,17 +77,17 @@ public class CoffeeNetSecurityAutoConfiguration {
         private static final String LOGIN = "/login";
         private static final int OAUTH_CLIENT_CONTEXT_FILTER_ORDER = -100;
 
-        private final CoffeeNetSecurityClientProperties oAuth2ProtectedResourceDetails;
+        private final CoffeeNetSecurityClientProperties coffeeNetSecurityClientProperties;
         private final CoffeeNetSecurityResourceProperties coffeeNetSecurityResourceProperties;
         private final CoffeeNetSecurityProperties coffeeNetSecurityProperties;
 
         @Autowired
         public IntegrationCoffeeNetSecurityConfiguration(
-            CoffeeNetSecurityClientProperties oAuth2ProtectedResourceDetails,
+            CoffeeNetSecurityClientProperties coffeeNetSecurityClientProperties,
             CoffeeNetSecurityResourceProperties coffeeNetSecurityResourceProperties,
             CoffeeNetSecurityProperties coffeeNetSecurityProperties) {
 
-            this.oAuth2ProtectedResourceDetails = oAuth2ProtectedResourceDetails;
+            this.coffeeNetSecurityClientProperties = coffeeNetSecurityClientProperties;
             this.coffeeNetSecurityResourceProperties = coffeeNetSecurityResourceProperties;
             this.coffeeNetSecurityProperties = coffeeNetSecurityProperties;
         }
@@ -125,7 +125,7 @@ public class CoffeeNetSecurityAutoConfiguration {
         @ConditionalOnMissingBean(OAuth2RestTemplate.class)
         public OAuth2RestTemplate coffeeNetUserInfoRestTemplate(OAuth2ClientContext oauth2ClientContext) {
 
-            return new OAuth2RestTemplate(oAuth2ProtectedResourceDetails, oauth2ClientContext);
+            return new OAuth2RestTemplate(coffeeNetSecurityClientProperties, oauth2ClientContext);
         }
 
 
@@ -136,7 +136,7 @@ public class CoffeeNetSecurityAutoConfiguration {
 
             UserInfoTokenServices userInfoTokenServices = new UserInfoTokenServices(
                     coffeeNetSecurityResourceProperties.getUserInfoUri(),
-                    oAuth2ProtectedResourceDetails.getClientId());
+                    coffeeNetSecurityClientProperties.getClientId());
 
             userInfoTokenServices.setAuthoritiesExtractor(authoritiesExtractor);
             userInfoTokenServices.setPrincipalExtractor(principalExtractor);
