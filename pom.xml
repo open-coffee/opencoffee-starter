@@ -25,15 +25,16 @@
         <module>coffeenet-starter-parent</module>
     </modules>
 
-    <issueManagement>
-        <url>https://github.com/coffeenet/coffeenet-starter/issues</url>
-        <system>GitHub Issues</system>
-    </issueManagement>
-
     <scm>
         <url>https://github.com/coffeenet/coffeenet-starter</url>
         <connection>scm:git:git://github.com/coffeenet/coffeenet-starter.git</connection>
         <developerConnection>scm:git:git@github.com:coffeenet/coffeenet-starter.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
+
+    <issueManagement>
+        <url>https://github.com/coffeenet/coffeenet-starter/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
 </project>
