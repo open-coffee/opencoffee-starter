@@ -1,5 +1,7 @@
 # Changelog 
 
+### 0.25.0-SNAPSHOT
+
 ### 0.24.0
 * Upgrade `logback-gelf-appender` to `1.3.1`
 * Fix not available discovery dependency in
