@@ -1,6 +1,7 @@
 # Changelog 
 
 ### 0.25.0-SNAPSHOT
+* Upgrade to spring boot 1.5.6
 
 ### 0.24.0
 * Upgrade `logback-gelf-appender` to `1.3.1`
