@@ -2,6 +2,7 @@
 
 ### 0.25.0-SNAPSHOT
 * Upgrade to spring boot 1.5.6
+* Upgrade to `spring-cloud-dependencies` to Dalston.SR2
 
 ### 0.24.0
 * Upgrade `logback-gelf-appender` to `1.3.1`

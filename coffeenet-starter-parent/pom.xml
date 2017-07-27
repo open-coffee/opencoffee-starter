@@ -33,7 +33,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Spring Cloud Dependency -->
-        <spring-cloud-dependencies.version>Dalston.SR1</spring-cloud-dependencies.version>
+        <spring-cloud-dependencies.version>Dalston.SR2</spring-cloud-dependencies.version>
 
         <!-- CoffeeNet Dependencies -->
         <navigation-bar.version>0.13.0</navigation-bar.version>
