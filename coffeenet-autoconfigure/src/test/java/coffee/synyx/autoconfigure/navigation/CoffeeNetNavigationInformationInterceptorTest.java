@@ -42,7 +42,7 @@ public class CoffeeNetNavigationInformationInterceptorTest {
     public void postHandleWithModelAndView() throws Exception {
 
         CoffeeNetNavigationInformation coffeeNetNavigationInformation = new CoffeeNetNavigationInformation(null, null,
-                null, null);
+                null, null, null);
         when(coffeeNetNavigationServiceMock.get()).thenReturn(coffeeNetNavigationInformation);
 
         ModelAndView modelAndView = new ModelAndView();
@@ -52,7 +52,7 @@ public class CoffeeNetNavigationInformationInterceptorTest {
         assertThat(modelAndView.getModelMap().containsKey("coffeenet")).isEqualTo(true);
 
         CoffeeNetNavigationInformation coffeenet = (CoffeeNetNavigationInformation) modelAndView
-            .getModelMap().get("coffeenet");
+                .getModelMap().get("coffeenet");
         Assertions.assertThat(coffeenet).isEqualTo(coffeeNetNavigationInformation);
     }
 

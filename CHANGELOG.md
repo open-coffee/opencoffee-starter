@@ -3,6 +3,8 @@
 ### 0.25.0-SNAPSHOT
 * Upgrade to spring boot 1.5.6
 * Upgrade to `spring-cloud-dependencies` to Dalston.SR2
+* Add version information of starter and application
+  in navigation
 * Fix not usable `spring-boot-devtools` dependency
   * Declare
     `CoffeeNetDiscoveryInstanceProperties`,

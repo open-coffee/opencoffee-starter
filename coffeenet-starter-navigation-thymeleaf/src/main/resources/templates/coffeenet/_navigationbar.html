@@ -4,49 +4,59 @@
 <!--/*@thymesVar id="coffeenet" type="coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationInformation"*/-->
 <th:block th:fragment="coffeenet-navigationbar">
     <div th:if="${coffeenet != null}" id="coffeenet--header-container" class="coffeenet--header-container">
-        <div id="coffeenet--nav-hamburger" class="coffeenet--nav-hamburger">
-            <span></span>
-        </div>
-        <div th:if="${coffeenet.currentCoffeeNetUser != null}" class="coffeenet--personalisation-container">
-            <div class="coffeenet--avatar">
-                <a th:if="${coffeenet.profileApp != null}" th:href="${coffeenet.profileApp.url}">
-                    <img th:src="${coffeenet.currentCoffeeNetUser.getAvatar()}" src="/img/default_avatar.jpg"/>
-                </a>
-                <img th:if="${coffeenet.profileApp == null}" th:src="${coffeenet.currentCoffeeNetUser.getAvatar()}" src="/img/default_avatar.jpg"/>
+        <div class="coffeenet--header-container-information">
+            <div id="coffeenet--nav-hamburger" class="coffeenet--nav-hamburger">
+                <span></span>
             </div>
-            <h2 class="coffeenet--username">
-                <a th:if="${coffeenet.profileApp != null}" th:href="${coffeenet.profileApp.url}"
-                   th:title="${coffeenet.profileApp.name}" th:text="${coffeenet.currentCoffeeNetUser.username}">
-                    username
-                </a>
-                <span th:if="${coffeenet.profileApp == null}" th:text="${coffeenet.currentCoffeeNetUser.username}">
+            <div th:if="${coffeenet.currentCoffeeNetUser != null}" class="coffeenet--personalisation-container">
+                <div class="coffeenet--avatar">
+                    <a th:if="${coffeenet.profileApp != null}" th:href="${coffeenet.profileApp.url}">
+                        <img th:src="${coffeenet.currentCoffeeNetUser.getAvatar()}" src="/img/default_avatar.jpg"/>
+                    </a>
+                    <img th:if="${coffeenet.profileApp == null}" th:src="${coffeenet.currentCoffeeNetUser.getAvatar()}"
+                         src="/img/default_avatar.jpg"/>
+                </div>
+                <h2 class="coffeenet--username">
+                    <a th:if="${coffeenet.profileApp != null}" th:href="${coffeenet.profileApp.url}"
+                       th:title="${coffeenet.profileApp.name}" th:text="${coffeenet.currentCoffeeNetUser.username}">
+                        username
+                    </a>
+                    <span th:if="${coffeenet.profileApp == null}" th:text="${coffeenet.currentCoffeeNetUser.username}">
                     username
                 </span>
-            </h2>
+                </h2>
+            </div>
+            <nav class="coffeenet--nav-container">
+                <h2 th:if="${coffeenet.coffeeNetApps != null and not #lists.isEmpty(coffeenet.coffeeNetApps)}"
+                    class="coffeenet--nav-section-title">Anwendungen</h2>
+                <ul class="coffeenet--nav-section-list" th:each="coffeeNetApp : ${coffeenet.coffeeNetApps}">
+                    <li th:classappend="${#strings.startsWith(#httpServletRequest.requestURL, coffeeNetApp.url)} ? active : ''">
+                        <a th:href="${coffeeNetApp.url}" th:title="${coffeeNetApp.name}" th:text="${coffeeNetApp.name}">
+                            CoffeeNet App
+                        </a>
+                    </li>
+                </ul>
+
+                <h2 th:if="${coffeenet.profileApp != null}" class="coffeenet--nav-section-title">Einstellungen</h2>
+                <ul class="coffeenet--nav-section-list">
+                    <li th:if="${coffeenet.profileApp != null}"
+                        th:classappend="${#strings.startsWith(#httpServletRequest.requestURL, coffeenet.profileApp.url)} ? active : ''">
+                        <a th:href="${coffeenet.profileApp.url}" th:text="${coffeenet.profileApp.name}">Profile</a>
+                    </li>
+                </ul>
+
+                <form th:if="${coffeenet.currentCoffeeNetUser != null and coffeenet.logoutPath != null}"
+                      th:action="${coffeenet.logoutPath}" method="post">
+                    <button type="submit" class="coffeenet--button-logout">
+                        Logout
+                    </button>
+                </form>
+            </nav>
         </div>
-        <nav class="coffeenet--nav-container">
-            <h2 th:if="${coffeenet.coffeeNetApps != null and not #lists.isEmpty(coffeenet.coffeeNetApps)}" class="coffeenet--nav-section-title">Anwendungen</h2>
-            <ul class="coffeenet--nav-section-list" th:each="coffeeNetApp : ${coffeenet.coffeeNetApps}">
-                <li th:classappend="${#strings.startsWith(#httpServletRequest.requestURL, coffeeNetApp.url)} ? active : ''">
-                    <a th:href="${coffeeNetApp.url}" th:title="${coffeeNetApp.name}" th:text="${coffeeNetApp.name}">
-                        CoffeeNet App
-                    </a>
-                </li>
-            </ul>
-
-            <h2 th:if="${coffeenet.profileApp != null}" class="coffeenet--nav-section-title">Einstellungen</h2>
-            <ul class="coffeenet--nav-section-list">
-                <li th:if="${coffeenet.profileApp != null}" th:classappend="${#strings.startsWith(#httpServletRequest.requestURL, coffeenet.profileApp.url)} ? active : ''">
-                    <a th:href="${coffeenet.profileApp.url}" th:text="${coffeenet.profileApp.name}">Profile</a>
-                </li>
-            </ul>
-
-            <form th:if="${coffeenet.currentCoffeeNetUser != null and coffeenet.logoutPath != null}" th:action="${coffeenet.logoutPath}" method="post">
-                <button type="submit" class="coffeenet--button-logout">
-                    Logout
-                </button>
-            </form>
-        </nav>
+        <footer th:if="${coffeenet.coffeeNetNavigationAppInformation != null}" class="coffeenet--header-container-version">
+            <img th:src="@{/img/logo.svg}" th:title="${coffeenet.coffeeNetNavigationAppInformation.artifactId + ':' + coffeenet.coffeeNetNavigationAppInformation.version + '&#10;    ' +
+              coffeenet.coffeeNetNavigationAppInformation.parentArtifactId + ':' + coffeenet.coffeeNetNavigationAppInformation.parentVersion}" />
+        </footer>
     </div>
 </th:block>
 

@@ -16,21 +16,20 @@ import java.util.Map;
  */
 public class CoffeeNetNavigationServiceImpl implements CoffeeNetNavigationService {
 
-    private final CoffeeNetNavigationDataExtractor coffeeNetNavigationDataExtractor;
+    private final CoffeeNetNavigationDataExtractor dataExtractor;
 
-    CoffeeNetNavigationServiceImpl(CoffeeNetNavigationDataExtractor coffeeNetNavigationDataExtractor) {
+    CoffeeNetNavigationServiceImpl(CoffeeNetNavigationDataExtractor dataExtractor) {
 
-        this.coffeeNetNavigationDataExtractor = coffeeNetNavigationDataExtractor;
+        this.dataExtractor = dataExtractor;
     }
 
     @Override
     public CoffeeNetNavigationInformation get() {
 
-
-        CurrentCoffeeNetUser currentCoffeeNetUser = coffeeNetNavigationDataExtractor.extractUser().orElse(null);
-        Map<String, List<CoffeeNetApp>> apps = coffeeNetNavigationDataExtractor.extractApps()
-            .orElseGet(Collections::emptyMap);
-        String logoutPath = coffeeNetNavigationDataExtractor.extractLogoutPath();
+        CurrentCoffeeNetUser currentCoffeeNetUser = dataExtractor.extractUser().orElse(null);
+        CoffeeNetNavigationAppInformation appInformation = dataExtractor.extractAppInformation().orElse(null);
+        Map<String, List<CoffeeNetApp>> apps = dataExtractor.extractApps().orElseGet(Collections::emptyMap);
+        String logoutPath = dataExtractor.extractLogoutPath();
 
         List<CoffeeNetApp> profileApps = apps.get("profile");
         CoffeeNetApp profileApp = null;
@@ -41,6 +40,7 @@ public class CoffeeNetNavigationServiceImpl implements CoffeeNetNavigationServic
 
         List<CoffeeNetApp> coffeeNetApps = apps.get("apps");
 
-        return new CoffeeNetNavigationInformation(currentCoffeeNetUser, coffeeNetApps, profileApp, logoutPath);
+        return new CoffeeNetNavigationInformation(currentCoffeeNetUser, coffeeNetApps, profileApp, logoutPath,
+                appInformation);
     }
 }

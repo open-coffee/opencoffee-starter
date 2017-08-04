@@ -50,8 +50,10 @@ public class CoffeeNetNavigationInformationEndpointTest {
         CurrentCoffeeNetUser currentCoffeeNetUser = new CurrentCoffeeNetUser("username", "email");
         CoffeeNetApp coffeeNetApp = new CoffeeNetApp("NoRights", "urlNoRights", emptySet());
         List<CoffeeNetApp> coffeeNetApps = singletonList(coffeeNetApp);
+        CoffeeNetNavigationAppInformation coffeeNetNavigationAppInformation = new CoffeeNetNavigationAppInformation("",
+                "", "", "", "", "");
         CoffeeNetNavigationInformation coffeeNetNavigationInformation = new CoffeeNetNavigationInformation(
-                currentCoffeeNetUser, coffeeNetApps, coffeeNetApp, "path");
+                currentCoffeeNetUser, coffeeNetApps, coffeeNetApp, "path", coffeeNetNavigationAppInformation);
         when(coffeeNetNavigationServiceMock.get()).thenReturn(coffeeNetNavigationInformation);
 
         CoffeeNetNavigationEndpoint sut = new CoffeeNetNavigationEndpoint(coffeeNetNavigationServiceMock);
