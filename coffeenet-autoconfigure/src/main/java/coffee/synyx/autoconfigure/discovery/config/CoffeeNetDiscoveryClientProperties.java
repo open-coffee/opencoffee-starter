@@ -12,5 +12,5 @@ import org.springframework.validation.annotation.Validated;
  */
 @Validated
 @ConfigurationProperties(prefix = "coffeenet.discovery.client")
-class CoffeeNetDiscoveryClientProperties extends EurekaClientConfigBean {
+public class CoffeeNetDiscoveryClientProperties extends EurekaClientConfigBean {
 }

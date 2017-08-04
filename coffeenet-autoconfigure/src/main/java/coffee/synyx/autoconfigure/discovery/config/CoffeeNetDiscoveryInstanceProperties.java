@@ -21,7 +21,7 @@ import org.springframework.validation.annotation.Validated;
  */
 @Validated
 @ConfigurationProperties(prefix = "coffeenet.discovery.instance")
-class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
+public class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBean {
 
     /**
      * The hostname if it can be determined at configuration time (otherwise it will be guessed from OS primitives).
