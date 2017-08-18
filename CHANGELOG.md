@@ -1,6 +1,6 @@
 # Changelog 
 
-### 0.25.0-SNAPSHOT
+### 0.25.0
 * Upgrade to spring boot 1.5.6
 * Upgrade to `spring-cloud-dependencies` to Dalston.SR2
 * Add version information of starter and application
