@@ -14,11 +14,14 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
+import org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration;
+import org.springframework.boot.info.BuildProperties;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.APP_SERVICE;
+import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.BUILD_PROPERTIES;
 import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.USER_SERVICE;
 
 import static java.lang.invoke.MethodHandles.lookup;
@@ -32,7 +35,12 @@ import static java.lang.invoke.MethodHandles.lookup;
  */
 @Configuration
 @ConditionalOnResource(resources = "classpath:/static/css/coffeenet-navbar.css")
-@AutoConfigureAfter({ CoffeeNetDiscoveryAutoConfiguration.class, CoffeeNetSecurityAutoConfiguration.class })
+@AutoConfigureAfter(
+    {
+        CoffeeNetDiscoveryAutoConfiguration.class, CoffeeNetSecurityAutoConfiguration.class,
+        ProjectInfoAutoConfiguration.class
+    }
+)
 public class CoffeeNetNavigationAutoConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass());
@@ -96,6 +104,22 @@ public class CoffeeNetNavigationAutoConfiguration {
             coffeeNetNavigationDataExtractor.registerService(APP_SERVICE, coffeeNetAppService);
 
             LOGGER.info("//> Added the CoffeeNetAppService to the CoffeeNetNavigationDataExtractor");
+        }
+    }
+
+    @Configuration
+    @ConditionalOnBean(BuildProperties.class)
+    static class BuildPropertiesConfiguration {
+
+        @Autowired
+        BuildPropertiesConfiguration(CoffeeNetNavigationDataExtractor coffeeNetNavigationDataExtractor,
+            BuildProperties buildProperties, CoffeeNetNavigationProperties coffeeNetNavigationProperties) {
+
+            if (coffeeNetNavigationProperties.isDisplayVersions()) {
+                coffeeNetNavigationDataExtractor.registerService(BUILD_PROPERTIES, buildProperties);
+
+                LOGGER.info("//> Added the BuildProperties to the CoffeeNetWebExtractor");
+            }
         }
     }
 

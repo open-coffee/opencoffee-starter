@@ -6,6 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotNull;
+
 
 /**
  * Properties for the navigation starters.
@@ -22,6 +24,9 @@ public class CoffeeNetNavigationProperties {
 
     @NotEmpty(message = "Please provide the path to the logout functionality or stay forever in the CoffeeNet")
     private String logoutPath = "/logout";
+
+    @NotNull(message = "Please provide the information to show or not show the version number in the navigation")
+    private boolean displayVersions = true;
 
     public String getProfileServiceName() {
 
@@ -47,11 +52,24 @@ public class CoffeeNetNavigationProperties {
     }
 
 
+    public boolean isDisplayVersions() {
+
+        return displayVersions;
+    }
+
+
+    public void setDisplayVersions(boolean displayVersions) {
+
+        this.displayVersions = displayVersions;
+    }
+
+
     @Override
     public String toString() {
 
         return "CoffeeNetNavigationProperties{"
             + "profileServiceName='" + profileServiceName + '\''
-            + ", logoutPath='" + logoutPath + '\'' + '}';
+            + ", logoutPath='" + logoutPath + '\''
+            + ", displayVersions=" + displayVersions + '}';
     }
 }

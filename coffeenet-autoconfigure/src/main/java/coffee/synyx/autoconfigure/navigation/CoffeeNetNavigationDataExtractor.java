@@ -7,6 +7,8 @@ import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
 import coffee.synyx.autoconfigure.security.service.CoffeeNetUserDetails;
 
+import org.springframework.boot.info.BuildProperties;
+
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -15,6 +17,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.APP_SERVICE;
+import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.BUILD_PROPERTIES;
 import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.USER_SERVICE;
 
 import static java.util.Collections.singletonList;
@@ -33,7 +36,8 @@ class CoffeeNetNavigationDataExtractor {
     public enum CoffeeNetServices {
 
         APP_SERVICE,
-        USER_SERVICE
+        USER_SERVICE,
+        BUILD_PROPERTIES
     }
 
     private CoffeeNetNavigationProperties coffeeNetNavigationProperties;
@@ -70,7 +74,7 @@ class CoffeeNetNavigationDataExtractor {
                 .ifPresent(userDetails -> queryBuilder.withRoles(userDetails.getAuthoritiesAsString())));
 
         Map<String, List<CoffeeNetApp>> filteredCoffeeNetApps = coffeeNetAppService.get()
-            .getApps(queryBuilder.build());
+                .getApps(queryBuilder.build());
 
         // extract profile application
         String profileServiceName = coffeeNetNavigationProperties.getProfileServiceName();
@@ -83,9 +87,11 @@ class CoffeeNetNavigationDataExtractor {
         }
 
         // retrieve all CoffeeNetApps
-        List<CoffeeNetApp> firstCoffeeNetApps = filteredCoffeeNetApps.entrySet().stream().map(entry ->
-                    entry.getValue()
-                    .get(0)).sorted(Comparator.comparing(CoffeeNetApp::getName)).collect(toList());
+        List<CoffeeNetApp> firstCoffeeNetApps = filteredCoffeeNetApps.entrySet()
+                .stream()
+                .map(entry -> entry.getValue().get(0))
+                .sorted(Comparator.comparing(CoffeeNetApp::getName))
+                .collect(toList());
         preparedCoffeeNetApps.put("apps", firstCoffeeNetApps);
 
         return Optional.of(preparedCoffeeNetApps);
@@ -130,6 +136,25 @@ class CoffeeNetNavigationDataExtractor {
     }
 
 
+    Optional<CoffeeNetNavigationAppInformation> extractAppInformation() {
+
+        if (!getBuildProperties().isPresent()) {
+            return Optional.empty();
+        }
+
+        String group = getBuildProperties().map(BuildProperties::getGroup).orElse("");
+        String artifact = getBuildProperties().map(BuildProperties::getArtifact).orElse("");
+        String version = getBuildProperties().map(BuildProperties::getVersion).orElse("");
+
+        String parentGroup = getBuildProperties().get().get("parent.group");
+        String parentArtifact = getBuildProperties().get().get("parent.artifact");
+        String parentVersion = getBuildProperties().get().get("parent.version");
+
+        return Optional.of(new CoffeeNetNavigationAppInformation(group, artifact, version, parentVersion,
+                    parentArtifact, parentGroup));
+    }
+
+
     /**
      * Registers a CoffeeNet service to retrieve information from.
      *
@@ -163,5 +188,17 @@ class CoffeeNetNavigationDataExtractor {
         }
 
         return Optional.of((CoffeeNetCurrentUserService) service);
+    }
+
+
+    private Optional<BuildProperties> getBuildProperties() {
+
+        Object properties = services.get(BUILD_PROPERTIES);
+
+        if (properties == null) {
+            return Optional.empty();
+        }
+
+        return Optional.of((BuildProperties) properties);
     }
 }
