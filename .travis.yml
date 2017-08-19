@@ -22,13 +22,9 @@ deploy:
     on:
       tags: true
       repo: coffeenet/coffeenet-starter
-  - provider: script
-    script:
-      - chmod a+x ./scripts/automatic-coffeenet-parent-updater.sh
-      - "./scripts/automatic-coffeenet-parent-updater.sh $OAUTH_TOKEN"
-    skip_cleanup: true
-    on:
-      repo: coffeenet/coffeenet-starter
+
+after_deploy:
+  - "if [ \"${TRAVIS_BRANCH}\" == \"master\" ] && [ ! -z \"${TRAVIS_TAG}\" ] && [ \"${TRAVIS_PULL_REQUEST}\" == \"false\" ]; then chmod a+x ./.scripts/automatic-coffeenet-parent-updater.sh; ./.scripts/automatic-coffeenet-parent-updater.sh $OAUTH_TOKEN; fi"
 
 env:
   global:

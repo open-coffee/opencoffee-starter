@@ -73,7 +73,7 @@ if [ 1 -eq $# ]; then
 
     if /usr/bin/git -C ${projectsDir}/${project} status | grep -q pom.xml; then
 
-      coffeeNetParentVersion=`mvn help:evaluate -Dexpression=project.parent.version | grep -e '^[^\[]'`
+      coffeeNetParentVersion=`/usr/bin/mvn -f ${projectsDir}/${project}/pom.xml help:evaluate -Dexpression=project.parent.version | grep -e '^[^\[]'`
       echo -e "> Updated CoffeeNet parent version of '$projectsDir/$project' to $coffeeNetParentVersion\n"
 
       updateBranch=${branch}-${coffeeNetParentVersion}
