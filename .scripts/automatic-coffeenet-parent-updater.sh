@@ -5,15 +5,18 @@ if [ 1 -eq $# ]; then
 
   # global
   token=$1
-  branch="update-to-latest-coffeenet-parent-version"
-  projectsDir="/tmp/coffeenet-merge-requests"
-  organizationTo="coffeenet"
   organizationFrom="coffeenetrelease"
+  branch="update-to-latest-coffeenet-parent-version"
+  projectsDir="/tmp/merge-requests"
 
-  declare -a projects=("coffeenet-auth" "coffeenet-discovery" "coffeenet-config-server")
+  declare -a projects=("coffeenet/coffeenet-auth" "coffeenet/coffeenet-discovery" "coffeenet/coffeenet-config-server")
 
-  for project in "${projects[@]}"
+  for projectInformation in "${projects[@]}"
   do
+
+    project=$(cut -d "/" -f 2 <<< "$projectInformation")
+    organizationTo=$(cut -d "/" -f 1 <<< "$projectInformation")
+
     echo "# $project"
     echo -e "# --------------------------------\n"
 
@@ -77,7 +80,7 @@ if [ 1 -eq $# ]; then
       echo -e "> Updated CoffeeNet parent version of '$projectsDir/$project' to $coffeeNetParentVersion\n"
 
       updateBranch=${branch}-${coffeeNetParentVersion}
-      echo "updateBranch= $updateBranch";
+      echo -e "> Branch for the pull request base is $updateBranch\n";
 
       /usr/bin/git -C ${projectsDir}/${project} checkout -b ${updateBranch}
       echo -e "> Changed branch to '$updateBranch'\n"
