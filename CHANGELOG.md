@@ -1,6 +1,6 @@
 # Changelog 
 
-### 0.26.0-SNAPSHOT
+### 0.26.0
 
 * Dependency
   * PUT parameters will not be sent -> back to spring version 4.3.9
