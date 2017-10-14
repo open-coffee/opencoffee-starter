@@ -3,12 +3,13 @@
 ### 0.27.0-SNAPSHOT
 * Dependency
   * Upgrade `spring boot` to `1.5.7`
+  * Upgrade to `spring-cloud-dependencies` to `Dalston.SR4`
 
 ### 0.26.0
 * Dependency
   * PUT parameters will not be sent -> back to spring version 4.3.9
     (https://jira.spring.io/browse/SPR-15828)
-  * Upgrade to `spring-cloud-dependencies` to Dalston.SR3
+  * Upgrade to `spring-cloud-dependencies` to `Dalston.SR3`
 
 ### 0.25.0
 * Upgrade `spring boot` to `1.5.6`
