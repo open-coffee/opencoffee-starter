@@ -1,7 +1,8 @@
 package coffee.synyx.autoconfigure.navigation;
 
-import org.springframework.boot.actuate.endpoint.Endpoint;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Provides information that are needed.
@@ -9,7 +10,8 @@ import org.springframework.boot.actuate.endpoint.Endpoint;
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.15.0
  */
-public class CoffeeNetNavigationEndpoint implements Endpoint<CoffeeNetNavigationInformation> {
+@Controller
+class CoffeeNetNavigationEndpoint {
 
     private final CoffeeNetNavigationService coffeeNetNavigationService;
 
@@ -18,29 +20,8 @@ public class CoffeeNetNavigationEndpoint implements Endpoint<CoffeeNetNavigation
         this.coffeeNetNavigationService = coffeeNetNavigationService;
     }
 
-    @Override
-    public String getId() {
-
-        return "coffeenet/navigation";
-    }
-
-
-    @Override
-    public boolean isEnabled() {
-
-        return true;
-    }
-
-
-    @Override
-    public boolean isSensitive() {
-
-        return false;
-    }
-
-
-    @Override
-    public CoffeeNetNavigationInformation invoke() {
+    @GetMapping("coffeenet/navigation")
+    CoffeeNetNavigationInformation getNavigationInformation() {
 
         return coffeeNetNavigationService.get();
     }

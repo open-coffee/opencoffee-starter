@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import org.mockito.runners.MockitoJUnitRunner;
-
 import org.springframework.boot.autoconfigure.security.oauth2.resource.AuthoritiesExtractor;
 
 import org.springframework.security.core.authority.AuthorityUtils;

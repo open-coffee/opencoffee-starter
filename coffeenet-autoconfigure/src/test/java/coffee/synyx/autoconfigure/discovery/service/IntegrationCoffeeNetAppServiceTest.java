@@ -99,11 +99,7 @@ public class IntegrationCoffeeNetAppServiceTest {
         when(discoveryClientMock.getInstances(frontPageName)).thenReturn(asList(frontPageWithUser,
                 frontPageWithAdminAndUser, frontPage));
 
-        String backPageName = "Backpage";
-        EurekaServiceInstance backPage = getServiceInstance(backPageName, "ROLE_USER, ROLE_ADMIN");
-        when(discoveryClientMock.getInstances(backPageName)).thenReturn(singletonList(backPage));
-
-        when(discoveryClientMock.getServices()).thenReturn(asList(frontPageName, backPageName));
+        when(discoveryClientMock.getServices()).thenReturn(asList(frontPageName, "Backpage"));
 
         AppQuery query = AppQuery.builder().withAppName(frontPageName).withRole("ROLE_USER").build();
         Map<String, List<CoffeeNetApp>> coffeeNetApps = coffeeNetAppService.getApps(query);
@@ -160,11 +156,7 @@ public class IntegrationCoffeeNetAppServiceTest {
         when(discoveryClientMock.getInstances(frontPageName)).thenReturn(asList(frontPageWithUser,
                 frontPageWithAdminAndUser, frontPage));
 
-        String backPageName = "Backpage";
-        EurekaServiceInstance backPage = getServiceInstance(backPageName, "ROLE_USER, ROLE_ADMIN");
-        when(discoveryClientMock.getInstances(backPageName)).thenReturn(singletonList(backPage));
-
-        when(discoveryClientMock.getServices()).thenReturn(asList(frontPageName, backPageName));
+        when(discoveryClientMock.getServices()).thenReturn(asList(frontPageName, "Backpage"));
 
         AppQuery query = AppQuery.builder().withAppName("Frontpage").build();
         Map<String, List<CoffeeNetApp>> coffeeNetApps = coffeeNetAppService.getApps(query);

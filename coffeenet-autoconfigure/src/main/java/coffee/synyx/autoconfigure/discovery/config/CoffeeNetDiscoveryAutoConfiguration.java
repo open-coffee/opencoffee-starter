@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -26,7 +25,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.PropertyResolver;
 
 import org.springframework.util.StringUtils;
 
@@ -105,22 +103,17 @@ public class CoffeeNetDiscoveryAutoConfiguration {
         CoffeeNetDiscoveryInstanceProperties eurekaInstanceConfigBean(InetUtils inetUtils, ConfigurableEnvironment env)
             throws MalformedURLException {
 
-            RelaxedPropertyResolver resolver = new RelaxedPropertyResolver(env);
-
-            PropertyResolver coffeeNetPropertyResolver = new RelaxedPropertyResolver(env,
-                    "coffeenet.discovery.instance.");
-            String hostname = coffeeNetPropertyResolver.getProperty("hostname");
-
-            boolean preferIpAddress = parseBoolean(coffeeNetPropertyResolver.getProperty("preferIpAddress"));
-            int nonSecurePort = parseInt(resolver.getProperty("server.port", resolver.getProperty("port", "8080")));
-            int managementPort = parseInt(resolver.getProperty("management.port", String.valueOf(nonSecurePort)));
-            String managementContextPath = resolver.getProperty("management.contextPath",
-                    resolver.getProperty("server.contextPath", "/"));
+            String hostname = env.getProperty("coffeenet.discovery.instance.hostname");
+            boolean preferIpAddress = parseBoolean(env.getProperty("coffeenet.discovery.instance.preferIpAddress"));
+            int nonSecurePort = parseInt(env.getProperty("server.port", env.getProperty("port", "8080")));
+            int managementPort = parseInt(env.getProperty("management.port", String.valueOf(nonSecurePort)));
+            String managementContextPath = env.getProperty("management.contextPath",
+                    env.getProperty("server.contextPath", "/"));
 
             CoffeeNetDiscoveryInstanceProperties instance = new CoffeeNetDiscoveryInstanceProperties(inetUtils,
                     coffeeNetConfigurationProperties);
             instance.setNonSecurePort(nonSecurePort);
-            instance.setInstanceId(getDefaultInstanceId(resolver));
+            instance.setInstanceId(getDefaultInstanceId(env));
             instance.setPreferIpAddress(preferIpAddress);
 
             if (managementPort != nonSecurePort && managementPort != 0) {
@@ -128,8 +121,8 @@ public class CoffeeNetDiscoveryAutoConfiguration {
                     instance.setHostname(hostname);
                 }
 
-                String statusPageUrlPath = coffeeNetPropertyResolver.getProperty("statusPageUrlPath");
-                String healthCheckUrlPath = coffeeNetPropertyResolver.getProperty("healthCheckUrlPath");
+                String statusPageUrlPath = env.getProperty("coffeenet.discovery.instance.statusPageUrlPath");
+                String healthCheckUrlPath = env.getProperty("coffeenet.discovery.instance.healthCheckUrlPath");
 
                 if (!managementContextPath.endsWith("/")) {
                     managementContextPath = managementContextPath + "/";
