@@ -3,7 +3,8 @@
 ### 0.27.0-SNAPSHOT
 * Dependency
   * Upgrade `spring boot` to `1.5.9`
-  * Upgrade to `spring-cloud-dependencies` to `Dalston.SR4`
+  * Upgrade to `spring-cloud-dependencies` to `Edgware.RELEASE`
+    * For changelog: https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Edgware-Release-Notes
 
 ### 0.26.0
 * Dependency
