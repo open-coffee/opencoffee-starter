@@ -2,7 +2,7 @@
 
 ### 0.27.0-SNAPSHOT
 * Dependency
-  * Upgrade `spring boot` to `1.5.8`
+  * Upgrade `spring boot` to `1.5.9`
   * Upgrade to `spring-cloud-dependencies` to `Dalston.SR4`
 
 ### 0.26.0
