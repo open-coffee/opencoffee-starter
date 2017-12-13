@@ -1,8 +1,6 @@
 # Changelog 
 
 
-### 0.28.0-SNAPSHOT
-
 ### 0.27.1
 * Dependency
   * Downgrade `spring-cloud-dependencies` to `Dalston.SR4`
