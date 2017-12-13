@@ -25,7 +25,7 @@ deploy:
 
 after_deploy:
   - "echo TRAVIS_BRANCH=\"${TRAVIS_BRANCH}\" TRAVIS_TAG=\"${TRAVIS_TAG}\" TRAVIS_PULL_REQUEST=\"${TRAVIS_PULL_REQUEST}\""
-  - "if [ \"${TRAVIS_BRANCH}\" == \"master\" ] && [ ! -z \"${TRAVIS_TAG}\" ] && [ \"${TRAVIS_PULL_REQUEST}\" == \"false\" ]; then chmod a+x ./.scripts/automatic-coffeenet-parent-updater.sh; ./.scripts/automatic-coffeenet-parent-updater.sh $OAUTH_TOKEN; fi"
+  - "if [ ! -z \"${TRAVIS_TAG}\" ] && [ \"${TRAVIS_BRANCH}\" == \"${TRAVIS_TAG}\" ] && [ \"${TRAVIS_PULL_REQUEST}\" == \"false\" ]; then chmod a+x ./.scripts/automatic-coffeenet-parent-updater.sh; ./.scripts/automatic-coffeenet-parent-updater.sh $OAUTH_TOKEN; fi"
 
 env:
   global:
