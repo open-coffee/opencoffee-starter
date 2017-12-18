@@ -2,6 +2,7 @@
 
 
 ### 0.28.0-SNAPSHOT
+* Add new CoffeeNet logo and favicon
 
 ### 0.27.1
 * Dependency
