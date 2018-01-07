@@ -1,9 +1,9 @@
 # CoffeeNet Starter - Security
 
-Dieser CoffeeNet-Starter sichert automatisch die Anwendung innerhalb des CoffeeNets
-anhand von Single-Sign-On ab. Standardmäßig werden alle Endpunkte abgesichert.
-Anhand einer manuell erstellten Konfiguration in der Anwendung kann diese überschrieben werden.
-
+This CoffeeNet starter secures your application with
+spring security and provides access with OAuth2 and the
+CoffeeNet Auth Server.
+By default all endpoints are secured, but can be configured.
 
 ## Getting started
 
@@ -45,10 +45,9 @@ your project must fulfill.
 
 ## Configuration
 
-Der CoffeeNet-Starter Security hängt sich standardmäßig an die Eigenschaft ```coffeenet.profile```.
-
 ```yaml
 coffeenet:
+  application-name:
   profile: development
   security:
     enabled: true
@@ -66,100 +65,93 @@ coffeenet:
     logout-success-url: http://localhost:9999/logout
 ```
 
-Die Konfigurationsmöglichkeiten mit deren Standardwerte.
+The configuration with their default values.
 
 
-Der CoffeeNet Auth-Server hat folgende Daten hinterlegt für eine lokale integrative Entwicklung:
+### In production
 
-```yaml
-coffeenet:
-  security:
-    client:
-      client-id: coffeeNetClient
-      client-secret: coffeeNetClientSecret
-```
+In production you need to declare all `*-uri` and `*-url` properties to point
+to your OAuth2 server instance (${authServerURL}).
 
-### Produktiv
-
-Produktiv sollte dann statt 'http://localhost:9999' der produktive Auth-Server unter 'https://auth.synyx.coffee' eingesetzt werden.
+You need to specify your OAuth2 client credentials (${clientId} and ${clientSecret}),
+that were provided by the OAuth2 service, under `coffeenet.security.client`
 
 ```yaml
 coffeenet:
   profile: integration
   security:
     resource:
-      user-info-uri: https://auth.synyx.coffee/user
+      user-info-uri: https://${authServerURL}/user
     client:
       client-id: ${clientId}
       client-secret: ${clientSecret}
-      user-authorization-uri: https://auth.synyx.coffee/oauth/authorize
-      access-token-uri: https://auth.synyx.coffee/oauth/token
-    logout-success-url: https://auth.synyx.coffee/logout
+      user-authorization-uri: https://${authServerURL}/oauth/authorize
+      access-token-uri: https://${authServerURL}/oauth/token
+    logout-success-url: https://${authServerURL}/logout
 ```
 
-**Zu beachten:**
-* *Https* verwenden, ansonsten wird dem redirect in der Anwendung nicht gefolgt
-* ${clientId} ersetzen mit der für die Applikation im Auth-Server eingetragenen ID
-* ${clientSecret} ersetzen mit dem für die Applikation im Auth-Server eingetragenen Passwort
+## Single-Sign-On
 
-Bevor die neue Applikation bei dem Auth-Server verwendet werden kann, muss diese Applikation im Auth-Server, mit deren Daten, hinterlegt werden.
-Dies kann von jedem Benutzer durchgeführt werden, der die Rolle `COFFEENET-ADMIN` hat.
+The Single-Sign-On mechanism is activated if
 
-
-## Aktivierung des Single-Sign-Ons
-
-Sofern ihr in eurer application.[properties|yml] die option
 ```yaml
 coffeenet:
   profile: integration
 ```
 
-gesetzt habt, wird der SSO Mechanismus automatisch verwendet. Standardmäßig erfordert jeder Request eine Authentifizierung.
+is set to `integration`. That means that the your application will
+search at the given uri/urls under `coffeenet.security` for a
+OAuth2 Server and tries to authenticate and authorize any request.
 
-Falls diese Einstellung auf
+If you are in development mode
 
 ```yaml
 coffeenet
   profile: development
 ```
 
-gestellt ist, wird statt des Single-Sign-Ons ein Form-Login durchgeführt.
-Standardmäßig sind die Zugangsdaten dann folgende:
+there will be just a form login and no external dependencies/services are needed.
 
-| User       | Passwort   | Email   | Rollen   |
-| ---------- |------------|------------| :-------:|
+| User       | Passwort   | Email           | Rollen                 |
+| ---------- |------------|-----------------| :---------------------:|
 | admin      | admin      | admin@coffeenet | COFFEENET-ADMIN & USER |
-| user       | user       | user@coffeenet | USER |
+| user       | user       | user@coffeenet  | USER                   |
 
 
-## Verhalten anpassen
+## Manually configure security
 
-### Integration
+If you want to change the default security configuration and maybe
+want to not secure an endpoints e.g. than you can create your own beans.
+
+### Integration mode
+
+Create your own `MySecurityConfig` bean, extend [IntegrationCoffeeNetWebSecurityConfigurerAdapter](https://github.com/coffeenet/coffeenet-starter/blob/master/coffeenet-autoconfigure/src/main/java/coffee/synyx/autoconfigure/security/config/IntegrationCoffeeNetWebSecurityConfigurerAdapter.java)
+and expose it via `@Bean` or via `@Configuration` like in the example below.
+
+To use provided OAuth2 Single-Sign-On mechanism just call `enableSso(http)` and
+than you can configure your application with the default spring security behaviour.
 
 ```java
     @Configuration
-    @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = "integration") //Wichtig, damit diese Konfiguration nur im Produktiv-Modus herangezogen wird
-    public class SecurityConfig extends IntegrationCoffeeNetWebSecurityConfigurerAdapter {
+    @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = "integration")
+    public class MySecurityConfig extends IntegrationCoffeeNetWebSecurityConfigurerAdapter {
 
       @Override
       public void configure(HttpSecurity http) throws Exception {
 
-        enableSso(http) // Aktiviert die Verwendung des Auth-Servers. Dabei werden noch keine gesicherten URLs definiert!
+        enableSso(http)
             .authorizeRequests()
-            ...//Die gewünschte Konfiguration
+            ...
       }
     }
 ```
-Wenn eine spezifischere Konfiguration für abzusichernde Requests notwendig ist, kann eine Konfigurationsklasse erstellt werden die von [IntegrationCoffeeNetWebSecurityConfigurerAdapter](https://github.com/coffeenet/coffeenet-starter/blob/master/coffeenet-autoconfigure/src/main/java/coffee/synyx/autoconfigure/security/config/IntegrationCoffeeNetWebSecurityConfigurerAdapter.java)
-erbt.
 
-
-### Development
+### Development mode
 
 ```java
 @Configuration
 @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = "development", matchIfMissing = true)
-public class ExampleDevSecurityConfig extends DevelopmentCoffeeNetWebSecurityConfigurerAdapter {
+public class MyDevSecurityConfig extends DevelopmentCoffeeNetWebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -172,4 +164,7 @@ public class ExampleDevSecurityConfig extends DevelopmentCoffeeNetWebSecurityCon
   }
 }
 ```
-Wenn für die Dev-Konfiguration z.B. spezfische Rollen benötigt werden, kann eine Konfigurationsklasse erstellt werden, die von [DevelopmentCoffeeNetWebSecurityConfigurerAdapter](https://github.com/coffeenet/coffeenet-starter/blob/master/coffeenet-autoconfigure/src/main/java/coffee/synyx/autoconfigure/security/config/DevelopmentCoffeeNetWebSecurityConfigurerAdapter.java) erbt.
+
+If you want to override the CoffeeNet default development securiy configuration just
+create a bean `MyDevSecurityConfig`, extend from [DevelopmentCoffeeNetWebSecurityConfigurerAdapter](https://github.com/coffeenet/coffeenet-starter/blob/master/coffeenet-autoconfigure/src/main/java/coffee/synyx/autoconfigure/security/config/DevelopmentCoffeeNetWebSecurityConfigurerAdapter.java)
+and expose it via `@Bean` or via `@Configuration` like in the example below.
