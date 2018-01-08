@@ -10,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationManager;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
@@ -41,8 +43,8 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
     private static final String LOGOUT = "/logout";
 
     private CoffeeNetSecurityProperties securityConfigurationProperties;
-    private UserInfoTokenServices userInfoTokenServices;
     private CoffeeNetSecurityResourceProperties coffeenetResource;
+    private UserInfoTokenServices userInfoTokenServices;
     private OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter;
 
     @Override
@@ -53,8 +55,8 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
 
 
     /**
-     * Configures the passed {@link HttpSecurity} to support oauth2 sso. This Method should be used to enable oauth2 sso
-     * if this config is extended. <b>This method does not configure any security constraints for any requests.</b>
+     * Configures the passed {@link HttpSecurity} to support oauth2 sso. This Method should be used to enable oauth2
+     * sso if this config is extended. <b>This method does not configure any security constraints for any requests.</b>
      *
      * @param  http  The {@link HttpSecurity} that should be configured to support oauth2 sso.
      *
@@ -79,9 +81,23 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
     }
 
 
+    /**
+     * This filter should be used in the {@link org.springframework.security.web.SecurityFilterChain} to allow
+     * stateless authentication with a bearer token in the Authorization-Header of a Request. If this Filter is not
+     * used authentication is only possible with an active session.
+     */
     private Filter apiTokenAccessFilter() {
 
-        return new CoffeeNetApiTokenAccessFilter(userInfoTokenServices, coffeenetResource);
+        OAuth2AuthenticationProcessingFilter apiTokenAccessFilter = new OAuth2AuthenticationProcessingFilter();
+        apiTokenAccessFilter.setStateless(false);
+
+        OAuth2AuthenticationManager oauthAuthenticationManager = new OAuth2AuthenticationManager();
+        oauthAuthenticationManager.setResourceId(coffeenetResource.getResourceId());
+        oauthAuthenticationManager.setTokenServices(userInfoTokenServices);
+        oauthAuthenticationManager.setClientDetailsService(null);
+        apiTokenAccessFilter.setAuthenticationManager(oauthAuthenticationManager);
+
+        return apiTokenAccessFilter;
     }
 
 
@@ -103,9 +119,16 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
 
 
     @Autowired
-    public void setSecurityConfigurationProperties(CoffeeNetSecurityProperties securityConfigurationProperties) {
+    public void setCoffeeNetSecurityProperties(CoffeeNetSecurityProperties securityConfigurationProperties) {
 
         this.securityConfigurationProperties = securityConfigurationProperties;
+    }
+
+
+    @Autowired
+    public void setCoffeeNetSecurityResourceProperties(CoffeeNetSecurityResourceProperties coffeenetResource) {
+
+        this.coffeenetResource = coffeenetResource;
     }
 
 
@@ -117,14 +140,7 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
 
 
     @Autowired
-    public void setCoffeenetResource(CoffeeNetSecurityResourceProperties coffeenetResource) {
-
-        this.coffeenetResource = coffeenetResource;
-    }
-
-
-    @Autowired
-    public void setoAuth2ClientAuthenticationProcessingFilter(
+    public void setOAuth2ClientAuthenticationProcessingFilter(
         OAuth2ClientAuthenticationProcessingFilter oAuth2ClientAuthenticationProcessingFilter) {
 
         this.oAuth2ClientAuthenticationProcessingFilter = oAuth2ClientAuthenticationProcessingFilter;
