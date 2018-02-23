@@ -4,6 +4,7 @@
 ### 0.28.0-SNAPSHOT
 * Dependency
   * Add maven wrapper in version 3.5.2
+  * Upgrade `spring boot` to `1.5.10`
 
 ### 0.27.1
 * Dependency
