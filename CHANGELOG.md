@@ -2,6 +2,8 @@
 
 
 ### 0.28.0-SNAPSHOT
+* Dependency
+  * Add maven wrapper in version 3.5.2
 
 ### 0.27.1
 * Dependency
