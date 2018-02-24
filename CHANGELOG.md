@@ -6,7 +6,7 @@
   * Add new CoffeeNet Logo for favicon and
     in the navigation
 * Dependency
-  * Add maven wrapper in version 3.5.2
+  * Upgrade `maven wrapper` to `3.5.2`
   * Upgrade `spring boot` to `1.5.10`
   * Upgrade `spring-cloud-dependencies` to `Dalston.SR5`
 
