@@ -41,3 +41,7 @@ notifications:
     on_failure: always # default: always
     use_notice: true
     skip_join: true
+
+cache:
+  directories:
+    - $HOME/.m2
