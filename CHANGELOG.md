@@ -2,6 +2,9 @@
 
 
 ### 0.28.0-SNAPSHOT
+* Add
+  * Add new CoffeeNet Logo for favicon and
+    in the navigation
 * Dependency
   * Add maven wrapper in version 3.5.2
   * Upgrade `spring boot` to `1.5.10`
