@@ -5,6 +5,7 @@
 * Dependency
   * Add maven wrapper in version 3.5.2
   * Upgrade `spring boot` to `1.5.10`
+  * Upgrade `spring-cloud-dependencies` to `Dalston.SR5`
 
 ### 0.27.1
 * Dependency
