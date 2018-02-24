@@ -1,7 +1,7 @@
 # Changelog 
 
 
-### 0.28.0-SNAPSHOT
+### 0.28.0
 * Add
   * Add new CoffeeNet Logo for favicon and
     in the navigation
