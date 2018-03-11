@@ -1,6 +1,8 @@
 # Changelog 
 
 ### 0.29.0-SNAPSHOT
+* Dependency
+  * Upgrade `logback-gelf-appender` to `1.4`
 
 ### 0.28.0
 * Add
