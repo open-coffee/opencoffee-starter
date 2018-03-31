@@ -3,6 +3,8 @@ language: java
 jdk:
   - oraclejdk8
 
+script: ./mvnw verify jacoco:report coveralls:report
+
 before_deploy:
   - mvn -DskipTests package
 
