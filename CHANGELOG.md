@@ -4,6 +4,7 @@
 * Dependency
   * Upgrade `logback-gelf-appender` to `1.4`
   * Upgrade `maven wrapper` to `3.5.3`
+  * Upgrade `spring boot` to `1.5.11`
 
 ### 0.28.0
 * Add
