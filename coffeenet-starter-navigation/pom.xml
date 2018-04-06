@@ -20,7 +20,7 @@
     </description>
 
     <dependencies>
-        <!-- CoffeeNet Web -->
+        <!-- CoffeeNet Autoconfigure -->
         <dependency>
             <groupId>coffee.synyx</groupId>
             <artifactId>autoconfigure</artifactId>
