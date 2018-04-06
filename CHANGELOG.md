@@ -3,6 +3,7 @@
 ### 0.29.0-SNAPSHOT
 * Dependency
   * Upgrade `logback-gelf-appender` to `1.4`
+  * Add jacoco and coveralls for test coverage
   * Upgrade `maven wrapper` to `3.5.3`
   * Upgrade `spring boot` to `1.5.11`
 

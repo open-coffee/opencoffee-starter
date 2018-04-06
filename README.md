@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/coffeenet/coffeenet-starter.svg?branch=master)](https://travis-ci.org/coffeenet/coffeenet-starter)
+[![Coverage Status](https://coveralls.io/repos/github/coffeenet/coffeenet-starter/badge.svg?branch=add-coveralls)](https://coveralls.io/github/coffeenet/coffeenet-starter?branch=add-coveralls)
 
 # CoffeeNet Starters
 
