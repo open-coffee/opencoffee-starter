@@ -5,7 +5,7 @@
   * Upgrade `logback-gelf-appender` to `1.4`
   * Add jacoco and coveralls for test coverage
   * Upgrade `maven wrapper` to `3.5.3`
-  * Upgrade `spring boot` to `1.5.11`
+  * Upgrade `spring boot` to `1.5.12`
 
 ### 0.28.0
 * Add
