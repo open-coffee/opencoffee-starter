@@ -23,6 +23,7 @@
         <module>coffeenet-starter-monitoring</module>
         <module>coffeenet-starter-security</module>
         <module>coffeenet-autoconfigure</module>
+        <module>coffeenet-actuator</module>
         <module>coffeenet-starter-parent</module>
     </modules>
 
