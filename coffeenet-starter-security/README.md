@@ -62,7 +62,6 @@ coffeenet:
       client-secret:
       user-authorization-uri: http://localhost:9999/oauth/authorize
       access-token-uri: http://localhost:9999/oauth/token
-    logout-success-url: http://localhost:9999/logout
 ```
 
 The configuration with their default values.
