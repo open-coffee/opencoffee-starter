@@ -7,12 +7,12 @@
     <parent>
         <artifactId>coffeenet-starter-parent</artifactId>
         <groupId>coffee.synyx</groupId>
-        <version>0.30.0-SNAPSHOT</version>
+        <version>0.33.0-SNAPSHOT</version>
         <relativePath>../coffeenet-starter-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>starter-monitoring</artifactId>
-    <version>0.30.0-SNAPSHOT</version>
+    <version>0.33.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>CoffeeNet Starter Monitoring</name>
