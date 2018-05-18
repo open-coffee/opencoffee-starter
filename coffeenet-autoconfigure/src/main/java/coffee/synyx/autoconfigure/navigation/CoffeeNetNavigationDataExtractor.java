@@ -20,6 +20,7 @@ import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtra
 import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.BUILD_PROPERTIES;
 import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.USER_SERVICE;
 
+import static java.lang.String.CASE_INSENSITIVE_ORDER;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 
@@ -90,7 +91,7 @@ class CoffeeNetNavigationDataExtractor {
         List<CoffeeNetApp> firstCoffeeNetApps = filteredCoffeeNetApps.entrySet()
                 .stream()
                 .map(entry -> entry.getValue().get(0))
-                .sorted(Comparator.comparing(CoffeeNetApp::getName))
+                .sorted(Comparator.comparing(CoffeeNetApp::getName, CASE_INSENSITIVE_ORDER))
                 .collect(toList());
         preparedCoffeeNetApps.put("apps", firstCoffeeNetApps);
 
