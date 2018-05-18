@@ -40,7 +40,7 @@ import static java.util.Optional.of;
 
 
 /**
- * @author  Tobias Schneider - schneider@synyx.de
+ * @author Tobias Schneider - schneider@synyx.de
  */
 @RunWith(MockitoJUnitRunner.class)
 public class CoffeeNetNavigationInformationExtractorTest {
@@ -53,7 +53,7 @@ public class CoffeeNetNavigationInformationExtractorTest {
     private CoffeeNetCurrentUserService coffeeNetCurrentUserServiceMock;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         sut = new CoffeeNetNavigationDataExtractor(new CoffeeNetNavigationProperties());
     }
