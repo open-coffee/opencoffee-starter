@@ -1,6 +1,6 @@
 # Changelog 
 
-### 0.30.0-SNAPSHOT
+### 0.30.0
 * Dependency
   * Upgrade `spring boot` to `1.5.13`
 * Fix
