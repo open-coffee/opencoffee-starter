@@ -43,7 +43,7 @@ import static java.util.Optional.of;
  * @author Tobias Schneider - schneider@synyx.de
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CoffeeNetNavigationInformationExtractorTest {
+public class CoffeeNetNavigationDataExtractorTest {
 
     private CoffeeNetNavigationDataExtractor sut;
 
