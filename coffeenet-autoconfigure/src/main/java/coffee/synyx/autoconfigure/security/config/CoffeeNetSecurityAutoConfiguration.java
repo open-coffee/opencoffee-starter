@@ -93,7 +93,6 @@ public class CoffeeNetSecurityAutoConfiguration {
         }
 
         @Bean
-        @ConditionalOnMissingBean(FilterRegistrationBean.class)
         public FilterRegistrationBean coffeeNetOauth2ClientFilterRegistration(
             OAuth2ClientContextFilter oAuth2ClientContextFilter) {
 
