@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
  * @author  Tobias Schneider
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CoffeeNetNavigationInformationMvcConfigurerAdapterTest {
+public class CoffeeNetWebMvcConfigurerAdapterTest {
 
     private CoffeeNetWebMvcConfigurerAdapter sut;
 

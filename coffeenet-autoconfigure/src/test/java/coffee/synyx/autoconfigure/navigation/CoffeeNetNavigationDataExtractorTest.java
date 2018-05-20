@@ -40,10 +40,10 @@ import static java.util.Optional.of;
 
 
 /**
- * @author  Tobias Schneider - schneider@synyx.de
+ * @author Tobias Schneider - schneider@synyx.de
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CoffeeNetNavigationInformationExtractorTest {
+public class CoffeeNetNavigationDataExtractorTest {
 
     private CoffeeNetNavigationDataExtractor sut;
 
@@ -53,7 +53,7 @@ public class CoffeeNetNavigationInformationExtractorTest {
     private CoffeeNetCurrentUserService coffeeNetCurrentUserServiceMock;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         sut = new CoffeeNetNavigationDataExtractor(new CoffeeNetNavigationProperties());
     }
@@ -220,5 +220,40 @@ public class CoffeeNetNavigationInformationExtractorTest {
 
         Optional<CurrentCoffeeNetUser> coffeeNetWebUser = sut.extractUser();
         assertThat(coffeeNetWebUser).isSameAs(Optional.empty());
+    }
+
+    @Test
+    public void orderingIsCaseInsensitive() {
+
+        Map<String, List<CoffeeNetApp>> apps = new HashMap<>();
+
+        CoffeeNetApp coffeeNetApp = new CoffeeNetApp("x App a", "", emptySet());
+        apps.put("cna1", singletonList(coffeeNetApp));
+
+        CoffeeNetApp coffeeNetApp2 = new CoffeeNetApp("X App b", "", emptySet());
+        apps.put("cna2", singletonList(coffeeNetApp2));
+
+        CoffeeNetApp coffeeNetApp3 = new CoffeeNetApp("app a", "", emptySet());
+        apps.put("cna3", singletonList(coffeeNetApp3));
+
+        CoffeeNetApp coffeeNetApp4 = new CoffeeNetApp("App b", "", emptySet());
+        apps.put("cna4", singletonList(coffeeNetApp4));
+
+        sut.registerService(APP_SERVICE, coffeeNetAppServiceMock);
+        when(coffeeNetAppServiceMock.getApps(any())).thenReturn(apps);
+
+        // user
+        sut.registerService(USER_SERVICE, coffeeNetCurrentUserServiceMock);
+        when(coffeeNetCurrentUserServiceMock.get()).thenReturn(Optional.empty());
+
+        Optional<Map<String, List<CoffeeNetApp>>> extractedApps = sut.extractApps();
+        Map<String, List<CoffeeNetApp>> coffeeNetApps = extractedApps.get();
+
+        assertThat(coffeeNetApps).hasSize(1);
+        assertThat(coffeeNetApps.get("apps")).hasSize(4);
+        assertThat(coffeeNetApps.get("apps").get(0)).isSameAs(coffeeNetApp3);
+        assertThat(coffeeNetApps.get("apps").get(1)).isSameAs(coffeeNetApp4);
+        assertThat(coffeeNetApps.get("apps").get(2)).isSameAs(coffeeNetApp);
+        assertThat(coffeeNetApps.get("apps").get(3)).isSameAs(coffeeNetApp2);
     }
 }

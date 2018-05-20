@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 /**
  * @author  Tobias Schneider - schneider@synyx.de
  */
-public class CoffeeNetNavigationInformationPropertiesTest {
+public class CoffeeNetNavigationPropertiesTest {
 
     @Test
     public void testDefaultValues() {

@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
  * @author  Tobias Schneider
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CoffeeNetNavigationInformationInterceptorTest {
+public class CoffeeNetNavigationInterceptorTest {
 
     private CoffeeNetNavigationInterceptor sut;
 

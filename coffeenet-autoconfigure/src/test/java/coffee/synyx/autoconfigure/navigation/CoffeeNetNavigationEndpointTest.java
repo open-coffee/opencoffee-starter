@@ -28,7 +28,7 @@ import static java.util.Collections.singletonList;
  * @author  Tobias Schneider - schneider@synyx.de
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CoffeeNetNavigationInformationEndpointTest {
+public class CoffeeNetNavigationEndpointTest {
 
     @Mock
     private CoffeeNetNavigationService coffeeNetNavigationServiceMock;
