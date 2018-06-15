@@ -3,6 +3,8 @@
 ### 0.31.0-SNAPSHOT
 * Add
   * Case insensitive ordering of apps in the navigation bar
+* Dependency
+  * Upgrade `spring boot` to `1.5.14`
 
 ### 0.30.0
 * Dependency
