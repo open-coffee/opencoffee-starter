@@ -1,6 +1,6 @@
 # Changelog 
 
-### 0.31.0-SNAPSHOT
+### 0.31.0
 * Add
   * Case insensitive ordering of apps in the navigation bar
 * Dependency
