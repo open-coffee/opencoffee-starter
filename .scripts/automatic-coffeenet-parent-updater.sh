@@ -81,7 +81,7 @@ if [ 1 -eq $# ]; then
       echo -e "> Updated ${organizationFrom}/${project} master with the master from ${organizationTo}/${project}\n"
     fi
 
-    # Upgrade the parent version for all projects in the reposiroty
+    # Upgrade the parent version for all projects in the repository
 
     for repoPom in $(find ${projectsDir}/${project} -type f -iname 'pom.xml'); do
 
