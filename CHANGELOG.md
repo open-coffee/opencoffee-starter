@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [0.32.0]
 ### Added
 - Automatic upload of the relevant part of the changelog on release
 
@@ -235,7 +235,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Javascript Starter
 
 
-[Unreleased]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.31.0...HEAD
+[0.32.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.31.0...coffeenet-starter-0.32.0
 [0.31.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.30.0...coffeenet-starter-0.31.0
 [0.30.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.29.0...coffeenet-starter-0.30.0
 [0.29.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.28.0...coffeenet-starter-0.29.0
