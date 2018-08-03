@@ -3,6 +3,7 @@
 ### 0.32.0-SNAPSHOT
 * Dependency
   * Upgrade `logback-gelf-appender` to `1.5`
+  * Upgrade `spring boot` to `1.5.15`
 
 ### 0.31.0
 * Add
