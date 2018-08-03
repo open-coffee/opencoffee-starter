@@ -1,4 +1,9 @@
+sudo: required
+
 language: java
+
+before_install:
+- sudo apt-get install -y markdown
 
 jdk:
   - oraclejdk8
@@ -7,6 +12,7 @@ script: ./mvnw verify jacoco:report coveralls:report
 
 before_deploy:
   - mvn -DskipTests package
+  - export RELEASE_NOTES=$(awk -v start=1 '/^#{2}[[:space:]].*$/{n++;next};n==start;n==start+1{exit}' CHANGELOG.md | markdown | awk '{printf "%s",$0} END {print ""}')
 
 deploy:
   - provider: releases
@@ -14,6 +20,7 @@ deploy:
       secure: A1eJjlU42Jnj10rlB7BHh0staMJF0FopazBJZ6pM5JQPmc6ESegU9VWL9n7ZAekeQdcrV3rE/T8YtSaTB9DF5VZ1N7d8JV53hIvI8fzb71bGFIPIm0dh3aEzvpHhgnSaKG2D9Mj4WQErBqlvEcMkyZiyufwDovrD0/9EnULIiLLSDOHtIFrHgG6ZmlJJ0xRRPqcXAWyVTxWiOwSEv4JkobKZ0lolgxWJxDgY80ZWYzJzmOhXcQnWqN/wFhTz1uPsc16daDRqCim6a8uxFTJtDomdEVTiAwjpHbpFo7TU3ltYePopowgCCj1gEUyioQqCFNZZR1OOzlvcMGgJFB6jpIuHjCChTozmrC9fvrXe+NLr0sVmVOb+Zqp1A7hZpQmSC6Jc0LdJ3T5wjBRTYJsR5r9hJYSBvw05X0W6RP9vjn9BWHZNXI+fTXsvp31sdItZhGmTqOByDsYFedX3eNjjklumTSJcX/czsRfh7qMFRVkzjsFBHSD2F0YoCtCLvvUwAht8+qC8l131lA/MBR9lJELPKSp0GzLXgSXoK9QX+xFRLWM3wBWU+bvHrfA36FoeyaSB/CNFXjYZyz66NsZbEM3xsTwRSX905rjh+XlJbe6zrlXIDAxFLLJQCxx2S2xcg4scdXecss09auyKEWGZ0AVVKCDbG7CEJf1roUp07jM=
     file_glob: true
     file: './**/target/*.jar'
+    body: "${RELEASE_NOTES}"
     skip_cleanup: true
     on:
       tags: true
