@@ -15,7 +15,8 @@ if [ 1 -eq $# ]; then
 
   declare -a projects=("coffeenet/coffeenet-auth" "coffeenet/coffeenet-discovery" "coffeenet/coffeenet-config-server" \
   "coffeenet/example-projects" "coffeenet/coffeenet-frontpage" "coffeenet/coffeenet-frontpage-plugin-rss" \
-  "coffeenet/coffeenet-frontpage-plugin-islieb" "coffeenet/coffeenet-frontpage-plugin-clock")
+  "coffeenet/coffeenet-frontpage-plugin-islieb" "coffeenet/coffeenet-frontpage-plugin-clock" \
+  "coffeenet/coffeenet-frontpage-plugin-api" "coffeenet/coffeenet-frontpage-plugin-influx")
 
   for projectInformation in "${projects[@]}"
   do
