@@ -32,7 +32,7 @@ html {
     min-height: 100%;
     padding: 20px;
     box-shadow: 0 0 5px #9E9E9E;
-    background-color: #EEEEEE;
+    background-color: #404042;
     width: 65px;
 }
 .coffeenet--header-container.visible {
@@ -67,7 +67,7 @@ html {
 .coffeenet--nav-container a:focus,
 .coffeenet--nav-container a:active {
     color: #23527c;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /** Hamburger Menu **/
@@ -85,8 +85,8 @@ html {
 .coffeenet--nav-hamburger span::after, .coffeenet--nav-hamburger span::before {
     display: block;
     width: 25px;
-    height: 4px;
-    background-color: #525252;
+    height: 2px;
+    background-color: #FAFAFA;
     transition-delay: 0.2s;
 }
 .coffeenet--nav-hamburger span {
@@ -135,9 +135,9 @@ html {
 }
 
 .coffeenet--avatar {
-    border: 1px solid #C1C1C1;
+    border: 3px solid #CC7F56;
     border-radius: 100%;
-    background-color: white;
+    background-color: #FAFAFA;
     padding: 2px;
 }
 
@@ -177,8 +177,18 @@ html {
 }
 
 .coffeenet--username a {
-    color: black;
+    color: #FAFAFA;
     text-decoration: none;
+}
+
+.coffeenet--username a:hover {
+    text-decoration: none;
+    color: #c4c4c4;
+}
+
+.coffeenet--username a:hover, .coffeenet--username a:focus, .coffeenet--username a:active {
+    text-decoration: none;
+    color: #c4c4c4;
 }
 
 .coffeenet--username,
@@ -193,11 +203,11 @@ html {
 
 /* Applications */
 .coffeenet--nav-section-title {
-    margin: 20px 0 0 0;
+    margin: 20px 0 5px 0;
     padding: 0;
     font-size: 1em;
     font-weight: 500;
-    color: #BEBEBE;
+    color: #F6D09E;
     text-transform: uppercase;
     line-height: 1.1;
 }
@@ -214,33 +224,38 @@ html {
 }
 
 .coffeenet--nav-section-list li > a {
-    text-decoration: none;
+    color: #FAFAFA;
     flex-grow: 1;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    text-decoration: none;
+}
+
+.coffeenet--nav-section-list li > a:hover, .coffeenet--nav-section-list li > a:focus, .coffeenet--nav-section-list li > a:active {
+    text-decoration: none;
+    color: #c4c4c4;
+}
+
+.coffeenet--nav-section-list li > a:hover {
+    text-decoration: none;
+    color: #c4c4c4;
 }
 
 .coffeenet--nav-section-list li > a,
 .coffeenet--nav-section-list li > a + span {
     transition: background-color ease 150ms;
-    padding: 5px;
+    padding: 5px 0;
     display: block;
 }
 
-.coffeenet--nav-section-list li.active > a,
-.coffeenet--nav-section-list li.active > a + span,
-.coffeenet--nav-section-list li:hover > a,
-.coffeenet--nav-section-list li:hover > a + span {
-    background-color: #E0E0E0;
-}
-
 .coffeenet--button-logout {
-    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
     border: none;
-    background-color: #AED581;
-    color: #33691E;
-    text-transform: uppercase;
+    background-color: inherit;
+    color: #FAFAFA;
     width: 100%;
     padding: 0.3em 0;
     transition: background-color ease 150ms;
@@ -248,14 +263,24 @@ html {
 }
 
 .coffeenet--button-logout:focus, .coffeenet--button-logout:hover, .coffeenet--button-logout:active {
-    background-color: #8BC34A;
-    color: #1B5E20;
+    color: #a9a9a9;
 }
 
 .coffeenet--button-logout:hover {
     /* outline should exist on tab navigation but not on mouse click */
     outline: none;
 }
+
+.coffeenet--button-logout-icon {
+    margin-right: .3em;
+    fill: #FAFAFA;
+    width: 20px;
+}
+
+.coffeenet--button-logout:focus .coffeenet--button-logout-icon, .coffeenet--button-logout:hover .coffeenet--button-logout-icon, .coffeenet--button-logout:active .coffeenet--button-logout-icon {
+    fill: #a9a9a9;
+}
+
 
 @media screen and (min-width: 440px) {
     /*
@@ -326,7 +351,7 @@ html {
     }
 
     .coffeenet--header-container.visible .coffeenet--nav-hamburger span {
-        background-color: #525252;
+        background-color: #FAFAFA;
     }
 
     .coffeenet--header-container.visible .coffeenet--nav-hamburger span::before {

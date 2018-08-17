@@ -7,11 +7,13 @@ import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import static java.lang.String.format;
 import static java.lang.invoke.MethodHandles.lookup;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 
 /**
@@ -49,11 +51,11 @@ public final class CurrentCoffeeNetUser {
 
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
-            final byte[] emailAsBytes = email.getBytes("UTF-8");
+            final byte[] emailAsBytes = email.getBytes(UTF_8);
             final String md5HashOfEmail = Hex.encodeHexString(md5.digest(emailAsBytes));
 
             return format("https://gravatar.com/avatar/%s?size=64", md5HashOfEmail);
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+        } catch (NoSuchAlgorithmException e) {
             LOGGER.debug("/> Fallback to default avatar", e);
         }
 

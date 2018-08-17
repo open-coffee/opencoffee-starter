@@ -36,7 +36,7 @@
         <spring-cloud-dependencies.version>Dalston.SR5</spring-cloud-dependencies.version>
 
         <!-- CoffeeNet Dependencies -->
-        <navigation-bar.version>0.14.0</navigation-bar.version>
+        <navigation-bar.version>0.15.0</navigation-bar.version>
 
         <!-- Third-Party Dependencies -->
         <logback-gelf-appender.version>1.5</logback-gelf-appender.version>
