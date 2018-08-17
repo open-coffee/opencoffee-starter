@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `coffeenet-starter-monitoring`
 - `coffeenet-actuator`
 
+### Changed
+- Upgrade navigation bar to 0.15.0
+
+
 ## [0.32.0]
 ### Added
 - Automatic upload of the relevant part of the changelog on release
