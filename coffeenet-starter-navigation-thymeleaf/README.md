@@ -1,6 +1,6 @@
 # CoffeeNet Starter Navigation Thymeleaf
 
-This CoffeeNet started is dedicated to provide a simple and easy way
+This CoffeeNet starter is dedicated to provide a simple and easy way
 to integrate the CoffeeNet navigation behaviour with thymeleaf 2 into your application.
 
 ## Getting started

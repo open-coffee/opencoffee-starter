@@ -1,6 +1,6 @@
 # CoffeeNet Starter Navigation Javascript
 
-This CoffeeNet started is dedicated to provide a simple and easy way to
+This CoffeeNet starter is dedicated to provide a simple and easy way to
 integrate the CoffeeNet web navigation behaviour with javascript as your rendering engine.
 
 ## Getting started
