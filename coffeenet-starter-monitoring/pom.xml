@@ -34,16 +34,6 @@
             <artifactId>coffeenet-actuator</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-spring-legacy</artifactId>
-        </dependency>
-
     </dependencies>
 
 </project>
