@@ -112,6 +112,12 @@ if [ 1 -eq $# ]; then
             echo -e "> Removed ${pomBackup}\n"
         done
 
+        if [ -e ${projectsDir}/${project}/CHANGELOG.md ]
+        then
+            awk "/## \[Unreleased\]/{print $0 RS '### Changed' RS '- CoffeeNet Starter Parent to version `${coffeeNetParentVersion}`' RS ;next}1" CHANGELOG.md > tmp && mv tmp CHANGELOG.md
+            echo -e "> Added update information into CHANGELOG.md ${updateBranch}\n";
+        fi
+
         # Create PR and PUSH
         updateBranch=${branch}-${coffeeNetParentVersion}
         echo -e "> Branch for the pull request base is ${updateBranch}\n";
