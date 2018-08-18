@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Fixed
+- Username in navigation bar correct font color
+  if profile service is not available
 
 
 ## [0.33.0]
