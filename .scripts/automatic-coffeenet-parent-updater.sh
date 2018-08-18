@@ -112,9 +112,9 @@ if [ 1 -eq $# ]; then
             echo -e "> Removed ${pomBackup}\n"
         done
 
-        if [ -e ${projectsDir}/${project}/CHANGELOG.md ]
+        if [ -e "${projectsDir}/${project}/CHANGELOG.md" ]
         then
-            awk "/## \[Unreleased\]/{print $0 RS '### Changed' RS '- CoffeeNet Starter Parent to version `${coffeeNetParentVersion}`' RS ;next}1" CHANGELOG.md > tmp && mv tmp CHANGELOG.md
+            /usr/bin/awk '/## \[Unreleased\]/{print $0 RS "### Changed" RS "- CoffeeNet Starter Parent to version `'${coffeeNetParentVersion}'`" RS ;next}1' CHANGELOG.md > tmp && mv tmp CHANGELOG.md
             echo -e "> Added update information into CHANGELOG.md\n";
         fi
 
