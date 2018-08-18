@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+
+
+## [0.33.0]
 ### Added
 - `coffeenet-starter-monitoring`
 - `coffeenet-actuator`
@@ -245,7 +248,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Javascript Starter
 
 
-[Unreleased]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.32.0...HEAD
+[Unreleased]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.33.0...HEAD
+[0.33.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.32.0...coffeenet-starter-0.33.0
 [0.32.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.31.0...coffeenet-starter-0.32.0
 [0.31.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.30.0...coffeenet-starter-0.31.0
 [0.30.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.29.0...coffeenet-starter-0.30.0
