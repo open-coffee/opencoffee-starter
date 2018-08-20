@@ -15,6 +15,9 @@ provides the integration to dustribute and search of CoffeeNet applications.
 [Logging](./coffeenet-starter-logging/README.md)
 provides a consistent and centralised logging.
 
+[Monitoring](./coffeenet-starter-monitoring/README.md)
+provides information about the service.
+
 [Navigation Thymleaf](./coffeenet-starter-navigation-thymeleaf/README.md)
 provides the server side rendering of the navigation bar via thymeleaf.
 
