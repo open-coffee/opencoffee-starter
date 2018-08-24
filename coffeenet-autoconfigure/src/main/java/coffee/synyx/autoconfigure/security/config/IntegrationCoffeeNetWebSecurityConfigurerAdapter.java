@@ -77,7 +77,9 @@ public class IntegrationCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
                     new RequestHeaderRequestMatcher("X-Requested-With", "XMLHttpRequest"))
             .and()
             .addFilterBefore(oAuth2ClientAuthenticationProcessingFilter, BasicAuthenticationFilter.class)
-            .addFilterBefore(apiTokenAccessFilter(), AbstractPreAuthenticatedProcessingFilter.class);
+            .addFilterBefore(apiTokenAccessFilter(), AbstractPreAuthenticatedProcessingFilter.class)
+            .authorizeRequests()
+                .antMatchers("/health", "/info").permitAll().and();
     }
 
 
