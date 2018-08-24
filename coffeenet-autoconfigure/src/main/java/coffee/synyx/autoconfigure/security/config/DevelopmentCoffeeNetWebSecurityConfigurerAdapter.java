@@ -29,7 +29,7 @@ public class DevelopmentCoffeeNetWebSecurityConfigurerAdapter extends WebSecurit
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        String[] freeResources = { "/fonts/**", "/css/**", "/img/**" };
+        String[] freeResources = { "/fonts/**", "/css/**", "/img/**", "/health", "/info" };
         http.csrf()
             .disable()
             .authorizeRequests()
