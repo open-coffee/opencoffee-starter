@@ -11,7 +11,7 @@
 
     <groupId>coffee.synyx</groupId>
     <artifactId>coffeenet-starter-parent</artifactId>
-    <version>0.34.0</version>
+    <version>0.35.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>CoffeeNet Boot Starter Parent</name>
@@ -54,55 +54,55 @@
             <dependency>
                 <groupId>coffee.synyx</groupId>
                 <artifactId>autoconfigure</artifactId>
-                <version>0.34.0</version>
+                <version>0.35.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>coffee.synyx</groupId>
                 <artifactId>coffeenet-actuator</artifactId>
-                <version>0.34.0</version>
+                <version>0.35.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>coffee.synyx</groupId>
                 <artifactId>starter-security</artifactId>
-                <version>0.34.0</version>
+                <version>0.35.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>coffee.synyx</groupId>
                 <artifactId>starter-discovery</artifactId>
-                <version>0.34.0</version>
+                <version>0.35.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>coffee.synyx</groupId>
                 <artifactId>starter-logging</artifactId>
-                <version>0.34.0</version>
+                <version>0.35.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>coffee.synyx</groupId>
                 <artifactId>starter-monitoring</artifactId>
-                <version>0.34.0</version>
+                <version>0.35.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>coffee.synyx</groupId>
                 <artifactId>starter-navigation</artifactId>
-                <version>0.34.0</version>
+                <version>0.35.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>coffee.synyx</groupId>
                 <artifactId>starter-navigation-thymeleaf</artifactId>
-                <version>0.34.0</version>
+                <version>0.35.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
                 <groupId>coffee.synyx</groupId>
                 <artifactId>starter-navigation-javascript</artifactId>
-                <version>0.34.0</version>
+                <version>0.35.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
