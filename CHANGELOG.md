@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [0.34.0]
 ### Added
 - Open `/health` and `/info` endpoints for all application by default
 
@@ -256,7 +256,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Javascript Starter
 
 
-[Unreleased]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.33.1...HEAD
+[0.34.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.33.1...coffeenet-starter-0.34.0
 [0.33.1]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.33.0...coffeenet-starter-0.33.1
 [0.33.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.32.0...coffeenet-starter-0.33.0
 [0.32.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.31.0...coffeenet-starter-0.32.0
