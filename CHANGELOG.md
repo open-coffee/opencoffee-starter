@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.36.0]
 ### Changed
 - Dependency
-  - Upgrade `spring boot` to `1.5.17`
+  - Upgrade `spring boot` to `1.5.18`
 
 
 ## [0.35.0]
