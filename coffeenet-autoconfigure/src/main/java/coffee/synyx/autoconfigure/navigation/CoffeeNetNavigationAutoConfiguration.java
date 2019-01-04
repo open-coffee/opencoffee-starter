@@ -1,6 +1,8 @@
 package coffee.synyx.autoconfigure.navigation;
 
+import coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties;
 import coffee.synyx.autoconfigure.discovery.config.CoffeeNetDiscoveryAutoConfiguration;
+import coffee.synyx.autoconfigure.discovery.config.CoffeeNetDiscoveryInstanceProperties;
 import coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService;
 import coffee.synyx.autoconfigure.security.config.CoffeeNetSecurityAutoConfiguration;
 import coffee.synyx.autoconfigure.security.service.CoffeeNetCurrentUserService;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
 import org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration;
 import org.springframework.boot.info.BuildProperties;
@@ -20,6 +23,7 @@ import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import static coffee.synyx.autoconfigure.CoffeeNetConfigurationProperties.INTEGRATION;
 import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.APP_SERVICE;
 import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.BUILD_PROPERTIES;
 import static coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationDataExtractor.CoffeeNetServices.USER_SERVICE;
@@ -176,6 +180,33 @@ public class CoffeeNetNavigationAutoConfiguration {
             CoffeeNetNavigationService coffeeNetNavigationService) {
 
             return new CoffeeNetNavigationEndpoint(coffeeNetNavigationService);
+        }
+    }
+
+    @Configuration
+    @ConditionalOnBean(CoffeeNetAppService.class)
+    @ConditionalOnProperty(prefix = "coffeenet", name = "profile", havingValue = INTEGRATION)
+    static class CoffeeNetRegisterNavigationAppInformation {
+
+        @Autowired
+        CoffeeNetRegisterNavigationAppInformation(CoffeeNetConfigurationProperties coffeeNetConfigurationProperties,
+            CoffeeNetNavigationProperties coffeeNetNavigationProperties, CoffeeNetDiscoveryInstanceProperties coffeeNetDiscoveryInstanceProperties) {
+
+            String allowedRoles = extractAllowedRolesToDisplayInNavigation(coffeeNetConfigurationProperties, coffeeNetNavigationProperties);
+            if (allowedRoles != null) {
+                coffeeNetDiscoveryInstanceProperties.getMetadataMap().put("allowedAuthorities", allowedRoles);
+
+                LOGGER.debug("//> Added {} to allowedAuthorities", allowedRoles);
+            }
+        }
+
+        private String extractAllowedRolesToDisplayInNavigation(CoffeeNetConfigurationProperties coffeeNetConfigurationProperties, CoffeeNetNavigationProperties coffeeNetNavigationProperties) {
+            String allowedAuthorities = coffeeNetNavigationProperties.getDisplayInNavigationForRoles();
+
+            if(coffeeNetConfigurationProperties.getAllowedAuthorities() != null){
+                allowedAuthorities = allowedAuthorities.concat("," + coffeeNetConfigurationProperties.getAllowedAuthorities());
+            }
+            return allowedAuthorities;
         }
     }
 }

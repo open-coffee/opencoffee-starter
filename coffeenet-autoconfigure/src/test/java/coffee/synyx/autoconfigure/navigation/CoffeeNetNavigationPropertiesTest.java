@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
 
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 
@@ -19,5 +20,7 @@ public class CoffeeNetNavigationPropertiesTest {
 
         assertThat(sut.getLogoutPath(), is("/logout"));
         assertThat(sut.getProfileServiceName(), is("profile"));
+        assertThat(sut.getDisplayInNavigationForRoles(), is(nullValue()));
+        assertThat(sut.isDisplayVersions(), is(true));
     }
 }

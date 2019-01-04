@@ -28,6 +28,17 @@ public class CoffeeNetNavigationProperties {
     @NotNull(message = "Please provide the information to show or not show the version number in the navigation")
     private boolean displayVersions = true;
 
+    /**
+     * Comma separated list of roles that are allowed to see
+     * this application in the navigation e.g.
+     *
+     * <pre>
+     * coffeenet.navigation:
+     *  display-in-navigation-for-roles: ROLE_COFFEENET-ADMIN, ROLE_USER
+     * </pre>
+     */
+    private String displayInNavigationForRoles;
+
     public String getProfileServiceName() {
 
         return profileServiceName;
@@ -63,13 +74,21 @@ public class CoffeeNetNavigationProperties {
         this.displayVersions = displayVersions;
     }
 
+    public String getDisplayInNavigationForRoles() {
+        return displayInNavigationForRoles;
+    }
+
+    public void setDisplayInNavigationForRoles(String displayInNavigationForRoles) {
+        this.displayInNavigationForRoles = displayInNavigationForRoles;
+    }
 
     @Override
     public String toString() {
-
-        return "CoffeeNetNavigationProperties{"
-            + "profileServiceName='" + profileServiceName + '\''
-            + ", logoutPath='" + logoutPath + '\''
-            + ", displayVersions=" + displayVersions + '}';
+        return "CoffeeNetNavigationProperties{" +
+                "profileServiceName='" + profileServiceName + '\'' +
+                ", logoutPath='" + logoutPath + '\'' +
+                ", displayVersions=" + displayVersions +
+                ", displayInNavigationForRoles='" + displayInNavigationForRoles + '\'' +
+                '}';
     }
 }

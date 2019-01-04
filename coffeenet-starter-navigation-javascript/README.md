@@ -63,3 +63,7 @@ Just add the html snipped listed below:
 </body>
 </html>
 ```
+
+## Configuration
+
+see the navigation configuration in the [starter navigation readme](./../coffeenet-starter-navigation/README.md)

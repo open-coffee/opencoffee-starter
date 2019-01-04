@@ -37,6 +37,12 @@ public class CoffeeNetConfigurationProperties {
     )
     private String applicationName;
 
+    /**
+     * @deprecated since 0.38.0 in favor of
+     * {@link coffee.synyx.autoconfigure.navigation.CoffeeNetNavigationProperties}
+     * 'coffeenet.navigation.displayForRoles'
+     */
+    @Deprecated
     private String allowedAuthorities;
 
     public Profile getProfile() {
@@ -63,12 +69,13 @@ public class CoffeeNetConfigurationProperties {
     }
 
 
+    @Deprecated
     public String getAllowedAuthorities() {
 
         return allowedAuthorities;
     }
 
-
+    @Deprecated
     public void setAllowedAuthorities(String allowedAuthorities) {
 
         this.allowedAuthorities = allowedAuthorities;

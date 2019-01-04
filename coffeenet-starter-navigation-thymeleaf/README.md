@@ -69,3 +69,7 @@ All you have to do is to provide your information into the elements.
 </body>
 </html>
 ```
+
+## Configuration
+
+see the navigation configuration in the [starter navigation readme](./../coffeenet-starter-navigation/README.md)
