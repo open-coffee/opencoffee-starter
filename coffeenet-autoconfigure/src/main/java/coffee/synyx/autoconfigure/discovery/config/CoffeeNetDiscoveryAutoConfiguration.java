@@ -151,12 +151,6 @@ public class CoffeeNetDiscoveryAutoConfiguration {
                     new URL(base, StringUtils.trimLeadingCharacter(instance.getHealthCheckUrlPath(), '/')).toString());
             }
 
-            String allowedAuthorities = coffeeNetConfigurationProperties.getAllowedAuthorities();
-
-            if (allowedAuthorities != null) {
-                instance.getMetadataMap().put("allowedAuthorities", allowedAuthorities);
-            }
-
             return instance;
         }
 

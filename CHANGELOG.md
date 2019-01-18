@@ -5,6 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- 'coffeenet.navigation.display-in-navigation-for-roles'
+   to display navigation element of an application in the navigation
+   for special roles and hide it for all others
+
+### Deprecated
+- 'coffeenet.allowed-authorities' in favor of 'coffeenet.navigation.display-in-navigation-for-roles'
 
 
 ## [0.37.0]
