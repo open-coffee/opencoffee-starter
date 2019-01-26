@@ -2,7 +2,7 @@
 
 This CoffeeNet starter configures the service discovery for your application,
 provides your application as client to the discovery service and offers already
-known clients to you by the `coffee.synyx.autoconfigure.discovery.service.CoffeeNetAppService`.
+known clients to you by the `rocks.coffeenet.autoconfigure.discovery.service.CoffeeNetAppService`.
 
 
 ## Getting started
@@ -12,29 +12,18 @@ as a child of the starter `parent` by editing the `pom.xml` file.
 
 ```xml
 <parent>
-    <groupId>coffee.synyx</groupId>
+    <groupId>rocks.coffeenet</groupId>
     <artifactId>coffeenet-starter-parent</artifactId>
     <version>${parent.version}</version>
     <relativePath />
 </parent>
 ```
 
-and adding the repository to receive the dependencies
-
-```xml
-<repositories>
-  <repository>
-    <id>releases.public.nexus.synyx.de</id>
-    <url>http://nexus.synyx.de/content/repositories/public-releases</url>
-  </repository>
-</repositories>
-```
-
 Now you can enable service discovery in your project, by first adding the dependency:
 
 ```xml
 <dependency>
-    <groupId>coffee.synyx</groupId>
+    <groupId>rocks.coffeenet</groupId>
     <artifactId>starter-discovery</artifactId>
 </dependency>
 ```

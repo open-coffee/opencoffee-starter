@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>coffee.synyx</groupId>
+        <groupId>rocks.coffeenet</groupId>
         <artifactId>coffeenet-starter-parent</artifactId>
         <version>0.38.0-SNAPSHOT</version>
         <relativePath>../coffeenet-starter-parent/pom.xml</relativePath> <!-- lookup parent from repository -->
@@ -22,7 +22,7 @@
     <dependencies>
         <!-- CoffeeNet -->
         <dependency>
-            <groupId>coffee.synyx</groupId>
+            <groupId>rocks.coffeenet</groupId>
             <artifactId>starter-navigation</artifactId>
         </dependency>
 
