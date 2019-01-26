@@ -10,7 +10,7 @@ as a child of the starter `parent` by editing the `pom.xml` file.
 
 ```xml
 <parent>
-    <groupId>coffee.synyx</groupId>
+    <groupId>rocks.coffeenet</groupId>
     <artifactId>coffeenet-starter-parent</artifactId>
     <version>${parent.version}</version>
     <relativePath />
@@ -33,7 +33,7 @@ by first adding the dependency:
 
 ```xml
 <dependency>
-    <groupId>coffee.synyx</groupId>
+    <groupId>rocks.coffeenet</groupId>
     <artifactId>starter-navigation-thymeleaf</artifactId>
 </dependency>
 ```

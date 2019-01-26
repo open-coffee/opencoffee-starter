@@ -11,7 +11,7 @@ as a child of the starter `parent` by editing the `pom.xml` file.
 
 ```xml
 <parent>
-    <groupId>coffee.synyx</groupId>
+    <groupId>rocks.coffeenet</groupId>
     <artifactId>coffeenet-starter-parent</artifactId>
     <version>${parent.version}</version>
     <relativePath />
@@ -33,7 +33,7 @@ Now you can enable logging in your project, by first adding the dependency:
 
 ```xml
 <dependency>
-    <groupId>coffee.synyx</groupId>
+    <groupId>rocks.coffeenet</groupId>
     <artifactId>starter-logging</artifactId>
 </dependency>
 ```
@@ -93,8 +93,8 @@ then you can use the default spring behaviour
 ```yaml
 logging:
   level:
-    coffee.synyx: ${LogLevel}
-    coffee.synyx.auth: ${LogLevel}
+    rocks.coffeenet: ${LogLevel}
+    rocks.coffeenet.auth: ${LogLevel}
     ...
 ```
 

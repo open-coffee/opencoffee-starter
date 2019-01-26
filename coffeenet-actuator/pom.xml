@@ -6,7 +6,7 @@
 
     <parent>
         <artifactId>coffeenet-starter-parent</artifactId>
-        <groupId>coffee.synyx</groupId>
+        <groupId>rocks.coffeenet</groupId>
         <version>0.38.0-SNAPSHOT</version>
         <relativePath>../coffeenet-starter-parent/pom.xml</relativePath>
     </parent>
@@ -27,7 +27,7 @@
         </dependency>
 
         <dependency>
-            <groupId>coffee.synyx</groupId>
+            <groupId>rocks.coffeenet</groupId>
             <artifactId>starter-security</artifactId>
             <optional>true</optional>
         </dependency>
