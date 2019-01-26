@@ -19,6 +19,13 @@
         CoffeeNet styling with javascript
     </description>
 
+    <repositories>
+        <repository>
+            <id>releases.public.nexus.synyx.de</id>
+            <url>http://nexus.synyx.de/content/repositories/public-releases</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!--  Spring web -->
         <dependency>
@@ -44,13 +51,6 @@
             <artifactId>navigation-bar</artifactId>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>releases.public.nexus.synyx.de</id>
-            <url>http://nexus.synyx.de/content/repositories/public-releases</url>
-        </repository>
-    </repositories>
 
     <build>
         <plugins>

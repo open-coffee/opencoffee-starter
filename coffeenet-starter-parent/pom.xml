@@ -16,14 +16,37 @@
 
     <name>CoffeeNet Boot Starter Parent</name>
 
+    <licenses>
+        <license>
+            <name>Apache License</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Tobias Schneider</name>
+            <email>Tobias.Schneider@Tobsch.org</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/coffeenet/coffeenet-starter</url>
+        <connection>scm:git:git://github.com/coffeenet/coffeenet-starter.git</connection>
+        <developerConnection>scm:git:git@github.com:coffeenet/coffeenet-starter.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <url>https://github.com/coffeenet/coffeenet-starter/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
     <distributionManagement>
-        <repository>
-            <id>releases.public.nexus.synyx.de</id>
-            <url>http://nexus.synyx.de/content/repositories/public-releases</url>
-        </repository>
         <snapshotRepository>
-            <id>snapshots.public.nexus.synyx.de</id>
-            <url>http://nexus.synyx.de/content/repositories/public-snapshots</url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -131,8 +154,9 @@
 
     <build>
         <pluginManagement>
-            <plugins> <!-- Override some plugin versions from Spring Boot Starter -->
-                <plugin>
+            <plugins>
+                <!-- Spring Boot -->
+                <plugin> <!-- Override some plugin versions from Spring Boot Starter -->
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <executions>
@@ -150,6 +174,8 @@
                         </execution>
                     </executions>
                 </plugin>
+
+                <!-- compiler -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -159,6 +185,8 @@
                         <target>${java.version}</target>
                     </configuration>
                 </plugin>
+
+                <!-- Sources and javadoc -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
@@ -167,7 +195,7 @@
                         <execution>
                             <id>attach-sources</id>
                             <goals>
-                                <goal>jar</goal>
+                                <goal>jar-no-fork</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -175,7 +203,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.10.4</version>
+                    <version>3.0.1</version>
                     <executions>
                         <execution>
                             <id>attach-javadocs</id>
@@ -185,11 +213,8 @@
                         </execution>
                     </executions>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>2.5.3</version>
-                </plugin>
+
+                <!-- Security -->
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
@@ -203,4 +228,46 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- Sonatype -->
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+
+                    <!-- GPG sign -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <configuration>
+                            <skip>${gpg.skip}</skip>
+                            <passphrase>${env.GPG_PASSPHRASE}</passphrase>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
