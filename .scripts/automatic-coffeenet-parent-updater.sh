@@ -8,6 +8,8 @@ if [ 1 -eq $# ]; then
   gitUserName="CoffeeNet Release Dude"
   gitUserEmail="coffeenet@Tobsch.org"
 
+  oldStarterParentGroupId="coffee.synyx"
+
   starterParentArtifactId="coffeenet-starter-parent"
   organizationFrom="coffeenetrelease"
   branch="update-to-latest-coffeenet-parent-version"
@@ -85,6 +87,12 @@ if [ 1 -eq $# ]; then
     # Upgrade the parent version for all projects in the repository
 
     for repoPom in $(find ${projectsDir}/${project} -type f -iname 'pom.xml'); do
+
+      # Change groupId if old
+      parentGroupId=`mvn -f ${repoPom} org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.parent.groupId | grep -Ev '(^\[|Download\w+:)'`
+      if [ "${parentGroupId}" == "${oldStarterParentGroupId}" ]; then
+        /usr/bin/awk '{gsub(/<groupId>coffee.synyx<\/groupId>/,"<groupId>rocks.coffeenet</groupId>");print}' ${repoPom} > ${repoPom}_tmp && mv ${repoPom}_tmp ${repoPom}
+      fi
 
       parentArtifactId=`mvn -f ${repoPom} org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.parent.artifactId | grep -Ev '(^\[|Download\w+:)'`
       if [ "${parentArtifactId}" != "${starterParentArtifactId}" ]; then
