@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/coffeenet/coffeenet-starter.svg?branch=master)](https://travis-ci.org/coffeenet/coffeenet-starter)
-[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=coffeenet_coffeenet-starter&metric=coverage)](https://sonarcloud.io/dashboard?id=coffeenet_coffeenet-starter)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=rocks.coffeenet:coffeenet-starter&metric=coverage)](https://sonarcloud.io/dashboard?id=coffeenet_coffeenet-starter)
 
 # CoffeeNet Starters
 
