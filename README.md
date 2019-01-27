@@ -10,7 +10,7 @@ to integrate an application into the CoffeeNet.
 provides the authentication against the CoffeeNet auth server.
 
 [Service Discovery](./coffeenet-starter-discovery/README.md)
-provides the integration to dustribute and search of CoffeeNet applications.
+provides the integration to distribute and search of CoffeeNet applications.
 
 [Logging](./coffeenet-starter-logging/README.md)
 provides a consistent and centralised logging.
@@ -22,7 +22,7 @@ provides information about the service.
 provides the server side rendering of the navigation bar via thymeleaf.
 
 [Navigation Javascript](./coffeenet-starter-navigation-javascript/README.md)
-provides client side rendering of the navigation bar with javasript.
+provides client side rendering of the navigation bar with javascript.
 
 ## Repository
 
