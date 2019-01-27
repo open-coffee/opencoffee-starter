@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'coffeenet.navigation.display-in-navigation-for-roles'
    to display navigation element of an application in the navigation
    for special roles and hide it for all others
+- sonarcloud analyse
 
 ### Changed
 - GroupId from 'coffee.synyx' to 'rocks.coffeenet'
