@@ -12,13 +12,16 @@ cache:
   directories:
     - $HOME/.m2
 
+git:
+  depth: false
+
 addons:
   sonarcloud:
     organization: "coffeenet"
     token:
       secure: "pJ+zRSxxrvM2fmXLv7z0zX6etIKww/mjUGwRugd+h6Nt4olAe04bcD3yRgD5i5wVweEfozpdVrT4q2rtZwSTLPy+h/Rlf4J8ZaZJ5/SNAbb34PuZeN/TXxXgNx07lmN4nJiuFasbsXf5xNMGdva2cdQXnjpWTpB3unZkRla1MGi7/9IBEj0QK/IeqOHT69vxlD7ypm1sMV1sfhB3oD61NjW4fnEN1ElUxxKyiKOj0EiErxyfciXjWOEiDbP1qWyrgvvkiu5EFGjKCOyf1uOIGds6cdxe5z7J5UCwEZlRW8/iD4RY+3jDYR08pmsD4slQAzfPkXddw95MXpuZ17lxQy4ijPdQW8yJg7L3Oc0PsO99kHJqze9khdtncwCWrcuXAonaPmSAa0EdlcYTpp/VnSaLznYwwLPk1pj/FP9qk0NIw+w+Pr2RTgxXoIgWXt0EgKMQTmnHGYaQmYztGz3fH5fefdGIois7rWNTA3v6lKjq+StLO1tcqFe7GckmpHIkeTLeIy5hVoDbpHU2p4cMqMY3VWSLTMNntRQY8hEmjzTVlNmmUndFeB4icxGwog4G0MLwWt1TlkyglR8cQXEf9SFUfxZ69ZcwsM3AvMFTdY4ojYkJhnKVtmhcwR49Zf6VJjuTetgfe9w+pzH4zMicJocg817NHPlrJ63A6MYFMHQ="
 
-script: ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
+script: ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar -Dsonar.branch.name=${TRAVIS_PULL_REQUEST_BRANCH}
 
 before_deploy:
   - mvn -DskipTests package
