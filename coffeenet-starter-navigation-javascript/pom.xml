@@ -47,7 +47,7 @@
 
         <!-- CoffeeNet - Styling and Navbar -->
         <dependency>
-            <groupId>coffee.synyx</groupId>
+            <groupId>rocks.coffeenet</groupId>
             <artifactId>navigation-bar</artifactId>
         </dependency>
     </dependencies>
