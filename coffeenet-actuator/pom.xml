@@ -7,12 +7,12 @@
     <parent>
         <artifactId>coffeenet-starter-parent</artifactId>
         <groupId>rocks.coffeenet</groupId>
-        <version>0.38.0</version>
+        <version>0.38.1-SNAPSHOT</version>
         <relativePath>../coffeenet-starter-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>coffeenet-actuator</artifactId>
-    <version>0.38.0</version>
+    <version>0.38.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>CoffeeNet Actuator</name>
