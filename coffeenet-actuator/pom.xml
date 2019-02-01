@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>coffeenet-starter-parent</artifactId>
         <groupId>rocks.coffeenet</groupId>
+        <artifactId>coffeenet-starter-parent</artifactId>
         <version>0.39.0-SNAPSHOT</version>
         <relativePath>../coffeenet-starter-parent/pom.xml</relativePath>
     </parent>
@@ -44,4 +44,21 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
