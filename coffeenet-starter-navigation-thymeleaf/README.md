@@ -17,17 +17,6 @@ as a child of the starter `parent` by editing the `pom.xml` file.
 </parent>
 ```
 
-and adding the repository to receive the dependencies
-
-```xml
-<repositories>
-  <repository>
-    <id>releases.public.nexus.synyx.de</id>
-    <url>http://nexus.synyx.de/content/repositories/public-releases</url>
-  </repository>
-</repositories>
-```
-
 Now you can enable the thymeleaf navigation bar in your project,
 by first adding the dependency:
 

@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/coffeenet/coffeenet-starter.svg?branch=master)](https://travis-ci.org/coffeenet/coffeenet-starter)
+[![Latest coffeenet-starter on Maven Central](https://maven-badges.herokuapp.com/maven-central/rocks.coffeenet/coffeenet-starter/badge.svg?style=flat)](https://search.maven.org/search?q=g:rocks.coffeenet%20AND%20a:coffeenet-starter&core=gav)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=rocks.coffeenet:coffeenet-starter&metric=coverage)](https://sonarcloud.io/dashboard?id=rocks.coffeenet:coffeenet-starter)
 
 # CoffeeNet Starters
@@ -23,17 +24,6 @@ provides the server side rendering of the navigation bar via thymeleaf.
 
 [Navigation Javascript](./coffeenet-starter-navigation-javascript/README.md)
 provides client side rendering of the navigation bar with javascript.
-
-## Repository
-
-```xml
-<repositories>
-  <repository>
-    <id>releases.public.nexus.synyx.de</id>
-    <url>http://nexus.synyx.de/content/repositories/public-releases</url>
-  </repository>
-</repositories>
-```
 
 ## Release
 

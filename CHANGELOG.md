@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - GroupId from 'coffee.synyx' to 'rocks.coffeenet'
+- Dependency
+  - Upgrade `rocks.coffeenet:navigation-bar` to 0.16.0
 
 ### Deprecated
 - 'coffeenet.allowed-authorities' in favor of 'coffeenet.navigation.display-in-navigation-for-roles'

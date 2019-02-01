@@ -19,6 +19,13 @@
         CoffeeNet styling with javascript
     </description>
 
+    <repositories>
+        <repository>
+            <id>releases.public.nexus.synyx.de</id>
+            <url>http://nexus.synyx.de/content/repositories/public-releases</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!--  Spring web -->
         <dependency>
@@ -40,17 +47,10 @@
 
         <!-- CoffeeNet - Styling and Navbar -->
         <dependency>
-            <groupId>coffee.synyx</groupId>
+            <groupId>rocks.coffeenet</groupId>
             <artifactId>navigation-bar</artifactId>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-            <id>releases.public.nexus.synyx.de</id>
-            <url>http://nexus.synyx.de/content/repositories/public-releases</url>
-        </repository>
-    </repositories>
 
     <build>
         <plugins>
