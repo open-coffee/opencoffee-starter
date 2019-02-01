@@ -15,6 +15,10 @@
 
     <name>CoffeeNet Starter</name>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
     <modules>
         <module>coffeenet-starter-navigation-javascript</module>
         <module>coffeenet-starter-navigation-thymeleaf</module>
