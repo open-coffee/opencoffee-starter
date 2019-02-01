@@ -294,7 +294,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Thymeleaf Starter
   - Javascript Starter
 
-[0.38.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.38.0...coffeenet-starter-0.38.1
+[0.38.1]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.38.0...coffeenet-starter-0.38.1
 [0.38.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.37.0...coffeenet-starter-0.38.0
 [0.37.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.36.0...coffeenet-starter-0.37.0
 [0.36.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.35.0...coffeenet-starter-0.36.0
