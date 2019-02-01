@@ -31,15 +31,15 @@ To build a release from a `-SNAPSHOT` version:
 
 - remove `-SNAPSHOT`
 ```bash
-mvn org.codehaus.mojo:versions-maven-plugin:2.5:set -DremoveSnapshot=true -DprocessAllModules=true org.codehaus.mojo:versions-maven-plugin:2.5:commit
+./mvnw org.codehaus.mojo:versions-maven-plugin:2.5:set -DremoveSnapshot=true -DprocessAllModules=true org.codehaus.mojo:versions-maven-plugin:2.5:commit
 ```
 
 - commit and push with tag
 
 - set new `-SNAPSHOT` version
 ```bash
-mvn -f coffeenet-starter-parent/pom.xml org.codehaus.mojo:versions-maven-plugin:2.5:set -DnextSnapshot -DprocessAllModules=true
-mvn org.codehaus.mojo:versions-maven-plugin:2.5:commit
+./mvnw -f coffeenet-starter-parent/pom.xml org.codehaus.mojo:versions-maven-plugin:2.5:set -DnextSnapshot -DprocessAllModules=true
+./mvnw org.codehaus.mojo:versions-maven-plugin:2.5:commit
 ```
 
 - commit and push

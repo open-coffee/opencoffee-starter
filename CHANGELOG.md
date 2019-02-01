@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.38.0]
 ### Added
 - 'coffeenet.navigation.display-in-navigation-for-roles'
    to display navigation element of an application in the navigation
@@ -288,7 +288,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Thymeleaf Starter
   - Javascript Starter
 
-[Unreleased]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.37.0...HEAD
+[0.38.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.37.0...coffeenet-starter-0.39.0
 [0.37.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.36.0...coffeenet-starter-0.37.0
 [0.36.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.35.0...coffeenet-starter-0.36.0
 [0.35.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.34.0...coffeenet-starter-0.35.0
