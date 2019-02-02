@@ -9,7 +9,7 @@
         <relativePath>../coffeenet-starter-parent/pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>starter-navigation-javascript</artifactId>
+    <artifactId>coffeenet-starter-navigation-javascript</artifactId>
     <version>0.39.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 

@@ -23,7 +23,7 @@ dependency:
 ```xml
 <dependency>
     <groupId>rocks.coffeenet</groupId>
-    <artifactId>starter-navigation-javascript</artifactId>
+    <artifactId>coffeenet-starter-navigation-javascript</artifactId>
 </dependency>
 ```
 

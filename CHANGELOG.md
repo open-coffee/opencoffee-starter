@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'starter-logging' is now 'coffeenet-starter-logging'
 - 'starter-monitoring' is now 'coffeenet-starter-monitoring'
 - 'starter-navigation' is now 'coffeenet-starter-navigation'
+- 'starter-navigation-javascript' is now 'coffeenet-starter-navigation-javascript'
 
 
 ## [0.38.2]
