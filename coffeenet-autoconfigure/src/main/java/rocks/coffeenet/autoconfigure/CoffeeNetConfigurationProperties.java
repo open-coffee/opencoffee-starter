@@ -13,8 +13,8 @@ import javax.validation.constraints.NotNull;
 /**
  * Global coffeenet configuration properties.
  *
- * @author  Tobias Schneider - schneider@synyx.de
- * @author  Yannic Klem - klem@synyx.de
+ * @author Tobias Schneider - schneider@synyx.de
+ * @author Yannic Klem - klem@synyx.de
  */
 @Validated
 @ConfigurationProperties(prefix = "coffeenet")
@@ -26,7 +26,7 @@ public class CoffeeNetConfigurationProperties {
     public enum Profile {
 
         DEVELOPMENT,
-        INTEGRATION;
+        INTEGRATION
     }
 
     @NotNull(message = "Please choose the profile or mode in which your CoffeeNet application should start.")
