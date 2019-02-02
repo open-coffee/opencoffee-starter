@@ -36,7 +36,7 @@ public class CoffeeNetWebMvcConfigurerAdapterTest {
 
 
     @Test
-    public void addInterceptors() throws Exception {
+    public void addInterceptors() {
 
         InterceptorRegistry interceptorRegistryMock = mock(InterceptorRegistry.class);
         InterceptorRegistration interceptorRegistrationMock = mock(InterceptorRegistration.class);

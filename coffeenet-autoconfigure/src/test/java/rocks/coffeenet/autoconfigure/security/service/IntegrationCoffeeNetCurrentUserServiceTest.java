@@ -27,7 +27,7 @@ public class IntegrationCoffeeNetCurrentUserServiceTest {
     private final IntegrationCoffeeNetCurrentUserService sut = new IntegrationCoffeeNetCurrentUserService();
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
 
         SecurityContextHolder.clearContext();
     }
