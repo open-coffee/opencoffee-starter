@@ -24,7 +24,7 @@ Now you can enable service discovery in your project, by first adding the depend
 ```xml
 <dependency>
     <groupId>rocks.coffeenet</groupId>
-    <artifactId>starter-discovery</artifactId>
+    <artifactId>coffeenet-starter-discovery</artifactId>
 </dependency>
 ```
 
