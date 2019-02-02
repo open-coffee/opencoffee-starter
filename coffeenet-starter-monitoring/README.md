@@ -28,7 +28,7 @@ Now you can enable monitoring in your project, by first adding the dependency:
 ```xml
 <dependency>
     <groupId>rocks.coffeenet</groupId>
-    <artifactId>starter-monitoring</artifactId>
+    <artifactId>coffeenet-starter-monitoring</artifactId>
 </dependency>
 ```
 
