@@ -23,7 +23,7 @@ by first adding the dependency:
 ```xml
 <dependency>
     <groupId>rocks.coffeenet</groupId>
-    <artifactId>starter-navigation-thymeleaf</artifactId>
+    <artifactId>coffeenet-starter-navigation-thymeleaf</artifactId>
 </dependency>
 ```
 

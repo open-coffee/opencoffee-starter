@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'starter-monitoring' is now 'coffeenet-starter-monitoring'
 - 'starter-navigation' is now 'coffeenet-starter-navigation'
 - 'starter-navigation-javascript' is now 'coffeenet-starter-navigation-javascript'
+- 'starter-navigation-thymeleaf' is now 'coffeenet-starter-navigation-thymeleaf'
 
 
 ## [0.38.2]

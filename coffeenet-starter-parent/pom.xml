@@ -124,7 +124,7 @@
 
             <dependency>
                 <groupId>rocks.coffeenet</groupId>
-                <artifactId>starter-navigation-thymeleaf</artifactId>
+                <artifactId>coffeenet-starter-navigation-thymeleaf</artifactId>
                 <version>0.39.0-SNAPSHOT</version>
             </dependency>
 
