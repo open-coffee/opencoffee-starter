@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'starter-navigation-thymeleaf' is now 'coffeenet-starter-navigation-thymeleaf'
 - 'starter-security' is now 'coffeenet-starter-security'
 
+### Removed
+- Uploading releases to github
 
 ## [0.38.2]
 ### Added
