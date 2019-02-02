@@ -23,7 +23,7 @@ Now you can enable logging in your project, by first adding the dependency:
 ```xml
 <dependency>
     <groupId>rocks.coffeenet</groupId>
-    <artifactId>starter-logging</artifactId>
+    <artifactId>coffeenet-starter-logging</artifactId>
 </dependency>
 ```
 

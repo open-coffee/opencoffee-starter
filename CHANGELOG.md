@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - 'starter-discovery' is now 'coffeenet-starter-discovery'
+- 'starter-logging' is now 'coffeenet-starter-logging'
 
 
 ## [0.38.2]
