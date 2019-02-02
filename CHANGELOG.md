@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
+- 'autoconfigure' is now 'coffeenet-autoconfigure'
 - 'starter-discovery' is now 'coffeenet-starter-discovery'
 - 'starter-logging' is now 'coffeenet-starter-logging'
 - 'starter-monitoring' is now 'coffeenet-starter-monitoring'

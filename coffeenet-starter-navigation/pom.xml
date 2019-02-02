@@ -23,7 +23,7 @@
         <!-- CoffeeNet Autoconfigure -->
         <dependency>
             <groupId>rocks.coffeenet</groupId>
-            <artifactId>autoconfigure</artifactId>
+            <artifactId>coffeenet-autoconfigure</artifactId>
         </dependency>
     </dependencies>
 
