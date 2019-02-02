@@ -23,7 +23,7 @@
         <!-- CoffeeNet -->
         <dependency>
             <groupId>rocks.coffeenet</groupId>
-            <artifactId>starter-navigation</artifactId>
+            <artifactId>coffeenet-starter-navigation</artifactId>
         </dependency>
 
         <!-- Thymeleaf -->
