@@ -7,8 +7,6 @@ import org.springframework.util.Assert;
 
 import java.util.Collection;
 
-import static java.util.Collections.emptySet;
-
 
 /**
  * @author  Tobias Schneider - schneider@synyx.de
@@ -19,7 +17,7 @@ class UserDetailsInstance implements UserDetails {
     private static final long serialVersionUID = 3475227969680202370L;
 
     private final String username;
-    private Collection<GrantedAuthority> authorities = emptySet();
+    private Collection<GrantedAuthority> authorities;
 
     /**
      * @param  username  Must not be null.
