@@ -24,7 +24,7 @@ Now you can enable security in your project, by first adding the dependency:
 ```xml
 <dependency>
     <groupId>rocks.coffeenet</groupId>
-    <artifactId>starter-security</artifactId>
+    <artifactId>coffeenet-starter-security</artifactId>
 </dependency>
 ```
 

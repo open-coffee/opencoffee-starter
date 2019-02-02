@@ -28,7 +28,7 @@
 
         <dependency>
             <groupId>rocks.coffeenet</groupId>
-            <artifactId>starter-security</artifactId>
+            <artifactId>coffeenet-starter-security</artifactId>
             <optional>true</optional>
         </dependency>
 

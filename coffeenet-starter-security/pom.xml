@@ -9,7 +9,7 @@
         <relativePath>../coffeenet-starter-parent/pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>starter-security</artifactId>
+    <artifactId>coffeenet-starter-security</artifactId>
     <version>0.39.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
