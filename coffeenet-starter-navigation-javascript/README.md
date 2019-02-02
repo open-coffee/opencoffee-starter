@@ -36,7 +36,7 @@ your project must fulfill.
 Just add the html snipped listed below:
 
 ```html
-<html>
+<html lang="en">
 <head>
     <!-- Your header stuff here -->
 </head>

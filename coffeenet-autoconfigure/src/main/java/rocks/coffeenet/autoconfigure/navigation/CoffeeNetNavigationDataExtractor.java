@@ -41,8 +41,8 @@ class CoffeeNetNavigationDataExtractor {
         BUILD_PROPERTIES
     }
 
-    private CoffeeNetNavigationProperties coffeeNetNavigationProperties;
-    private Map<CoffeeNetServices, Object> services = new EnumMap<>(CoffeeNetServices.class);
+    private final CoffeeNetNavigationProperties coffeeNetNavigationProperties;
+    private final Map<CoffeeNetServices, Object> services = new EnumMap<>(CoffeeNetServices.class);
 
     CoffeeNetNavigationDataExtractor(CoffeeNetNavigationProperties coffeeNetNavigationProperties) {
 

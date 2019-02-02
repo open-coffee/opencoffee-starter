@@ -20,7 +20,7 @@ public class CoffeeNetWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass());
 
-    private CoffeeNetNavigationInterceptor coffeeNetNavigationInterceptor;
+    private final CoffeeNetNavigationInterceptor coffeeNetNavigationInterceptor;
 
     CoffeeNetWebMvcConfigurerAdapter(CoffeeNetNavigationInterceptor coffeeNetNavigationInterceptor) {
 

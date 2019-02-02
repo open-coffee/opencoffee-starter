@@ -30,7 +30,7 @@ import static java.util.stream.Collectors.toSet;
  */
 public class IntegrationCoffeeNetAppService implements CoffeeNetAppService {
 
-    private DiscoveryClient discoveryClient;
+    private final DiscoveryClient discoveryClient;
 
     public IntegrationCoffeeNetAppService(DiscoveryClient discoveryClient) {
 

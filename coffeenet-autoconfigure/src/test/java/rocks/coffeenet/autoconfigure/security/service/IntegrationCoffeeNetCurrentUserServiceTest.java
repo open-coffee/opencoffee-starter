@@ -24,10 +24,10 @@ import static org.junit.Assert.assertThat;
  */
 public class IntegrationCoffeeNetCurrentUserServiceTest {
 
-    private IntegrationCoffeeNetCurrentUserService sut = new IntegrationCoffeeNetCurrentUserService();
+    private final IntegrationCoffeeNetCurrentUserService sut = new IntegrationCoffeeNetCurrentUserService();
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
 
         SecurityContextHolder.clearContext();
     }

@@ -36,7 +36,7 @@ public class CoffeeNetNavigationInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-        ModelAndView modelAndView) throws Exception {
+        ModelAndView modelAndView) {
 
         if (modelAndView == null) {
             LOGGER.debug("//> Ignoring intercepted empty model and view for request: {}", request);

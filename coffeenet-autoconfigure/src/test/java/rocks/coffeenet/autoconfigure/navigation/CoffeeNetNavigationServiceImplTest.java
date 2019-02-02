@@ -37,7 +37,7 @@ public class CoffeeNetNavigationServiceImplTest {
     private CoffeeNetNavigationDataExtractor dataExtractorMock;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         sut = new CoffeeNetNavigationServiceImpl(dataExtractorMock);
     }

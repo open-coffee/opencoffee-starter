@@ -91,7 +91,7 @@ public class CoffeeNetDiscoveryAutoConfiguration {
     @EnableConfigurationProperties({ CoffeeNetConfigurationProperties.class, CoffeeNetDiscoveryProperties.class })
     static class CoffeeNetDiscoveryPropertiesConfiguration {
 
-        private CoffeeNetConfigurationProperties coffeeNetConfigurationProperties;
+        private final CoffeeNetConfigurationProperties coffeeNetConfigurationProperties;
 
         @Autowired
         CoffeeNetDiscoveryPropertiesConfiguration(CoffeeNetConfigurationProperties coffeeNetConfigurationProperties) {
