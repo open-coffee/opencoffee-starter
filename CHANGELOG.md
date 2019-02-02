@@ -16,7 +16,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'starter-security' is now 'coffeenet-starter-security'
 
 ### Removed
+- 'maven-release-plugin'
 - Uploading releases to github
+
 
 ## [0.38.2]
 ### Added
