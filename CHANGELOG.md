@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'starter-navigation-javascript' is now 'coffeenet-starter-navigation-javascript'
 - 'starter-navigation-thymeleaf' is now 'coffeenet-starter-navigation-thymeleaf'
 - 'starter-security' is now 'coffeenet-starter-security'
+- editorconfig fir JavaScript files
 
 ### Removed
 - 'maven-release-plugin'
