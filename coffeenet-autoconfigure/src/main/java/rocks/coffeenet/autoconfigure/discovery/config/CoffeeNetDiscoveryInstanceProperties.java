@@ -29,7 +29,7 @@ public class CoffeeNetDiscoveryInstanceProperties extends EurekaInstanceConfigBe
     @NotBlank(message = "Please provide a hostname of your application.")
     private String hostname = "localhost";
 
-    private CoffeeNetConfigurationProperties coffeeNetConfigurationProperties;
+    private final CoffeeNetConfigurationProperties coffeeNetConfigurationProperties;
 
     CoffeeNetDiscoveryInstanceProperties(InetUtils inetUtils,
         CoffeeNetConfigurationProperties coffeeNetConfigurationProperties) {
