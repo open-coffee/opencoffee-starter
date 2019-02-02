@@ -30,6 +30,7 @@ import org.springframework.core.env.PropertyResolver;
 
 import org.springframework.util.StringUtils;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -128,8 +129,8 @@ public class CoffeeNetDiscoveryAutoConfiguration {
                 String statusPageUrlPath = coffeeNetPropertyResolver.getProperty("statusPageUrlPath");
                 String healthCheckUrlPath = coffeeNetPropertyResolver.getProperty("healthCheckUrlPath");
 
-                if (!managementContextPath.endsWith("/")) {
-                    managementContextPath = managementContextPath + "/";
+                if (!managementContextPath.endsWith(File.separator)) {
+                    managementContextPath = managementContextPath + File.separator;
                 }
 
                 if (StringUtils.hasText(statusPageUrlPath)) {
