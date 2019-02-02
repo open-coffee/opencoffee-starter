@@ -10,7 +10,7 @@ to integrate an application into the CoffeeNet.
 [Security](coffeenet-starter-security/README.md)
 provides the authentication against the CoffeeNet auth server.
 
-[Service Discovery](./coffeenet-starter-discovery/README.md)
+[Discovery](./coffeenet-starter-discovery/README.md)
 provides the integration to distribute and search of CoffeeNet applications.
 
 [Logging](./coffeenet-starter-logging/README.md)
@@ -19,7 +19,7 @@ provides a consistent and centralised logging.
 [Monitoring](./coffeenet-starter-monitoring/README.md)
 provides information about the service.
 
-[Navigation Thymleaf](./coffeenet-starter-navigation-thymeleaf/README.md)
+[Navigation Thymeleaf](./coffeenet-starter-navigation-thymeleaf/README.md)
 provides the server side rendering of the navigation bar via thymeleaf.
 
 [Navigation Javascript](./coffeenet-starter-navigation-javascript/README.md)
