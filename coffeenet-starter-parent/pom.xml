@@ -69,11 +69,6 @@
 
         <!-- Third-Party Dependencies -->
         <logback-gelf-appender.version>1.5</logback-gelf-appender.version>
-
-        <!-- OWASP Configuration -->
-        <dependency.check.report.dir>${project.build.directory}/dependency-check</dependency.check.report.dir>
-        <sonar.dependencyCheck.reportPath>${dependency.check.report.dir}/dependency-check-report.xml
-        </sonar.dependencyCheck.reportPath>
     </properties>
 
     <dependencyManagement>
@@ -218,18 +213,6 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
-
-                <!-- Security -->
-                <plugin>
-                    <groupId>org.owasp</groupId>
-                    <artifactId>dependency-check-maven</artifactId>
-                    <version>1.4.5</version>
-                    <configuration>
-                        <failOnError>false</failOnError>
-                        <format>XML</format>
-                        <outputDirectory>${dependency.check.report.dir}</outputDirectory>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
