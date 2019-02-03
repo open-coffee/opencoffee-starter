@@ -56,7 +56,7 @@ public class CoffeeNetSecurityAutoConfiguration {
 
 
         @Bean
-        @ConditionalOnMissingBean(WebSecurityConfigurerAdapter.class)
+        @ConditionalOnMissingBean
         public DevelopmentCoffeeNetWebSecurityConfigurerAdapter coffeeWebSecurityConfigurerAdapter() {
 
             return new DevelopmentCoffeeNetWebSecurityConfigurerAdapter();
@@ -113,7 +113,7 @@ public class CoffeeNetSecurityAutoConfiguration {
 
 
         @Bean
-        @ConditionalOnMissingBean(WebSecurityConfigurerAdapter.class)
+        @ConditionalOnMissingBean
         public IntegrationCoffeeNetWebSecurityConfigurerAdapter integrationCoffeeNetWebSecurityConfigurerAdapter() {
 
             return new IntegrationCoffeeNetWebSecurityConfigurerAdapter();

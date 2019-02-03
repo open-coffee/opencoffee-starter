@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Do not leak distributionManagement information into the CoffeeNet Applications
+- Use CoffeeNet named @ConditionalOnMissingBean condition instead of generic
 
 ## [0.38.2]
 ### Added
