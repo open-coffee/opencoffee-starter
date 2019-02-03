@@ -24,7 +24,7 @@ addons:
 script: ./mvnw $MAVEN_CLI_OPTS clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
 
 before_deploy:
-  - export RELEASE_NOTES=
+  - export RELEASE_NOTES=$(awk -v start=1 '/^#{2}[[:space:]].*$/{n++;next};n==start;n==start+1{exit}' CHANGELOG.md | markdown | awk '{printf "%s",$0} END {print ""}')
 
 deploy:
   - provider: releases
