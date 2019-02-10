@@ -4,3 +4,4 @@ target/
 coffeenet-autoconfigure/logs
 coffeenet-autoconfigure/*.graphml
 
+**/.flattened-pom.xml
