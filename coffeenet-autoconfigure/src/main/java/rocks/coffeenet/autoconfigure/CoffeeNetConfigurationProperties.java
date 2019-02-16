@@ -34,7 +34,7 @@ public class CoffeeNetConfigurationProperties {
 
     @NotBlank(
         message = "Please define the name of your application. "
-            + "This will be used in the navigation bar or for logging purposes e.g."
+            + "This will be used in the navigation bar e.g."
     )
     private String applicationName;
 

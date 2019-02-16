@@ -20,7 +20,6 @@
         <module>coffeenet-starter-navigation-thymeleaf</module>
         <module>coffeenet-starter-navigation</module>
         <module>coffeenet-starter-discovery</module>
-        <module>coffeenet-starter-logging</module>
         <module>coffeenet-starter-monitoring</module>
         <module>coffeenet-starter-security</module>
         <module>coffeenet-autoconfigure</module>

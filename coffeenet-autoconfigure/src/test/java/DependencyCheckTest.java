@@ -23,7 +23,7 @@ public class DependencyCheckTest {
                 .printTo("violations.graphml")
                 .including("rocks.coffeenet.autoconfigure.**")
                 .withSlicing("module", "rocks.coffeenet.autoconfigure.(*).**")
-                .allow(oneOf("discovery", "logging", "security"));
+                .allow(oneOf("discovery", "security"));
 
         assertThat(graph, is(violationFree()));
     }

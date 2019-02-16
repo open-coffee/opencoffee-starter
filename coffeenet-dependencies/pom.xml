@@ -102,12 +102,6 @@
 
             <dependency>
                 <groupId>rocks.coffeenet</groupId>
-                <artifactId>coffeenet-starter-logging</artifactId>
-                <version>0.39.0-SNAPSHOT</version>
-            </dependency>
-
-            <dependency>
-                <groupId>rocks.coffeenet</groupId>
                 <artifactId>coffeenet-starter-monitoring</artifactId>
                 <version>0.39.0-SNAPSHOT</version>
             </dependency>

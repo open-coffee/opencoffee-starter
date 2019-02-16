@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
 /**
- * Discovery properties to configure the behaviour of the logging.
+ * Discovery properties to configure the behaviour of the discovery starter.
  *
  * @author  Tobias Schneider - schneider@synyx.de
  * @since  0.12.0
