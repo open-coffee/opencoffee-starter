@@ -3,7 +3,7 @@ sudo: required
 language: java
 
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 cache:
   directories:
@@ -15,13 +15,7 @@ before_install:
 git:
   depth: false
 
-addons:
-  sonarcloud:
-    organization: "coffeenet"
-    token:
-      secure: "tk6Cm1enKzy8Ob9RHHfy/7lfBwDB63dTkNJY8GrU5TWrt9hY2y6sCib1Jw+6Yv6zWKr52NyjfHv4tYYteIAR37DBi8uCvwE27Iu+PAGRLG5JBLVOmCsdZ7igw/GcorphvicB4pAOZ8DBPULlFBoELzqzXmdHOErzBE8v0iI8s7Wxj+D/zLljMe4vQmBD5GE0KY+m/x5CPHOlVHQvr6Q9sP8R15S1z+ipQyw4XIDvoZfopS83oicqucaMOcjBeYNHWZRL1T2rbZCXGi7JeQT85NdXwXkvDV4h+KO6MThNnl3l+Zy4mCc/a4KBg/ovaXFebFz5rEFidVFSyO178UoH57vPwR+e81TzC3zqkFy9v2l7I3eqJ7gwRVW2Zq6pbnBspWq3D2riLJzINs4O+aQqbn8PDxilRYVNivA/nhDhzgfY4Ub4BgCNXHGTQN6vy4PmaSLJmOz9FQxcyKQJIv1duin/ISJRUtc7A8eJhv+FKNhi2/nFLOPklqU+fVNBvEkqI5mRyEziNV5ZRkqlgkqXhlnNFI5GZaeXm68o9s1diEhO4/w2k+tcgfCC00TDOzcQdIooi48asH+eHRfmSC6K8/CUmJ3AeB620j0Ek7fRx0vacQg4fyVwUvkY6p6ORflcQr189g7J9LZY8g4rn1S0Vnbmo6CWqH127ROK+Q5h94o="
-
-script: ./mvnw $MAVEN_CLI_OPTS clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
+script: ./mvnw $MAVEN_CLI_OPTS clean verify
 
 before_deploy:
   - export RELEASE_NOTES=$(awk -v start=1 '/^#{2}[[:space:]].*$/{n++;next};n==start;n==start+1{exit}' CHANGELOG.md | markdown | awk '{printf "%s",$0} END {print ""}')

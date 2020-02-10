@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
+- Restructure of modules (see root Readme.md)
+  - Add 'coffeenet-starter-build'
+  - Add 'coffeenet-starter-dependencies'
 - 'autoconfigure' is now 'coffeenet-autoconfigure'
 - 'starter-discovery' is now 'coffeenet-starter-discovery'
 - 'starter-logging' is now 'coffeenet-starter-logging'
@@ -14,12 +17,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'starter-navigation-javascript' is now 'coffeenet-starter-navigation-javascript'
 - 'starter-navigation-thymeleaf' is now 'coffeenet-starter-navigation-thymeleaf'
 - 'starter-security' is now 'coffeenet-starter-security'
+- 'coffeenet-starter-parent' is now 'coffeenet-parent'
 - editorconfig fir JavaScript files
 
 ### Removed
 - 'maven-release-plugin'
 - Uploading releases to github
 
+### Fixed
+- Do not leak distributionManagement information into the CoffeeNet Applications
+- Use CoffeeNet named @ConditionalOnMissingBean condition instead of generic
 
 ## [0.38.2]
 ### Added

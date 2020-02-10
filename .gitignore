@@ -3,5 +3,6 @@ target/
 *.iml
 coffeenet-autoconfigure/logs
 coffeenet-autoconfigure/*.graphml
+.flattened-pom.xml
 
 **/.flattened-pom.xml
