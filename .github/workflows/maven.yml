@@ -18,4 +18,4 @@ jobs:
       with:
         java-version: 1.8
     - name: Build and verify with Maven
-      run: ./mvnw -B clean verify --file pom.xml
+      run: ./mvnw --batch-mode clean verify --file pom.xml
