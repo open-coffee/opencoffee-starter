@@ -19,6 +19,7 @@
         <!-- CoffeeNet core modules -->
         <module>coffeenet-dependencies</module>
         <module>coffeenet-parent</module>
+        <module>coffeenet-platform-domain</module>
         <!-- CoffeeNet Spring Boot integration modules -->
         <module>coffeenet-actuator</module>
         <module>coffeenet-autoconfigure</module>

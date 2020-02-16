@@ -38,6 +38,12 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
+        <!-- CoffeeNet core dependencies -->
+        <dependency>
+            <groupId>rocks.coffeenet</groupId>
+            <artifactId>coffeenet-platform-domain</artifactId>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
