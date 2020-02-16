@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.19.RELEASE</version>
+        <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -39,6 +39,10 @@
         <developer>
             <name>Tobias Schneider</name>
             <email>Tobias.Schneider@Tobsch.org</email>
+        </developer>
+        <developer>
+            <name>Florian 'hase' Krupicka</name>
+            <email>zh@punyco.de</email>
         </developer>
     </developers>
 
