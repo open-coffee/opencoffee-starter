@@ -27,7 +27,10 @@
         <module>coffeenet-parent</module>
         <module>coffeenet-dependencies</module>
         <!-- Legacy modules, remove after migration -->
+        <module>legacy/coffeenet-actuator-legacy</module>
+        <module>legacy/coffeenet-autoconfigure-legacy</module>
         <module>legacy/coffeenet-dependencies-legacy</module>
         <module>legacy/coffeenet-parent-legacy</module>
+        <module>legacy/coffeenet-starter-security-legacy</module>
     </modules>
 </project>
