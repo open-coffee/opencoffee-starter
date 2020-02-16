@@ -1,4 +1,4 @@
-package rocks.coffeenet.platform.domain;
+package rocks.coffeenet.platform.domain.profile;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package rocks.coffeenet.platform.domain;
+package rocks.coffeenet.platform.domain.profile;
 
 import java.net.URL;
 
