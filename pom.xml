@@ -26,5 +26,8 @@
         <module>coffeenet-actuator</module>
         <module>coffeenet-parent</module>
         <module>coffeenet-dependencies</module>
+        <!-- Legacy modules, remove after migration -->
+        <module>legacy/coffeenet-dependencies-legacy</module>
+        <module>legacy/coffeenet-parent-legacy</module>
     </modules>
 </project>

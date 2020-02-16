@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.19.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>rocks.coffeenet</groupId>
+    <artifactId>coffeenet-dependencies-legacy</artifactId>
+    <version>0.39.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>CoffeeNet Dependencies (Legacy)</name>
+    <url>https://coffeenet.rocks</url>
+    <description>
+        Provides all dependencies needed for the CoffeeNet system
+    </description>
+
+    <organization>
+        <name>CoffeeNet</name>
+        <url>https://coffeenet.rocks</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>Apache License</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Tobias Schneider</name>
+            <email>Tobias.Schneider@Tobsch.org</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/coffeenet/coffeenet-starter</url>
+    </scm>
+
+    <issueManagement>
+        <url>https://github.com/coffeenet/coffeenet-starter/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Spring Cloud Dependency -->
+        <spring-cloud-dependencies.version>Dalston.SR5</spring-cloud-dependencies.version>
+
+        <!-- CoffeeNet Dependencies -->
+        <navigation-bar.version>0.16.0</navigation-bar.version>
+
+        <!-- Third-Party Dependencies -->
+        <logback-gelf-appender.version>1.5</logback-gelf-appender.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- CoffeeNet Dependencies -->
+            <dependency>
+                <groupId>rocks.coffeenet</groupId>
+                <artifactId>coffeenet-autoconfigure</artifactId>
+                <version>0.39.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>rocks.coffeenet</groupId>
+                <artifactId>coffeenet-actuator</artifactId>
+                <version>0.39.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>rocks.coffeenet</groupId>
+                <artifactId>coffeenet-starter-security</artifactId>
+                <version>0.39.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>rocks.coffeenet</groupId>
+                <artifactId>coffeenet-starter-discovery</artifactId>
+                <version>0.39.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>rocks.coffeenet</groupId>
+                <artifactId>coffeenet-starter-monitoring</artifactId>
+                <version>0.39.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>rocks.coffeenet</groupId>
+                <artifactId>coffeenet-starter-navigation</artifactId>
+                <version>0.39.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>rocks.coffeenet</groupId>
+                <artifactId>coffeenet-starter-navigation-thymeleaf</artifactId>
+                <version>0.39.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>rocks.coffeenet</groupId>
+                <artifactId>coffeenet-starter-navigation-javascript</artifactId>
+                <version>0.39.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>rocks.coffeenet</groupId>
+                <artifactId>navigation-bar</artifactId>
+                <version>${navigation-bar.version}</version>
+            </dependency>
+
+            <!-- Third-Party Dependencies -->
+            <dependency>
+                <groupId>de.appelgriepsch.logback</groupId>
+                <artifactId>logback-gelf-appender</artifactId>
+                <version>${logback-gelf-appender.version}</version>
+            </dependency>
+
+            <!-- Spring Cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- Cleanup POMs before they are published -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <configuration>
+                            <updatePomFile>true</updatePomFile>
+                            <flattenMode>ossrh</flattenMode>
+                            <pomElements>
+                                <parent>expand</parent>
+                                <dependencyManagement>expand</dependencyManagement>
+                                <pluginManagement>expand</pluginManagement>
+                            </pomElements>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
