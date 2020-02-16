@@ -68,9 +68,6 @@
 
         <!-- CoffeeNet Dependencies -->
         <navigation-bar.version>0.16.0</navigation-bar.version>
-
-        <!-- Third-Party Dependencies -->
-        <logback-gelf-appender.version>1.5</logback-gelf-appender.version>
     </properties>
 
     <dependencyManagement>
@@ -128,13 +125,6 @@
                 <groupId>rocks.coffeenet</groupId>
                 <artifactId>navigation-bar</artifactId>
                 <version>${navigation-bar.version}</version>
-            </dependency>
-
-            <!-- Third-Party Dependencies -->
-            <dependency>
-                <groupId>de.appelgriepsch.logback</groupId>
-                <artifactId>logback-gelf-appender</artifactId>
-                <version>${logback-gelf-appender.version}</version>
             </dependency>
 
             <!-- Spring Cloud -->
