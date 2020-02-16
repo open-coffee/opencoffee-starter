@@ -1,5 +1,7 @@
 package rocks.coffeenet.platform.domain.profile;
 
+import java.io.Serializable;
+
 import java.net.URL;
 
 
@@ -9,7 +11,7 @@ import java.net.URL;
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
-public class DefaultCoffeeNetProfile implements CoffeeNetProfile {
+public class DefaultCoffeeNetProfile implements CoffeeNetProfile, Serializable {
 
     private final String uniqueIdentifier;
     private final String name;
