@@ -1,0 +1,7 @@
+# Auto-configuration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+rocks.coffeenet.autoconfigure.security.CoffeeNetSecurityAutoConfiguration
+
+# Injected security configurers
+org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer=\
+rocks.coffeenet.autoconfigure.security.servlet.DelegatingSecurityConfigurer
