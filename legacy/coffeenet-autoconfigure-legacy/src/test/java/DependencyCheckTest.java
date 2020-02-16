@@ -21,8 +21,8 @@ public class DependencyCheckTest {
 
         ConstraintBuilder graph = classpath().noJars()
                 .printTo("violations.graphml")
-                .including("rocks.coffeenet.autoconfigure.**")
-                .withSlicing("module", "rocks.coffeenet.autoconfigure.(*).**")
+                .including("rocks.coffeenet.legacy.autoconfigure.**")
+                .withSlicing("module", "rocks.coffeenet.legacy.autoconfigure.(*).**")
                 .allow(oneOf("discovery", "security"));
 
         assertThat(graph, is(violationFree()));
