@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 import java.security.Principal;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 
 /**
@@ -15,6 +17,24 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @DisplayName("DelegatingPrincipalCoffeeNetProfileMapper")
 class DelegatingPrincipalCoffeeNetProfileMapperTests {
+
+    @Test
+    @DisplayName("errors on null valued profile mappers")
+    void errorOnNullMappers() {
+
+        assertThat(catchThrowable(() -> new DelegatingPrincipalCoffeeNetProfileMapper(null))).isInstanceOf(
+            IllegalArgumentException.class);
+    }
+
+
+    @Test
+    @DisplayName("errors on empty profile mappers")
+    void errorOnEmptyMappers() {
+
+        assertThat(catchThrowable(() -> new DelegatingPrincipalCoffeeNetProfileMapper(Collections.emptyList())))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
     @Test
     @DisplayName("supports principal types on delegated mappers")
@@ -41,6 +61,22 @@ class DelegatingPrincipalCoffeeNetProfileMapperTests {
 
         // Then
         assertThat(mapper.supports(TestPrincipals.ExamplePrincipal.class)).isFalse();
+    }
+
+
+    @Test
+    @DisplayName("returns null on no supported principal types")
+    void returnNullNoSupportedPrincipalTypes() {
+
+        // Given/When
+        DelegatingPrincipalCoffeeNetProfileMapper mapper = new DelegatingPrincipalCoffeeNetProfileMapper(Arrays.asList(
+                    new DifferentExamplePrincipalCoffeeNetProfileMapper()));
+
+        // When
+        TestPrincipals.ExamplePrincipal example = new TestPrincipals.ExamplePrincipal("example");
+
+        // Then
+        assertThat(mapper.map(example)).isNull();
     }
 
 
