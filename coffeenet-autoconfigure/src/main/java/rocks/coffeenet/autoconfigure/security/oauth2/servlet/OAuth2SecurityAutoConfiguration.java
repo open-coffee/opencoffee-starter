@@ -25,7 +25,7 @@ import rocks.coffeenet.platform.domain.profile.PrincipalCoffeeNetProfileMapper;
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @AutoConfigureBefore(SecurityAutoConfiguration.class)
 @ConditionalOnClass({ EnableWebSecurity.class, ClientRegistration.class })
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)

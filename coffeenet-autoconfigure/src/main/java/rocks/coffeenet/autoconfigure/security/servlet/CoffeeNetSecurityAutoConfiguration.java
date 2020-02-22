@@ -15,7 +15,7 @@ import org.springframework.security.authentication.DefaultAuthenticationEventPub
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(DefaultAuthenticationEventPublisher.class)
 @AutoConfigureBefore(SecurityAutoConfiguration.class)
 public class CoffeeNetSecurityAutoConfiguration {
