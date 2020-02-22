@@ -15,6 +15,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 
+import rocks.coffeenet.autoconfigure.security.oauth2.OAuth2AuthenticationTokenProfileMapper;
+
+import rocks.coffeenet.platform.domain.profile.PrincipalCoffeeNetProfileMapper;
+
 
 /**
  * {@link EnableAutoConfiguration Auto-configuration} for Spring Security OAuth2 in CoffeeNet applications.
@@ -36,6 +40,17 @@ public class OAuth2SecurityAutoConfiguration {
         public OAuth2SecurityConfigurer coffeeNetOAuth2SecurityConfigurer() {
 
             return new OAuth2SecurityConfigurer();
+        }
+    }
+
+    @Configuration
+    @ConditionalOnMissingBean(OAuth2AuthenticationTokenProfileMapper.class)
+    static class OAuth2ProfileMapperConfiguration {
+
+        @Bean
+        public PrincipalCoffeeNetProfileMapper oauth2AuthenticationTokenProfileMapper() {
+
+            return new OAuth2AuthenticationTokenProfileMapper();
         }
     }
 }
