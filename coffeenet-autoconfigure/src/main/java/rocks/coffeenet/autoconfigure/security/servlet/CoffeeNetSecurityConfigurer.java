@@ -11,6 +11,7 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
  * features in auto-configuration.
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
+ * @since  2.0.0
  */
 public interface CoffeeNetSecurityConfigurer extends SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> {
 }

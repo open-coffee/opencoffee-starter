@@ -14,6 +14,7 @@ import org.springframework.security.authentication.DefaultAuthenticationEventPub
  * {@link EnableAutoConfiguration Auto-configuration} for Spring Security in CoffeeNet applications.
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
+ * @since  2.0.0
  */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(DefaultAuthenticationEventPublisher.class)

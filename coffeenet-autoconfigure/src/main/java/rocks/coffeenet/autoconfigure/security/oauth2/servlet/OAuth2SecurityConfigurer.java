@@ -14,6 +14,7 @@ import rocks.coffeenet.autoconfigure.security.servlet.CoffeeNetSecurityConfigure
  * {@link ClientsConfiguredCondition} is matching.
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
+ * @since  2.0.0
  */
 public class OAuth2SecurityConfigurer extends AbstractHttpConfigurer<OAuth2SecurityConfigurer, HttpSecurity>
     implements CoffeeNetSecurityConfigurer {

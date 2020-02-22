@@ -24,6 +24,7 @@ import rocks.coffeenet.platform.domain.profile.PrincipalCoffeeNetProfileMapper;
  * {@link EnableAutoConfiguration Auto-configuration} for Spring Security OAuth2 in CoffeeNet applications.
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
+ * @since  2.0.0
  */
 @Configuration(proxyBeanMethods = false)
 @AutoConfigureBefore(SecurityAutoConfiguration.class)

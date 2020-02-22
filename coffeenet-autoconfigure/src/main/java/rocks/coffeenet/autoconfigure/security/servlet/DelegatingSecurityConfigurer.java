@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
  * {@link WebSecurityConfigurerAdapter#WebSecurityConfigurerAdapter(boolean)} with {@code true} to disable defaults.
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
+ * @since  2.0.0
  */
 public class DelegatingSecurityConfigurer extends AbstractHttpConfigurer<DelegatingSecurityConfigurer, HttpSecurity> {
 
