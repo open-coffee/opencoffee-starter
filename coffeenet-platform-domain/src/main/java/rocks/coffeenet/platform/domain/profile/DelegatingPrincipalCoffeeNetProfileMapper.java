@@ -35,21 +35,11 @@ public class DelegatingPrincipalCoffeeNetProfileMapper implements PrincipalCoffe
 
         Class<? extends Principal> principalClass = principal.getClass();
 
-        CoffeeNetProfile profile = null;
-
-        for (PrincipalCoffeeNetProfileMapper mapper : mappers) {
-            if (!mapper.supports(principalClass)) {
-                continue;
-            }
-
-            profile = mapper.map(principal);
-
-            if (profile != null) {
-                break;
-            }
-        }
-
-        return profile;
+        return mappers.stream()
+            .filter(mapper -> mapper.supports(principalClass))
+            .map(mapper -> mapper.map(principal))
+            .findFirst()
+            .orElse(null);
     }
 
 
