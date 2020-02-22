@@ -16,7 +16,7 @@ import org.springframework.security.oauth2.client.web.OAuth2AuthorizationCodeGra
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.FilterChainProxy;
 
-import rocks.coffeenet.autoconfigure.security.CoffeeNetSecurityAutoConfiguration;
+import rocks.coffeenet.autoconfigure.security.servlet.CoffeeNetSecurityAutoConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

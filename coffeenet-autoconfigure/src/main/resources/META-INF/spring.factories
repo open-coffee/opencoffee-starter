@@ -1,6 +1,6 @@
 # Auto-configuration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-rocks.coffeenet.autoconfigure.security.CoffeeNetSecurityAutoConfiguration,\
+rocks.coffeenet.autoconfigure.security.servlet.CoffeeNetSecurityAutoConfiguration,\
 rocks.coffeenet.autoconfigure.security.oauth2.servlet.OAuth2SecurityAutoConfiguration
 
 # Injected security configurers
