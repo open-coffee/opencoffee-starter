@@ -32,6 +32,9 @@ import rocks.coffeenet.platform.domain.profile.PrincipalCoffeeNetProfileMapper;
 @Conditional(ClientsConfiguredCondition.class)
 public class OAuth2SecurityAutoConfiguration {
 
+    OAuth2SecurityAutoConfiguration() {
+    }
+
     @Configuration
     @ConditionalOnMissingBean(OAuth2SecurityConfigurer.class)
     static class OAuth2SecurityConfigurerConfiguration {

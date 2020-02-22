@@ -80,7 +80,8 @@ public class OAuth2AuthenticationTokenProfileMapper implements PrincipalCoffeeNe
 
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Couldn't get an instance of the SHA-256 digest, this should never happen.", e);
+            throw new IllegalStateException(
+                "Couldn't get an instance of the SHA-256 digest, this should never happen.", e);
         }
     }
 
