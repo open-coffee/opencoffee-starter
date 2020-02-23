@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.context.runner.WebApplicationContextRunner;
 
+import rocks.coffeenet.autoconfigure.security.DefaultPrincipalCoffeenetProfileMapper;
 import rocks.coffeenet.autoconfigure.security.servlet.CoffeeNetProfileAutoConfiguration.CoffeeNetProfileArgumentResolverConfigurer;
 
 import rocks.coffeenet.platform.domain.profile.DelegatingPrincipalCoffeeNetProfileMapper;
@@ -21,21 +22,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CoffeeNetProfileAutoConfigurationTests {
 
     @Test
-    @DisplayName("should not install profile mapper delegator if no mappers present")
-    void noProfileMappersDefined() {
+    @DisplayName("should install fallback profile mapper if no mappers present")
+    void fallbackProfileMapper() {
 
         WebApplicationContextRunner runner =
             new WebApplicationContextRunner()
                 .withConfiguration(AutoConfigurations.of(SecurityAutoConfiguration.class,
                         CoffeeNetProfileAutoConfiguration.class));
-
-        runner.run(context -> assertThat(context).doesNotHaveBean(DelegatingPrincipalCoffeeNetProfileMapper.class));
+        runner.run(context -> assertThat(context).hasSingleBean(DefaultPrincipalCoffeenetProfileMapper.class));
     }
 
 
     @Test
-    @DisplayName("should install profile mapper delegator if mappers present")
-    void profileMappersDefined() {
+    @DisplayName("should install profile mapper delegator")
+    void mapperDelegator() {
 
         WebApplicationContextRunner runner = new WebApplicationContextRunner()
                 .withConfiguration(AutoConfigurations.of(SecurityAutoConfiguration.class,

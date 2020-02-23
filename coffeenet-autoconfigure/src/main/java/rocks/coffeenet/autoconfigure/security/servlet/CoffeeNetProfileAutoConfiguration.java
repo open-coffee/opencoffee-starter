@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
@@ -33,6 +34,7 @@ import java.util.List;
 @AutoConfigureAfter(SecurityAutoConfiguration.class)
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnBean(name = AbstractSecurityWebApplicationInitializer.DEFAULT_FILTER_NAME)
+@Import(FallbackProfileMapperConfiguration.class)
 public class CoffeeNetProfileAutoConfiguration {
 
     @Bean
