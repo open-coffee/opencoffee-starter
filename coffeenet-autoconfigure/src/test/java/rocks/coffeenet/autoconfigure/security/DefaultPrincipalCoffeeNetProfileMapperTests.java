@@ -9,20 +9,18 @@ import rocks.coffeenet.platform.domain.profile.CoffeeNetProfile;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 
 /**
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
-@DisplayName("DefaultPrincipalCoffeenetProfileMapper")
-class DefaultPrincipalCoffeenetProfileMapperTests {
+@DisplayName("DefaultPrincipalCoffeeNetProfileMapper")
+class DefaultPrincipalCoffeeNetProfileMapperTests {
 
     @Test
     @DisplayName("should map null from empty principal")
     void emptyHandling() {
 
-        DefaultPrincipalCoffeenetProfileMapper mapper = new DefaultPrincipalCoffeenetProfileMapper();
+        DefaultPrincipalCoffeeNetProfileMapper mapper = new DefaultPrincipalCoffeeNetProfileMapper();
         TestingAuthenticationToken principal = new TestingAuthenticationToken("", "credentials");
         assertThat(mapper.map(principal))
             .isNull();
@@ -33,7 +31,7 @@ class DefaultPrincipalCoffeenetProfileMapperTests {
     @DisplayName("should map null from null principal")
     void nullHandling() {
 
-        DefaultPrincipalCoffeenetProfileMapper mapper = new DefaultPrincipalCoffeenetProfileMapper();
+        DefaultPrincipalCoffeeNetProfileMapper mapper = new DefaultPrincipalCoffeeNetProfileMapper();
         assertThat(mapper.map(null)).isNull();
     }
 
@@ -42,7 +40,7 @@ class DefaultPrincipalCoffeenetProfileMapperTests {
     @DisplayName("should map a profile from any principal with a non-null name")
     void mapSimplePrincipal() {
 
-        DefaultPrincipalCoffeenetProfileMapper mapper = new DefaultPrincipalCoffeenetProfileMapper();
+        DefaultPrincipalCoffeeNetProfileMapper mapper = new DefaultPrincipalCoffeeNetProfileMapper();
         TestingAuthenticationToken principal = new TestingAuthenticationToken("example-user", "credentials");
 
         assertThat(mapper.map(principal))

@@ -16,7 +16,7 @@ import java.security.Principal;
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  * @since  2.0.0
  */
-public class DefaultPrincipalCoffeenetProfileMapper implements PrincipalCoffeeNetProfileMapper {
+public class DefaultPrincipalCoffeeNetProfileMapper implements PrincipalCoffeeNetProfileMapper {
 
     @Override
     public CoffeeNetProfile map(Principal principal) {

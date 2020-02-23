@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import rocks.coffeenet.autoconfigure.security.DefaultPrincipalCoffeenetProfileMapper;
+import rocks.coffeenet.autoconfigure.security.DefaultPrincipalCoffeeNetProfileMapper;
 
 import rocks.coffeenet.platform.domain.profile.PrincipalCoffeeNetProfileMapper;
 
@@ -23,6 +23,6 @@ public class FallbackProfileMapperConfiguration {
     @Bean
     PrincipalCoffeeNetProfileMapper fallbackPrincipalCoffeeNetProfileMapper() {
 
-        return new DefaultPrincipalCoffeenetProfileMapper();
+        return new DefaultPrincipalCoffeeNetProfileMapper();
     }
 }

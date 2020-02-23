@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.context.runner.WebApplicationContextRunner;
 
-import rocks.coffeenet.autoconfigure.security.DefaultPrincipalCoffeenetProfileMapper;
+import rocks.coffeenet.autoconfigure.security.DefaultPrincipalCoffeeNetProfileMapper;
 import rocks.coffeenet.autoconfigure.security.servlet.CoffeeNetProfileAutoConfiguration.CoffeeNetProfileArgumentResolverConfigurer;
 
 import rocks.coffeenet.platform.domain.profile.DelegatingPrincipalCoffeeNetProfileMapper;
@@ -29,7 +29,7 @@ class CoffeeNetProfileAutoConfigurationTests {
             new WebApplicationContextRunner()
                 .withConfiguration(AutoConfigurations.of(SecurityAutoConfiguration.class,
                         CoffeeNetProfileAutoConfiguration.class));
-        runner.run(context -> assertThat(context).hasSingleBean(DefaultPrincipalCoffeenetProfileMapper.class));
+        runner.run(context -> assertThat(context).hasSingleBean(DefaultPrincipalCoffeeNetProfileMapper.class));
     }
 
 
