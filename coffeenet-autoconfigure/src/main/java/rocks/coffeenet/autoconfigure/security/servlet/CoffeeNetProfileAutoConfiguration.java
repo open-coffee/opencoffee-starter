@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -28,8 +30,9 @@ import java.util.List;
  * @since  2.0.0
  */
 @Configuration(proxyBeanMethods = false)
-@ConditionalOnBean(PrincipalCoffeeNetProfileMapper.class)
 @AutoConfigureAfter(SecurityAutoConfiguration.class)
+@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+@ConditionalOnBean(name = AbstractSecurityWebApplicationInitializer.DEFAULT_FILTER_NAME)
 public class CoffeeNetProfileAutoConfiguration {
 
     @Bean
@@ -44,7 +47,6 @@ public class CoffeeNetProfileAutoConfiguration {
 
     @Configuration(proxyBeanMethods = false)
     @ConditionalOnBean(PrincipalCoffeeNetProfileMapper.class)
-    @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
     static class CoffeeNetProfileArgumentResolverConfigurer implements WebMvcConfigurer {
 
         private final PrincipalCoffeeNetProfileMapper mapper;
