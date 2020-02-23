@@ -14,6 +14,7 @@ import rocks.coffeenet.platform.domain.profile.PrincipalCoffeeNetProfileMapper;
  * Register a fallback profile mapper in case no others have been registered.
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
+ * @since  2.0.0
  */
 @Configuration
 @ConditionalOnMissingBean(PrincipalCoffeeNetProfileMapper.class)

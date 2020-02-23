@@ -14,6 +14,7 @@ import java.security.Principal;
  * profile, even when running with authentication that is not yet prepared to make use of the mappings.
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
+ * @since  2.0.0
  */
 public class DefaultPrincipalCoffeenetProfileMapper implements PrincipalCoffeeNetProfileMapper {
 
