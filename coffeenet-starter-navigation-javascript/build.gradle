@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+    id "rocks.coffeenet.build.conventions"
+    id "rocks.coffeenet.build.deployed"
+}
+
+description = "CoffeeNet Starter Navigation Javascript"
+
+dependencies {
+
+    // Public API dependencies
+    api platform(project(':coffeenet-dependencies'))
+    api project(':coffeenet-actuator')
+    api project(':coffeenet-starter-navigation')
+
+    api 'rocks.coffeenet:navigation-bar'
+
+    api 'org.springframework.boot:spring-boot-actuator'
+}

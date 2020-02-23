@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+    id "rocks.coffeenet.build.conventions"
+    id "rocks.coffeenet.build.deployed"
+}
+
+description = "CoffeeNet Starter Security"
+
+dependencies {
+
+    api platform(project(':coffeenet-dependencies'))
+    api project(':coffeenet-starter')
+
+    api 'org.springframework.boot:spring-boot-starter-security'
+    api 'org.springframework.security.oauth:spring-security-oauth2'
+}

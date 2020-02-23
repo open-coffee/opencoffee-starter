@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id "java-gradle-plugin"
+}
+
+repositories {
+    mavenCentral()
+}
+
+gradlePlugin {
+    plugins {
+        conventionsPlugin {
+            id = "rocks.coffeenet.build.conventions"
+            implementationClass = "rocks.coffeenet.build.ConventionsPlugin"
+        }
+        coveragePlugin {
+            id = "rocks.coffeenet.build.coverage"
+            implementationClass = "rocks.coffeenet.build.CoveragePlugin"
+        }
+        deployedPlugin {
+            id = "rocks.coffeenet.build.deployed"
+            implementationClass = "rocks.coffeenet.build.DeployedPlugin"
+        }
+        optionalDependenciesPlugin {
+            id = "rocks.coffeenet.build.optional"
+            implementationClass = "rocks.coffeenet.build.OptionalVariantPlugin"
+        }
+    }
+}
+
+dependencies {
+    testImplementation gradleTestKit()
+    testImplementation 'org.assertj:assertj-core:3.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'
+}
+
+test {
+    useJUnitPlatform()
+}
