@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
 import java.util.AbstractMap;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -26,20 +27,20 @@ public class CoffeeNetModel extends AbstractMap<String, Object> {
 
     private CoffeeNetModel(Builder builder) {
 
-        this.attributes = Collections.unmodifiableMap(builder.content);
+        this.attributes = Collections.unmodifiableMap(new HashMap<>(builder.content));
     }
 
     @Override
     public Set<Entry<String, Object>> entrySet() {
 
-        return attributes.entrySet();
+        return attributes != null ? attributes.entrySet() : Collections.emptySet();
     }
 
 
     @JsonAnyGetter
     Map<String, Object> getAttributes() {
 
-        return attributes;
+        return attributes != null ? attributes : Collections.emptyMap();
     }
 
 
