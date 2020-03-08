@@ -4,7 +4,7 @@ plugins {
     id "rocks.coffeenet.build.deployed"
 }
 
-description = "CoffeeNet Dependencies"
+description = "Dependency management for CoffeeNet."
 
 javaPlatform {
     allowDependencies()

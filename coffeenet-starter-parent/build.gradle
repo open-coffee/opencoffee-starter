@@ -4,7 +4,7 @@ plugins {
     id "rocks.coffeenet.build.deployed"
 }
 
-description = "Parent pom providing dependency and plugin management for applications built with Maven"
+description = "Parent starter providing dependency and plugin management for applications built with Maven."
 
 javaPlatform {
     allowDependencies()

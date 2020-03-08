@@ -4,7 +4,7 @@ plugins {
     id "rocks.coffeenet.build.deployed"
 }
 
-description = "CoffeeNet Starter Navigation Thymeleaf"
+description = "Starter for CoffeeNet layout with Thymeleaf."
 
 dependencies {
 

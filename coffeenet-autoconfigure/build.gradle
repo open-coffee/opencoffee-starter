@@ -6,7 +6,7 @@ plugins {
     id "rocks.coffeenet.build.optional"
 }
 
-description = "CoffeeNet Autoconfigure"
+description = "Auto-configuration for CoffeeNet features."
 
 dependencies {
     // Public API dependencies

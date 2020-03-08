@@ -4,7 +4,7 @@ plugins {
     id "rocks.coffeenet.build.deployed"
 }
 
-description = "CoffeeNet Starter Logging"
+description = "Starter for centralized logging via GELF/Graylog."
 
 dependencies {
 

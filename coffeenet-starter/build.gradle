@@ -4,7 +4,7 @@ plugins {
     id "rocks.coffeenet.build.deployed"
 }
 
-description = "CoffeeNet Starter"
+description = "Core starter, including auto-configuration support."
 
 dependencies {
 
