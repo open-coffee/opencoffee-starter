@@ -27,6 +27,7 @@ jobs:
     - name: Build and verify with Gradle
       run: >
         ./gradlew clean check sonarqube
+        --build-cache
         -Dsonar.host.url=https://sonarcloud.io
         -Dsonar.organization=coffeenet
         -Dsonar.projectKey=rocks.coffeenet:coffeenet-starter

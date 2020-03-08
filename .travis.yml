@@ -20,7 +20,7 @@ before_install:
 git:
   depth: false
 
-script: ./gradlew check
+script: ./gradlew check --build-cache
 
 before_deploy:
   - export RELEASE_NOTES=$(awk -v start=1 '/^#{2}[[:space:]].*$/{n++;next};n==start;n==start+1{exit}' CHANGELOG.md | markdown | awk '{printf "%s",$0} END {print ""}')
