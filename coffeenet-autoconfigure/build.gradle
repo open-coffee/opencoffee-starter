@@ -27,6 +27,11 @@ dependencies {
     optionalImplementation 'de.appelgriepsch.logback:logback-gelf-appender'
     optionalImplementation 'javax.servlet:javax.servlet-api'
 
+    // Annotation processing
+    annotationProcessor platform(project(":coffeenet-dependencies"))
+    annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
     // Test dependencies
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
