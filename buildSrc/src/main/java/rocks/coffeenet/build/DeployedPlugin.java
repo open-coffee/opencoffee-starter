@@ -18,12 +18,17 @@ import org.gradle.plugins.signing.SigningExtension;
 import org.gradle.plugins.signing.SigningPlugin;
 
 
-// This is taken from https://github.com/spring-projects/spring-boot/blob/master/buildSrc/src/main/java/org/springframework/boot/build/DeployedPlugin.java
-
 /**
  * A plugin applied to a project that should be deployed.
  *
+ * <p>It in general creates the necessary publications for Maven based publication. Additionally it can configure
+ * SonaType OSS repository and artifact signing, so we publish to Maven Central.</p>
+ *
  * @author  Andy Wilkinson
+ * @author  Florian 'punycode' Krupicka - zh@punyco.de
+ * @see  <a
+ *       href="https://github.com/spring-projects/spring-boot/blob/master/buildSrc/src/main/java/org/springframework/boot/build/DeployedPlugin.java">
+ *       Spring Boot</a>
  */
 public class DeployedPlugin implements Plugin<Project> {
 
