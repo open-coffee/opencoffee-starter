@@ -9,9 +9,13 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.plugins.JavaPlatformPlugin;
 import org.gradle.api.plugins.JavaPlugin;
+import org.gradle.api.publish.Publication;
 import org.gradle.api.publish.PublishingExtension;
 import org.gradle.api.publish.maven.MavenPublication;
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin;
+
+import org.gradle.plugins.signing.SigningExtension;
+import org.gradle.plugins.signing.SigningPlugin;
 
 
 // This is taken from https://github.com/spring-projects/spring-boot/blob/master/buildSrc/src/main/java/org/springframework/boot/build/DeployedPlugin.java
@@ -32,6 +36,12 @@ public class DeployedPlugin implements Plugin<Project> {
      * Property to determine if to apply publication to SonaType OSS repository.
      */
     public static final String SONATYPE_OSS_PROPERTY_NAME = "sonatype";
+
+    /**
+     * Project property to determine whether to sign the deployed artifacts with GPG. This is automatically enabled
+     * when also publishing to SonaType OSS repository.
+     */
+    public static final String SIGN_GPG_PROPERTY_NAME = "signGpg";
 
     @Override
     public void apply(Project project) {
@@ -58,8 +68,18 @@ public class DeployedPlugin implements Plugin<Project> {
             applySonaTypeOssPublishing(project);
         }
 
+        if (project.hasProperty(SIGN_GPG_PROPERTY_NAME) || project.hasProperty(SONATYPE_OSS_PROPERTY_NAME)) {
+            applyGpgSigning(project, mavenPublication);
+        }
         //@formatter:on
         //J+
+    }
+
+
+    private void applyGpgSigning(Project project, Publication publication) {
+
+        project.getPlugins().apply(SigningPlugin.class);
+        project.getExtensions().getByType(SigningExtension.class).sign(publication);
     }
 
 
