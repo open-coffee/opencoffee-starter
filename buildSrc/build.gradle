@@ -9,19 +9,19 @@ repositories {
 
 gradlePlugin {
     plugins {
-        conventionsPlugin {
+        create('conventionsPlugin') {
             id = "rocks.coffeenet.build.conventions"
             implementationClass = "rocks.coffeenet.build.ConventionsPlugin"
         }
-        coveragePlugin {
+        create('coveragePlugin') {
             id = "rocks.coffeenet.build.coverage"
             implementationClass = "rocks.coffeenet.build.CoveragePlugin"
         }
-        deployedPlugin {
+        create('deployedPlugin') {
             id = "rocks.coffeenet.build.deployed"
             implementationClass = "rocks.coffeenet.build.DeployedPlugin"
         }
-        optionalDependenciesPlugin {
+        create('optionalDependenciesPlugin') {
             id = "rocks.coffeenet.build.optional"
             implementationClass = "rocks.coffeenet.build.OptionalVariantPlugin"
         }
