@@ -1,4 +1,4 @@
-name: CoffeeNet Gradle Build
+name: CoffeeNet Build & Test
 
 on:
   push:
