@@ -28,12 +28,15 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gradle-
     - name: Build and verify with Gradle
-      run: >
-        ./gradlew clean check sonarqube
-        --build-cache
-        -Dsonar.host.url=https://sonarcloud.io
-        -Dsonar.organization=coffeenet
-        -Dsonar.projectKey=rocks.coffeenet:coffeenet-starter
+      run: |
+        if [ ! -z $SONAR_TOKEN ]; then
+          ./gradlew --build-cache clean check sonarqube \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.organization=coffeenet \
+            -Dsonar.projectKey=rocks.coffeenet:coffeenet-starter
+        else
+          ./gradlew --build-cache clean check
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
