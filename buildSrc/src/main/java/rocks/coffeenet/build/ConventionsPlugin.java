@@ -128,7 +128,7 @@ public class ConventionsPlugin implements Plugin<Project> {
     private void customizePom(MavenPom pom, Project project) {
 
         pom.getUrl().set("https://coffeenet.rocks");
-        pom.getName().set(project.provider(project::getName));
+        pom.getName().set(project.provider(() -> String.format("%s:%s", project.getGroup(), project.getName())));
         pom.getDescription().set(project.provider(project::getDescription));
         pom.organization(this::customizeOrganization);
         pom.licenses(this::customizeLicenses);
