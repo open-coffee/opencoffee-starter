@@ -17,6 +17,8 @@ import org.gradle.api.publish.maven.plugins.MavenPublishPlugin;
 import org.gradle.plugins.signing.SigningExtension;
 import org.gradle.plugins.signing.SigningPlugin;
 
+import java.util.Optional;
+
 
 /**
  * A plugin applied to a project that should be deployed.
@@ -112,7 +114,17 @@ public class DeployedPlugin implements Plugin<Project> {
     private void applyGpgSigning(Project project, Publication publication) {
 
         project.getPlugins().apply(SigningPlugin.class);
-        project.getExtensions().getByType(SigningExtension.class).sign(publication);
+
+        SigningExtension signing = project.getExtensions().getByType(SigningExtension.class);
+        signing.sign(publication);
+
+        // Support signing from in-memory keys via environment variables
+        Optional<String> privateKey = nonEmptyEnvironment("GPG_PRIVATE_KEY");
+        Optional<String> passphrase = nonEmptyEnvironment("GPG_PASSPHRASE");
+
+        if (privateKey.isPresent() && passphrase.isPresent()) {
+            signing.useInMemoryPgpKeys(privateKey.get(), passphrase.get());
+        }
     }
 
 
@@ -129,5 +141,14 @@ public class DeployedPlugin implements Plugin<Project> {
 
         project.getPlugins().apply(NexusPublishPlugin.class);
         project.getExtensions().getByType(NexusPublishExtension.class).getRepositories().sonatype();
+    }
+
+
+    // Helpers
+    private static Optional<String> nonEmptyEnvironment(String key) {
+
+        String value = System.getenv(key);
+
+        return value != null ? "".equals(value.trim()) ? Optional.empty() : Optional.of(value) : Optional.empty();
     }
 }
