@@ -36,12 +36,12 @@ jobs:
     - name: Build and verify with Gradle
       run: |
         if [ ! -z $SONAR_TOKEN ]; then
-          ./gradlew --build-cache clean check sonarqube \
+          ./gradlew --build-cache check sonarqube \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.organization=coffeenet \
             -Dsonar.projectKey=rocks.coffeenet:coffeenet-starter
         else
-          ./gradlew --build-cache clean check
+          ./gradlew --build-cache check
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
