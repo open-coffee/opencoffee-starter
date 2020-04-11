@@ -33,7 +33,7 @@ jobs:
         key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/**/*') }}
         restore-keys: |
           ${{ runner.os }}-gradle-wrapper-
-    - name: Recreate build cache
+    - name: Recreate Gradle build/dependency cache
       uses: actions/cache@v1
       with:
         path: ~/.gradle/caches
