@@ -1,0 +1,46 @@
+name: "CoffeeNet: Release Pipeline"
+
+on:
+  push:
+    tags: 'v*'
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout project
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Verify if releasing from master
+      run: |
+        git fetch --no-tags --prune origin +refs/heads/master:refs/remotes/origin/master
+        git merge-base --is-ancestor ${{ github.ref }} refs/heads/master
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Verify Gradle Wrapper version
+      uses: gradle/wrapper-validation-action@v1
+    - name: Recreate Gradle wrapper cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/**/*') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-wrapper-
+    - name: Build and verify with Gradle
+      run: |
+        ./gradlew check
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Publish artifacts to Sonatype OSSRH
+      run: |
+        ./gradlew -Psonatype build publishToSonatype
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+        SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
