@@ -67,16 +67,14 @@ public class DeployedPlugin implements Plugin<Project> {
                 .all(mavenPublication::from));
 
 
-        if (System.getenv("GITHUB_TOKEN") != null ||
-            (System.getenv("GITHUB_USERNAME") != null
-                && System.getenv("GITHUB_PASSWORD") != null)
-        ) {
-            String username = System.getenv("GITHUB_USERNAME") != null
-                ? System.getenv("GITHUB_USERNAME")
-                : "coffeenet";
-            String token = System.getenv("GITHUB_TOKEN") != null
-                ? System.getenv("GITHUB_TOKEN")
-                : System.getenv("GITHUB_PASSWORD");
+        Optional<String> githubToken = nonEmptyEnvironment("GITHUB_TOKEN");
+        Optional<String> githubUsername = nonEmptyEnvironment("GITHUB_USERNAME");
+        Optional<String> githubPassword = nonEmptyEnvironment("GITHUB_PASSWORD");
+
+        if (githubToken.isPresent() || (githubUsername.isPresent() && githubPassword.isPresent())) {
+            String username = githubUsername.orElse("coffeenet");
+            String token = githubToken.orElseGet(githubPassword::get);
+
             applyGithubPackagesPublishing(project, username, token);
         }
 
