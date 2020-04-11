@@ -33,11 +33,6 @@ import org.gradle.plugins.signing.SigningPlugin;
 public class DeployedPlugin implements Plugin<Project> {
 
     /**
-     * Name of the task that generates the deployed pom file.
-     */
-    public static final String GENERATE_POM_TASK_NAME = "generatePomFileForMavenPublication";
-
-    /**
      * Property to determine if to apply publication to SonaType OSS repository.
      */
     public static final String SONATYPE_OSS_PROPERTY_NAME = "sonatype";
