@@ -3,6 +3,7 @@ package rocks.coffeenet.build;
 import de.marcphilipp.gradle.nexus.NexusPublishExtension;
 import de.marcphilipp.gradle.nexus.NexusPublishPlugin;
 
+import io.codearte.gradle.nexus.NexusStagingExtension;
 import io.codearte.gradle.nexus.NexusStagingPlugin;
 
 import org.gradle.api.Plugin;
@@ -135,6 +136,15 @@ public class DeployedPlugin implements Plugin<Project> {
 
         if (!project.getRootProject().getPlugins().hasPlugin(NexusStagingPlugin.class)) {
             rootProject.getPlugins().apply(NexusStagingPlugin.class);
+
+            Optional<String> sonatypeUsername = nonEmptyEnvironment("SONATYPE_USERNAME");
+            Optional<String> sonatypePassword = nonEmptyEnvironment("SONATYPE_PASSWORD");
+
+            if (sonatypeUsername.isPresent() && sonatypePassword.isPresent()) {
+                NexusStagingExtension staging = rootProject.getExtensions().getByType(NexusStagingExtension.class);
+                staging.setUsername(sonatypeUsername.get());
+                staging.setPassword(sonatypePassword.get());
+            }
         }
 
         project.getPlugins().apply(NexusPublishPlugin.class);
