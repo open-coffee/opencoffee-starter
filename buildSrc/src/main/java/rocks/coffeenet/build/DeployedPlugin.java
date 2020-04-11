@@ -69,6 +69,20 @@ public class DeployedPlugin implements Plugin<Project> {
             project.getComponents().matching((component) -> component.getName().equals("javaPlatform"))
                 .all(mavenPublication::from));
 
+
+        if (System.getenv("GITHUB_TOKEN") != null ||
+            (System.getenv("GITHUB_USERNAME") != null
+                && System.getenv("GITHUB_PASSWORD") != null)
+        ) {
+            String username = System.getenv("GITHUB_USERNAME") != null
+                ? System.getenv("GITHUB_USERNAME")
+                : "coffeenet";
+            String token = System.getenv("GITHUB_TOKEN") != null
+                ? System.getenv("GITHUB_TOKEN")
+                : System.getenv("GITHUB_PASSWORD");
+            applyGithubPackagesPublishing(project, username, token);
+        }
+
         if (project.hasProperty(SONATYPE_OSS_PROPERTY_NAME)) {
             applySonaTypeOssPublishing(project);
         }
@@ -76,6 +90,25 @@ public class DeployedPlugin implements Plugin<Project> {
         if (project.hasProperty(SIGN_GPG_PROPERTY_NAME) || project.hasProperty(SONATYPE_OSS_PROPERTY_NAME)) {
             applyGpgSigning(project, mavenPublication);
         }
+        //@formatter:on
+        //J+
+    }
+
+
+    private void applyGithubPackagesPublishing(Project project, String username, String password) {
+
+        //J-
+        //@formatter:off
+        project.getExtensions().configure(PublishingExtension.class, (publishing) -> {
+            publishing.getRepositories().maven(maven -> {
+                maven.setName("GitHubPackages");
+                maven.setUrl("https://maven.pkg.github.com/coffeenet/coffeenet-starter");
+                maven.credentials(credentials -> {
+                    credentials.setUsername(username);
+                    credentials.setPassword(password);
+                });
+            });
+        });
         //@formatter:on
         //J+
     }
