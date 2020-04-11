@@ -13,6 +13,11 @@ jobs:
     steps:
     - name: Checkout project
       uses: actions/checkout@v2
+    - name: Fetch target branch for SonarQube branch analysis
+      run: |
+        git fetch --no-tags --prune origin \
+          +refs/heads/${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
+      if: github.event_name == 'pull_request'
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
