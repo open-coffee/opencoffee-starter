@@ -6,23 +6,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Restructure of modules (see root Readme.md)
-  - Add 'coffeenet-starter-build'
-  - Add 'coffeenet-starter-dependencies'
-- 'autoconfigure' is now 'coffeenet-autoconfigure'
-- 'starter-discovery' is now 'coffeenet-starter-discovery'
-- 'starter-logging' is now 'coffeenet-starter-logging'
-- 'starter-monitoring' is now 'coffeenet-starter-monitoring'
-- 'starter-navigation' is now 'coffeenet-starter-navigation'
-- 'starter-navigation-javascript' is now 'coffeenet-starter-navigation-javascript'
-- 'starter-navigation-thymeleaf' is now 'coffeenet-starter-navigation-thymeleaf'
-- 'starter-security' is now 'coffeenet-starter-security'
-- 'coffeenet-starter-parent' is now 'coffeenet-parent'
-- editorconfig fir JavaScript files
+- Move from Maven to Gradle based build
+  [\#70](https://github.com/coffeenet/coffeenet-starter/pull/70)
+  - Build logic is structured in `buildSrc` according to Gradle recommendations
+  - Only relevant dependencies are published now
+- Move build and release pipeline from Travis CI to GitHub actions
+  [\#58](https://github.com/coffeenet/coffeenet-starter/issues/58),
+  [\#63](https://github.com/coffeenet/coffeenet-starter/issues/63)
+- Restructure of modules (see root [README.md](./README.md]))
+  - Add `coffeenet-starter-dependencies` as dependency BOM
+  - `autoconfigure` is now `coffeenet-autoconfigure`
+  - `starter-discovery` is now `coffeenet-starter-discovery`
+  - `starter-logging` is now `coffeenet-starter-logging`
+  - `starter-monitoring` is now `coffeenet-starter-monitoring`
+  - `starter-navigation` is now `coffeenet-starter-navigation`
+  - `starter-navigation-javascript` is now `coffeenet-starter-navigation-javascript`
+  - `starter-navigation-thymeleaf` is now `coffeenet-starter-navigation-thymeleaf`
+  - `starter-security` is now `coffeenet-starter-security`
+- `.editorconfig` for JavaScript files
+
 
 ### Removed
-- 'maven-release-plugin'
-- Uploading releases to github
+- `maven-release-plugin`
+- Uploading release artifacts to GitHub
 
 ### Fixed
 - Do not leak distributionManagement information into the CoffeeNet Applications
