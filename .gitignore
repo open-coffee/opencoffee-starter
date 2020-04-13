@@ -1,8 +1,11 @@
 .idea/
-target/
 *.iml
 coffeenet-autoconfigure/logs
 coffeenet-autoconfigure/*.graphml
-.flattened-pom.xml
 
-**/.flattened-pom.xml
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+!/**/src/**/build

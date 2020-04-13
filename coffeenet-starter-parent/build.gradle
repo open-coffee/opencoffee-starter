@@ -1,0 +1,29 @@
+plugins {
+    id 'java-platform'
+    id "rocks.coffeenet.build.conventions"
+    id "rocks.coffeenet.build.deployed"
+}
+
+description = "Parent starter providing dependency and plugin management for applications built with Maven."
+
+javaPlatform {
+    allowDependencies()
+}
+
+// Create a parent POM for CoffeeNet applications built upon the Spring Boot version we compiled for.
+publishing.publications.withType(MavenPublication) {
+    pom.withXml { xml ->
+        def root = xml.asNode()
+        root.modelVersion.plus {
+            parent {
+                delegate.groupId "org.springframework.boot"
+                delegate.artifactId "spring-boot-starter-parent"
+                delegate.version "${springBootVersion}"
+            }
+        }
+    }
+}
+
+dependencies {
+    api platform(project(':coffeenet-dependencies'))
+}

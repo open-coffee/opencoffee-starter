@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+    id "rocks.coffeenet.build.conventions"
+    id "rocks.coffeenet.build.deployed"
+}
+
+description = "Starter for monitoring via health and metrics."
+
+dependencies {
+
+    api platform(project(':coffeenet-dependencies'))
+    api project(':coffeenet-starter')
+    api project(':coffeenet-actuator')
+}
