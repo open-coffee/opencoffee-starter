@@ -17,8 +17,10 @@ dependencies {
         api project(":coffeenet-actuator")
         api project(":coffeenet-starter")
         api project(":coffeenet-starter-discovery")
+        api project(":coffeenet-starter-logging")
         api project(":coffeenet-starter-monitoring")
         api project(":coffeenet-starter-navigation")
+        api project(":coffeenet-starter-navigation-javascript")
         api project(":coffeenet-starter-navigation-thymeleaf")
         api project(":coffeenet-starter-security")
 
