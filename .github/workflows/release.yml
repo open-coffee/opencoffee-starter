@@ -2,7 +2,8 @@ name: "CoffeeNet: Release Pipeline"
 
 on:
   push:
-    tags: 'v*'
+    tags:
+      - v*
 
 jobs:
   publish:
