@@ -3,6 +3,16 @@
 # Helper variables
 _REPO_ROOT=$(git rev-parse --show-toplevel)
 
+# Helper functions
+error() {
+  >&2 echo "ERROR:" "$@"
+  exit 1
+}
+
+info() {
+  >&2 echo "INFO:" "$@"
+}
+
 # Get current version as specified in the project configuration
 current_version() {
   grep -e '^version=.*$' "${_REPO_ROOT}/gradle.properties" | cut -d '=' -f 2
