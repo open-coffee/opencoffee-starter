@@ -53,10 +53,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    - name: Publish SNAPSHOT artifacts to Sonatype OSSRH
+    - name: Publish development artifacts to Sonatype OSSRH
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      # Run only if current version is actually a development version
       run: |
-        ./gradlew -Psonatype build publishToSonatype
+        if ./scripts/is_development; then
+          ./gradlew -Psonatype build publishToSonatype
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}

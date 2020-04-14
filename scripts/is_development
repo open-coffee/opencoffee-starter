@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# Global variables
+REPO_ROOT=$(git rev-parse --show-toplevel)
+
+# shellcheck source=_functions.sh
+. "${REPO_ROOT}/scripts/_functions.sh"
+
+CURRENT_VERSION=$(current_version)
+if is_development_version "$CURRENT_VERSION"; then
+  info "Current version '${CURRENT_VERSION}' is a development version."
+else
+  info "Current version '${CURRENT_VERSION}' is a release version."
+  exit 1
+fi
