@@ -13,9 +13,9 @@ javaPlatform {
 dependencies {
 
     constraints {
-        api project(":coffeenet-platform-domain")
-        api project(":coffeenet-autoconfigure")
         api project(":coffeenet-actuator")
+        api project(":coffeenet-autoconfigure")
+        api project(":coffeenet-platform-domain")
         api project(":coffeenet-starter")
         api project(":coffeenet-starter-discovery")
         api project(":coffeenet-starter-monitoring")
