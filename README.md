@@ -1,4 +1,5 @@
-[![CoffeeNet Maven Build](https://github.com/coffeenet/coffeenet-starter/workflows/CoffeeNet%20Maven%20Build/badge.svg)](https://sonarcloud.io/organizations/coffeenet/projects) [![Latest coffeenet-starter on Maven Central](https://maven-badges.herokuapp.com/maven-central/rocks.coffeenet/coffeenet-starter/badge.svg?style=flat)](https://search.maven.org/search?q=g:rocks.coffeenet%20AND%20a:coffeenet-starter&core=gav)
+[![CoffeeNet: CI/CD](https://github.com/coffeenet/coffeenet-starter/workflows/CoffeeNet:%20CI/CD/badge.svg)](https://github.com/coffeenet/coffeenet-starter/actions?query=workflow%3A%22CoffeeNet%3A+CI%2FCD%22)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/rocks.coffeenet/coffeenet-starter/badge.svg)](https://search.maven.org/search?q=g:rocks.coffeenet%20AND%20a:coffeenet-starter&core=gav)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=rocks.coffeenet:coffeenet-starter&metric=coverage)](https://sonarcloud.io/dashboard?id=rocks.coffeenet:coffeenet-starter)
 
 # CoffeeNet Starters

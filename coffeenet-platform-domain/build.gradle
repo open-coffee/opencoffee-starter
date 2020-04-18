@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+    id "rocks.coffeenet.build.conventions"
+    id "rocks.coffeenet.build.coverage"
+    id "rocks.coffeenet.build.deployed"
+}
+
+description = "Domain objects for CoffeeNet applications."
+
+dependencies {
+    api platform(project(":coffeenet-dependencies"))
+
+    compileOnly("com.fasterxml.jackson.core:jackson-annotations") {
+        because "Allow deserialization of platform entities to JSON"
+    }
+
+    // Test dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.1.12'
+}

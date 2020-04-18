@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id "java-gradle-plugin"
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+gradlePlugin {
+    plugins {
+        create('conventionsPlugin') {
+            id = "rocks.coffeenet.build.conventions"
+            implementationClass = "rocks.coffeenet.build.ConventionsPlugin"
+        }
+        create('coveragePlugin') {
+            id = "rocks.coffeenet.build.coverage"
+            implementationClass = "rocks.coffeenet.build.CoveragePlugin"
+        }
+        create('deployedPlugin') {
+            id = "rocks.coffeenet.build.deployed"
+            implementationClass = "rocks.coffeenet.build.DeployedPlugin"
+        }
+        create('optionalDependenciesPlugin') {
+            id = "rocks.coffeenet.build.optional"
+            implementationClass = "rocks.coffeenet.build.OptionalVariantPlugin"
+        }
+    }
+}
+
+dependencies {
+    // Support publishing to Sonatype OSS repository
+    implementation 'de.marcphilipp.gradle:nexus-publish-plugin:0.4.0'
+    implementation 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.21.2'
+
+    // Tests
+    testImplementation gradleTestKit()
+    testImplementation 'org.assertj:assertj-core:3.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'
+}
+
+test {
+    useJUnitPlatform()
+}

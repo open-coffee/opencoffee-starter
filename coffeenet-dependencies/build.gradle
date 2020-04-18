@@ -1,0 +1,35 @@
+plugins {
+    id 'java-platform'
+    id "rocks.coffeenet.build.conventions"
+    id "rocks.coffeenet.build.deployed"
+}
+
+description = "Dependency management for CoffeeNet."
+
+javaPlatform {
+    allowDependencies()
+}
+
+dependencies {
+
+    constraints {
+        api project(":coffeenet-platform-domain")
+        api project(":coffeenet-autoconfigure")
+        api project(":coffeenet-actuator")
+        api project(":coffeenet-starter")
+        api project(":coffeenet-starter-discovery")
+        api project(":coffeenet-starter-monitoring")
+        api project(":coffeenet-starter-navigation")
+        api project(":coffeenet-starter-navigation-javascript")
+        api project(":coffeenet-starter-navigation-thymeleaf")
+        api project(":coffeenet-starter-security")
+
+        // External CoffeeNet dependencies
+        api "rocks.coffeenet:navigation-bar:${coffeeNetNavigationBarVersion}"
+
+        // External 3rd party dependencies
+    }
+
+    api platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    api platform("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+}

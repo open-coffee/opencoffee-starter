@@ -1,0 +1,15 @@
+plugins {
+    id 'java-library'
+    id "rocks.coffeenet.build.conventions"
+    id "rocks.coffeenet.build.deployed"
+}
+
+description = "Starter for CoffeeNet service and application discovery."
+
+dependencies {
+
+    api platform(project(':coffeenet-dependencies'))
+    api project(':coffeenet-starter')
+
+    api 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+}

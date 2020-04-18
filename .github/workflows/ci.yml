@@ -1,0 +1,68 @@
+name: "CoffeeNet: CI/CD"
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  pipeline:
+    name: Pipeline
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout project
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Fetch target branch for SonarQube branch analysis
+      run: |
+        git fetch --no-tags --prune origin \
+          +refs/heads/${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
+      if: github.event_name == 'pull_request'
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Verify Gradle Wrapper version
+      uses: gradle/wrapper-validation-action@v1
+    - name: Recreate Gradle wrapper cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('gradle/wrapper/**/*') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-wrapper-
+    - name: Recreate Gradle build/dependency cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.gradle/caches
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+    - name: Build and verify with Gradle
+      run: |
+        if [ ! -z $SONAR_TOKEN ]; then
+          ./gradlew --build-cache check sonarqube \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.organization=coffeenet \
+            -Dsonar.projectKey=rocks.coffeenet:coffeenet-starter
+        else
+          ./gradlew --build-cache check
+        fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: Publish development artifacts to Sonatype OSSRH
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      # Run only if current version is actually a development version
+      run: |
+        if ./scripts/is_development; then
+          ./gradlew -Psonatype build publishToSonatype
+        fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+        SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}

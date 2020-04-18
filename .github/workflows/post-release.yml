@@ -1,0 +1,34 @@
+name: "CoffeeNet: Post Release"
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  coffeenet_updater:
+    name: Update ${{ matrix.application }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        application:
+        - coffeenet/coffeenet-auth
+        - coffeenet/coffeenet-discovery
+        - coffeenet/coffeenet-config-server
+        - coffeenet/coffeenet-frontpage
+        - coffeenet/coffeenet-frontpage-plugin-rss
+        - coffeenet/coffeenet-frontpage-plugin-islieb
+        - coffeenet/coffeenet-frontpage-plugin-clock
+        - coffeenet/coffeenet-frontpage-plugin-api
+        - coffeenet/coffeenet-frontpage-plugin-influx
+        - coffeenet/example-projects
+    steps:
+    - name: Checkout project
+      uses: actions/checkout@v2
+    - name: Checkout ${{ matrix.application }}
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ matrix.application }}
+        path: target-application
+    - name: Update version dependency on ${{ matrix.application }}
+      run: |
+        echo "::warning::Not implemented yet"

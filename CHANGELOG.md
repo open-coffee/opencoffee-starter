@@ -5,25 +5,31 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.39.0]
 ### Changed
-- Restructure of modules (see root Readme.md)
-  - Add 'coffeenet-starter-build'
-  - Add 'coffeenet-starter-dependencies'
-- 'autoconfigure' is now 'coffeenet-autoconfigure'
-- 'starter-discovery' is now 'coffeenet-starter-discovery'
-- 'starter-logging' is now 'coffeenet-starter-logging'
-- 'starter-monitoring' is now 'coffeenet-starter-monitoring'
-- 'starter-navigation' is now 'coffeenet-starter-navigation'
-- 'starter-navigation-javascript' is now 'coffeenet-starter-navigation-javascript'
-- 'starter-navigation-thymeleaf' is now 'coffeenet-starter-navigation-thymeleaf'
-- 'starter-security' is now 'coffeenet-starter-security'
-- 'coffeenet-starter-parent' is now 'coffeenet-parent'
-- editorconfig fir JavaScript files
+- Move from Maven to Gradle based build
+  [\#70](https://github.com/coffeenet/coffeenet-starter/pull/70)
+  - Build logic is structured in `buildSrc` according to Gradle recommendations
+  - Only relevant dependencies are published now
+- Move build and release pipeline from Travis CI to GitHub actions
+  [\#58](https://github.com/coffeenet/coffeenet-starter/issues/58),
+  [\#63](https://github.com/coffeenet/coffeenet-starter/issues/63)
+- Restructure of modules (see root [README.md](./README.md]))
+  - Add `coffeenet-starter-dependencies` as dependency BOM
+  - `autoconfigure` is now `coffeenet-autoconfigure`
+  - `starter-discovery` is now `coffeenet-starter-discovery`
+  - `starter-logging` is now `coffeenet-starter-logging`
+  - `starter-monitoring` is now `coffeenet-starter-monitoring`
+  - `starter-navigation` is now `coffeenet-starter-navigation`
+  - `starter-navigation-javascript` is now `coffeenet-starter-navigation-javascript`
+  - `starter-navigation-thymeleaf` is now `coffeenet-starter-navigation-thymeleaf`
+  - `starter-security` is now `coffeenet-starter-security`
+- `.editorconfig` for JavaScript files
 
 ### Removed
-- 'maven-release-plugin'
-- Uploading releases to github
-- Remove logging starter
+- `maven-release-plugin`
+- Uploading release artifacts to GitHub
 
 ### Fixed
 - Do not leak distributionManagement information into the CoffeeNet Applications
@@ -325,36 +331,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Javascript Starter
 
 
-[Unreleased]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.38.2...HEAD
-[0.38.2]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.38.1...coffeenet-starter-0.38.2
-[0.38.1]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.38.0...coffeenet-starter-0.38.1
-[0.38.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.37.0...coffeenet-starter-0.38.0
-[0.37.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.36.0...coffeenet-starter-0.37.0
-[0.36.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.35.0...coffeenet-starter-0.36.0
-[0.35.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.34.0...coffeenet-starter-0.35.0
-[0.34.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.33.1...coffeenet-starter-0.34.0
-[0.33.1]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.33.0...coffeenet-starter-0.33.1
-[0.33.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.32.0...coffeenet-starter-0.33.0
-[0.32.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.31.0...coffeenet-starter-0.32.0
-[0.31.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.30.0...coffeenet-starter-0.31.0
-[0.30.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.29.0...coffeenet-starter-0.30.0
-[0.29.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.28.0...coffeenet-starter-0.29.0
-[0.28.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.27.1...coffeenet-starter-0.28.0
-[0.27.1]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.27.0...coffeenet-starter-0.27.1
-[0.27.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.26.0...coffeenet-starter-0.27.0
-[0.26.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.25.0...coffeenet-starter-0.26.0
-[0.25.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.24.0...coffeenet-starter-0.25.0
-[0.24.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.23.0...coffeenet-starter-0.24.0
-[0.23.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.22.1...coffeenet-starter-0.23.0
-[0.22.1]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.22.0...coffeenet-starter-0.22.1
-[0.22.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.21.0...coffeenet-starter-0.22.0
-[0.21.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.20.0...coffeenet-starter-0.21.0
-[0.20.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.19.0...coffeenet-starter-0.20.0
-[0.19.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.18.1...coffeenet-starter-0.19.0
-[0.18.1]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.18.0...coffeenet-starter-0.18.1
-[0.18.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.17.0...coffeenet-starter-0.18.0
-[0.17.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.16.2...coffeenet-starter-0.17.0
-[0.16.2]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.16.1...coffeenet-starter-0.16.2
-[0.16.1]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.16.0...coffeenet-starter-0.16.1
-[0.16.0]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.15.1...coffeenet-starter-0.16.0
-[0.15.1]: https://github.com/coffeenet/coffeenet-starter/compare/coffeenet-starter-0.15.0...coffeenet-starter-0.15.1
+[Unreleased]: https://github.com/coffeenet/coffeenet-starter/compare/v0.39.0...HEAD
+[0.39.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.38.2...v0.39.0
+[0.38.2]: https://github.com/coffeenet/coffeenet-starter/compare/v0.38.1...v0.38.2
+[0.38.1]: https://github.com/coffeenet/coffeenet-starter/compare/v0.38.0...v0.38.1
+[0.38.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.37.0...v0.38.0
+[0.37.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.36.0...v0.37.0
+[0.36.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.35.0...v0.36.0
+[0.35.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.34.0...v0.35.0
+[0.34.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.33.1...v0.34.0
+[0.33.1]: https://github.com/coffeenet/coffeenet-starter/compare/v0.33.0...v0.33.1
+[0.33.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.32.0...v0.33.0
+[0.32.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.31.0...v0.32.0
+[0.31.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.30.0...v0.31.0
+[0.30.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.29.0...v0.30.0
+[0.29.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.28.0...v0.29.0
+[0.28.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.27.1...v0.28.0
+[0.27.1]: https://github.com/coffeenet/coffeenet-starter/compare/v0.27.0...v0.27.1
+[0.27.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.26.0...v0.27.0
+[0.26.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.25.0...v0.26.0
+[0.25.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.24.0...v0.25.0
+[0.24.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.23.0...v0.24.0
+[0.23.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.22.1...v0.23.0
+[0.22.1]: https://github.com/coffeenet/coffeenet-starter/compare/v0.22.0...v0.22.1
+[0.22.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.21.0...v0.22.0
+[0.21.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.20.0...v0.21.0
+[0.20.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.19.0...v0.20.0
+[0.19.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.18.1...v0.19.0
+[0.18.1]: https://github.com/coffeenet/coffeenet-starter/compare/v0.18.0...v0.18.1
+[0.18.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.17.0...v0.18.0
+[0.17.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.16.2...v0.17.0
+[0.16.2]: https://github.com/coffeenet/coffeenet-starter/compare/v0.16.1...v0.16.2
+[0.16.1]: https://github.com/coffeenet/coffeenet-starter/compare/v0.16.0...v0.16.1
+[0.16.0]: https://github.com/coffeenet/coffeenet-starter/compare/v0.15.1...v0.16.0
+[0.15.1]: https://github.com/coffeenet/coffeenet-starter/compare/v0.15.0...v0.15.1
