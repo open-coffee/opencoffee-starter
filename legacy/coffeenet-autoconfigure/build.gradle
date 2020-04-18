@@ -8,7 +8,7 @@ plugins {
 description = "Auto-configuration for CoffeeNet features (Legacy)."
 
 dependencies {
-    api platform(project(':legacy:coffeenet-dependencies-legacy'))
+    api platform(project(':legacy:coffeenet-dependencies'))
 
     api 'org.slf4j:slf4j-api'
     api 'org.springframework.boot:spring-boot-autoconfigure'

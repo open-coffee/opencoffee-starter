@@ -7,8 +7,8 @@ description = "Starter for CoffeeNet to provide security and SSO (Legacy)."
 
 dependencies {
 
-    api platform(project(':legacy:coffeenet-dependencies-legacy'))
-    api project(':legacy:coffeenet-autoconfigure-legacy')
+    api platform(project(':legacy:coffeenet-dependencies'))
+    api project(':legacy:coffeenet-autoconfigure')
 
     api 'org.springframework.boot:spring-boot-starter-security'
     api 'org.springframework.security.oauth:spring-security-oauth2'

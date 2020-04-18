@@ -33,7 +33,7 @@ include "coffeenet-starter-navigation-thymeleaf"
 include "coffeenet-starter-security"
 
 // Legacy modules
-include 'legacy:coffeenet-dependencies-legacy'
-include 'legacy:coffeenet-actuator-legacy'
-include 'legacy:coffeenet-autoconfigure-legacy'
-include 'legacy:coffeenet-starter-security-legacy'
+include 'legacy:coffeenet-dependencies'
+include 'legacy:coffeenet-actuator'
+include 'legacy:coffeenet-autoconfigure'
+include 'legacy:coffeenet-starter-security'

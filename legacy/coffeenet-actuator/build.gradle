@@ -8,8 +8,8 @@ plugins {
 description = "Implementation for CoffeeNet specific health and metrics features (Legacy)."
 
 dependencies {
-    api platform(project(':legacy:coffeenet-dependencies-legacy'))
-    api project(":legacy:coffeenet-starter-security-legacy")
+    api platform(project(':legacy:coffeenet-dependencies'))
+    api project(":legacy:coffeenet-starter-security")
 
     api 'org.springframework.boot:spring-boot-actuator'
     api 'org.hibernate:hibernate-validator'

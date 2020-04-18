@@ -12,9 +12,9 @@ javaPlatform {
 dependencies {
 
     constraints {
-        api project(":legacy:coffeenet-actuator-legacy")
-        api project(":legacy:coffeenet-autoconfigure-legacy")
-        api project(":legacy:coffeenet-starter-security-legacy")
+        api project(":legacy:coffeenet-actuator")
+        api project(":legacy:coffeenet-autoconfigure")
+        api project(":legacy:coffeenet-starter-security")
         api 'rocks.coffeenet:navigation-bar:0.16.0'
     }
 
