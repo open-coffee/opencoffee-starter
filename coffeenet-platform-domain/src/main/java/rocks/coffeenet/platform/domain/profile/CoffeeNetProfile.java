@@ -1,5 +1,8 @@
 package rocks.coffeenet.platform.domain.profile;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.net.URL;
 
 
@@ -12,6 +15,7 @@ import java.net.URL;
  *
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
+@JsonSerialize(as = CoffeeNetProfile.class)
 public interface CoffeeNetProfile {
 
     static Builder withUniqueIdentifierAndName(String uniqueIdentifier, String name) {
@@ -27,36 +31,42 @@ public interface CoffeeNetProfile {
      * <p>This should be implemented in a privacy-aware way, mapping the authentication information in a one-way
      * fashion, so the originating authentication cannot be inferred.</p>
      */
+    @JsonProperty("id")
     String getUniqueIdentifier();
 
 
     /**
      * The name of this CoffeeNet profile. This MUST NOT return {@code null}.
      */
+    @JsonProperty("name")
     String getName();
 
 
     /**
      * The human readable name of this CoffeeNet profile. This MAY return {@code null}.
      */
+    @JsonProperty("human_readable_name")
     String getHumanReadableName();
 
 
     /**
      * An URL to a resource representation of this CoffeeNet profile. This MAY return {@code null}.
      */
+    @JsonProperty("profile_url")
     URL getProfileURL();
 
 
     /**
      * An URL to an image of this CoffeeNet profile. This MAY return {@code null}.
      */
+    @JsonProperty("picture_url")
     URL getPictureURL();
 
 
     /**
      * The email address of this CoffeeNet profile. This MAY return {@code null}.
      */
+    @JsonProperty("email")
     String getEmail();
 
     class Builder {

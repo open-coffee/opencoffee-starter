@@ -13,6 +13,9 @@ dependencies {
     compileOnly("com.fasterxml.jackson.core:jackson-annotations") {
         because "Allow deserialization of platform entities to JSON"
     }
+    compileOnly("com.fasterxml.jackson.core:jackson-databind") {
+        because "Allow serialization of platform entities to JSON"
+    }
 
     // Test dependencies
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
