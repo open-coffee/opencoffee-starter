@@ -1,5 +1,8 @@
 package rocks.coffeenet.platform.domain.app;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.net.URL;
 
 
@@ -9,6 +12,7 @@ import java.net.URL;
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  * @since  2.0.0
  */
+@JsonSerialize(as = CoffeeNetApplication.class)
 public interface CoffeeNetApplication {
 
     static Builder withNameAndApplicationUrl(String name, URL applicationUrl) {
@@ -20,6 +24,7 @@ public interface CoffeeNetApplication {
     /**
      * The technical name of this CoffeeNet application. This MUST NOT return {@code null}.
      */
+    @JsonProperty("name")
     String getName();
 
 
@@ -29,18 +34,21 @@ public interface CoffeeNetApplication {
      * <p>It is meant for UI display purposes and can be prepared for I18N according to external factors like browser
      * language headers or authenticated user.</p>
      */
+    @JsonProperty("human_readable_name")
     String getHumanReadableName();
 
 
     /**
      * The base URL of this CoffeeNet application. This MUST NOT return {@code null}.
      */
+    @JsonProperty("application_url")
     URL getApplicationURL();
 
 
     /**
      * The icon URL of this CoffeeNet application. This MAY return {@code null}.
      */
+    @JsonProperty("icon_url")
     URL getIconURL();
 
     class Builder {
