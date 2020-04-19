@@ -58,7 +58,7 @@ public class OAuth2AuthenticationTokenProfileMapper implements PrincipalCoffeeNe
 
 
     @Override
-    public boolean supports(Class<?> clazz) {
+    public boolean supports(Class<? extends Principal> clazz) {
 
         return OAuth2AuthenticationToken.class.isAssignableFrom(clazz);
     }

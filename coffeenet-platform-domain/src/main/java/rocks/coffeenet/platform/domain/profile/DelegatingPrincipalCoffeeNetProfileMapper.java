@@ -44,7 +44,7 @@ public class DelegatingPrincipalCoffeeNetProfileMapper implements PrincipalCoffe
 
 
     @Override
-    public boolean supports(Class<?> clazz) {
+    public boolean supports(Class<? extends Principal> clazz) {
 
         return mappers.stream().anyMatch(mapper -> mapper.supports(clazz));
     }

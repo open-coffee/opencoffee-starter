@@ -29,7 +29,7 @@ public interface PrincipalCoffeeNetProfileMapper {
     /**
      * Determine if the passed type is supported by this mapper.
      */
-    default boolean supports(Class<?> clazz) {
+    default boolean supports(Class<? extends Principal> clazz) {
 
         return Principal.class.isAssignableFrom(clazz);
     }

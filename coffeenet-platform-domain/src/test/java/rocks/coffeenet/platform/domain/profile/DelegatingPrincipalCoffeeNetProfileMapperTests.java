@@ -124,7 +124,7 @@ class DelegatingPrincipalCoffeeNetProfileMapperTests {
 
 
         @Override
-        public boolean supports(Class<?> clazz) {
+        public boolean supports(Class<? extends Principal> clazz) {
 
             return TestPrincipals.ExamplePrincipal.class.isAssignableFrom(clazz);
         }
@@ -142,7 +142,7 @@ class DelegatingPrincipalCoffeeNetProfileMapperTests {
 
 
         @Override
-        public boolean supports(Class<?> clazz) {
+        public boolean supports(Class<? extends Principal> clazz) {
 
             return TestPrincipals.DifferentExamplePrincipal.class.isAssignableFrom(clazz);
         }
