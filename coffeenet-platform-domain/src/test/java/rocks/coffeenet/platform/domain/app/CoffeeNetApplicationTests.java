@@ -12,15 +12,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
-@DisplayName("DefaultCoffeeNetApplication")
-class DefaultCoffeeNetApplicationTests {
+@DisplayName("CoffeeNetApplication")
+class CoffeeNetApplicationTests {
 
     @Test
     @DisplayName("should construct a valid object with only the required arguments")
     void simpleConstructionWithOnlyRequiredArguments() throws MalformedURLException {
 
         // Given & When
-        CoffeeNetApplication application = DefaultCoffeeNetApplication
+        CoffeeNetApplication application = CoffeeNetApplication
                 .withNameAndApplicationUrl("application", new URL("http://example.com"))
                 .build();
 
@@ -39,7 +39,7 @@ class DefaultCoffeeNetApplicationTests {
     void complexConstruction() throws MalformedURLException {
 
         // Given & When
-        CoffeeNetApplication application = DefaultCoffeeNetApplication
+        CoffeeNetApplication application = CoffeeNetApplication
                 .withNameAndApplicationUrl("application", new URL("http://example.com"))
                 .withHumanReadableName("The Application")
                 .withIconUrl(new URL("http://example.com/appicon.png"))

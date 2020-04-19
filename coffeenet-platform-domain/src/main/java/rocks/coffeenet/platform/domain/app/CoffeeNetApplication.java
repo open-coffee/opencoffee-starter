@@ -11,6 +11,12 @@ import java.net.URL;
  */
 public interface CoffeeNetApplication {
 
+    static Builder withNameAndApplicationUrl(String name, URL applicationUrl) {
+
+        return new Builder(name, applicationUrl);
+    }
+
+
     /**
      * The technical name of this CoffeeNet application. This MUST NOT return {@code null}.
      *
@@ -44,4 +50,44 @@ public interface CoffeeNetApplication {
      * @return  an URL to an icon for this application, if present.
      */
     URL getIconURL();
+
+    class Builder {
+
+        private final String name;
+        private final URL applicationUrl;
+
+        private String humanReadableName;
+        private URL iconUrl;
+
+        public Builder(String name, URL applicationUrl) {
+
+            this.name = name;
+            this.applicationUrl = applicationUrl;
+        }
+
+        public Builder withHumanReadableName(String humanReadableName) {
+
+            this.humanReadableName = humanReadableName;
+
+            return this;
+        }
+
+
+        public Builder withIconUrl(URL iconUrl) {
+
+            this.iconUrl = iconUrl;
+
+            return this;
+        }
+
+
+        public CoffeeNetApplication build() {
+
+            DefaultCoffeeNetApplication application = new DefaultCoffeeNetApplication(name, applicationUrl);
+            application.setHumanReadableName(humanReadableName);
+            application.setIconUrl(iconUrl);
+
+            return application;
+        }
+    }
 }
