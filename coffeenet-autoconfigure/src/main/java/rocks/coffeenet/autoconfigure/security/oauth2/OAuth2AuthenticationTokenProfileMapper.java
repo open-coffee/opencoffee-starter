@@ -8,7 +8,6 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import rocks.coffeenet.autoconfigure.security.HashUtils;
 
 import rocks.coffeenet.platform.domain.profile.CoffeeNetProfile;
-import rocks.coffeenet.platform.domain.profile.DefaultCoffeeNetProfile;
 import rocks.coffeenet.platform.domain.profile.PrincipalCoffeeNetProfileMapper;
 
 import java.net.MalformedURLException;
@@ -45,7 +44,7 @@ public class OAuth2AuthenticationTokenProfileMapper implements PrincipalCoffeeNe
         String uniqueId = HashUtils.sha256hex(oidcUser.getSubject());
         String name = oidcUser.getName();
 
-        DefaultCoffeeNetProfile.Builder builder = DefaultCoffeeNetProfile.withUniqueIdentifierAndName(uniqueId, name);
+        CoffeeNetProfile.Builder builder = CoffeeNetProfile.withUniqueIdentifierAndName(uniqueId, name);
 
         PropertyMapper mapper = PropertyMapper.get();
         mapper.from(oidcUser::getFullName).whenNonNull().to(builder::withHumanReadableName);

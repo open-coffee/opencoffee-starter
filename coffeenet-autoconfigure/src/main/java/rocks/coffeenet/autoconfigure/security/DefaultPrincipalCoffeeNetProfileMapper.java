@@ -3,7 +3,6 @@ package rocks.coffeenet.autoconfigure.security;
 import org.springframework.util.StringUtils;
 
 import rocks.coffeenet.platform.domain.profile.CoffeeNetProfile;
-import rocks.coffeenet.platform.domain.profile.DefaultCoffeeNetProfile;
 import rocks.coffeenet.platform.domain.profile.PrincipalCoffeeNetProfileMapper;
 
 import java.security.Principal;
@@ -35,7 +34,7 @@ public class DefaultPrincipalCoffeeNetProfileMapper implements PrincipalCoffeeNe
         // personal information (like username) to work with identifying users.
         String uniqueId = HashUtils.sha256hex(name);
 
-        return DefaultCoffeeNetProfile.withUniqueIdentifierAndName(uniqueId, name)
+        return CoffeeNetProfile.withUniqueIdentifierAndName(uniqueId, name)
             .withHumanReadableName(name)
             .build();
     }

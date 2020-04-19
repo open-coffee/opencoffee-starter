@@ -14,6 +14,12 @@ import java.net.URL;
  */
 public interface CoffeeNetProfile {
 
+    static Builder withUniqueIdentifierAndName(String uniqueIdentifier, String name) {
+
+        return new Builder(uniqueIdentifier, name);
+    }
+
+
     /**
      * An unique identifier of this CoffeeNet profile, derived from the authenticated principal. This MUST NOT return
      * {@code null}.
@@ -52,4 +58,64 @@ public interface CoffeeNetProfile {
      * The email address of this CoffeeNet profile. This MAY return {@code null}.
      */
     String getEmail();
+
+    class Builder {
+
+        private final String uniqueIdentifier;
+        private final String name;
+
+        private String humanReadableName;
+        private URL profileURL;
+        private URL pictureURL;
+        private String email;
+
+        public Builder(String uniqueIdentifier, String name) {
+
+            this.uniqueIdentifier = uniqueIdentifier;
+            this.name = name;
+        }
+
+        public Builder withHumanReadableName(String humanReadableName) {
+
+            this.humanReadableName = humanReadableName;
+
+            return this;
+        }
+
+
+        public Builder withProfileURL(URL profileURL) {
+
+            this.profileURL = profileURL;
+
+            return this;
+        }
+
+
+        public Builder withPictureURL(URL pictureURL) {
+
+            this.pictureURL = pictureURL;
+
+            return this;
+        }
+
+
+        public Builder withEmail(String email) {
+
+            this.email = email;
+
+            return this;
+        }
+
+
+        public CoffeeNetProfile build() {
+
+            DefaultCoffeeNetProfile profile = new DefaultCoffeeNetProfile(uniqueIdentifier, name);
+            profile.setHumanReadableName(humanReadableName);
+            profile.setProfileURL(profileURL);
+            profile.setPictureURL(pictureURL);
+            profile.setEmail(email);
+
+            return profile;
+        }
+    }
 }

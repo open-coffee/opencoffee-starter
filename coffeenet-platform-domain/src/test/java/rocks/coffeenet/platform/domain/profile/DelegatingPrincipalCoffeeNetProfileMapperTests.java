@@ -119,7 +119,7 @@ class DelegatingPrincipalCoffeeNetProfileMapperTests {
 
             TestPrincipals.ExamplePrincipal p = (TestPrincipals.ExamplePrincipal) principal;
 
-            return DefaultCoffeeNetProfile.withUniqueIdentifierAndName(p.getName(), p.getName()).build();
+            return CoffeeNetProfile.withUniqueIdentifierAndName(p.getName(), p.getName()).build();
         }
 
 
@@ -137,7 +137,7 @@ class DelegatingPrincipalCoffeeNetProfileMapperTests {
 
             TestPrincipals.DifferentExamplePrincipal p = (TestPrincipals.DifferentExamplePrincipal) principal;
 
-            return DefaultCoffeeNetProfile.withUniqueIdentifierAndName(p.getName(), p.getName()).build();
+            return CoffeeNetProfile.withUniqueIdentifierAndName(p.getName(), p.getName()).build();
         }
 
 

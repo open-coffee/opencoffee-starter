@@ -30,7 +30,7 @@ class PrincipalCoffeeNetProfileMapperTests {
         @Override
         public CoffeeNetProfile map(Principal principal) {
 
-            return DefaultCoffeeNetProfile.withUniqueIdentifierAndName("test", "test").build();
+            return CoffeeNetProfile.withUniqueIdentifierAndName("test", "test").build();
         }
     }
 }
