@@ -8,7 +8,7 @@ plugins {
 description = "Domain objects for CoffeeNet applications."
 
 dependencies {
-    api platform(project(":coffeenet-dependencies"))
+    compileOnly platform(project(":coffeenet-dependencies"))
 
     compileOnly("com.fasterxml.jackson.core:jackson-annotations") {
         because "Allow deserialization of platform entities to JSON"
@@ -18,6 +18,7 @@ dependencies {
     }
 
     // Test dependencies
+    testImplementation platform(project(":coffeenet-dependencies"))
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
