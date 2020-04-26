@@ -21,7 +21,7 @@ import rocks.coffeenet.platform.domain.profile.CoffeeNetProfile;
  */
 @SpringBootApplication
 @Controller
-public class TestWebApplication {
+public class MvcTestWebApplication {
 
     @GetMapping("/with-profile")
     public String withProfile(Model model, CoffeeNetProfile profile) {

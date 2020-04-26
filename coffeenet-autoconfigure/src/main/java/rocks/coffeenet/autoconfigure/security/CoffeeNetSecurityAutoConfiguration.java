@@ -1,4 +1,4 @@
-package rocks.coffeenet.autoconfigure.security.servlet;
+package rocks.coffeenet.autoconfigure.security;
 
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

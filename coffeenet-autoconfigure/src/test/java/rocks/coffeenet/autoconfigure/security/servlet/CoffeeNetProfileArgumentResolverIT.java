@@ -16,9 +16,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import org.springframework.web.context.WebApplicationContext;
 
+import rocks.coffeenet.autoconfigure.security.ProfileMapperTestConfiguration;
+
 import rocks.coffeenet.platform.domain.profile.CoffeeNetProfile;
 
-import rocks.coffeenet.test.app.TestWebApplication;
+import rocks.coffeenet.test.app.MvcTestWebApplication;
 
 import static org.hamcrest.Matchers.isA;
 import static org.hamcrest.Matchers.nullValue;
@@ -34,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
 @SpringBootTest
-@ContextConfiguration(classes = { ProfileMapperTestConfiguration.class, TestWebApplication.class })
+@ContextConfiguration(classes = { ProfileMapperTestConfiguration.class, MvcTestWebApplication.class })
 @DisplayName("CoffeeNetProfileArgumentResolver")
 class CoffeeNetProfileArgumentResolverIT {
 

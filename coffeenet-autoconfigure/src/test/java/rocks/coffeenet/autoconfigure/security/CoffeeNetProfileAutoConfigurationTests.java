@@ -1,4 +1,4 @@
-package rocks.coffeenet.autoconfigure.security.servlet;
+package rocks.coffeenet.autoconfigure.security;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,8 +7,7 @@ import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.context.runner.WebApplicationContextRunner;
 
-import rocks.coffeenet.autoconfigure.security.DefaultPrincipalCoffeeNetProfileMapper;
-import rocks.coffeenet.autoconfigure.security.servlet.CoffeeNetProfileAutoConfiguration.CoffeeNetProfileArgumentResolverConfigurer;
+import rocks.coffeenet.autoconfigure.security.CoffeeNetProfileAutoConfiguration.CoffeeNetProfileArgumentResolverConfigurer;
 
 import rocks.coffeenet.platform.domain.profile.DelegatingPrincipalCoffeeNetProfileMapper;
 
