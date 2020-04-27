@@ -15,7 +15,10 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 
 import rocks.coffeenet.autoconfigure.security.CoffeeNetSecurityAutoConfiguration;
 
+import java.util.Collections;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 /**
@@ -44,6 +47,22 @@ class ReactiveServerHttpSecurityPostProcessorTests {
             .run((context) ->
                     assertThat(context).getBean(TestCustomizer.class).isNotNull()
                     .satisfies(customizer -> assertThat(customizer.customized).isTrue()));
+    }
+
+    @Test
+    @DisplayName("should error out on null argument to constructor")
+    void nullArgumentToConstructor() {
+        assertThatThrownBy(() -> new ReactiveServerHttpSecurityPostProcessor(null))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("must not be null");
+    }
+
+    @Test
+    @DisplayName("should error out on null argument to constructor")
+    void emptyArgumentToConstructor() {
+        assertThatThrownBy(() -> new ReactiveServerHttpSecurityPostProcessor(Collections.emptyList()))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("must not be empty");
     }
 
     @Configuration
