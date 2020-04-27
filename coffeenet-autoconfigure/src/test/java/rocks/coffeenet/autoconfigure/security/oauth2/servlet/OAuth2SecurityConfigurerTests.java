@@ -16,7 +16,8 @@ import org.springframework.security.oauth2.client.web.OAuth2AuthorizationCodeGra
 import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.FilterChainProxy;
 
-import rocks.coffeenet.autoconfigure.security.servlet.CoffeeNetSecurityAutoConfiguration;
+import rocks.coffeenet.autoconfigure.security.CoffeeNetSecurityAutoConfiguration;
+import rocks.coffeenet.autoconfigure.security.oauth2.OAuth2TextFixtures;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,9 +47,7 @@ class OAuth2SecurityConfigurerTests {
 
         //J-
         //@formatter:off
-        contextRunner.withPropertyValues(
-                "spring.security.oauth2.client.registration.github.client-id=example-client-id",
-                "spring.security.oauth2.client.registration.github.client-secret=example-client-secret")
+        contextRunner.withPropertyValues(OAuth2TextFixtures.OAUTH_GITHUB_PROPERTIES)
             .run(context ->
                     assertThat(context)
                         .getBean(FilterChainProxy.class)

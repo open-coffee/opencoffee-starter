@@ -16,25 +16,24 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import org.springframework.web.context.WebApplicationContext;
 
-import rocks.coffeenet.platform.domain.profile.CoffeeNetProfile;
+import rocks.coffeenet.autoconfigure.security.ProfileMapperTestConfiguration;
 
-import rocks.coffeenet.test.app.TestWebApplication;
+import rocks.coffeenet.test.app.servlet.MvcTestWebApplication;
 
-import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
-import static org.springframework.test.web.servlet.ResultMatcher.matchAll;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 
 /**
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
-@SpringBootTest
-@ContextConfiguration(classes = { ProfileMapperTestConfiguration.class, TestWebApplication.class })
+@SpringBootTest(properties = "spring.main.web-application-type=servlet")
+@ContextConfiguration(classes = { ProfileMapperTestConfiguration.class, MvcTestWebApplication.class })
 @DisplayName("CoffeeNetProfileArgumentResolver")
 class CoffeeNetProfileArgumentResolverIT {
 
@@ -60,15 +59,8 @@ class CoffeeNetProfileArgumentResolverIT {
 
         // FIXME: Find a good way to test this.
 
-        //J-
-        //@formatter:off
         mvc.perform(get("/with-profile"))
-            .andExpect(matchAll(
-                model().attributeExists("profile"),
-                model().attribute("profile", isA(CoffeeNetProfile.class))
-            ));
-        //@formatter:on
-        //J+
+            .andExpect(jsonPath("profile.name", is("example")));
     }
 
 
@@ -78,13 +70,7 @@ class CoffeeNetProfileArgumentResolverIT {
 
         // FIXME: Find a good way to test this.
 
-        //J-
-        //@formatter:off
         mvc.perform(get("/with-profile"))
-            .andExpect(matchAll(
-                model().attribute("profile", nullValue())
-            ));
-        //@formatter:on
-        //J+
+            .andExpect(jsonPath("profile", is(nullValue())));
     }
 }

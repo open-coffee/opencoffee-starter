@@ -1,4 +1,4 @@
-package rocks.coffeenet.autoconfigure.security.servlet;
+package rocks.coffeenet.autoconfigure.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +13,10 @@ import rocks.coffeenet.platform.domain.profile.PrincipalCoffeeNetProfileMapper;
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
 @Configuration
-class ProfileMapperTestConfiguration {
+public class ProfileMapperTestConfiguration {
 
     @Bean
-    PrincipalCoffeeNetProfileMapper testMapper() {
+    public PrincipalCoffeeNetProfileMapper testMapper() {
 
         return p -> CoffeeNetProfile.withUniqueIdentifierAndName("id", p.getName()).build();
     }
