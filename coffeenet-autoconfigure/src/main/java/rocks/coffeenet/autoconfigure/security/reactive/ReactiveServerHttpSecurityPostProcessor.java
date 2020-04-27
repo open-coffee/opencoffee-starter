@@ -1,6 +1,5 @@
 package rocks.coffeenet.autoconfigure.security.reactive;
 
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -35,7 +34,7 @@ public class ReactiveServerHttpSecurityPostProcessor implements BeanPostProcesso
     }
 
     @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+    public Object postProcessAfterInitialization(Object bean, String beanName) {
 
         if (bean instanceof ServerHttpSecurity) {
             ServerHttpSecurity http = (ServerHttpSecurity) bean;
