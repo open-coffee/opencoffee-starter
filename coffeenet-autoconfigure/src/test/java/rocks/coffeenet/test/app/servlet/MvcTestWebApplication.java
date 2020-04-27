@@ -1,4 +1,4 @@
-package rocks.coffeenet.test.app;
+package rocks.coffeenet.test.app.servlet;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,29 +7,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.ui.Model;
-
-import org.springframework.web.bind.annotation.GetMapping;
-
-import rocks.coffeenet.platform.domain.profile.CoffeeNetProfile;
+import rocks.coffeenet.test.app.AbstractTestWebApplication;
 
 
 /**
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
 @SpringBootApplication
-@Controller
-public class MvcTestWebApplication {
-
-    @GetMapping("/with-profile")
-    public String withProfile(Model model, CoffeeNetProfile profile) {
-
-        model.addAttribute("profile", profile);
-
-        return "result";
-    }
+@RestController
+public class MvcTestWebApplication extends AbstractTestWebApplication {
 
     @Configuration
     public class SecurityConfig extends WebSecurityConfigurerAdapter {
