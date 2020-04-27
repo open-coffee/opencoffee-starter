@@ -22,6 +22,7 @@ import reactor.core.publisher.Mono;
 
 import rocks.coffeenet.autoconfigure.security.CoffeeNetSecurityAutoConfiguration;
 
+import rocks.coffeenet.autoconfigure.security.oauth2.OAuth2TextFixtures;
 import rocks.coffeenet.test.app.reactive.ReactiveTestWebApplication;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -52,9 +53,7 @@ class ReactiveOAuth2SecurityCustomizerTests {
 
         //J-
         //@formatter:off
-        contextRunner.withPropertyValues(
-            "spring.security.oauth2.client.registration.github.client-id=example-client-id",
-            "spring.security.oauth2.client.registration.github.client-secret=example-client-secret")
+        contextRunner.withPropertyValues(OAuth2TextFixtures.OAUTH_GITHUB_PROPERTIES)
             .run(context ->
                 assertThat(context)
                     .getBean(SecurityWebFilterChain.class)
