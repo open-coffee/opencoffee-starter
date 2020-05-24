@@ -92,7 +92,9 @@ public class ConventionsPlugin implements Plugin<Project> {
                         Map<String, Object> attributes = new TreeMap<>();
                         attributes.put("Automatic-Module-Name", project.getName().replace("-", "."));
                         attributes.put("Build-Jdk-Spec", convention.getSourceCompatibility());
-                        attributes.put("Implementation-Title", project.getDescription());
+                        if (project.getDescription() != null) {
+                            attributes.put("Implementation-Title", project.getDescription());
+                        }
                         attributes.put("Implementation-Version", project.getVersion());
                         attributes.put("Implementation-Vendor", "CoffeeNet");
                         manifest.attributes(attributes);
