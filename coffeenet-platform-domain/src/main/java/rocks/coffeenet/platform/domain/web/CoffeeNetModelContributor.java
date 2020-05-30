@@ -9,9 +9,9 @@ package rocks.coffeenet.platform.domain.web;
 public interface CoffeeNetModelContributor {
 
     /**
-     * Contribute parameters.
+     * Contribute details to the final {@link CoffeeNetModel} via a builder pattern.
      *
-     * @param  builder
+     * @param  builder  a builder to add details to the model.
      */
     void contribute(CoffeeNetModel.Builder builder);
 }

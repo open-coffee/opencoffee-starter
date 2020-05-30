@@ -28,6 +28,10 @@ public interface PrincipalCoffeeNetProfileMapper {
 
     /**
      * Determine if the passed type is supported by this mapper.
+     *
+     * @param  clazz  a {@link Principal} subclass
+     *
+     * @return  {@code true} if the {@link PrincipalCoffeeNetProfileMapper} supports mapping this class.
      */
     default boolean supports(Class<? extends Principal> clazz) {
 

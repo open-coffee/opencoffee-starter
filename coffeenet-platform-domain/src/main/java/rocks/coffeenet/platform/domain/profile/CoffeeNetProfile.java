@@ -30,6 +30,8 @@ public interface CoffeeNetProfile {
      *
      * <p>This should be implemented in a privacy-aware way, mapping the authentication information in a one-way
      * fashion, so the originating authentication cannot be inferred.</p>
+     *
+     * @return  a unique identifier for this profile.
      */
     @JsonProperty("id")
     String getUniqueIdentifier();
@@ -37,6 +39,8 @@ public interface CoffeeNetProfile {
 
     /**
      * The name of this CoffeeNet profile. This MUST NOT return {@code null}.
+     *
+     * @return  a (possibly technical) name for this profile.
      */
     @JsonProperty("name")
     String getName();
@@ -44,6 +48,8 @@ public interface CoffeeNetProfile {
 
     /**
      * The human readable name of this CoffeeNet profile. This MAY return {@code null}.
+     *
+     * @return  a human readable name for this profile, if present.
      */
     @JsonProperty("human_readable_name")
     String getHumanReadableName();
@@ -51,6 +57,8 @@ public interface CoffeeNetProfile {
 
     /**
      * An URL to a resource representation of this CoffeeNet profile. This MAY return {@code null}.
+     *
+     * @return  an URL to a resource representing this profile, if present.
      */
     @JsonProperty("profile_url")
     URL getProfileURL();
@@ -58,6 +66,8 @@ public interface CoffeeNetProfile {
 
     /**
      * An URL to an image of this CoffeeNet profile. This MAY return {@code null}.
+     *
+     * @return  an URL to an avatar image for this profile, if present.
      */
     @JsonProperty("picture_url")
     URL getPictureURL();
@@ -65,6 +75,8 @@ public interface CoffeeNetProfile {
 
     /**
      * The email address of this CoffeeNet profile. This MAY return {@code null}.
+     *
+     * @return  an email address for this profile, if present.
      */
     @JsonProperty("email")
     String getEmail();

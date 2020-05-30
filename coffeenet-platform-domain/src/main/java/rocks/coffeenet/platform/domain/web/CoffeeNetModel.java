@@ -79,6 +79,11 @@ public class CoffeeNetModel extends AbstractMap<String, Object> {
 
         /**
          * Contribute a view model property using given {@code key} and {@code value}.
+         *
+         * @param  key  the details key.
+         * @param  value  the details value.
+         *
+         * @return  the builder.
          */
         public Builder withDetail(String key, Object value) {
 
@@ -90,6 +95,10 @@ public class CoffeeNetModel extends AbstractMap<String, Object> {
 
         /**
          * Contribute multiple view model properties given the contents of {@code details}.
+         *
+         * @param  details  a map with additional details.
+         *
+         * @return  the builder.
          */
         public Builder withDetails(Map<String, Object> details) {
 
@@ -101,6 +110,8 @@ public class CoffeeNetModel extends AbstractMap<String, Object> {
 
         /**
          * Create a new {@link CoffeeNetModel} instance based on the state of this builder.
+         *
+         * @return  the final model.
          */
         public CoffeeNetModel build() {
 
