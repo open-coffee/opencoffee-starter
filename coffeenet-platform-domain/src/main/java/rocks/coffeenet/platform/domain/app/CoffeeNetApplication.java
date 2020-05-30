@@ -73,7 +73,7 @@ public interface CoffeeNetApplication {
      * @return  a (possibly empty) set of authorities.
      */
     @JsonProperty("authorities")
-    @Deprecated(since = "2.0.0", forRemoval = true)
+    @Deprecated
     Set<String> getAuthorities();
 
     class Builder {
