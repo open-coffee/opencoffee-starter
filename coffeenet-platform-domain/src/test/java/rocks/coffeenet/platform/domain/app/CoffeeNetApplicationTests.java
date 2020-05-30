@@ -43,6 +43,7 @@ class CoffeeNetApplicationTests {
                 .withNameAndApplicationUrl("application", new URL("http://example.com"))
                 .withHumanReadableName("The Application")
                 .withIconUrl(new URL("http://example.com/appicon.png"))
+                .withAuthorities("ROLE1", "ROLE2")
                 .build();
 
         // Then
@@ -58,5 +59,8 @@ class CoffeeNetApplicationTests {
         assertThat(application).extracting(CoffeeNetApplication::getIconURL)
             .isNotNull()
             .isEqualTo(new URL("http://example.com/appicon.png"));
+        assertThat(application.getAuthorities())
+            .isNotNull()
+            .containsExactlyInAnyOrder("ROLE2", "ROLE1");
     }
 }

@@ -5,6 +5,13 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.net.URL;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
+
 
 /**
  * General interface describing an user-facing application in the CoffeeNet platform.
@@ -59,6 +66,16 @@ public interface CoffeeNetApplication {
     @JsonProperty("icon_url")
     URL getIconURL();
 
+
+    /**
+     * The set of authorities (as a {@link String}) that are needed to access this CoffeeNet application.
+     *
+     * @return  a (possibly empty) set of authorities.
+     */
+    @JsonProperty("authorities")
+    @Deprecated(since = "2.0.0", forRemoval = true)
+    Set<String> getAuthorities();
+
     class Builder {
 
         private final String name;
@@ -66,6 +83,8 @@ public interface CoffeeNetApplication {
 
         private String humanReadableName;
         private URL iconUrl;
+
+        private Set<String> authorities = new TreeSet<>();
 
         public Builder(String name, URL applicationUrl) {
 
@@ -89,11 +108,36 @@ public interface CoffeeNetApplication {
         }
 
 
+        public Builder withAuthority(String authority) {
+
+            this.authorities.add(authority);
+
+            return this;
+        }
+
+
+        public Builder withAuthorities(String... authorities) {
+
+            return withAuthorities(Arrays.asList(authorities));
+        }
+
+
+        public Builder withAuthorities(Collection<String> authorities) {
+
+            for (String authority : Objects.requireNonNull(authorities)) {
+                withAuthority(authority);
+            }
+
+            return this;
+        }
+
+
         public CoffeeNetApplication build() {
 
             DefaultCoffeeNetApplication application = new DefaultCoffeeNetApplication(name, applicationUrl);
             application.setHumanReadableName(humanReadableName);
             application.setIconUrl(iconUrl);
+            application.setAuthorities(Collections.unmodifiableSet(new TreeSet<>(authorities)));
 
             return application;
         }

@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import java.net.URL;
 
+import java.util.Collections;
+import java.util.Set;
+
 
 /**
  * Simple default implementation of {@link CoffeeNetApplication}. Instances are created only via a builder pattern with
@@ -20,6 +23,8 @@ class DefaultCoffeeNetApplication implements CoffeeNetApplication, Serializable 
 
     private String humanReadableName;
     private URL iconUrl;
+
+    private Set<String> authorities = Collections.emptySet();
 
     DefaultCoffeeNetApplication(String name, URL applicationUrl) {
 
@@ -64,5 +69,18 @@ class DefaultCoffeeNetApplication implements CoffeeNetApplication, Serializable 
     void setIconUrl(URL iconUrl) {
 
         this.iconUrl = iconUrl;
+    }
+
+
+    @Override
+    public Set<String> getAuthorities() {
+
+        return authorities;
+    }
+
+
+    void setAuthorities(Set<String> authorities) {
+
+        this.authorities = authorities;
     }
 }
