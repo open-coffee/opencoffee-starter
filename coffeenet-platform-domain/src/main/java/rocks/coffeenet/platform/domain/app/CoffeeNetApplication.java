@@ -7,7 +7,6 @@ import java.net.URL;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
@@ -136,7 +135,7 @@ public interface CoffeeNetApplication {
             DefaultCoffeeNetApplication application = new DefaultCoffeeNetApplication(name, applicationUrl);
             application.setHumanReadableName(humanReadableName);
             application.setIconUrl(iconUrl);
-            application.setAuthorities(Collections.unmodifiableSet(new TreeSet<>(authorities)));
+            application.setAuthorities(authorities);
 
             return application;
         }

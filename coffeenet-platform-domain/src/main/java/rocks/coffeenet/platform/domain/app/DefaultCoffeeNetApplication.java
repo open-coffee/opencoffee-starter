@@ -6,6 +6,7 @@ import java.net.URL;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.TreeSet;
 
 
 /**
@@ -81,6 +82,6 @@ class DefaultCoffeeNetApplication implements CoffeeNetApplication, Serializable 
 
     void setAuthorities(Set<String> authorities) {
 
-        this.authorities = authorities;
+        this.authorities = Collections.unmodifiableSet(new TreeSet<>(authorities));
     }
 }
