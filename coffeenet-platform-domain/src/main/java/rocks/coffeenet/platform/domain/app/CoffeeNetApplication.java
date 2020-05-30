@@ -80,11 +80,10 @@ public interface CoffeeNetApplication {
 
         private final String name;
         private final URL applicationUrl;
+        private final Set<String> authorities = new TreeSet<>();
 
         private String humanReadableName;
         private URL iconUrl;
-
-        private Set<String> authorities = new TreeSet<>();
 
         public Builder(String name, URL applicationUrl) {
 
