@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @since  2.0.0
  */
 @FunctionalInterface
-public interface CoffeeNetApplications extends Supplier<List<CoffeeNetApplication>> {
+public interface CoffeeNetApplications {
 
     /**
      * A list of available CoffeeNet applications.
@@ -24,10 +24,7 @@ public interface CoffeeNetApplications extends Supplier<List<CoffeeNetApplicatio
      *
      * @return  the available applications.
      */
-    default List<CoffeeNetApplication> getApplications() {
-
-        return get();
-    }
+    List<CoffeeNetApplication> getApplications();
 
 
     /**
