@@ -70,6 +70,8 @@ public interface CoffeeNetApplication {
      * The set of authorities (as a {@link String}) that are needed to access this CoffeeNet application.
      *
      * @return  a (possibly empty) set of authorities.
+     *
+     * @deprecated  2.0.0
      */
     @JsonProperty("authorities")
     @Deprecated

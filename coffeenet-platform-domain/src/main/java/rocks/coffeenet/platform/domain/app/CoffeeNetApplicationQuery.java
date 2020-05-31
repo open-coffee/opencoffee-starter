@@ -27,6 +27,8 @@ public interface CoffeeNetApplicationQuery {
      * Authorities to filter for.
      *
      * @return  a set of authorities.
+     *
+     * @deprecated  2.0.0
      */
     @Deprecated
     Set<String> getAuthorities();
