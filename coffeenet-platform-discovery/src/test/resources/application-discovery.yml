@@ -1,0 +1,18 @@
+---
+spring:
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            example-app:
+            - uri: https://app.example.com
+              metadata:
+                discovery.coffeenet.rocks/allowed-authorties: ROLE_ADMIN
+            another-app:
+            - uri: https://another.example.com
+              metadata:
+                allowedRoles: ROLE_ANOTHER
+            broken-uri:
+            - uri: app://broken-uri
+

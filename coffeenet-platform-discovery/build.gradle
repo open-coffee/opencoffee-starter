@@ -1,0 +1,27 @@
+plugins {
+    id 'java-library'
+    id "rocks.coffeenet.build.conventions"
+    id "rocks.coffeenet.build.coverage"
+    id "rocks.coffeenet.build.deployed"
+}
+
+description = "Application discovery integrations with Cloud services."
+
+dependencies {
+    api platform(project(":coffeenet-dependencies"))
+    api project(":coffeenet-platform-domain")
+
+    api("org.springframework:spring-core")
+    api("org.springframework.cloud:spring-cloud-commons") {
+        because "Basic interfaces for Spring Cloud integration"
+    }
+
+    implementation("org.slf4j:slf4j-api")
+
+    // Test dependencies
+    testImplementation('org.springframework.boot:spring-boot-starter')
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'nl.jqno.equalsverifier:equalsverifier:3.1.12'
+}

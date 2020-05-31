@@ -15,6 +15,7 @@ dependencies {
     constraints {
         api project(":coffeenet-actuator")
         api project(":coffeenet-autoconfigure")
+        api project(":coffeenet-platform-discovery")
         api project(":coffeenet-platform-domain")
 
         rootProject.allprojects {
