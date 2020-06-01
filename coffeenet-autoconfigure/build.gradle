@@ -25,8 +25,6 @@ dependencies {
     optionalImplementation 'org.springframework.boot:spring-boot-starter-webflux'
     optionalImplementation 'org.springframework.cloud:spring-cloud-starter'
 
-    optionalImplementation 'javax.servlet:javax.servlet-api'
-
     // Annotation processing
     annotationProcessor platform(project(":coffeenet-dependencies"))
     annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
