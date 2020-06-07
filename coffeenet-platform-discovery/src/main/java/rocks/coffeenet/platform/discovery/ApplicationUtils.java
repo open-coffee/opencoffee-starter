@@ -48,7 +48,7 @@ class ApplicationUtils {
 
             return builder.build();
         } catch (MalformedURLException e) {
-            LOGGER.warn(String.format("Could not map from service instance {}", instance), e);
+            LOGGER.warn(String.format("Could not map from service instance %s", instance), e);
 
             return null;
         }
