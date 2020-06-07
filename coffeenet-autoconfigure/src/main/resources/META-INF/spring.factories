@@ -1,5 +1,6 @@
 # Auto-configuration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+rocks.coffeenet.autoconfigure.discovery.CoffeeNetDiscoveryAutoConfiguration,\
 rocks.coffeenet.autoconfigure.security.CoffeeNetProfileAutoConfiguration,\
 rocks.coffeenet.autoconfigure.security.CoffeeNetSecurityAutoConfiguration,\
 rocks.coffeenet.autoconfigure.security.oauth2.reactive.ReactiveOAuth2SecurityAutoConfiguration,\
