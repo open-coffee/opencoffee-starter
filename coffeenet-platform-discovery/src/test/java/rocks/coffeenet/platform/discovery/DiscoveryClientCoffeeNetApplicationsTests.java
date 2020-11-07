@@ -1,20 +1,22 @@
 package rocks.coffeenet.platform.discovery;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import org.springframework.cloud.client.discovery.simple.SimpleDiscoveryClient;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import org.springframework.test.context.ActiveProfiles;
 
 import rocks.coffeenet.platform.domain.app.CoffeeNetApplication;
+import rocks.coffeenet.platform.domain.app.CoffeeNetApplications;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,22 +31,13 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
  */
 @EnableAutoConfiguration
-@SpringBootTest
+@SpringBootTest(classes = DiscoveryClientCoffeeNetApplicationsTests.TestConfiguration.class)
 @ActiveProfiles("discovery")
 @DisplayName("DiscoveryClientCoffeeNetApplications")
 class DiscoveryClientCoffeeNetApplicationsTests {
 
     @Autowired
-    SimpleDiscoveryClient discoveryClient;
-
-    private DiscoveryClientCoffeeNetApplications coffeeNetApplications;
-
-    @BeforeEach
-    void setup() {
-
-        coffeeNetApplications = new DiscoveryClientCoffeeNetApplications(discoveryClient);
-    }
-
+    private CoffeeNetApplications coffeeNetApplications;
 
     @Test
     @DisplayName("retrieves the valid applications from the discovery client")
@@ -76,7 +69,13 @@ class DiscoveryClientCoffeeNetApplicationsTests {
             .containsExactlyElementsOf(expected);
     }
 
-    @SpringBootConfiguration
+    @Configuration
     public static class TestConfiguration {
+
+        @Bean
+        CoffeeNetApplications coffeeNetApplications(DiscoveryClient discoveryClient) {
+
+            return new DiscoveryClientCoffeeNetApplications(discoveryClient);
+        }
     }
 }
