@@ -1,11 +1,5 @@
 package rocks.coffeenet.build;
 
-import de.marcphilipp.gradle.nexus.NexusPublishExtension;
-import de.marcphilipp.gradle.nexus.NexusPublishPlugin;
-
-import io.codearte.gradle.nexus.NexusStagingExtension;
-import io.codearte.gradle.nexus.NexusStagingPlugin;
-
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.plugins.JavaPlatformPlugin;
@@ -24,8 +18,7 @@ import java.util.Optional;
 /**
  * A plugin applied to a project that should be deployed.
  *
- * <p>It in general creates the necessary publications for Maven based publication. Additionally it can configure
- * SonaType OSS repository and artifact signing, so we publish to Maven Central.</p>
+ * <p>It in general creates the necessary publications for Maven based publication.</p>
  *
  * @author  Andy Wilkinson
  * @author  Florian 'punycode' Krupicka - zh@punyco.de
@@ -34,11 +27,6 @@ import java.util.Optional;
  *       Spring Boot</a>
  */
 public class DeployedPlugin implements Plugin<Project> {
-
-    /**
-     * Property to determine if to apply publication to SonaType OSS repository.
-     */
-    public static final String SONATYPE_OSS_PROPERTY_NAME = "sonatype";
 
     /**
      * Project property to determine whether to sign the deployed artifacts with GPG. This is automatically enabled
@@ -67,11 +55,7 @@ public class DeployedPlugin implements Plugin<Project> {
             project.getComponents().matching((component) -> component.getName().equals("javaPlatform"))
                 .all(mavenPublication::from));
 
-        if (project.hasProperty(SONATYPE_OSS_PROPERTY_NAME)) {
-            applySonaTypeOssPublishing(project);
-        }
-
-        if (project.hasProperty(SIGN_GPG_PROPERTY_NAME) || project.hasProperty(SONATYPE_OSS_PROPERTY_NAME)) {
+        if (project.hasProperty(SIGN_GPG_PROPERTY_NAME)) {
             applyGpgSigning(project, mavenPublication);
         }
         //@formatter:on
@@ -93,31 +77,6 @@ public class DeployedPlugin implements Plugin<Project> {
         if (privateKey.isPresent() && passphrase.isPresent()) {
             signing.useInMemoryPgpKeys(privateKey.get(), passphrase.get());
         }
-    }
-
-
-    /**
-     * Apply the publishing extensions for SonaType OSS repository.
-     */
-    private void applySonaTypeOssPublishing(Project project) {
-
-        Project rootProject = project.getRootProject();
-
-        if (!project.getRootProject().getPlugins().hasPlugin(NexusStagingPlugin.class)) {
-            rootProject.getPlugins().apply(NexusStagingPlugin.class);
-
-            Optional<String> sonatypeUsername = nonEmptyEnvironment("SONATYPE_USERNAME");
-            Optional<String> sonatypePassword = nonEmptyEnvironment("SONATYPE_PASSWORD");
-
-            if (sonatypeUsername.isPresent() && sonatypePassword.isPresent()) {
-                NexusStagingExtension staging = rootProject.getExtensions().getByType(NexusStagingExtension.class);
-                staging.setUsername(sonatypeUsername.get());
-                staging.setPassword(sonatypePassword.get());
-            }
-        }
-
-        project.getPlugins().apply(NexusPublishPlugin.class);
-        project.getExtensions().getByType(NexusPublishExtension.class).getRepositories().sonatype();
     }
 
 
