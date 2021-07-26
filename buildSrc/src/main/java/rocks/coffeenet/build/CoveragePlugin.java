@@ -36,8 +36,8 @@ public class CoveragePlugin implements Plugin<Project> {
 
             project.getTasks().withType(JacocoReport.class).all((jacoco) -> {
                 jacoco.reports((report) -> {
-                    report.getXml().setEnabled(true);
-                    report.getHtml().setEnabled(false);
+                    report.getXml().getRequired().set(true);
+                    report.getHtml().getRequired().set(false);
                 });
                 project.getTasks().withType(Test.class).all((test) -> jacoco.dependsOn(test));
                 checkTaskName.dependsOn(jacoco);
