@@ -30,10 +30,6 @@ gradlePlugin {
 }
 
 dependencies {
-    // Support publishing to Sonatype OSS repository
-    implementation 'de.marcphilipp.gradle:nexus-publish-plugin:0.4.0'
-    implementation 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.21.2'
-
     // Tests
     testImplementation gradleTestKit()
     testImplementation 'org.assertj:assertj-core:3.13.2'

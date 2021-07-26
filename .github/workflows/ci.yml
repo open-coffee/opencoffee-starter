@@ -58,7 +58,7 @@ jobs:
       # Run only if current version is actually a development version
       run: |
         if ./scripts/is_development; then
-          ./gradlew -Psonatype build publishToSonatype
+          ./gradlew -Psonatype -PsignGpg build publishToSonatype
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
