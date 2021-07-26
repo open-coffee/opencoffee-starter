@@ -21,7 +21,7 @@ jobs:
         git fetch --no-tags --prune origin \
           +refs/heads/${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
       if: github.event_name == 'pull_request'
-    - name: Set up JDK
+    - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
         java-version: 11
@@ -61,7 +61,7 @@ jobs:
       # Run only if current version is actually a development version
       run: |
         if ./scripts/is_development; then
-          ./gradlew -Psonatype build publishToSonatype
+          ./gradlew -Psonatype -PsignGpg build publishToSonatype
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
