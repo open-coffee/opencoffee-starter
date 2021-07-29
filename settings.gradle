@@ -20,6 +20,7 @@ rootProject.name = 'coffeenet-boot-build'
 
 include "coffeenet-dependencies"
 include "coffeenet-platform-domain"
+include "coffeenet-platform-discovery"
 include "coffeenet-autoconfigure"
 include "coffeenet-actuator"
 

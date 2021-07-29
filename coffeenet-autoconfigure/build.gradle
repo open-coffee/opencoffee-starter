@@ -23,8 +23,9 @@ dependencies {
     optionalImplementation 'org.springframework.boot:spring-boot-starter-security'
     optionalImplementation 'org.springframework.boot:spring-boot-starter-web'
     optionalImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+    optionalImplementation 'org.springframework.cloud:spring-cloud-starter'
 
-    optionalImplementation 'javax.servlet:javax.servlet-api'
+    optionalImplementation project(':coffeenet-platform-discovery')
 
     // Annotation processing
     annotationProcessor platform(project(":coffeenet-dependencies"))

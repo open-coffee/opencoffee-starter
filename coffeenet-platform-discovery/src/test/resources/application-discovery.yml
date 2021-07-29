@@ -1,0 +1,18 @@
+---
+spring:
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            example-app:
+            - uri: https://app.example.com
+              metadata:
+                allowedAuthorities: ROLE_ADMIN,ROLE_EXAMPLE
+            another-app:
+            - uri: https://another.example.com
+              metadata:
+                allowedAuthorities: ROLE_ANOTHER
+            broken-uri:
+            - uri: app://broken-uri
+
