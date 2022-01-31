@@ -2,7 +2,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/rocks.coffeenet/coffeenet-starter/badge.svg)](https://search.maven.org/search?q=g:rocks.coffeenet%20AND%20a:coffeenet-starter&core=gav)
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=rocks.coffeenet:coffeenet-starter&metric=coverage)](https://sonarcloud.io/dashboard?id=rocks.coffeenet:coffeenet-starter)
 
-# CoffeeNet Starters
+# OpenCoffee Starters
 
 These projects contains all CoffeeNet starters, which can be used
 to integrate an application into the CoffeeNet.
