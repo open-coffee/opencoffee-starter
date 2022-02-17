@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - spring-2-rewrite
   pull_request:
 
 jobs:
@@ -54,7 +55,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     - name: Publish development artifacts to Sonatype OSSRH
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      if: |
+        (github.event_name == 'push' && github.ref == 'refs/heads/master') ||
+        (github.event_name == 'push' && github.ref == 'refs/heads/spring-2-rewrite')
       # Run only if current version is actually a development version
       run: |
         if ./scripts/is_development; then

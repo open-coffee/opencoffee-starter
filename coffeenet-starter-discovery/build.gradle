@@ -11,5 +11,5 @@ dependencies {
     api platform(project(':coffeenet-dependencies'))
     api project(':coffeenet-starter')
 
-    api 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+    api 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 }

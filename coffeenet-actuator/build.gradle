@@ -11,18 +11,16 @@ description = "Implementation for CoffeeNet specific health and metrics features
 dependencies {
     // Public API dependencies
     api platform(project(":coffeenet-dependencies"))
-    api 'org.springframework:spring-web'
     api 'org.springframework.boot:spring-boot-actuator'
 
     // Implementation dependencies
-    optionalImplementation 'org.hibernate:hibernate-validator'
-    optionalImplementation project(':coffeenet-starter-security')
 
     // Test dependencies
-    testImplementation 'de.schauderhaft.degraph:degraph-check:0.1.4'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
 
 test {
-    useJUnit()
+    useJUnitPlatform()
 }

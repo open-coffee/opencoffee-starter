@@ -1,0 +1,23 @@
+plugins {
+    id 'java-platform'
+    id "rocks.coffeenet.build.conventions"
+}
+
+description = "Dependency management for CoffeeNet (Legacy)."
+
+javaPlatform {
+    allowDependencies()
+}
+
+dependencies {
+
+    constraints {
+        api project(":legacy:coffeenet-actuator")
+        api project(":legacy:coffeenet-autoconfigure")
+        api project(":legacy:coffeenet-starter-security")
+        api 'rocks.coffeenet:navigation-bar:0.16.0'
+    }
+
+    api platform("org.springframework.boot:spring-boot-dependencies:1.5.19.RELEASE")
+    api platform("org.springframework.cloud:spring-cloud-dependencies:Dalston.SR5")
+}

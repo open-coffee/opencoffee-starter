@@ -1,0 +1,34 @@
+plugins {
+    id 'java-library'
+    id "rocks.coffeenet.build.conventions"
+    id "rocks.coffeenet.build.coverage"
+    id "rocks.coffeenet.build.optional"
+}
+
+description = "Auto-configuration for CoffeeNet features (Legacy)."
+
+dependencies {
+    api platform(project(':legacy:coffeenet-dependencies'))
+
+    api 'org.slf4j:slf4j-api'
+    api 'org.springframework.boot:spring-boot-autoconfigure'
+
+    optionalApi 'javax.servlet:javax.servlet-api'
+
+    optionalImplementation 'org.springframework.boot:spring-boot-actuator'
+    optionalImplementation 'org.springframework.boot:spring-boot-starter-security'
+    optionalImplementation 'org.springframework.boot:spring-boot-starter-web'
+    optionalImplementation 'org.springframework.cloud:spring-cloud-commons'
+    optionalImplementation 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
+    optionalImplementation 'com.netflix.eureka:eureka-client'
+    optionalImplementation 'org.springframework.security.oauth:spring-security-oauth2'
+    optionalImplementation 'org.hibernate:hibernate-validator'
+
+    // Test dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'de.schauderhaft.degraph:degraph-check:0.1.4'
+}
+
+test {
+    useJUnit()
+}

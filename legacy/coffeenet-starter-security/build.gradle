@@ -1,0 +1,15 @@
+plugins {
+    id 'java-library'
+    id "rocks.coffeenet.build.conventions"
+}
+
+description = "Starter for CoffeeNet to provide security and SSO (Legacy)."
+
+dependencies {
+
+    api platform(project(':legacy:coffeenet-dependencies'))
+    api project(':legacy:coffeenet-autoconfigure')
+
+    api 'org.springframework.boot:spring-boot-starter-security'
+    api 'org.springframework.security.oauth:spring-security-oauth2'
+}

@@ -1,0 +1,23 @@
+plugins {
+    id 'java-library'
+    id "rocks.coffeenet.build.conventions"
+    id "rocks.coffeenet.build.coverage"
+    id "rocks.coffeenet.build.optional"
+}
+
+description = "Implementation for CoffeeNet specific health and metrics features (Legacy)."
+
+dependencies {
+    api platform(project(':legacy:coffeenet-dependencies'))
+    api project(":legacy:coffeenet-starter-security")
+
+    api 'org.springframework.boot:spring-boot-actuator'
+    api 'org.hibernate:hibernate-validator'
+
+    // Test dependencies
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnit()
+}

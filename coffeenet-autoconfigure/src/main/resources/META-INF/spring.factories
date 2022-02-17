@@ -1,5 +1,11 @@
+# Auto-configuration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-rocks.coffeenet.autoconfigure.discovery.config.CoffeeNetDiscoveryAutoConfiguration,\
-rocks.coffeenet.autoconfigure.security.config.CoffeeNetSecurityAutoConfiguration,\
-rocks.coffeenet.autoconfigure.logging.config.CoffeeNetLoggingAutoConfiguration,\
-rocks.coffeenet.autoconfigure.navigation.CoffeeNetNavigationAutoConfiguration
+rocks.coffeenet.autoconfigure.security.CoffeeNetProfileAutoConfiguration,\
+rocks.coffeenet.autoconfigure.security.CoffeeNetSecurityAutoConfiguration,\
+rocks.coffeenet.autoconfigure.security.oauth2.reactive.ReactiveOAuth2SecurityAutoConfiguration,\
+rocks.coffeenet.autoconfigure.security.oauth2.servlet.OAuth2SecurityAutoConfiguration,\
+rocks.coffeenet.autoconfigure.security.reactive.ReactiveCoffeeNetSecurityAutoConfiguration
+
+# Injected security configurers
+org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer=\
+rocks.coffeenet.autoconfigure.security.servlet.DelegatingSecurityConfigurer

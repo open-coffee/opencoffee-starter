@@ -13,9 +13,6 @@ provides the authentication against the CoffeeNet auth server.
 [Discovery](./coffeenet-starter-discovery/README.md)
 provides the integration to distribute and search of CoffeeNet applications.
 
-[Logging](./coffeenet-starter-logging/README.md)
-provides a consistent and centralised logging.
-
 [Monitoring](./coffeenet-starter-monitoring/README.md)
 provides information about the service.
 

@@ -11,20 +11,19 @@ description = "Auto-configuration for CoffeeNet features."
 dependencies {
     // Public API dependencies
     api platform(project(":coffeenet-dependencies"))
+    api project(":coffeenet-platform-domain")
+
     api 'org.springframework.boot:spring-boot-autoconfigure'
 
     // Implementation dependencies
     implementation 'org.slf4j:slf4j-api'
 
+    optionalImplementation 'org.springframework.boot:spring-boot-actuator'
+    optionalImplementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     optionalImplementation 'org.springframework.boot:spring-boot-starter-security'
     optionalImplementation 'org.springframework.boot:spring-boot-starter-web'
-    optionalImplementation 'org.springframework.boot:spring-boot-actuator'
-    optionalImplementation 'org.springframework.cloud:spring-cloud-commons'
-    optionalImplementation 'org.springframework.cloud:spring-cloud-netflix-eureka-client'
-    optionalImplementation 'org.springframework.security.oauth:spring-security-oauth2'
+    optionalImplementation 'org.springframework.boot:spring-boot-starter-webflux'
 
-    optionalImplementation 'com.netflix.eureka:eureka-client'
-    optionalImplementation 'de.appelgriepsch.logback:logback-gelf-appender'
     optionalImplementation 'javax.servlet:javax.servlet-api'
 
     // Annotation processing
@@ -33,11 +32,12 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     // Test dependencies
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
     testImplementation 'org.springframework.security:spring-security-test'
-    testImplementation 'de.schauderhaft.degraph:degraph-check:0.1.4'
 }
 
 test {
-    useJUnit()
+    useJUnitPlatform()
 }

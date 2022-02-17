@@ -13,22 +13,20 @@ javaPlatform {
 dependencies {
 
     constraints {
-        api project(":coffeenet-autoconfigure")
         api project(":coffeenet-actuator")
-        api project(":coffeenet-starter")
-        api project(":coffeenet-starter-discovery")
-        api project(":coffeenet-starter-logging")
-        api project(":coffeenet-starter-monitoring")
-        api project(":coffeenet-starter-navigation")
-        api project(":coffeenet-starter-navigation-javascript")
-        api project(":coffeenet-starter-navigation-thymeleaf")
-        api project(":coffeenet-starter-security")
+        api project(":coffeenet-autoconfigure")
+        api project(":coffeenet-platform-domain")
+
+        rootProject.allprojects {
+            if(it.name =~ /^coffeenet-starter/) {
+                api project(it.path)
+            }
+        }
 
         // External CoffeeNet dependencies
         api "rocks.coffeenet:navigation-bar:${coffeeNetNavigationBarVersion}"
 
         // External 3rd party dependencies
-        api "de.appelgriepsch.logback:logback-gelf-appender:${logbackGelfAppenderVersion}"
     }
 
     api platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")

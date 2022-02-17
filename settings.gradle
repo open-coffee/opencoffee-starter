@@ -19,15 +19,21 @@ gradleEnterprise {
 rootProject.name = 'coffeenet-boot-build'
 
 include "coffeenet-dependencies"
+include "coffeenet-platform-domain"
 include "coffeenet-autoconfigure"
 include "coffeenet-actuator"
 
 include "coffeenet-starter-parent"
 include "coffeenet-starter"
 include "coffeenet-starter-discovery"
-include "coffeenet-starter-logging"
 include "coffeenet-starter-monitoring"
 include "coffeenet-starter-navigation"
 include "coffeenet-starter-navigation-javascript"
 include "coffeenet-starter-navigation-thymeleaf"
 include "coffeenet-starter-security"
+
+// Legacy modules
+include 'legacy:coffeenet-dependencies'
+include 'legacy:coffeenet-actuator'
+include 'legacy:coffeenet-autoconfigure'
+include 'legacy:coffeenet-starter-security'

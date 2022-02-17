@@ -11,4 +11,6 @@ dependencies {
     api platform(project(':coffeenet-dependencies'))
     api project(':coffeenet-starter')
     api project(':coffeenet-actuator')
+
+    api 'org.springframework.boot:spring-boot-starter-actuator'
 }
