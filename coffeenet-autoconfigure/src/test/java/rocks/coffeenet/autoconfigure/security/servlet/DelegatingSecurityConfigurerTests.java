@@ -42,7 +42,7 @@ class DelegatingSecurityConfigurerTests {
 
     @Test
     @DisplayName("should run custom CoffeeNet security configurer when bean present")
-    @Disabled("False negative in SB 2.5, loading of DelegatingSecurityConfigurer fails to happen in testing")
+    @Disabled("False negative in SB 2.5+, loading of DelegatingSecurityConfigurer fails to happen in testing")
     void customSecurityConfigurer() {
 
         contextRunner.withUserConfiguration(CustomConfigurer.class).run((context) ->
