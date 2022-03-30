@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-rocks.coffeenet.legacy.actuate.autoconfigure.AuthServerHealthIndicatorConfiguration
